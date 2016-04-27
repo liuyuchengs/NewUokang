@@ -1,0 +1,17 @@
+@mixin vertical-center($parent-height,$self-height){
+  margin-top:($parent-height - $self-height)/2;
+}
+@mixin hor-abosult-center($self-height,$self-width){
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin-top: -($self-height/2);
+    margin-left:-($self-width/2);
+}
+@mixin separate($height,$bg-color,$border-color){
+    height: $height;
+    background-color: $bg-color;
+	border-top:solid $border-color 1px;
+	border-bottom:solid $border-color 1px;
+    width: 100%;
+}

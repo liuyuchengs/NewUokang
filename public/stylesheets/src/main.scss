@@ -1,0 +1,80 @@
+@import "tool.scss";
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{
+    margin:0;padding:0;border:0;
+}
+body{
+	color:#000000;
+	font-size:14px;
+	font-family: "微软雅黑",Helvetica,Sans-serif;
+}
+/*
+基础样式
+*/
+.float-left{
+	float: left;
+}
+.float-right{
+	float: right;
+}
+.base-separator{
+	@include separate(10px,#eeeeee,#cccccc);
+}
+
+/*
+底部菜单
+*/
+//菜单
+$bottom-menu-bg:#F6F6F6;
+$bottom-menu-height:70px;
+$bottom-icon-height:50px;
+.button-menu{
+	position: fixed;
+	z-index: 10;
+	bottom: 0px;
+	left: 0px;
+	width:100%;
+	background-color: $bottom-menu-bg;
+	height:$bottom-menu-height;
+	.button-menu-item{
+		width:25%;
+		height: 100%;
+		float: left;
+		text-align: center;
+		.icon{
+			display: inline-block;
+			text-align: center;
+			height:$bottom-icon-height;
+			@include vertical-center($bottom-menu-height,$bottom-icon-height);
+			p{
+				line-height: 15px;
+			}
+		}
+	}
+}
+
+/*
+主页项目分类
+*/
+.type{
+	padding-left: 5%;
+	padding-right: 5%;
+	$type-line-height:100px;
+	$type-item-height:80px;
+	$type-item-width:80px;
+	.type-line{
+		height:$type-line-height;
+		position: relative;
+		.type-item{
+			height:$type-item-height;
+			width:$type-item-width;
+			text-align: center;
+			@include vertical-center($type-line-height,$type-item-height);
+			.type-icon{
+				text-align: center;
+			}
+		}
+		.middle{
+			@include hor-abosult-center($type-item-height,$type-item-width);
+		}
+	}
+}

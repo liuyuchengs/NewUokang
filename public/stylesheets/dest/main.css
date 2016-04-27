@@ -1,0 +1,73 @@
+@charset "UTF-8";
+body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+body {
+  color: #000000;
+  font-size: 14px;
+  font-family: "微软雅黑",Helvetica,Sans-serif; }
+
+/*
+基础样式
+*/
+.float-left {
+  float: left; }
+
+.float-right {
+  float: right; }
+
+.base-separator {
+  height: 10px;
+  background-color: #eeeeee;
+  border-top: solid #cccccc 1px;
+  border-bottom: solid #cccccc 1px;
+  width: 100%; }
+
+/*
+底部菜单
+*/
+.button-menu {
+  position: fixed;
+  z-index: 10;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: #F6F6F6;
+  height: 70px; }
+  .button-menu .button-menu-item {
+    width: 25%;
+    height: 100%;
+    float: left;
+    text-align: center; }
+    .button-menu .button-menu-item .icon {
+      display: inline-block;
+      text-align: center;
+      height: 50px;
+      margin-top: 10px; }
+      .button-menu .button-menu-item .icon p {
+        line-height: 15px; }
+
+/*
+主页项目分类
+*/
+.type {
+  padding-left: 5%;
+  padding-right: 5%; }
+  .type .type-line {
+    height: 100px;
+    position: relative; }
+    .type .type-line .type-item {
+      height: 80px;
+      width: 80px;
+      text-align: center;
+      margin-top: 10px; }
+      .type .type-line .type-item .type-icon {
+        text-align: center; }
+    .type .type-line .middle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -40px;
+      margin-left: -40px; }
