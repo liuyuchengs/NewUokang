@@ -1,6 +1,9 @@
+//纵向居中
 @mixin vertical-center($parent-height,$self-height){
   margin-top:($parent-height - $self-height)/2;
 }
+
+//横向居中(绝对定位)
 @mixin hor-abosult-center($self-height,$self-width){
     position: absolute;
     top:50%;
@@ -8,6 +11,8 @@
     margin-top: -($self-height/2);
     margin-left:-($self-width/2);
 }
+
+//分隔区域
 @mixin separate($height,$bg-color,$border-color){
     height: $height;
     background-color: $bg-color;
