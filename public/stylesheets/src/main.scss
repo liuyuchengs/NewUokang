@@ -12,6 +12,10 @@ $header-background-color:#1fc1d9;
 $header-color:#fff;
 $header-height:50px;
 $header-padding:15px;
+//底部菜单栏变量
+$bottom-menu-bg:#F6F6F6;
+$bottom-menu-height:50px;
+$bottom-icon-height:40px;
 
 /*
 全局样式
@@ -34,13 +38,20 @@ body{
 .float-right{
 	float: right;
 }
+.margin-l{
+	margin-left: 5px;
+}
 .base-separator{
 	@include separate(10px,#eeeeee,$border-color);
 }
 .has-header{
 	margin-top:$header-height;
 }
-
+.has-menu{
+	height: $bottom-menu-height;
+	width: 100%;
+	background-color: $bottom-menu-bg;
+}
 
 /*
 * 标题头
@@ -93,17 +104,29 @@ body{
 	padding-right:$con-padding;
 	overflow: hidden;
 	.item{
+		$img-height:80px;
 		padding-top: $con-padding;
 		padding-bottom: $con-padding;
 		overflow: hidden;
 		border-bottom: solid 1px $border-color;
+		span{
+			display:block;
+		}
 		.item-img{
-			height:80px;
+			height:$img-height;
 			margin-right: 5px;
 			border-radius: 5px;
 		}
+		.item-desc{
+			margin-left:($img-height+10px);
+		}
 		.item-subhead{
 			font-size: $small-font-size;
+			line-height: 25px;
+		}
+		.item-price{
+			overflow: hidden;
+			margin-top: 20px;
 		}
 		.saleprice{
 			color: #1fc1d9;
@@ -124,9 +147,6 @@ body{
 * 底部菜单
 */
 .button-menu{
-	$bottom-menu-bg:#F6F6F6;
-	$bottom-menu-height:50px;
-	$bottom-icon-height:40px;
 	position: fixed;
 	z-index: 10;
 	bottom: 0px;

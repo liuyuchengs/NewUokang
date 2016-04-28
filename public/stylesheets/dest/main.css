@@ -24,6 +24,9 @@ body {
 .float-right {
   float: right; }
 
+.margin-l {
+  margin-left: 5px; }
+
 .base-separator {
   height: 10px;
   background-color: #eeeeee;
@@ -33,6 +36,11 @@ body {
 
 .has-header {
   margin-top: 50px; }
+
+.has-menu {
+  height: 50px;
+  width: 100%;
+  background-color: #F6F6F6; }
 
 /*
 * 标题头
@@ -80,12 +88,20 @@ body {
     padding-bottom: 10px;
     overflow: hidden;
     border-bottom: solid 1px #eeeeee; }
+    .prduct-container .item span {
+      display: block; }
     .prduct-container .item .item-img {
       height: 80px;
       margin-right: 5px;
       border-radius: 5px; }
+    .prduct-container .item .item-desc {
+      margin-left: 90px; }
     .prduct-container .item .item-subhead {
-      font-size: 12px; }
+      font-size: 12px;
+      line-height: 25px; }
+    .prduct-container .item .item-price {
+      overflow: hidden;
+      margin-top: 20px; }
     .prduct-container .item .saleprice {
       color: #1fc1d9; }
       .prduct-container .item .saleprice i {
