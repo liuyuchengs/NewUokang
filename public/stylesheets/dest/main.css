@@ -27,6 +27,9 @@ body {
 .margin-l {
   margin-left: 5px; }
 
+.margin-r {
+  margin-right: 5px; }
+
 .base-separator {
   height: 10px;
   background-color: #eeeeee;
@@ -40,7 +43,10 @@ body {
 .has-menu {
   height: 50px;
   width: 100%;
-  background-color: #F6F6F6; }
+  background-color: #F8F8F8; }
+
+.check-color {
+  color: #1fc1d9; }
 
 /*
 * 标题头
@@ -88,8 +94,6 @@ body {
     padding-bottom: 10px;
     overflow: hidden;
     border-bottom: solid 1px #eeeeee; }
-    .prduct-container .item span {
-      display: block; }
     .prduct-container .item .item-img {
       height: 80px;
       margin-right: 5px;
@@ -101,11 +105,11 @@ body {
       line-height: 25px; }
     .prduct-container .item .item-price {
       overflow: hidden;
-      margin-top: 20px; }
+      margin-top: 18px; }
+      .prduct-container .item .item-price div {
+        line-height: 20px; }
     .prduct-container .item .saleprice {
       color: #1fc1d9; }
-      .prduct-container .item .saleprice i {
-        font-size: 12px; }
     .prduct-container .item .price {
       font-size: 12px;
       text-decoration: line-through;
@@ -120,9 +124,10 @@ body {
   bottom: 0px;
   left: 0px;
   width: 100%;
-  background-color: #F6F6F6;
+  background-color: #F8F8F8;
   height: 50px;
-  border-top: solid 1px #cccccc; }
+  border-top: solid 1px #ABABAB;
+  color: #7C8085; }
   .button-menu .button-menu-item {
     width: 25%;
     height: 100%;
@@ -157,6 +162,8 @@ body {
       margin-top: 10px; }
       .type .type-line .type-item .type-icon {
         text-align: center; }
+        .type .type-line .type-item .type-icon img {
+          height: 50px; }
     .type .type-line .middle {
       position: absolute;
       top: 50%;
@@ -185,6 +192,8 @@ body {
       left: 50%;
       margin-top: -25px;
       margin-left: -100px; }
+      .tehui .tehui-qiang .item img {
+        height: 50px; }
       .tehui .tehui-qiang .item .item-title {
         text-align: left;
         padding-left: 5px; }
@@ -210,6 +219,8 @@ body {
       left: 50%;
       margin-top: -40px;
       margin-left: -40px; }
+      .tehui .tehui-tehui .item img {
+        height: 50px; }
 
 /*
 * 主页热门专区
@@ -224,3 +235,101 @@ body {
     margin-top: 7.5px; }
     .hot div img {
       height: 20px; }
+
+/*
+* 产品列表页面filter
+*/
+.filter {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-bottom: solid 1px #eeeeee; }
+  .filter .filter-item {
+    width: 49%;
+    height: 100%; }
+    .filter .filter-item img {
+      height: 15px;
+      width: 15px; }
+  .filter .filter-line-sepa {
+    width: 1px;
+    height: 25px;
+    margin-top: 7.5px;
+    background-color: #eeeeee; }
+
+/*
+* 产品列表页面筛选
+*/
+.product-class {
+  height: 70px;
+  border-bottom: solid 1px #eeeeee;
+  position: relative;
+  overflow: visible;
+  left: 0px; }
+  .product-class .item {
+    height: 55px;
+    width: 60px;
+    display: inline-block;
+    text-align: center;
+    margin-top: 7.5px; }
+    .product-class .item img {
+      height: 30px; }
+  .product-class .item-20 {
+    position: absolute;
+    left: 1235px; }
+  .product-class .item-19 {
+    position: absolute;
+    left: 1170px; }
+  .product-class .item-18 {
+    position: absolute;
+    left: 1105px; }
+  .product-class .item-17 {
+    position: absolute;
+    left: 1040px; }
+  .product-class .item-16 {
+    position: absolute;
+    left: 975px; }
+  .product-class .item-15 {
+    position: absolute;
+    left: 910px; }
+  .product-class .item-14 {
+    position: absolute;
+    left: 845px; }
+  .product-class .item-13 {
+    position: absolute;
+    left: 780px; }
+  .product-class .item-12 {
+    position: absolute;
+    left: 715px; }
+  .product-class .item-11 {
+    position: absolute;
+    left: 650px; }
+  .product-class .item-10 {
+    position: absolute;
+    left: 585px; }
+  .product-class .item-9 {
+    position: absolute;
+    left: 520px; }
+  .product-class .item-8 {
+    position: absolute;
+    left: 455px; }
+  .product-class .item-7 {
+    position: absolute;
+    left: 390px; }
+  .product-class .item-6 {
+    position: absolute;
+    left: 325px; }
+  .product-class .item-5 {
+    position: absolute;
+    left: 260px; }
+  .product-class .item-4 {
+    position: absolute;
+    left: 195px; }
+  .product-class .item-3 {
+    position: absolute;
+    left: 130px; }
+  .product-class .item-2 {
+    position: absolute;
+    left: 65px; }
+  .product-class .item-1 {
+    position: absolute;
+    left: 0px; }

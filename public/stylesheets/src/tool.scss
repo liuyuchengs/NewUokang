@@ -20,3 +20,9 @@
 	border-bottom:solid $border-color 1px;
     width: 100%;
 }
+
+@mixin absolute-left($count) {
+	$left:65px;
+	position: absolute;
+	left:($count - 1)*$left;
+}

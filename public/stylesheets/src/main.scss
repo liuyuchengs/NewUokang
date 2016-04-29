@@ -2,9 +2,9 @@
 /*
 全局变量
 */
-$border-color:#eeeeee;
-$border-color-more:#cccccc;
+$line-color:#eeeeee;
 $font-size:14px;
+$color:#000000;
 $small-font-size:12px;
 $large-font-size:16px;
 //标题头变量
@@ -13,7 +13,8 @@ $header-color:#fff;
 $header-height:50px;
 $header-padding:15px;
 //底部菜单栏变量
-$bottom-menu-bg:#F6F6F6;
+$bottom-menu-bg:#F8F8F8;
+$bottom-line-bg:#ABABAB;
 $bottom-menu-height:50px;
 $bottom-icon-height:40px;
 
@@ -24,7 +25,7 @@ body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{
     margin:0;padding:0;border:0;
 }
 body{
-	color:#000000;
+	color:$color;
 	font-size:$font-size;
 	font-family: "微软雅黑",Helvetica,Sans-serif;
 }
@@ -41,8 +42,11 @@ body{
 .margin-l{
 	margin-left: 5px;
 }
+.margin-r{
+	margin-right:5px;
+}
 .base-separator{
-	@include separate(10px,#eeeeee,$border-color);
+	@include separate(10px,#eeeeee,#eeeeee);
 }
 .has-header{
 	margin-top:$header-height;
@@ -51,6 +55,9 @@ body{
 	height: $bottom-menu-height;
 	width: 100%;
 	background-color: $bottom-menu-bg;
+}
+.check-color{
+	color:#1fc1d9;
 }
 
 /*
@@ -108,10 +115,7 @@ body{
 		padding-top: $con-padding;
 		padding-bottom: $con-padding;
 		overflow: hidden;
-		border-bottom: solid 1px $border-color;
-		span{
-			display:block;
-		}
+		border-bottom: solid 1px $line-color;
 		.item-img{
 			height:$img-height;
 			margin-right: 5px;
@@ -126,13 +130,13 @@ body{
 		}
 		.item-price{
 			overflow: hidden;
-			margin-top: 20px;
+			margin-top: 18px;
+			div{
+				line-height: 20px;
+			}
 		}
 		.saleprice{
 			color: #1fc1d9;
-			i{
-				font-size: $small-font-size;
-			}
 		}
 		.price{
 			font-size:$small-font-size;
@@ -147,6 +151,7 @@ body{
 * 底部菜单
 */
 .button-menu{
+	$color:#7C8085;
 	position: fixed;
 	z-index: 10;
 	bottom: 0px;
@@ -154,7 +159,8 @@ body{
 	width:100%;
 	background-color: $bottom-menu-bg;
 	height:$bottom-menu-height;
-	border-top: solid 1px $border-color-more;
+	border-top: solid 1px $bottom-line-bg;
+	color:$color;
 	.button-menu-item{
 		width:25%;
 		height: 100%;
@@ -198,6 +204,9 @@ body{
 			@include vertical-center($type-line-height,$type-item-height);
 			.type-icon{
 				text-align: center;
+				img{
+					height:50px;
+				}
 			}
 		}
 		.middle{
@@ -212,7 +221,7 @@ body{
 .tehui{
 	$line-height:100px;
 
-	border-bottom:solid 1px $border-color;
+	border-bottom:solid 1px $line-color;
 	overflow: hidden;
 	.tehui-qiang{
 		width:70%;
@@ -227,6 +236,9 @@ body{
 			height:$item-height;
 			width:$item-width;
 			@include hor-abosult-center($item-height,$item-width)
+			img{
+				height:50px;
+			}
 			.item-title{
 				text-align: left;
 				padding-left: 5px;
@@ -245,7 +257,7 @@ body{
 		$item-width:$item-height;
 		width:28%;
 		height:$line-height;
-		border-left: solid 1px $border-color;
+		border-left: solid 1px $line-color;
 		position: relative;
 		text-align: center;
 
@@ -255,6 +267,9 @@ body{
 			height:$item-height;
 			width:$item-width;
 			@include hor-abosult-center($item-height,$item-width);
+			img{
+				height:50px;
+			}
 		}
 	}
 }
@@ -265,7 +280,7 @@ body{
 .hot{
 	$hot-height:35px;
 	height:30px;
-	border-bottom: solid 1px $border-color;
+	border-bottom: solid 1px $line-color;
 	padding-left: 15px;
 	div{
 		$item-height:20px;
@@ -275,5 +290,62 @@ body{
 		img{
 			height:$item-height;
 		}
+	}
+}
+
+/*
+* 产品列表页面filter
+*/
+.filter{
+	$height:40px;
+	height:$height;
+	line-height: $height;
+	text-align: center;
+	border-bottom:solid 1px $line-color;
+	.filter-item{
+		width:49%;
+		height: 100%;
+		img{
+			height:15px;
+			width:15px
+		}
+	}
+	.filter-line-sepa{
+		$sepa-height:25px;
+		width:1px;
+		height:$sepa-height;
+		@include vertical-center($height,$sepa-height);
+		background-color:$line-color;
+	}
+}
+
+/*
+* 产品列表页面筛选
+*/
+.product-class{
+	$height:70px;
+	height:$height;
+	border-bottom:solid 1px $line-color;
+	position:relative;;
+	overflow: visible;
+	left: 0px;
+	.item{
+		$item-height:55px;
+		$item-width:60px;
+		height:$item-height;
+		width:$item-width;
+		display:inline-block;
+		text-align:center;
+		@include vertical-center($height,$item-height);
+		img{
+			height:30px;
+		}
+	}
+	$temp:20;
+	@while $temp > 0{
+		.item-#{$temp}{
+			@include absolute-left($temp) ;
+		}
+		$temp:$temp - 1;
 	}
 }
