@@ -326,26 +326,18 @@ body{
 	$height:70px;
 	height:$height;
 	border-bottom:solid 1px $line-color;
-	position:relative;;
-	overflow: visible;
-	left: 0px;
+	position: relative;
+	overflow: hidden;
 	.item{
 		$item-height:55px;
 		$item-width:60px;
 		height:$item-height;
 		width:$item-width;
-		display:inline-block;
 		text-align:center;
 		@include vertical-center($height,$item-height);
 		img{
 			height:30px;
 		}
 	}
-	$temp:20;
-	@while $temp > 0{
-		.item-#{$temp}{
-			@include absolute-left($temp) ;
-		}
-		$temp:$temp - 1;
-	}
+
 }
