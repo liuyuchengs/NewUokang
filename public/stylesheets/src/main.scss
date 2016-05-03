@@ -186,6 +186,49 @@ body{
 	}
 }
 
+//提示框
+.tip{
+	position: fixed;
+	top: 0px;
+	left:0px;
+	height:100%;
+	width:100%;
+	z-index: 100;
+	background-color: rgba(0,0,0,0.8);
+	.container{
+		$tip-width:260px;
+		$tip-height:130px;
+		width: $tip-width;
+		height: $tip-height;
+		border-radius: 5px;
+		border:solid 1px $bottom-line-bg;
+		@include hor-abosult-center($tip-height,$tip-width);
+		background-color: #fff;
+		.tip-text{
+			height:50px;
+			text-align: center;
+			padding: 20px;
+		}
+		.tip-btn{
+			height:40px;
+			border-top: solid 1px $line-color;
+			display: flex;
+			flex-direction: row;
+			flex-flow: nowrap;
+			.item:nth-child(1){
+				border-right:solid 1px $line-color;
+			}
+			.item{
+				flex:1;
+				text-align: center;
+				line-height: 40px;
+				color:$header-background-color;
+			}
+		}
+	}
+	
+}
+
 /*
 * ******主页******
 */
@@ -235,7 +278,7 @@ body{
 			text-align: center;
 			height:$item-height;
 			width:$item-width;
-			@include hor-abosult-center($item-height,$item-width)
+			@include hor-abosult-center($item-height,$item-width);
 			img{
 				height:50px;
 			}
@@ -463,12 +506,6 @@ body{
 /*
 ** ******注册页面******
 */
-.register-content{
-	.item{
-		margin-left:5% ;
-		margin-right:5%;
-		input{
-			width:100%;
-		}
-	}
-}
+
+
+

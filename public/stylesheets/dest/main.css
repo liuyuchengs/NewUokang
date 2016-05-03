@@ -142,6 +142,43 @@ body {
     .button-menu .button-menu-item .check {
       color: #1fc1d9; }
 
+.tip {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.8); }
+  .tip .container {
+    width: 260px;
+    height: 130px;
+    border-radius: 5px;
+    border: solid 1px #ABABAB;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -65px;
+    margin-left: -130px;
+    background-color: #fff; }
+    .tip .container .tip-text {
+      height: 50px;
+      text-align: center;
+      padding: 20px; }
+    .tip .container .tip-btn {
+      height: 40px;
+      border-top: solid 1px #eeeeee;
+      display: flex;
+      flex-direction: row;
+      flex-flow: nowrap; }
+      .tip .container .tip-btn .item:nth-child(1) {
+        border-right: solid 1px #eeeeee; }
+      .tip .container .tip-btn .item {
+        flex: 1;
+        text-align: center;
+        line-height: 40px;
+        color: #1fc1d9; }
+
 /*
 * ******主页******
 */
@@ -356,8 +393,3 @@ body {
 /*
 ** ******注册页面******
 */
-.register-content .item {
-  margin-left: 5%;
-  margin-right: 5%; }
-  .register-content .item input {
-    width: 100%; }
