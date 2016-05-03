@@ -1,6 +1,6 @@
 @import "tool.scss";
 /*
-全局变量
+* ******全局变量******
 */
 $line-color:#eeeeee;
 $font-size:14px;
@@ -17,12 +17,17 @@ $bottom-menu-bg:#F8F8F8;
 $bottom-line-bg:#ABABAB;
 $bottom-menu-height:50px;
 $bottom-icon-height:40px;
+//产品列表筛选
+$filter-height:40px;
 
 /*
-全局样式
+* ******全局样式******
 */
 body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{
     margin:0;padding:0;border:0;
+}
+input,button{
+	font-size: $font-size;
 }
 body{
 	color:$color;
@@ -31,7 +36,7 @@ body{
 }
 
 /*
-基础样式
+* ******基础样式******
 */
 .float-left{
 	float: left;
@@ -49,7 +54,9 @@ body{
 	@include separate(10px,#eeeeee,#eeeeee);
 }
 .has-header{
-	margin-top:$header-height;
+	height:$header-height;
+	width: 100%;
+	background-color: $bottom-menu-bg;
 }
 .has-menu{
 	height: $bottom-menu-height;
@@ -60,9 +67,7 @@ body{
 	color:#1fc1d9;
 }
 
-/*
-* 标题头
-*/
+//标题头
 .header{
     position: fixed;
     top: 0px;
@@ -102,9 +107,7 @@ body{
 
 }
 
-/*
-* 产品列表
-*/
+//产品列表
 .prduct-container{
 	$con-padding:10px;
 	padding-left: $con-padding;
@@ -119,7 +122,7 @@ body{
 		.item-img{
 			height:$img-height;
 			margin-right: 5px;
-			border-radius: 5px;
+			border-radius: 2px;
 		}
 		.item-desc{
 			margin-left:($img-height+10px);
@@ -147,9 +150,7 @@ body{
 	}
 }
 
-/*
-* 底部菜单
-*/
+//底部菜单
 .button-menu{
 	$color:#7C8085;
 	position: fixed;
@@ -186,8 +187,9 @@ body{
 }
 
 /*
-* 主页项目分类
+* ******主页******
 */
+//项目分类
 .type{
 	padding-left: 5%;
 	padding-right: 5%;
@@ -215,9 +217,7 @@ body{
 	}
 }
 
-/*
-* 主页特惠专区
-*/
+//特惠专区
 .tehui{
 	$line-height:100px;
 
@@ -274,9 +274,8 @@ body{
 	}
 }
 
-/*
-* 主页热门专区
-*/
+//热门专区
+
 .hot{
 	$hot-height:35px;
 	height:30px;
@@ -294,50 +293,182 @@ body{
 }
 
 /*
-* 产品列表页面filter
+* ******产品列表页面******
 */
+//filter
 .filter{
-	$height:40px;
-	height:$height;
-	line-height: $height;
+	height:$filter-height;
+	line-height: $filter-height;
 	text-align: center;
 	border-bottom:solid 1px $line-color;
+	display:flex;
+	flex-direction:row;
+	flex-wrap: nowrap;
 	.filter-item{
-		width:49%;
 		height: 100%;
+		flex: 1;
+		border-right: solid 1px $line-color;
 		img{
 			height:15px;
 			width:15px
 		}
 	}
-	.filter-line-sepa{
-		$sepa-height:25px;
-		width:1px;
-		height:$sepa-height;
-		@include vertical-center($height,$sepa-height);
-		background-color:$line-color;
+}
+
+//下拉列表
+.drop-menu{
+	width:100%;
+	.drop-menu-list{
+		padding-left: 10px;
+		padding-right: 10px;
+		list-style: none;
+		display: none;
+		li{
+			$li-height:40px;
+			line-height: 40px;
+			height:$li-height;
+
+			span{
+				float: left;
+			}
+			img{
+				height:20px;
+				@include vertical-center($li-height,20px);
+				float:right;
+			}
+		}
+	}
+	.drop-menu-grid{
+		list-style: none;
+		li{
+			$line-height: 60px;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			height: $line-height;
+			border-bottom: solid 1px $line-color;
+			.item{
+				flex: 1;
+				border-right: solid 1px $line-color;
+				text-align: center;
+				padding-top:7px;
+				img{
+					height:25px;
+				}
+				p{
+					line-height: 16px;
+				}
+			}
+		}
 	}
 }
 
 /*
-* 产品列表页面筛选
+* ******登陆页面******
 */
-.product-class{
-	$height:70px;
-	height:$height;
-	border-bottom:solid 1px $line-color;
-	position: relative;
-	overflow: hidden;
-	.item{
-		$item-height:55px;
-		$item-width:60px;
-		height:$item-height;
-		width:$item-width;
-		text-align:center;
-		@include vertical-center($height,$item-height);
-		img{
-			height:30px;
+
+.login-content{
+	$margin:5%;
+    .login-item{
+		$item-height:60px;
+        height:$item-height;
+        border-bottom: solid 1px $line-color;
+        margin-top: 5px;
+        margin-bottom: 5px;
+		margin-left: $margin;
+		margin-right:$margin;
+        .login-item-icon{
+            width:20px;
+            height:100%;
+            float: left;
+            img{
+                width:20px;
+                height:20px;
+                margin-top: 20px;
+            }
+        }
+        .login-item-input{
+			margin-left: 30px;
+            input{
+				$input-height:40px;
+				height:$input-height;
+				@include vertical-center($item-height,$input-height);
+				width:100%;
+				border: none;
+			}
+        }
+    }
+	.login-tip{
+	    height:40px;
+		margin-left: $margin;
+		margin-right:$margin;
+	    .login-tip-item{
+	        float: left;
+	        margin-right:20px;
+	        color:$header-background-color;
+	        text-decoration: none;
+	    }
+	}
+	.button-full{
+	    width:100%;
+	    height:40px;
+	    background-color: $header-background-color;
+	    color:$header-color;
+	    border: none;
+	}
+}
+
+/*
+** ******用户协议页面******
+*/
+.agree-container{
+	padding:10px;
+	line-height: 22px;
+	word-break: break-all;
+	.agree-text{
+		text-indent: 25px;
+	}
+	.agree-title{
+		font-size: $large-font-size;
+		color:$header-background-color;
+		margin-top: 10px;
+	}
+	.agree-content{
+		overflow: hidden;
+		.item{
+			margin-top: 5px;
+		}
+		.list{
+			width:25px;
+			float:left;
+		}
+		.text{
+			margin-left: 25px;
+		}
+		.sub-list{
+			@extend .list;
+			margin-left:25px;
+		}
+		.sub-text{
+			margin-left: 50px;
 		}
 	}
+	.agree-end{
+		margin-top: 20px;
+		text-align: right;
+		margin-right:20px;
+	}
+}
 
+/*
+** ******注册页面******
+*/
+.register-content{
+	.item{
+		margin-left:5% ;
+		margin-right:5%;
+		input{
+			width:100%;
+		}
+	}
 }

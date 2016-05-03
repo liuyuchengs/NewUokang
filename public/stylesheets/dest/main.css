@@ -1,14 +1,17 @@
 @charset "UTF-8";
 /*
-全局变量
+* ******全局变量******
 */
 /*
-全局样式
+* ******全局样式******
 */
 body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div {
   margin: 0;
   padding: 0;
   border: 0; }
+
+input, button {
+  font-size: 14px; }
 
 body {
   color: #000000;
@@ -16,7 +19,7 @@ body {
   font-family: "微软雅黑",Helvetica,Sans-serif; }
 
 /*
-基础样式
+* ******基础样式******
 */
 .float-left {
   float: left; }
@@ -38,7 +41,9 @@ body {
   width: 100%; }
 
 .has-header {
-  margin-top: 50px; }
+  height: 50px;
+  width: 100%;
+  background-color: #F8F8F8; }
 
 .has-menu {
   height: 50px;
@@ -48,9 +53,6 @@ body {
 .check-color {
   color: #1fc1d9; }
 
-/*
-* 标题头
-*/
 .header {
   position: fixed;
   top: 0px;
@@ -82,9 +84,6 @@ body {
   .header .header-item-right {
     margin-right: 15px; }
 
-/*
-* 产品列表
-*/
 .prduct-container {
   padding-left: 10px;
   padding-right: 10px;
@@ -97,7 +96,7 @@ body {
     .prduct-container .item .item-img {
       height: 80px;
       margin-right: 5px;
-      border-radius: 5px; }
+      border-radius: 2px; }
     .prduct-container .item .item-desc {
       margin-left: 90px; }
     .prduct-container .item .item-subhead {
@@ -115,9 +114,6 @@ body {
       text-decoration: line-through;
       color: #333333; }
 
-/*
-* 底部菜单
-*/
 .button-menu {
   position: fixed;
   z-index: 10;
@@ -147,7 +143,7 @@ body {
       color: #1fc1d9; }
 
 /*
-* 主页项目分类
+* ******主页******
 */
 .type {
   padding-left: 5%;
@@ -171,9 +167,6 @@ body {
       margin-top: -40px;
       margin-left: -40px; }
 
-/*
-* 主页特惠专区
-*/
 .tehui {
   border-bottom: solid 1px #eeeeee;
   overflow: hidden; }
@@ -222,9 +215,6 @@ body {
       .tehui .tehui-tehui .item img {
         height: 50px; }
 
-/*
-* 主页热门专区
-*/
 .hot {
   height: 30px;
   border-bottom: solid 1px #eeeeee;
@@ -237,37 +227,137 @@ body {
       height: 20px; }
 
 /*
-* 产品列表页面filter
+* ******产品列表页面******
 */
 .filter {
   height: 40px;
   line-height: 40px;
   text-align: center;
-  border-bottom: solid 1px #eeeeee; }
+  border-bottom: solid 1px #eeeeee;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; }
   .filter .filter-item {
-    width: 49%;
-    height: 100%; }
+    height: 100%;
+    flex: 1;
+    border-right: solid 1px #eeeeee; }
     .filter .filter-item img {
       height: 15px;
       width: 15px; }
-  .filter .filter-line-sepa {
-    width: 1px;
-    height: 25px;
-    margin-top: 7.5px;
-    background-color: #eeeeee; }
+
+.drop-menu {
+  width: 100%; }
+  .drop-menu .drop-menu-list {
+    padding-left: 10px;
+    padding-right: 10px;
+    list-style: none;
+    display: none; }
+    .drop-menu .drop-menu-list li {
+      line-height: 40px;
+      height: 40px; }
+      .drop-menu .drop-menu-list li span {
+        float: left; }
+      .drop-menu .drop-menu-list li img {
+        height: 20px;
+        margin-top: 10px;
+        float: right; }
+  .drop-menu .drop-menu-grid {
+    list-style: none; }
+    .drop-menu .drop-menu-grid li {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      height: 60px;
+      border-bottom: solid 1px #eeeeee; }
+      .drop-menu .drop-menu-grid li .item {
+        flex: 1;
+        border-right: solid 1px #eeeeee;
+        text-align: center;
+        padding-top: 7px; }
+        .drop-menu .drop-menu-grid li .item img {
+          height: 25px; }
+        .drop-menu .drop-menu-grid li .item p {
+          line-height: 16px; }
 
 /*
-* 产品列表页面筛选
+* ******登陆页面******
 */
-.product-class {
-  height: 70px;
+.login-content .login-item {
+  height: 60px;
   border-bottom: solid 1px #eeeeee;
-  position: relative;
-  overflow: hidden; }
-  .product-class .item {
-    height: 55px;
-    width: 60px;
-    text-align: center;
-    margin-top: 7.5px; }
-    .product-class .item img {
-      height: 30px; }
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5%;
+  margin-right: 5%; }
+  .login-content .login-item .login-item-icon {
+    width: 20px;
+    height: 100%;
+    float: left; }
+    .login-content .login-item .login-item-icon img {
+      width: 20px;
+      height: 20px;
+      margin-top: 20px; }
+  .login-content .login-item .login-item-input {
+    margin-left: 30px; }
+    .login-content .login-item .login-item-input input {
+      height: 40px;
+      margin-top: 10px;
+      width: 100%;
+      border: none; }
+
+.login-content .login-tip {
+  height: 40px;
+  margin-left: 5%;
+  margin-right: 5%; }
+  .login-content .login-tip .login-tip-item {
+    float: left;
+    margin-right: 20px;
+    color: #1fc1d9;
+    text-decoration: none; }
+
+.login-content .button-full {
+  width: 100%;
+  height: 40px;
+  background-color: #1fc1d9;
+  color: #fff;
+  border: none; }
+
+/*
+** ******用户协议页面******
+*/
+.agree-container {
+  padding: 10px;
+  line-height: 22px;
+  word-break: break-all; }
+  .agree-container .agree-text {
+    text-indent: 25px; }
+  .agree-container .agree-title {
+    font-size: 16px;
+    color: #1fc1d9;
+    margin-top: 10px; }
+  .agree-container .agree-content {
+    overflow: hidden; }
+    .agree-container .agree-content .item {
+      margin-top: 5px; }
+    .agree-container .agree-content .list, .agree-container .agree-content .sub-list {
+      width: 25px;
+      float: left; }
+    .agree-container .agree-content .text {
+      margin-left: 25px; }
+    .agree-container .agree-content .sub-list {
+      margin-left: 25px; }
+    .agree-container .agree-content .sub-text {
+      margin-left: 50px; }
+  .agree-container .agree-end {
+    margin-top: 20px;
+    text-align: right;
+    margin-right: 20px; }
+
+/*
+** ******注册页面******
+*/
+.register-content .item {
+  margin-left: 5%;
+  margin-right: 5%; }
+  .register-content .item input {
+    width: 100%; }
