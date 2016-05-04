@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="../stylesheets/dest/main.css">
+	<title>悠康医生</title>
+</head>
+<body style="background-color:#EFEFF4">
+	<div class="header">
+		<div class="header-item-left float-left">
+			<a href="user.html">
+				<img src="../contents/svg/back.svg">
+			</a>
+		</div>
+		<div class="title">
+			我的订单
+		</div>
+    </div>
+	<div class="has-header"></div>
+	<div class="myorder-content">
+		<div class="filter">
+			<div class="item select">全部</div>
+			<div class="item">待付款</div>
+			<div class="item">待就医</div>
+			<div class="item">待评价</div>
+		</div>
+		<div id="order-tip">您还没有订单信息</div>
+		<ul id="list" class="order-list">
+            <li>
+                <div class="order-list-header">
+                    <span>订单编号：</span>
+                    <span>20160313000866</span>
+                    <span class="order-list-state">等待支付中</span>
+                </div>
+                <div class="order-list-content">
+                    <div style="overflow: hidden;">
+                        <div class="float-left">项目：</div>
+						<div class="float-left">烤瓷牙</div>
+						<div class="float-right">￥980</div>
+                    </div>
+                    <p><span></span><span></span><span class="order-list-state"></span></p>
+                    <p><span>医生：</span><span>凌学民</span></p>
+                    <p><span>机构：</span><span>友睦齿科福田时代科技店</span></p>
+                    <p><span>时间：</span><span>2016-03-31 10:30</span></p>
+                </div>
+                <div data-id="12" class="order-list-footer">
+                    <button data-type="unpaid" class="order-btn-unfinish">去支付</button>
+                    <button data-type="cancel" class="order-btn-finish">取消订单</button>
+                </div>
+            </li>
+        </ul>
+	</div>
+</body>
+</html>

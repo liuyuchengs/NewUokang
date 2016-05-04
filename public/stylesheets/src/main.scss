@@ -23,7 +23,7 @@ $filter-height:40px;
 /*
 * ******全局样式******
 */
-body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,input{
     margin:0;padding:0;border:0;
 }
 input,button{
@@ -65,6 +65,15 @@ body{
 }
 .check-color{
 	color:#1fc1d9;
+}
+
+//整宽按钮
+.button-full{
+	width:100%;
+	height:40px;
+	background-color: $header-background-color;
+	color:$header-color;
+	border: none;
 }
 
 //标题头
@@ -194,14 +203,13 @@ body{
 	height:100%;
 	width:100%;
 	z-index: 100;
-	background-color: rgba(0,0,0,0.8);
+	background-color: rgba(0,0,0,0.4);
 	.container{
 		$tip-width:260px;
 		$tip-height:130px;
 		width: $tip-width;
 		height: $tip-height;
 		border-radius: 5px;
-		border:solid 1px $bottom-line-bg;
 		@include hor-abosult-center($tip-height,$tip-width);
 		background-color: #fff;
 		.tip-text{
@@ -210,23 +218,23 @@ body{
 			padding: 20px;
 		}
 		.tip-btn{
-			height:40px;
+			height:39px;
 			border-top: solid 1px $line-color;
 			display: flex;
 			flex-direction: row;
 			flex-flow: nowrap;
-			.item:nth-child(1){
-				border-right:solid 1px $line-color;
+			.item:nth-child(2){
+				border-left:solid 1px $line-color;
 			}
 			.item{
 				flex:1;
 				text-align: center;
-				line-height: 40px;
+				line-height: 39px;
 				color:$header-background-color;
 			}
 		}
 	}
-	
+
 }
 
 /*
@@ -438,6 +446,7 @@ body{
 				@include vertical-center($item-height,$input-height);
 				width:100%;
 				border: none;
+				outline: none;
 			}
         }
     }
@@ -451,13 +460,6 @@ body{
 	        color:$header-background-color;
 	        text-decoration: none;
 	    }
-	}
-	.button-full{
-	    width:100%;
-	    height:40px;
-	    background-color: $header-background-color;
-	    color:$header-color;
-	    border: none;
 	}
 }
 
@@ -506,6 +508,328 @@ body{
 /*
 ** ******注册页面******
 */
+.register-content{
+	padding: 20px 10px 0;
+	.item{
+		margin-bottom: 15px;
+		height:44px;
+		border: solid 1px #D7D7D7;
+		input{
+			height:42px;
+			border-radius: 3px;
+			width:100%;
+			text-indent: 10px;
+			outline: none;
+			margin-top: 1px;
+		}
+	}
+	.item-code{
+		margin-bottom: 15px;
+		height:44px;
+		input{
+			height:42px;
+			border-radius: 3px;
+			width:100%;
+			text-indent: 10px;
+			outline: none;
+			margin-top: 1px;
+		}
+		.item-input{
+			margin-right:140px;
+			border: solid 1px #D7D7D7;
+		}
+		.item-btn{
+			width:130px;
+			height:44px;
+			border: solid 1px #D7D7D7;
+		}
+		.able{
+			color:#fff;
+			background: $header-background-color;
+			border: none;
+		}
+	}
+	.item-tip{
+		margin-bottom: 15px;
+		height:44px;
+		a,a:visited{
+			color:$header-background-color;
+		}
+	}
+}
 
+/*
+** ******个人页面******
+*/
+.user-content{
+	$group-line-color:#dcdcdc;
+	.user{
+		$height:80px;
+		$img-height:60px;
+		$icon-height:20px;
+		height:$height;
+		overflow: hidden;
+		background-color: #ffffff;
+		border-bottom:solid 1px $group-line-color;
+		.img{
+			height:$img-height;
+			border-radius: 30px;
+			float: left;
+			@include vertical-center($height,$img-height);
+			margin-left: 10px;
+			margin-right:10px;
+		}
+		.icon{
+			height:$icon-height;
+			float: right;
+			@include vertical-center($height,$icon-height);
+			margin-right: 10px;
+		}
+		span{
+			line-height: $height;
+			float: left;
+		}
+	}
+	.item-group{
+		$item-height:50px;
+		$item-icon-height:20px;
+		list-style: none;
+		border-top: solid 1px $group-line-color;
+		border-bottom:solid 1px $group-line-color;
+		margin-top: 20px;
+		background-color: #ffffff;
+		li{
+			overflow: hidden;
+			.icon{
+				height:$item-icon-height;
+				@include vertical-center($item-height,$item-icon-height);
+				float: left;
+				margin-left: 20px;
+				margin-right:20px;
+			}
+			.text{
+				line-height: $item-height;
+				overflow: hidden;
+				border-top:solid 1px $line-color;
+				span{
+					float: left;
+				}
+				img{
+					height:$item-icon-height;
+					@include vertical-center($item-height,$item-icon-height);
+					float: right;
+					margin-right: 10px;
+				}
+			}
+			.unborder{
+				border-top: none;
+			}
+		}
+	}
+}
 
+/*
+** ******我的订单页面******
+*/
+.myorder-content{
+	.filter{
+		display:flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		height:40px;
+		background-color:#ffffff;
+		border-bottom: solid 1px #dcdcdc;
+		.item{
+			flex:1;
+			text-align: center;
+			line-height: 40px;
+		}
+		.select{
+			color:$header-background-color;
+		}
+	}
+	#order-tip{
+	    margin:15px;
+	    border:solid 1px #dcdcdc;
+	    -webkit-border-radius:3px;
+	    -moz-border-radius:3px;
+	    border-radius:5px;
+	    background-color: white;
+	    height:50px;
+	    line-height:50px;
+	    text-align: center;
+		display: none;
+	}
+	.order-list{
+	    list-style-type: none;
+	    padding:0px;
+	    margin:0px;
+		li{
+		    margin:15px;
+		    border:solid 1px #dcdcdc;
+		    border-radius:5px;
+		    padding:0 10px;
+		    background-color: white;
+			.order-list-header{
+			    height:40px;
+			    line-height:40px;
 
+				span:nth-child(1),.order-list-header span:nth-child(2){
+				    float: left;
+				}
+				span:nth-child(2){
+				    font-size:10px;
+				}
+				.order-list-state{
+				    color: $header-background-color;
+				    float: right;
+				}
+			}
+			.order-list-content{
+			    line-height: 25px;
+			    border-top:solid 1px #dcdcdc;
+			    border-bottom:solid 1px #dcdcdc;
+			}
+			.order-list-footer{
+				$footer-height:40px;
+				$btn-height:25px;
+				$btn-width:90px;
+			    height:$footer-height;
+				.order-btn{
+					float: right;
+				    margin-left:10px;
+					height:$btn-height;
+				    width:$btn-width;
+					@include vertical-center($footer-height,$btn-height);
+					border-radius:3px;
+				}
+				.order-btn-finish{
+					@extend .order-btn;
+				    border:solid 1px #959595;
+				    background-color: #ffffff;
+
+				}
+				.order-btn-unfinish{
+					@extend .order-btn;
+				    border:solid 1px $header-background-color;
+				    color: $header-background-color;
+					background-color:#ffffff;
+				}
+			}
+		}
+	}
+}
+
+/*
+** ******代金券页面******
+*/
+.cush-active{
+    height:30px;
+    width:90%;
+    background-color: white;
+    border:none;
+    margin-left:5%;
+    margin-top:15px;
+	.cush-input{
+	    border:none;
+	    line-height: 30px;
+	    text-indent:5px;
+	    width:80%;
+	    float: left;
+	}
+	.cush-btn{
+	    border:none;
+	    width:20%;
+		height:100%;
+	    background-color: white;
+	    float:left;
+	}
+}
+.cush-active-tip{
+    margin-bottom:30px;
+    height:40px;
+    line-height:40px;
+    margin-right:5%;
+	a:link, a:visited, a:hover,a:active{
+	    text-decoration: none;
+	    color: #FF9A00;
+	    background-color: transparent;
+	    display: block;
+	    float: right;
+	    margin-left:20px;
+	    position: relative;
+	}
+}
+.cush-item{
+    background:url("../../contents/img/cush-bg.png");
+    height:150px;
+    width:90%;
+    margin-left:5%;
+    margin-top:20px;
+    position:relative;
+    color: #FF9A00;
+	.left{
+	    margin-left:20px;
+	    float: left;
+	}
+	.right{
+	    margin-right:20px;
+	    float: right;
+	}
+	.unable{
+	    color: #959595;
+	    text-decoration: line-through;
+	}
+	.cush-money{
+	    height:100px;
+	}
+	.cush-money-have{
+	    height:80px;
+	    line-height:80px;
+	}
+	.cush-money-have span:nth-child(2){
+	    font-size:30px;
+	}
+	.cush-data{
+	    height:50px;
+	    line-height:50px;
+	}
+}
+
+/*
+** ******过期代金券******
+*/
+.cush-item{
+	.capter{
+	    position: absolute;
+	    left:60px;
+	    top:70px;
+	    height:30px;
+	    width:70px;
+	    padding:2px;
+	    border:solid grey 2px;
+	    -webkit-transform: rotate(30deg);
+	    -moz-transform: rotate(30deg);
+	    -ms-transform: rotate(30deg);
+	    -o-transform: rotate(30deg);
+	    transform: rotate(30deg);
+	}
+	.capter div{
+	    border:solid grey 1px;
+	    text-align: center;
+	    line-height:20px;
+	}
+	.overcush-item{
+	    background:url("../img/cush-bg-un.png");
+	    height:150px;
+	    width:90%;
+	    margin-left:5%;
+	    margin-top:20px;
+	    position:relative;
+	    color: grey;
+	}
+	.cush-tip{
+	    line-height:40px;
+	    text-align: center;
+	}
+}
