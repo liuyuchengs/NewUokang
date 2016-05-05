@@ -515,28 +515,27 @@ body{
 		height:44px;
 		border: solid 1px #D7D7D7;
 		input{
-			height:42px;
-			border-radius: 3px;
+			height:100%;
 			width:100%;
 			text-indent: 10px;
 			outline: none;
-			margin-top: 1px;
+			border-radius: 0px;
 		}
 	}
 	.item-code{
 		margin-bottom: 15px;
 		height:44px;
 		input{
-			height:42px;
-			border-radius: 3px;
+			height:100%;
 			width:100%;
 			text-indent: 10px;
 			outline: none;
-			margin-top: 1px;
+			border-radius: 0px;
 		}
 		.item-input{
 			margin-right:140px;
 			border: solid 1px #D7D7D7;
+			height:100%;
 		}
 		.item-btn{
 			width:130px;
@@ -554,6 +553,31 @@ body{
 		height:44px;
 		a,a:visited{
 			color:$header-background-color;
+		}
+	}
+	.item-sex{
+		margin-bottom: 15px;
+		height:44px;
+		.button{
+			height:44px;
+			width:45%;
+		}
+		button{
+			@extend .button;
+			border: solid 1px #D7D7D7;
+			background-color:#fff;
+		}
+		.select-btn{
+			@extend .button;
+			border:none;
+			background-color:$header-background-color;
+			color:#fff;
+		}
+		button:nth-child(1){
+			float:left;
+		}
+		button:nth-child(2){
+			float:right;
 		}
 	}
 }
@@ -724,7 +748,7 @@ body{
 ** ******代金券页面******
 */
 .cush-active{
-    height:30px;
+    height:44px;
     width:90%;
     background-color: white;
     border:none;
@@ -732,7 +756,7 @@ body{
     margin-top:15px;
 	.cush-input{
 	    border:none;
-	    line-height: 30px;
+	    line-height: 44px;
 	    text-indent:5px;
 	    width:80%;
 	    float: left;
@@ -743,6 +767,7 @@ body{
 		height:100%;
 	    background-color: white;
 	    float:left;
+		border-left: solid 1px #EFEFF4;
 	}
 }
 .cush-active-tip{
@@ -760,14 +785,7 @@ body{
 	    position: relative;
 	}
 }
-.cush-item{
-    background:url("../../contents/img/cush-bg.png");
-    height:150px;
-    width:90%;
-    margin-left:5%;
-    margin-top:20px;
-    position:relative;
-    color: #FF9A00;
+.item-template{
 	.left{
 	    margin-left:20px;
 	    float: left;
@@ -795,11 +813,29 @@ body{
 	    line-height:50px;
 	}
 }
+.cush-item{
+    background:url("../../contents/img/cush-bg.png");
+    height:150px;
+    width:90%;
+    margin-left:5%;
+    margin-top:20px;
+    position:relative;
+    color: #FF9A00;
+	@extend .item-template;
+}
 
 /*
 ** ******过期代金券******
 */
-.cush-item{
+.overcush-item{
+	background:url("../../contents/img/cush-bg-un.png");
+	height:150px;
+	width:90%;
+	margin-left:5%;
+	margin-top:20px;
+	position:relative;
+	color: grey;
+	@extend .item-template;
 	.capter{
 	    position: absolute;
 	    left:60px;
@@ -808,28 +844,147 @@ body{
 	    width:70px;
 	    padding:2px;
 	    border:solid grey 2px;
+		text-align: center;
+		line-height:30px;
 	    -webkit-transform: rotate(30deg);
 	    -moz-transform: rotate(30deg);
 	    -ms-transform: rotate(30deg);
 	    -o-transform: rotate(30deg);
 	    transform: rotate(30deg);
 	}
-	.capter div{
-	    border:solid grey 1px;
-	    text-align: center;
-	    line-height:20px;
+}
+#cush-body{
+	#order-tip{
+		margin:15px;
+		border:solid 1px #dcdcdc;
+		-webkit-border-radius:3px;
+		-moz-border-radius:3px;
+		border-radius:5px;
+		background-color: white;
+		height:50px;
+		line-height:50px;
+		text-align: center;
+		display: none;
 	}
-	.overcush-item{
-	    background:url("../img/cush-bg-un.png");
-	    height:150px;
-	    width:90%;
-	    margin-left:5%;
-	    margin-top:20px;
-	    position:relative;
-	    color: grey;
+}
+
+/*
+** ******个人信息页面******
+*/
+.userinfo-content{
+	$group-line-color:#dcdcdc;
+	.img-item{
+		$height:80px;
+		$img-height:60px;
+		$icon-height:20px;
+		height:$height;
+		overflow: hidden;
+		background-color: #ffffff;
+		border-bottom:solid 1px $group-line-color;
+		.img{
+			height:$img-height;
+			border-radius: 5px;
+			float: right;
+			@include vertical-center($height,$img-height);
+			margin-left: 10px;
+			margin-right:10px;
+		}
+		.icon{
+			height:$icon-height;
+			float: right;
+			@include vertical-center($height,$icon-height);
+			margin-right: 10px;
+		}
+		span{
+			line-height: $height;
+			float: left;
+			margin-left: 15px;
+		}
 	}
-	.cush-tip{
-	    line-height:40px;
-	    text-align: center;
+	.item-group{
+		$item-height:50px;
+		$item-icon-height:20px;
+		list-style: none;
+		border-top: solid 1px $group-line-color;
+		border-bottom:solid 1px $group-line-color;
+		margin-top: 20px;
+		background-color: #ffffff;
+		li{
+			overflow: hidden;
+			margin-left: 15px;
+			.text{
+				line-height: $item-height;
+				overflow: hidden;
+				border-top:solid 1px $line-color;
+				span:nth-child(1){
+					float: left;
+				}
+				span:nth-child(3){
+					float:right;
+					margin-right:10px;
+				}
+				img{
+					height:$item-icon-height;
+					@include vertical-center($item-height,$item-icon-height);
+					float: right;
+					margin-right: 10px;
+				}
+			}
+			.unborder{
+				border-top: none;
+			}
+		}
+	}
+	.userinfo-tip{
+		height:60px;
+		margin:10px 15px 0px;
+		color:$header-background-color;
+	}
+}
+
+/*
+** ******亲友页面******
+*/
+.friend-content{
+	$group-line-color:#dcdcdc;
+	.friend-tip{
+		text-align: center;
+		height:60px;
+		line-height: 60px;
+		display: none;
+	}
+	.item-group{
+		$item-height:50px;
+		$item-icon-height:20px;
+		list-style: none;
+		border-top: solid 1px $group-line-color;
+		border-bottom:solid 1px $group-line-color;
+		margin-bottom: 20px;
+		background-color: #ffffff;
+		li{
+			overflow: hidden;
+			margin-left: 15px;
+			.text{
+				line-height: $item-height;
+				overflow: hidden;
+				border-top:solid 1px $line-color;
+				span:nth-child(1){
+					float: left;
+				}
+				span:nth-child(3){
+					float:right;
+					margin-right:10px;
+				}
+				img{
+					height:$item-icon-height;
+					@include vertical-center($item-height,$item-icon-height);
+					float: right;
+					margin-right: 10px;
+				}
+			}
+			.unborder{
+				border-top: none;
+			}
+		}
 	}
 }

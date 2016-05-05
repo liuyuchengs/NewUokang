@@ -400,25 +400,24 @@ body {
     height: 44px;
     border: solid 1px #D7D7D7; }
     .register-content .item input {
-      height: 42px;
-      border-radius: 3px;
+      height: 100%;
       width: 100%;
       text-indent: 10px;
       outline: none;
-      margin-top: 1px; }
+      border-radius: 0px; }
   .register-content .item-code {
     margin-bottom: 15px;
     height: 44px; }
     .register-content .item-code input {
-      height: 42px;
-      border-radius: 3px;
+      height: 100%;
       width: 100%;
       text-indent: 10px;
       outline: none;
-      margin-top: 1px; }
+      border-radius: 0px; }
     .register-content .item-code .item-input {
       margin-right: 140px;
-      border: solid 1px #D7D7D7; }
+      border: solid 1px #D7D7D7;
+      height: 100%; }
     .register-content .item-code .item-btn {
       width: 130px;
       height: 44px;
@@ -432,6 +431,23 @@ body {
     height: 44px; }
     .register-content .item-tip a, .register-content .item-tip a:visited {
       color: #1fc1d9; }
+  .register-content .item-sex {
+    margin-bottom: 15px;
+    height: 44px; }
+    .register-content .item-sex .button, .register-content .item-sex button, .register-content .item-sex .select-btn {
+      height: 44px;
+      width: 45%; }
+    .register-content .item-sex button {
+      border: solid 1px #D7D7D7;
+      background-color: #fff; }
+    .register-content .item-sex .select-btn {
+      border: none;
+      background-color: #1fc1d9;
+      color: #fff; }
+    .register-content .item-sex button:nth-child(1) {
+      float: left; }
+    .register-content .item-sex button:nth-child(2) {
+      float: right; }
 
 /*
 ** ******个人页面******
@@ -559,7 +575,7 @@ body {
 ** ******代金券页面******
 */
 .cush-active {
-  height: 30px;
+  height: 44px;
   width: 90%;
   background-color: white;
   border: none;
@@ -567,7 +583,7 @@ body {
   margin-top: 15px; }
   .cush-active .cush-input {
     border: none;
-    line-height: 30px;
+    line-height: 44px;
     text-indent: 5px;
     width: 80%;
     float: left; }
@@ -576,7 +592,8 @@ body {
     width: 20%;
     height: 100%;
     background-color: white;
-    float: left; }
+    float: left;
+    border-left: solid 1px #EFEFF4; }
 
 .cush-active-tip {
   margin-bottom: 30px;
@@ -592,6 +609,32 @@ body {
     margin-left: 20px;
     position: relative; }
 
+.item-template .left, .cush-item .left, .overcush-item .left {
+  margin-left: 20px;
+  float: left; }
+
+.item-template .right, .cush-item .right, .overcush-item .right {
+  margin-right: 20px;
+  float: right; }
+
+.item-template .unable, .cush-item .unable, .overcush-item .unable {
+  color: #959595;
+  text-decoration: line-through; }
+
+.item-template .cush-money, .cush-item .cush-money, .overcush-item .cush-money {
+  height: 100px; }
+
+.item-template .cush-money-have, .cush-item .cush-money-have, .overcush-item .cush-money-have {
+  height: 80px;
+  line-height: 80px; }
+
+.item-template .cush-money-have span:nth-child(2), .cush-item .cush-money-have span:nth-child(2), .overcush-item .cush-money-have span:nth-child(2) {
+  font-size: 30px; }
+
+.item-template .cush-data, .cush-item .cush-data, .overcush-item .cush-data {
+  height: 50px;
+  line-height: 50px; }
+
 .cush-item {
   background: url("../../contents/img/cush-bg.png");
   height: 150px;
@@ -600,57 +643,133 @@ body {
   margin-top: 20px;
   position: relative;
   color: #FF9A00; }
-  .cush-item .left {
-    margin-left: 20px;
-    float: left; }
-  .cush-item .right {
-    margin-right: 20px;
-    float: right; }
-  .cush-item .unable {
-    color: #959595;
-    text-decoration: line-through; }
-  .cush-item .cush-money {
-    height: 100px; }
-  .cush-item .cush-money-have {
-    height: 80px;
-    line-height: 80px; }
-  .cush-item .cush-money-have span:nth-child(2) {
-    font-size: 30px; }
-  .cush-item .cush-data {
-    height: 50px;
-    line-height: 50px; }
 
 /*
 ** ******过期代金券******
 */
-.overcush-item .capter {
-  position: absolute;
-  left: 60px;
-  top: 70px;
-  height: 30px;
-  width: 70px;
-  padding: 2px;
-  border: solid grey 2px;
-  -webkit-transform: rotate(30deg);
-  -moz-transform: rotate(30deg);
-  -ms-transform: rotate(30deg);
-  -o-transform: rotate(30deg);
-  transform: rotate(30deg); }
-
-.overcush-item .capter div {
-  border: solid grey 1px;
-  text-align: center;
-  line-height: 20px; }
-
-.overcush-item .overcush-item {
-  background: url("../img/cush-bg-un.png");
+.overcush-item {
+  background: url("../../contents/img/cush-bg-un.png");
   height: 150px;
   width: 90%;
   margin-left: 5%;
   margin-top: 20px;
   position: relative;
   color: grey; }
+  .overcush-item .capter {
+    position: absolute;
+    left: 60px;
+    top: 70px;
+    height: 30px;
+    width: 70px;
+    padding: 2px;
+    border: solid grey 2px;
+    text-align: center;
+    line-height: 30px;
+    -webkit-transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    -o-transform: rotate(30deg);
+    transform: rotate(30deg); }
 
-.overcush-item .cush-tip {
-  line-height: 40px;
-  text-align: center; }
+#cush-body #order-tip {
+  margin: 15px;
+  border: solid 1px #dcdcdc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 5px;
+  background-color: white;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  display: none; }
+
+/*
+** ******个人信息页面******
+*/
+.userinfo-content .img-item {
+  height: 80px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-bottom: solid 1px #dcdcdc; }
+  .userinfo-content .img-item .img {
+    height: 60px;
+    border-radius: 5px;
+    float: right;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px; }
+  .userinfo-content .img-item .icon {
+    height: 20px;
+    float: right;
+    margin-top: 30px;
+    margin-right: 10px; }
+  .userinfo-content .img-item span {
+    line-height: 80px;
+    float: left;
+    margin-left: 15px; }
+
+.userinfo-content .item-group {
+  list-style: none;
+  border-top: solid 1px #dcdcdc;
+  border-bottom: solid 1px #dcdcdc;
+  margin-top: 20px;
+  background-color: #ffffff; }
+  .userinfo-content .item-group li {
+    overflow: hidden;
+    margin-left: 15px; }
+    .userinfo-content .item-group li .text {
+      line-height: 50px;
+      overflow: hidden;
+      border-top: solid 1px #eeeeee; }
+      .userinfo-content .item-group li .text span:nth-child(1) {
+        float: left; }
+      .userinfo-content .item-group li .text span:nth-child(3) {
+        float: right;
+        margin-right: 10px; }
+      .userinfo-content .item-group li .text img {
+        height: 20px;
+        margin-top: 15px;
+        float: right;
+        margin-right: 10px; }
+    .userinfo-content .item-group li .unborder {
+      border-top: none; }
+
+.userinfo-content .userinfo-tip {
+  height: 60px;
+  margin: 10px 15px 0px;
+  color: #1fc1d9; }
+
+/*
+** ******亲友页面******
+*/
+.friend-content .friend-tip {
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+  display: none; }
+
+.friend-content .item-group {
+  list-style: none;
+  border-top: solid 1px #dcdcdc;
+  border-bottom: solid 1px #dcdcdc;
+  margin-bottom: 20px;
+  background-color: #ffffff; }
+  .friend-content .item-group li {
+    overflow: hidden;
+    margin-left: 15px; }
+    .friend-content .item-group li .text {
+      line-height: 50px;
+      overflow: hidden;
+      border-top: solid 1px #eeeeee; }
+      .friend-content .item-group li .text span:nth-child(1) {
+        float: left; }
+      .friend-content .item-group li .text span:nth-child(3) {
+        float: right;
+        margin-right: 10px; }
+      .friend-content .item-group li .text img {
+        height: 20px;
+        margin-top: 15px;
+        float: right;
+        margin-right: 10px; }
+    .friend-content .item-group li .unborder {
+      border-top: none; }
