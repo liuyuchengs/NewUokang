@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     <link rel="stylesheet" href="../stylesheets/dest/main.css">
-    <script src="../javascripts/lib/angular.min.js"></script>
-	<script src="../javascripts/self/loginCtrl.js"></script>
     <title>悠康医生</title>
 </head>
 <body ng-controller="loginCon">
-    <div class="header">
+    <div class="header" data-ng-init="load()">
 		<div class="header-item-left float-left">
 			<a href="home.html">
 				<img src="../contents/svg/home.svg">
@@ -41,7 +39,10 @@
             <a class="login-tip-item" href="register.html">注册</a>
             <a class="login-tip-item" href="findpwd-phone.html">忘记密码?</a>
         </div>
-        <button class="button-full" ng-click="click()">登录</button>
+        <button class="button-full" ng-click="login()">登录</button>
     </div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/self/module.js"></script>
+	<script src="../javascripts/self/loginCtrl.js"></script>
 </body>
 </html>
