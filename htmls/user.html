@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body style="background-color:#EFEFF4">
-	<div class="header">
+<body style="background-color:#EFEFF4" ng-controller="userCtrl">
+	<div class="header" data-ng-init="load()">
 		<div class="title">
 			个人
 		</div>
     </div>
 	<div class="has-header"></div>
 	<div class="user-content">
-		<div class="user">
+		<div class="user" ng-click="goto('/new/htmls/userinfo.html')">
 			<img class="img" src="../contents/svg/u-img.svg" alt="">
-			<span>点击登录注册</span>
+			<span ng-bind="message"></span>
 			<img class="icon" src="../contents/svg/right-arrow.svg">
 		</div>
 		<ul class="item-group">
-			<li>
+			<li ng-click="goto('/new/htmls/order.html')">
 				<img class="icon" src="../contents/svg/dingdan.svg">
 				<div class="text unborder">
 					<span>我的订单</span>
 					<img src="../contents/svg/right-arrow.svg">
 				</div>
 			</li>
-			<li>
+			<li ng-click="goto('/new/htmls/cush.html')">
 				<img class="icon" src="../contents/svg/djq.svg">
 				<div class="text">
 					<span>我的代金券</span>
@@ -50,14 +50,14 @@
 					<img src="../contents/svg/right-arrow.svg">
 				</div>
 			</li>
-			<li>
+			<li ng-click="goto('/new/htmls/friend.html')">
 				<img class="icon" src="../contents/svg/u-friend.svg">
 				<div class="text">
 					<span>我的亲友</span>
 					<img src="../contents/svg/right-arrow.svg">
 				</div>
 			</li>
-			<li>
+			<li ng-click="goto('/new/htmls/userinfo.html')">
 				<img class="icon" src="../contents/svg/u-account.svg">
 				<div class="text">
 					<span>我的账户</span>
@@ -67,30 +67,34 @@
 		</ul>
 	</div>
 	<div class="button-menu">
-	    <div class="button-menu-item">
+		<div ng-click="goto('/new/htmls/home.html')" class="button-menu-item">
 			<div class="icon">
-		  		<img src="../contents/svg/home-uncheck.svg">
-		  		<p>首页</p>
+				<img src="../contents/svg/home-uncheck.svg">
+				<p>首页</p>
 			</div>
-	  	</div>
-	  	<div class="button-menu-item">
+		</div>
+		<div ng-click="goto('/new/htmls/doctor.html')" class="button-menu-item">
 			<div class="icon">
-		  		<img src="../contents/svg/doctor-uncheck.svg">
-		  		<p>医生</p>
+				<img src="../contents/svg/doctor-uncheck.svg">
+				<p>医生</p>
 			</div>
-	  	</div>
-	  	<div class="button-menu-item">
+		</div>
+		<div ng-click="goto('/new/htmls/hospital.html')" class="button-menu-item">
 			<div class="icon">
-		  		<img src="../contents/svg/hos-uncheck.svg">
-		  		<p>机构</p>
+				<img src="../contents/svg/hos-uncheck.svg">
+				<p>机构</p>
 			</div>
-	  	</div>
-	  	<div class="button-menu-item">
+		</div>
+		<div class="button-menu-item">
 			<div class="icon check">
-		  		<img src="../contents/svg/user-check.svg">
-		  		<p>个人</p>
+				<img src="../contents/svg/user-check.svg">
+				<p>个人</p>
 			</div>
-	  	</div>
+		</div>
 	</div>
+	<div class="has-user-menu"></div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/self/module.js"></script>
+	<script src="../javascripts/self/userCtrl.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@ var app = express();
 var accountRoute = require("./routes/accountRoute");
 
 //扩管静态文件
-app.use(express.static("public"));
+app.use(express.static("../../webroot"));
 
 app.get("/",function(req,res){
     res.send("hello world");
@@ -18,4 +18,3 @@ app.post("/account/login",accountRoute);
 app.listen(8080,function(){
     console.log("app is listen ");
 })
-

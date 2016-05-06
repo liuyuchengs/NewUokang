@@ -50,6 +50,10 @@ body {
   width: 100%;
   background-color: #F8F8F8; }
 
+.has-user-menu {
+  height: 50px;
+  width: 100%; }
+
 .check-color {
   color: #1fc1d9; }
 
