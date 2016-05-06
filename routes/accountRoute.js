@@ -3,7 +3,7 @@ var routes = express();
 var bodyParse = require("body-parser");
 routes.use(bodyParse());
 
-routes.post("/account/login",function(req,res){
+routes.post("/wx/login/wxlogin",function(req,res){
     var userName = req.body.userName;
     var password = req.body.password;
     if(userName=="liuyuchengs"&password=="123456"){
@@ -17,4 +17,8 @@ routes.post("/account/login",function(req,res){
         res.json({"status":1,"result":{"username":"liuyucheng"}});
     }
 })
+routes.post("/wx/login/wxlogin",function(req,res){
+
+})
+
 module.exports = routes;

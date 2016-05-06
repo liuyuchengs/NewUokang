@@ -5,7 +5,7 @@ var uglify = require("gulp-uglify");
 var minify = require("gulp-minify-css");
 
 gulp.task("sass",function(){
-    gulp.src("public/stylesheets/src/*.scss")
+    gulp.src("stylesheets/src/*.scss")
         .pipe(sass())
-        .pipe(gulp.dest("public/stylesheets/dest"));
+        .pipe(gulp.dest("stylesheets/dest"));
 })
