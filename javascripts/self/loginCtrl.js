@@ -25,7 +25,7 @@ app.controller("loginCtrl",["$scope","$http","Ajax","Tool",function($scope,$http
 		}
 	}
 	$scope.check = function(){
-		if($scope.phone.length==11&&$scope.password.length>=8&&$scope.password.length<=20){
+		if(/^1[3|4|5|7|8]\d{9}$/.test($scope.phone)&&$scope.password.length>=8&&$scope.password.length<=20){
 			return true;
 		}else{
 			return false;

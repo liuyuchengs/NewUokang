@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body style="background-color:#F8F8F8">
-	<div class="header">
+<body style="background-color:#F8F8F8" ng-controller="registerCtrl">
+	<div class="header" data-ng-init="load()">
 		<div class="header-item-left float-left">
 			<a href="login.html">
 				<img src="../contents/svg/back.svg">
@@ -20,24 +20,28 @@
 	<div class="has-header"></div>
 	<div class="register-content">
 		<div class="item">
-			<input type="text" placeholder="请输入手机号码">
+			<input type="text" placeholder="请输入手机号码" ng-model="phone">
 		</div>
 		<div class="item-code">
-			<button class="item-btn float-right able">获取短信验证码</button>
+			<button class="item-btn float-right able" ng-bind="codeText" ng-click="getCode()"></button>
 			<div class="item-input">
 				<input type="text" placeholder="请输入短信验证码">
 			</div>
 		</div>
 		<div class="item">
-			<input type="text" placeholder="请输入8-20位登陆密码">
+			<input type="text" placeholder="请输入8-20位登陆密码" ng-model="password">
 		</div>
 		<div class="item">
-			<input type="text" placeholder="请再次输入8-20位登陆密码">
+			<input type="text" placeholder="请再次输入8-20位登陆密码" ng-model="passwordAgian">
 		</div>
 		<div class="item-tip">
 			<p>注册即视为同意<a href="agreement.html"><<悠康用户注册协议>></a></p>
 		</div>
 		<button class="button-full">注册</button>
+		<div ng-include="'tip.html'"></div>
 	</div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/self/module.js"></script>
+	<script src="../javascripts/self/registerCtrl.js"></script>
 </body>
 </html>
