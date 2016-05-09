@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1.3,user-scalable=no">
     <link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body>
+<body ng-controller="productCtrl">
+	<div class="product-bg" ng-if="hasBg"></div>
 	<div class="header">
 		<div class="header-item-left float-left">
 			<a href="home.html">
@@ -16,123 +17,131 @@
 		<div class="title">
 			牙科
 		</div>
-		<div class="header-item-right float-right">
+		<div class="header-item-right float-right" ng-click="question()">
 			<img src="../contents/svg/question.svg">
 		</div>
 	</div>
 	<div class="has-header"></div>
 	<div class="filter">
-		<div class="filter-item">
+		<div class="filter-item" ng-class="{'check-color':menuParams.area}" ng-click="switchMenu('area')">
 			<span class="filter-text">位置</span>
-			<img src="../contents/svg/filter-uncheck.svg">
+			<div></div>
 		</div>
-		<div class="filter-item float-left">
-			<span class="filter-text check-color">排序</span>
-			<img src="../contents/svg/filter-check.svg">
+		<div class="filter-item float-left" ng-class="{'check-color':menuParams.order}" ng-click="switchMenu('order')">
+			<span class="filter-text ">排序</span>
+			<div></div>
 		</div>
-		<div class="filter-item float-left">
+		<div class="filter-item float-left" ng-class="{'check-color':menuParams.classes}" ng-click="switchMenu('class')">
 			<span class="filter-text">分类</span>
-			<img src="../contents/svg/filter-uncheck.svg">
+			<div></div>
 		</div>
 	</div>
 	<div class="drop-menu">
-		<ul id="drop-order" class="drop-menu-list">
-			<li>
+		<ul id="drop-order" class="drop-menu-list" ng-show="hasOrder">
+			<li ng-class="{'li-check':orderParams.default}" ng-click="orderSelect('default')">
 				<span>默认排序</span>
-				<img src="../contents/svg/check.svg">
+				<div></div>
 			</li>
-			<li>
+			<li ng-class="{'li-check':orderParams.price}" ng-click="orderSelect('price')">
 				<span>价格最低</span>
-				<img src="../contents/svg/uncheck.svg">
+				<div></div>
 			</li>
-			<li>
+			<li ng-class="{'li-check':orderParams.priceDesc}" ng-click="orderSelect('priceDesc')">
 				<span>价格最高</span>
-				<img src="../contents/svg/uncheck.svg">
+				<div></div>
 			</li>
-			<li>
+			<li ng-class="{'li-check':orderParams.scoreDesc}" ng-click="orderSelect('scoreDesc')">
 				<span>评分最高</span>
-				<img src="../contents/svg/uncheck.svg">
+				<div></div>
 			</li>
-			<li>
+			<li ng-class="{'li-check':orderParams.countDesc}" ng-click="orderSelect('countDesc')">
 				<span>销量最高</span>
-				<img src="../contents/svg/uncheck.svg">
+				<div></div>
 			</li>
 		</ul>
-		<ul id="drop-area" class="drop-menu-list">
-			<li>
-				<span>所有区域</span>
-				<img src="../contents/svg/check.svg">
+		<ul id="drop-area" class="drop-menu-list" ng-show="hasArea">
+			<li ng-class="{'li-check':areaParams.default}" ng-click="areaSelect('default')">
+				<span >所有区域</span>
+				<div></div>
 			</li>
-			<li>
-				<span>罗湖区</span>
-				<img src="../contents/svg/uncheck.svg">
+			<li ng-class="{'li-check':areaParams.futian}" ng-click="areaSelect('futian')">
+				<span>福田区</span>
+				<div></div>
 			</li>
-			<li>
-				<span>宝安区</span>
-				<img src="../contents/svg/uncheck.svg">
-			</li>
-			<li>
-				<span>龙华区</span>
-				<img src="../contents/svg/uncheck.svg">
-			</li>
-			<li>
-				<span>龙岗区</span>
-				<img src="../contents/svg/uncheck.svg">
-			</li>
-			<li>
+			<li ng-class="{'li-check':areaParams.nanshan}" ng-click="areaSelect('nanshan')">
 				<span>南山区</span>
-				<img src="../contents/svg/uncheck.svg">
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':areaParams.luohu}" ng-click="areaSelect('luohu')">
+				<span>罗湖区</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':areaParams.baoan}" ng-click="areaSelect('baoan')">
+				<span>宝安区</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':areaParams.longhua}" ng-click="areaSelect('longhua')">
+				<span>龙华新区</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':areaParams.longgang}" ng-click="areaSelect('longgang')">
+				<span>龙岗区</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':areaParams.yantian}" ng-click="areaSelect('yantian')">
+				<span>盐田区</span>
+				<div></div>
 			</li>
 		</ul>
-		<ul id="drop-order" class="drop-menu-grid">
+		<ul id="drop-class" class="drop-menu-grid" ng-show="hasClass">
 			<li>
-				<div class="item check-color">
+				<div class="item" ng-class="{'check-color':classParams.default}" ng-click="classSelect('default')">
 					<img src="../contents/svg/all.svg">
 					<p> 全部 </p>
 				</div>
-				<div class="item">
+				<div class="item" ng-class="{'check-color':classParams.zzy}" ng-click="classSelect('zzy')">
 					<img src="../contents/svg/zzy.svg">
 					<p>种植牙</p>
 				</div>
-				<div class="item">
+				<div class="item" ng-class="{'check-color':classParams.xiya}" ng-click="classSelect('xiya')">
 					<img src="../contents/svg/xiya.svg">
 					<p> 洗牙 </p>
 				</div>
-				<div class="item">
+				<div class="item" ng-class="{'check-color':classParams.kcy}" ng-click="classSelect('kcy')">
 					<img src="../contents/svg/kcy.svg">
 					<p>烤瓷牙</p>
 				</div>
-				<div class="item">
+				<div class="item" ng-class="{'check-color':classParams.buya}" ng-click="classSelect('buya')">
 					<img src="../contents/svg/buya.svg">
 					<p> 补牙 </p>
 				</div>
 			</li>
 			<li>
-				<div class="item">
+				<div class="item" ng-class="{'check-color':classParams.baya}" ng-click="classSelect('baya')">
 					<img src="../contents/svg/baya.svg">
 					<p>拔牙</p>
 				</div>
-				<div class="item">
+				<div class="item" ng-class="{'check-color':classParams.ycmr}" ng-click="classSelect('ycmr')">
 					<img src="../contents/svg/ycmr.svg">
 					<p>牙齿美容</p>
 				</div>
-				<div class="item">
+				<div class="item" ng-class="{'check-color':classParams.jiaozheng}" ng-click="classSelect('jiaozheng')">
 					<img src="../contents/svg/jiaozheng.svg">
 					<p>牙齿矫正</p>
 				</div>
-				<div class="item">
+				<div class="item" ng-class="{'check-color':classParams.yichi}" ng-click="classSelect('yichi')">
 					<img src="../contents/svg/yichi.svg">
 					<p>义齿</p>
 				</div>
-				<div class="item">
+				<div class="item" ng-class="{'check-color':classParams.yzzl}" ng-click="classSelect('yzzl')">
 					<img src="../contents/svg/yzzl.svg">
 					<p>牙周治疗</p>
 				</div>
 			</li>
 		</ul>
 	</div>
-	<div class="prduct-container">
-		<div class="item">
+	<ul class="prduct-container">
+		<li class="item">
 			<img class="item-img float-left" src="../contents/img/pic1.jpg">
 			<div class="item-desc">
 				<div class="item-title">隐形矫正牙齿</div>
@@ -152,8 +161,8 @@
 
 				</div>
 			</div>
-		</div>
-		<div class="item">
+		</li>
+		<li class="item">
 			<img class="item-img float-left" src="../contents/img/pic1.jpg">
 			<div class="item-desc">
 				<div class="item-title">隐形矫正牙齿</div>
@@ -173,8 +182,8 @@
 
 				</div>
 			</div>
-		</div>
-		<div class="item">
+		</li>
+		<li class="item">
 			<img class="item-img float-left" src="../contents/img/pic1.jpg">
 			<div class="item-desc">
 				<div class="item-title">隐形矫正牙齿</div>
@@ -194,8 +203,8 @@
 
 				</div>
 			</div>
-		</div>
-		<div class="item">
+		</li>
+		<li class="item">
 			<img class="item-img float-left" src="../contents/img/pic1.jpg">
 			<div class="item-desc">
 				<div class="item-title">隐形矫正牙齿</div>
@@ -215,8 +224,8 @@
 
 				</div>
 			</div>
-		</div>
-		<div class="item">
+		</li>
+		<li class="item">
 			<img class="item-img float-left" src="../contents/img/pic1.jpg">
 			<div class="item-desc">
 				<div class="item-title">隐形矫正牙齿</div>
@@ -236,8 +245,8 @@
 
 				</div>
 			</div>
-		</div>
-		<div class="item">
+		</li>
+		<li class="item">
 			<img class="item-img float-left" src="../contents/img/pic1.jpg">
 			<div class="item-desc">
 				<div class="item-title">隐形矫正牙齿</div>
@@ -257,8 +266,8 @@
 
 				</div>
 			</div>
-		</div>
-		<div class="item">
+		</li>
+		<li class="item">
 			<img class="item-img float-left" src="../contents/img/pic1.jpg">
 			<div class="item-desc">
 				<div class="item-title">隐形矫正牙齿</div>
@@ -278,8 +287,8 @@
 
 				</div>
 			</div>
-		</div>
-		<div class="item">
+		</li>
+		<li class="item">
 			<img class="item-img float-left" src="../contents/img/pic1.jpg">
 			<div class="item-desc">
 				<div class="item-title">隐形矫正牙齿</div>
@@ -299,8 +308,8 @@
 
 				</div>
 			</div>
-		</div>
-		<div class="item">
+		</li>
+		<li class="item">
 			<img class="item-img float-left" src="../contents/img/pic1.jpg">
 			<div class="item-desc">
 				<div class="item-title">隐形矫正牙齿</div>
@@ -320,26 +329,74 @@
 
 				</div>
 			</div>
-		</div>
-	</div>
+		</li>
+		<li class="item">
+			<img class="item-img float-left" src="../contents/img/pic1.jpg">
+			<div class="item-desc">
+				<div class="item-title">隐形矫正牙齿</div>
+				<div class="item-subhead">
+					友睦齿科福田时代广场店
+				</div>
+				<div class="item-price">
+					<div class="float-left">
+						<span class="saleprice">￥42750/副</span>
+					</div>
+					<div class="float-left margin-l">
+						<span class="price float-left">￥45000</span>
+					</div>
+					<div class="margin-right">
+						<span class="item-count float-right">20人下单</span>
+					</div>
 
-	<script src="../javascripts/lib/hammer.min.js"></script>
-	<script type="text/javascript">
-		/*function bindHammer(element){
-			var hammer = new Hammer(element);
-			var screenWidth = window.screen.width;
-			hammer.on("pan",function(ev){
-				if(element.offsetLeft<=0&&element.offsetLeft>=(screenWidth-700)){
-					element.offsetLeft = ev.deltaX;
-				}
-			})
-		}
-		window.onload = function(){
-			var element = document.getElementById("product-class");
-			element.offsetLeft = -22;
-			bindHammer(element);
-		}*/
+				</div>
+			</div>
+		</li>
+		<li class="item">
+			<img class="item-img float-left" src="../contents/img/pic1.jpg">
+			<div class="item-desc">
+				<div class="item-title">隐形矫正牙齿</div>
+				<div class="item-subhead">
+					友睦齿科福田时代广场店
+				</div>
+				<div class="item-price">
+					<div class="float-left">
+						<span class="saleprice">￥42750/副</span>
+					</div>
+					<div class="float-left margin-l">
+						<span class="price float-left">￥45000</span>
+					</div>
+					<div class="margin-right">
+						<span class="item-count float-right">20人下单</span>
+					</div>
 
-	</script>
+				</div>
+			</div>
+		</li>
+		<li class="item">
+			<img class="item-img float-left" src="../contents/img/pic1.jpg">
+			<div class="item-desc">
+				<div class="item-title">隐形矫正牙齿</div>
+				<div class="item-subhead">
+					友睦齿科福田时代广场店
+				</div>
+				<div class="item-price">
+					<div class="float-left">
+						<span class="saleprice">￥42750/副</span>
+					</div>
+					<div class="float-left margin-l">
+						<span class="price float-left">￥45000</span>
+					</div>
+					<div class="margin-right">
+						<span class="item-count float-right">20人下单</span>
+					</div>
+
+				</div>
+			</div>
+		</li>
+	</ul>
+	<div ng-include="'tip.html'"></div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/productCtrl.min.js"></script>
 </body>
 </html>

@@ -33,7 +33,7 @@ body{
 	color:$color;
 	font-size:$font-size;
 	font-family: "微软雅黑",Helvetica,Sans-serif;
-	cursor:pointer;
+	-webkit-tap-highlight-color:rgba(255,255,255,0);
 }
 
 /*
@@ -90,7 +90,7 @@ body{
     background-color: $header-background-color;
     color: $header-color;
     text-align: center;
-    z-index: 10;
+    z-index: 20;
     .title{
 		$title-height:30px;
 		$title-width:100px;
@@ -127,6 +127,7 @@ body{
 	padding-left: $con-padding;
 	padding-right:$con-padding;
 	overflow: hidden;
+	list-style: none;
 	.item{
 		$img-height:80px;
 		padding-top: $con-padding;
@@ -160,6 +161,24 @@ body{
 			text-decoration: line-through;
 			color:#333333;
 		}
+		.item-qiang{
+			$bg-color:#FF5A00;
+			border:solid 1px $bg-color;
+			height:30px;
+			line-height: 30px;
+			text-align: center;
+			margin-top: 5px;
+			.text{
+				margin-right:80px;
+				text-decoration: line-through;
+			}
+			.btn{
+				width:80px;
+				background-color:$bg-color;
+				float:right;
+				color:#fff;
+			}
+		}
 
 	}
 }
@@ -168,7 +187,7 @@ body{
 .button-menu{
 	$color:#7C8085;
 	position: fixed;
-	z-index: 10;
+	z-index: 20;
 	bottom: 0px;
 	left: 0px;
 	width:100%;
@@ -208,7 +227,7 @@ body{
 	height:100%;
 	width:100%;
 	z-index: 100;
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(0,0,0,0.3);
 	.container{
 		$tip-width:260px;
 		$tip-height:130px;
@@ -217,6 +236,7 @@ body{
 		border-radius: 5px;
 		@include hor-abosult-center($tip-height,$tip-width);
 		background-color: #fff;
+		box-shadow: 0px 0px 10px #696969;
 		.tip-text{
 			height:50px;
 			text-align: center;
@@ -240,6 +260,34 @@ body{
 		}
 	}
 
+}
+//loding动画
+.loding{
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	z-index:100;
+	background-color:rgba(0,0,0,0.4);
+	display: block;
+	.content{
+		text-align: center;
+		width:140px;
+		height:70px;
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin-top:-35px;
+		margin-left:-70px;
+		border-radius:5px;
+		padding-top: 10px;
+		background-color:#fff;
+		img{
+			width:40px;
+			height:40px;
+		}
+	}
 }
 
 /*
@@ -360,6 +408,9 @@ body{
 	display:flex;
 	flex-direction:row;
 	flex-wrap: nowrap;
+	z-index: 10;
+	background-color: #fff;
+	position: relative;
 	.filter-item{
 		height: 100%;
 		flex: 1;
@@ -368,30 +419,66 @@ body{
 			height:15px;
 			width:15px
 		}
+		div{
+			height: 15px;
+			width:15px;
+			display: inline-block;
+			background: url("../../contents/svg/filter-uncheck.svg");
+			background-size: contain;
+		}
+	}
+	.check-color{
+		color:$header-background-color;
+		div{
+			background: url("../../contents/svg/filter-check.svg");
+			background-size: contain;
+		}
 	}
 }
 
 //下拉列表
 .drop-menu{
 	width:100%;
+	position: absolute;
+	top:91px;
+	left:0px;
+	z-index:10;
+	background-color: #fff;
 	.drop-menu-list{
 		padding-left: 10px;
 		padding-right: 10px;
 		list-style: none;
-		display: none;
+		border-bottom: solid 1px $line-color;
 		li{
 			$li-height:40px;
 			line-height: 40px;
 			height:$li-height;
-
+			border-bottom: solid 1px $line-color;
 			span{
 				float: left;
+			}
+			div{
+				height:20px;
+				width:20px;
+				float:right;
+				@include vertical-center($li-height,20px);
+				background:url("../../contents/svg/uncheck.svg");
+				background-size:contain;
 			}
 			img{
 				height:20px;
 				@include vertical-center($li-height,20px);
 				float:right;
 			}
+		}
+		.li-check{
+			div{
+				background:url("../../contents/svg/check.svg");
+				background-size:contain;
+			}
+		}
+		li:last-child{
+			border: none;
 		}
 	}
 	.drop-menu-grid{
@@ -417,6 +504,13 @@ body{
 			}
 		}
 	}
+}
+.product-bg{
+	position: fixed;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.4);
+    height: 100%;
+    width: 100%;
 }
 
 /*
@@ -995,7 +1089,7 @@ body{
 }
 
 /*
-** 修改信息页面
+** ******修改信息页面******
 */
 .change{
 	$group-line-color:#dcdcdc;
@@ -1021,5 +1115,51 @@ body{
 	}
 	button{
 		margin-top:20px;
+	}
+}
+
+/*
+** ******免费抢单页面******
+*/
+.grab-order-content{
+	$line-color:#dcdcdc;
+	list-style: none;
+	background-color:#fff;
+	li{
+		margin:0px 10px;
+		overflow: hidden;
+		height:40px;
+		line-height: 40px;
+			border-bottom:solid 1px $line-color;
+		.title{
+			width:80px;
+			float:left;
+			text-align: center;
+		}
+		.text{
+			margin-left: 100px;
+		}
+	}
+}
+
+/*
+** ******特惠页面******
+*/
+.discount-filter{
+	display:flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	height:40px;
+	text-align: center;
+	line-height:40px;
+	border-bottom: solid 1px $line-color;
+	div{
+		flex:1;
+	}
+	div:first-child{
+		border-right:solid 1px $line-color;
+	}
+	.select-color{
+		color:$header-background-color;
 	}
 }

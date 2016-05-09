@@ -6,7 +6,7 @@ routes.use(bodyParse());
 routes.post("/wx/login/wxlogin",function(req,res){
     var userName = req.body.userName;
     var password = req.body.password;
-    if(userName=="liuyuchengs"&password=="123456"){
+    if(userName=="18620369802"&password=="uokang123"){
         var status = 0;
         var result = {
             "userName":userName,
