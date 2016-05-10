@@ -41,6 +41,13 @@ body {
   border-bottom: solid #eeeeee 1px;
   width: 100%; }
 
+.large-separator {
+  height: 24px;
+  background-color: #eeeeee;
+  border-top: solid #eeeeee 1px;
+  border-bottom: solid #eeeeee 1px;
+  width: 100%; }
+
 .has-header {
   height: 50px;
   width: 100%;
@@ -919,3 +926,188 @@ body {
     border-right: solid 1px #eeeeee; }
   .discount-filter .select-color {
     color: #1fc1d9; }
+
+/*
+** ******订单确认页面*****
+*/
+.order-content .orderinfo {
+  list-style: none;
+  padding: 0px 10px 0px 10px; }
+  .order-content .orderinfo li {
+    border-bottom: solid 1px #eeeeee;
+    line-height: 35px; }
+    .order-content .orderinfo li .title {
+      width: 80px;
+      height: 100%;
+      float: left; }
+    .order-content .orderinfo li .text {
+      margin-left: 80px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+      .order-content .orderinfo li .text div {
+        display: inline-block;
+        border: none;
+        background-color: #1fc1d9;
+        color: #fff;
+        height: 30px;
+        width: 90px;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 30px; }
+
+.order-content .quan {
+  height: 60px;
+  line-height: 60px; }
+  .order-content .quan div {
+    float: right;
+    height: 50px;
+    width: 50px;
+    background: url("../../contents/svg/switch-on.svg");
+    background-size: contain;
+    margin-top: 5px;
+    margin-right: 10px; }
+  .order-content .quan img {
+    height: 20px;
+    margin-left: 10px; }
+  .order-content .quan .check {
+    background: url("../../contents/svg/switch-off.svg");
+    background-size: contain; }
+
+.order-content .money {
+  color: #1fc1d9; }
+
+.order-content .makeorder-tip {
+  margin: 0px 10px 0px 10px; }
+
+.markorder-menu {
+  position: fixed;
+  z-index: 20;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: #F8F8F8;
+  height: 50px;
+  color: #7C8085;
+  box-shadow: 0px -3px 5px #eee; }
+  .markorder-menu .order-btn, .markorder-menu .myorder-content .order-list li .order-list-footer .order-btn-finish, .myorder-content .order-list li .order-list-footer .markorder-menu .order-btn-finish, .markorder-menu .myorder-content .order-list li .order-list-footer .order-btn-unfinish, .myorder-content .order-list li .order-list-footer .markorder-menu .order-btn-unfinish {
+    width: 100px;
+    height: 100%;
+    background-color: #1fc1d9;
+    color: #ffffff;
+    font-size: 16px;
+    float: right;
+    text-align: center;
+    line-height: 50px; }
+  .markorder-menu .order-text {
+    margin-right: 100px;
+    margin-left: 10px;
+    height: 100%;
+    color: #7C8085;
+    line-height: 22px; }
+    .markorder-menu .order-text .money {
+      color: #1fc1d9; }
+
+/*
+** ******订单支付页面******
+*/
+.pay-content {
+  padding: 0px 10px 0px 10px; }
+  .pay-content .pay-title {
+    padding-top: 35px;
+    height: 65px;
+    border-bottom: solid 1px #dcdcdc; }
+    .pay-content .pay-title img {
+      height: 20px;
+      margin-left: 10px;
+      margin-right: 20px;
+      float: left; }
+    .pay-content .pay-title .title-text {
+      float: left; }
+      .pay-content .pay-title .title-text .money {
+        color: #1fc1d9; }
+  .pay-content .pay-item {
+    height: 100px;
+    line-height: 100px;
+    border-top: solid 1px #dcdcdc;
+    border-bottom: solid 1px #dcdcdc; }
+    .pay-content .pay-item img:first-child {
+      height: 40px;
+      margin-right: 10px;
+      float: left;
+      margin-top: 30px; }
+    .pay-content .pay-item img:last-child {
+      height: 20px;
+      float: right;
+      margin-top: 40px; }
+
+/*
+** ******支付结果页面******
+*/
+.payresult-content .result-header {
+  height: 150px;
+  position: relative;
+  border-bottom: solid 1px #dcdcdc;
+  background-color: #fff; }
+  .payresult-content .result-header .container {
+    width: 100px;
+    height: 80px;
+    text-align: center;
+    color: #CF123E;
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px;
+    margin-top: -40px; }
+    .payresult-content .result-header .container div {
+      height: 60px;
+      width: 60px;
+      display: inline-block;
+      background: url("../../contents/svg/pay-fail.svg");
+      background-size: contain; }
+  .payresult-content .result-header .success {
+    color: #00CC00; }
+    .payresult-content .result-header .success div {
+      background: url("../../contents/svg/pay-success.svg");
+      background-size: contain; }
+
+.payresult-content .item-group {
+  list-style: none;
+  border-top: solid 1px #dcdcdc;
+  border-bottom: solid 1px #dcdcdc;
+  margin-top: 20px;
+  background-color: #ffffff; }
+  .payresult-content .item-group li {
+    overflow: hidden; }
+    .payresult-content .item-group li .icon {
+      height: 20px;
+      margin-top: 15px;
+      float: left;
+      margin-left: 20px;
+      margin-right: 20px; }
+    .payresult-content .item-group li .text {
+      line-height: 50px;
+      overflow: hidden;
+      border-top: solid 1px #eeeeee; }
+      .payresult-content .item-group li .text span {
+        float: left; }
+      .payresult-content .item-group li .text img {
+        height: 20px;
+        margin-top: 15px;
+        float: right;
+        margin-right: 10px; }
+    .payresult-content .item-group li .unborder {
+      border-top: none; }
+
+/*
+** *****项目详情页面******
+*/
+.detail-content .item {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 0px 10px 0px 10px; }
+  .detail-content .item .title {
+    color: #1fc1d9;
+    font-size: 16px; }

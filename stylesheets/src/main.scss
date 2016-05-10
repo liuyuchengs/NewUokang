@@ -54,6 +54,9 @@ body{
 .base-separator{
 	@include separate(10px,#eeeeee,#eeeeee);
 }
+.large-separator{
+	@include separate(24px,#eeeeee,#eeeeee);
+}
 .has-header{
 	height:$header-height;
 	width: 100%;
@@ -1161,5 +1164,231 @@ body{
 	}
 	.select-color{
 		color:$header-background-color;
+	}
+}
+
+/*
+** ******订单确认页面*****
+*/
+.order-content{
+	.orderinfo{
+		list-style: none;
+		padding:0px 10px 0px 10px;
+		li{
+			border-bottom: solid 1px $line-color;
+			line-height: 35px;
+			.title{
+				width:80px;
+				height:100%;
+				float: left;
+			}
+			.text{
+				margin-left:80px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				div{
+					display: inline-block;
+					border: none;
+					background-color: #1fc1d9;
+					color: #fff;
+					height: 30px;
+					width: 90px;
+					border-radius: 5px;
+					text-align: center;
+					line-height: 30px;
+				}
+			}
+		}
+	}
+	.quan{
+		height:60px;
+		line-height:60px;
+		div{
+			float:right;
+			height:50px;
+			width:50px;
+			background:url("../../contents/svg/switch-on.svg");
+			background-size: contain;
+			margin-top: 5px;
+			margin-right:10px;
+		}
+		img{
+			height:20px;
+			margin-left:10px;
+		}
+		.check{
+			background:url("../../contents/svg/switch-off.svg");
+			background-size: contain;
+		}
+	}
+	.money{
+		color:$header-background-color;
+	}
+	.makeorder-tip{
+		margin:0px 10px 0px 10px;
+	}
+}
+.markorder-menu{
+	$color:#7C8085;
+	position: fixed;
+	z-index: 20;
+	bottom: 0px;
+	left: 0px;
+	width:100%;
+	background-color: $bottom-menu-bg;
+	height:$bottom-menu-height;
+	color:$color;
+	box-shadow: 0px -3px 5px #eee;
+	.order-btn{
+		width:100px;
+		height:100%;
+		background-color: $header-background-color;
+		color:#ffffff;
+		font-size: $large-font-size;
+		float:right;
+		text-align: center;
+		line-height: 50px;
+	}
+	.order-text{
+		margin-right:100px;
+		margin-left: 10px;
+		height:100%;
+		color: $color;
+		line-height: 22px;
+		.money{
+			color:$header-background-color;
+		}
+	}
+}
+
+/*
+** ******订单支付页面******
+*/
+.pay-content{
+	padding:0px 10px 0px 10px;
+	.pay-title{
+		padding-top:35px;
+		height:65px;
+		border-bottom:solid 1px #dcdcdc;
+		img{
+			height:20px;
+			margin-left:10px;
+			margin-right:20px;
+			float:left;
+		}
+		.title-text{
+			float: left;
+			.money{
+				color:$header-background-color;
+			}
+		}
+	}
+	.pay-item{
+		height:100px;
+		line-height: 100px;
+		border-top: solid 1px #dcdcdc;
+		border-bottom: solid 1px #dcdcdc;
+		img:first-child{
+			height:40px;
+			margin-right:10px;
+			float:left;
+			margin-top:30px;
+		}
+		img:last-child{
+			height:20px;
+			float:right;
+			margin-top:40px;
+		}
+	}
+}
+
+/*
+** ******支付结果页面******
+*/
+.payresult-content{
+	$group-line-color:#dcdcdc;
+	.result-header{
+		height:150px;
+		position: relative;
+		border-bottom: solid 1px $group-line-color;
+		background-color: #fff;
+		.container{
+			width:100px;
+			height:80px;
+			text-align: center;
+			color:#CF123E;
+			font-size: 16px;
+			font-weight: 700;
+			position: absolute;
+			left:50%;
+			top:50%;
+			margin-left:-50px;
+			margin-top:-40px;
+			div{
+				height:60px;
+				width:60px;
+				display:inline-block;
+				background: url("../../contents/svg/pay-fail.svg");
+				background-size: contain;
+			}
+		}
+		.success{
+			color:#00CC00;
+			div{
+				background: url("../../contents/svg/pay-success.svg");
+				background-size: contain;
+			}
+		}
+	}
+	.item-group{
+		$item-height:50px;
+		$item-icon-height:20px;
+		list-style: none;
+		border-top: solid 1px $group-line-color;
+		border-bottom:solid 1px $group-line-color;
+		margin-top: 20px;
+		background-color: #ffffff;
+		li{
+			overflow: hidden;
+			.icon{
+				height:$item-icon-height;
+				@include vertical-center($item-height,$item-icon-height);
+				float: left;
+				margin-left: 20px;
+				margin-right:20px;
+			}
+			.text{
+				line-height: $item-height;
+				overflow: hidden;
+				border-top:solid 1px $line-color;
+				span{
+					float: left;
+				}
+				img{
+					height:$item-icon-height;
+					@include vertical-center($item-height,$item-icon-height);
+					float: right;
+					margin-right: 10px;
+				}
+			}
+			.unborder{
+				border-top: none;
+			}
+		}
+	}
+}
+/*
+** *****项目详情页面******
+*/
+.detail-content{
+	.item{
+		margin-top: 20px;
+		background-color: #fff;
+		padding:0px 10px 0px 10px;
+		.title{
+			color:$header-background-color;
+			font-size: $large-font-size;
+		}
 	}
 }
