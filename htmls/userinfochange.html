@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body style="background-color:#EFEFF4">
+<body style="background-color:#EFEFF4" ng-controller="userinfochangeCtrl">
 	<div class="header" data-ng-init="load()">
 		<div class="header-item-left float-left">
 			<a href="userinfo.html">
@@ -19,13 +19,17 @@
     </div>
 	<div class="has-header"></div>
 	<div class="change">
-		<div class="text">
-			手机号码
-		</div>
+		<div class="text" ng-bind="title"></div>
 		<div class="input">
-			<input type="text">
+			<input type="text" placeholder="{{tip}}" ng-model="val" ng-if="hasinput">
+			<div ng-class="{'select':sexparams.men}" ng-if="hassex" ng-click="select('男')">男</div>
+			<div ng-class="{'select':sexparams.women}" ng-if="hassex" ng-click="select('女')">女</div>
 		</div>
-		<button class="button-full">保存</button>
+		<button class="button-full" ng-click="change()">保存</button>
 	</div>
+	<div ng-include="'tip.html'"></div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/userinfochangeCtrl.min.js"></script>
 </body>
 </html>

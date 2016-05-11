@@ -601,14 +601,15 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   height: 40px;
-  background-color: #ffffff;
-  border-bottom: solid 1px #dcdcdc; }
+  background-color: #ffffff; }
   .myorder-content .filter .item {
     flex: 1;
     text-align: center;
-    line-height: 40px; }
+    line-height: 40px;
+    border-bottom: solid 1px #dcdcdc; }
   .myorder-content .filter .select {
-    color: #1fc1d9; }
+    color: #1fc1d9;
+    border-bottom: solid 2px #1fc1d9; }
 
 .myorder-content #order-tip {
   margin: 15px;
@@ -627,7 +628,7 @@ body {
   padding: 0px;
   margin: 0px; }
   .myorder-content .order-list li {
-    margin: 15px;
+    margin: 15px 8px 0px 8px;
     border: solid 1px #dcdcdc;
     border-radius: 5px;
     padding: 0 10px;
@@ -887,6 +888,21 @@ body {
     .change .input input {
       width: 100%;
       height: 100%; }
+    .change .input div {
+      float: left;
+      margin-top: 6px;
+      margin-right: 10px;
+      text-align: center;
+      height: 30px;
+      width: 60px;
+      border: solid 1px #dcdcdc;
+      line-height: 30px;
+      background-color: #fff; }
+    .change .input .select {
+      border: none;
+      border: solid 1px #1fc1d9;
+      background-color: #1fc1d9;
+      color: #fff; }
   .change button {
     margin-top: 20px; }
 

@@ -16,7 +16,7 @@
 	<div class="user-content">
 		<div class="user" ng-click="goto('/new/htmls/userinfo.html')">
 			<img class="img" src="../contents/svg/u-img.svg" alt="">
-			<span ng-bind="message"></span>
+			<span ng-bind="name"></span>
 			<img class="icon" src="../contents/svg/right-arrow.svg">
 		</div>
 		<ul class="item-group">
@@ -73,13 +73,13 @@
 				<p>首页</p>
 			</div>
 		</div>
-		<div ng-click="gotoMenu('/new/htmls/doctor.html')" class="button-menu-item">
+		<div ng-click="alert('敬请期待!')" class="button-menu-item">
 			<div class="icon">
 				<img src="../contents/svg/doctor-uncheck.svg">
 				<p>医生</p>
 			</div>
 		</div>
-		<div ng-click="gotoMenu('/new/htmls/hospital.html')" class="button-menu-item">
+		<div ng-click="alert('敬请期待!')" class="button-menu-item">
 			<div class="icon">
 				<img src="../contents/svg/hos-uncheck.svg">
 				<p>机构</p>
@@ -93,6 +93,7 @@
 		</div>
 	</div>
 	<div class="has-user-menu"></div>
+	<div ng-include="'tip.html'"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/self/module.min.js"></script>
 	<script src="../javascripts/self/userCtrl.min.js"></script>

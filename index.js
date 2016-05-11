@@ -13,8 +13,9 @@ app.get("/product/info",function(req,res){
     res.send("/product/info");
 })
 
-app.post("/account/login",accountRoute);
-
+app.post("/wx/login/wxlogin",accountRoute);
+app.post("/wx/mycount/updateUserInfo",accountRoute);
+app.post("/wx/order/queryOrderList",accountRoute);
 app.listen(8080,function(){
     console.log("app is listen ");
 })
