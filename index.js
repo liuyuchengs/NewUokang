@@ -16,6 +16,10 @@ app.get("/product/info",function(req,res){
 app.post("/wx/login/wxlogin",accountRoute);
 app.post("/wx/mycount/updateUserInfo",accountRoute);
 app.post("/wx/order/queryOrderList",accountRoute);
+app.post("/wx/order/orderCacel",accountRoute);
+app.post("/wx/order/findAllVouchers",accountRoute);
+app.post("/wx/order/activate",accountRoute);
+app.post("/wx/order/overdue",accountRoute);
 app.listen(8080,function(){
     console.log("app is listen ");
 })

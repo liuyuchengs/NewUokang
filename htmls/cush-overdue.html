@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body style="background-color:#EFEFF4">
-	<div class="header">
+<body style="background-color:#EFEFF4" ng-controller="cushOverCtrl">
+	<div class="header" data-ng-init="load()">
 		<div class="header-item-left float-left">
 			<a href="cush.html">
 				<img src="../contents/svg/back.svg">
@@ -18,50 +18,32 @@
 		</div>
     </div>
 	<div class="has-header"></div>
-	<div id="cush-body" class="cush-body">
-		<div id="order-tip">您还没有过期的代金券!</div>
+	<div class="cush-tip" ng-show="noCushOver">您还没有过期的代金券!</div>
+	<div id="cush-body" class="cush-body" ng-repeat="cush in cushs">
         <div class="overcush-item">
             <div class="cush-money">
                 <div class="cush-money-have left">
                     <span>￥</span>
-                    <span class="unable">500</span>
+                    <span class="unable" ng-bind="cush.flags"></span>
                 </div>
                 <div class="cush-money-have right">
                     <span>余额 ￥</span>
-                    <span>500</span>
+                    <span ng-bind="cush.money"></span>
                 </div>
             </div>
             <div class="cush-data">
                 <span class="left">代金券</span>
-                <span class="right"><i>有效期至</i>2016-06-30</span>
+				<span ng-bind="cush.endDate" class="right"></span>
+                <span class="right">有效期至</span>
             </div>
             <div class="capter">
-                <div>
-                    已过期
-                </div>
-            </div>
-        </div>
-        <div class="overcush-item">
-            <div class="cush-money">
-                <div class="cush-money-have left">
-                    <span>￥</span>
-                    <span class="unable">500</span>
-                </div>
-                <div class="cush-money-have right">
-                    <span>余额 ￥</span>
-                    <span>500</span>
-                </div>
-            </div>
-            <div class="cush-data">
-                <span class="left">代金券</span>
-                <span class="right"><i>有效期至</i>2016-06-30</span>
-            </div>
-            <div class="capter">
-                <div>
-                    已使用
-                </div>
+                <div ng-bind="cush.mess"></div>
             </div>
         </div>
 	</div>
+	<div ng-include="'tip.html'"></div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/cushOverCtrl.min.js"></script>
 </body>
 </html>

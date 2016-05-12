@@ -20,12 +20,12 @@
 	<div class="has-header"></div>
 	<div class="myorder-content">
 		<div class="filter">
-			<div class="item select">全部</div>
-			<div class="item">待付款</div>
-			<div class="item">待就医</div>
-			<div class="item">待评价</div>
+			<div ng-class="{'select':filterParams.all}" ng-click="switchOrder('all')" class="item">全部</div>
+			<div ng-class="{'select':filterParams.toPay}" ng-click="switchOrder('toPay')" class="item">待付款</div>
+			<div ng-class="{'select':filterParams.toHos}" ng-click="switchOrder('toHos')" class="item">待就医</div>
+			<div ng-class="{'select':filterParams.toAssess}" ng-click="switchOrder('toAssess')" class="item">待评价</div>
 		</div>
-		<div id="order-tip">您还没有订单信息</div>
+		<div id="order-tip" ng-show="noOrder">您还没有订单信息</div>
 		<ul id="list" class="order-list" ng-repeat="order in orders">
             <li>
                 <div class="order-list-header">
@@ -47,16 +47,17 @@
                     <p><span>机构：</span><span ng-bind="order.hospitalName"></span></p>
                     <p><span>时间：</span><span ng-bind="order.treatmenttimeStr"></span></p>
                 </div>
-                <div data-id="12" class="order-list-footer">
-					<button data-type="unpaid" class="order-btn-unfinish" ng-if="order.toPay">去支付</button>
+                <div class="order-list-footer">
+					<button data-type="unpaid" class="order-btn-unfinish" ng-if="order.toPay" ng-click="toPay(order)">去支付</button>
 					<button class='order-btn-finish' disabled='disabled' ng-if="order.payed">已支付</button>
 					<button class='order-btn-finish' disabled='disabled' ng-if="order.canceled">已取消</button>
-					<button data-type="cancel" class="order-btn-finish" ng-if="order.tocancel">取消订单</button>
+					<button data-type="cancel" class="order-btn-finish" ng-if="order.tocancel" ng-click="toCancel(order.id)">取消订单</button>
 					<button class='order-btn-finish' disabled='disabled' ng-if="order.finish">已完成</button>
                 </div>
             </li>
         </ul>
 	</div>
+	<div ng-include="'tip.html'"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/self/module.min.js"></script>
 	<script src="../javascripts/self/orderCtrl.min.js"></script>

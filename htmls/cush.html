@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body style="background-color:#EFEFF4">
-	<div class="header">
+<body style="background-color:#EFEFF4" ng-controller="cushCtrl">
+	<div class="header" data-ng-init="load()">
 		<div class="header-item-left float-left">
 			<a href="user.html">
 				<img src="../contents/svg/back.svg">
@@ -20,43 +20,41 @@
 	<div class="has-header"></div>
 	<div >
         <div class="cush-active">
-            <input id="cushCode" class="cush-input" type="text" placeholder="填码得券">
-            <button id="activa" class="cush-btn">兑换</button>
+            <input id="cushCode" class="cush-input" type="text" placeholder="填码得券" ng-model="activeValue">
+            <button id="activa" class="cush-btn" ng-click="active()">兑换</button>
         </div>
         <div class="cush-active-tip">
             <a href="cush-overdue.html">查看过期券>></a>
             <a href="readMe.html">查看使用规则>></a>
         </div>
     </div>
-    <div id="cush-body" class="cush-body">
+	<div class="cush-tip" ng-show="noCush">您还没有代金券</div>
+    <div id="cush-body" class="cush-body" ng-repeat="cush in cushs">
         <div class="cush-item">
             <div class="cush-money">
-                <div class="cush-money-have left">
+				<div class="cush-money-have left" ng-hide="cush.used">
                     <span>￥</span>
-                    <span class="unable">888</span>
+                    <span ng-bind="cush.flags"></span>
                 </div>
-                <div class="cush-money-have right">
+                <div class="cush-money-have left" ng-show="cush.used">
+                    <span>￥</span>
+                    <span class="unable" ng-bind="cush.flags"></span>
+                </div>
+                <div class="cush-money-have right" ng-show="cush.used">
                     <span>余额 ￥</span>
-                    <span>555</span>
+                    <span ng-bind="cush.money"></span>
                 </div>
             </div>
             <div class="cush-data">
                 <span class="left">代金券</span>
-                <span class="right"><i>有效期至</i>2016-06-30</span>
-            </div>
-        </div>
-        <div class="cush-item">
-            <div class="cush-money">
-                <div class="cush-money-have left">
-                    <span>￥</span>
-                    <span>888</span>
-                </div>
-            </div>
-            <div class="cush-data">
-                <span class="left">代金券</span>
-                <span class="right"><i>有效期至</i>2016-06-30</span>
+				<span class="right" ng-bind="cush.endDate"></span>
+				<span class="right">有效期至</span>
             </div>
         </div>
     </div>
+	<div ng-include="'tip.html'"></div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/cushCtrl.min.js"></script>
 </body>
 </html>

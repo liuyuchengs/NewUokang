@@ -7,8 +7,13 @@
 	<title>悠康医生</title>
 </head>
 <body ng-controller="grabCtrl">
-	<div class="product-bg" ng-if="hasBg" data-ng-init="load()"></div>
-	<div class="header">
+	<div class="product-bg" ng-if="hasBg"></div>
+	<div class="grab-imgtip" ng-if="noUsed" ng-click="hideTip()">
+		<div>
+			<img src="../contents/img/prompt.png">
+		</div>
+	</div>
+	<div class="header" data-ng-init="load()">
 		<div class="header-item-left float-left">
 			<a href="home.html">
 				<img src="../contents/svg/back.svg">

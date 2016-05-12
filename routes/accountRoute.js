@@ -141,8 +141,100 @@ var orderSuccess = {
     "code": 0,
     "message": "成功"
 }
-
-
+var orderCancelSuccess = {
+	"code":0
+}
+var orderCancelError = {
+	"code":1
+}
+var cushSuccess = {
+    "data": [
+        {
+            "id": 510553,
+            "code": "K19811",
+            "state": 2,
+            "type": "",
+            "relevancyGift": "",
+            "effectDate": "2016-03-01",
+            "endDate": "2016-06-30",
+            "createTime": "2016-02-28 14:20:00.0",
+            "flags": 300,
+            "serialId": "7060300016",
+            "money": 250,
+            "userId": 12391
+        },
+		{
+            "id": 510553,
+            "code": "K19811",
+            "state": 2,
+            "type": "",
+            "relevancyGift": "",
+            "effectDate": "2016-03-01",
+            "endDate": "2016-06-30",
+            "createTime": "2016-02-28 14:20:00.0",
+            "flags": 300,
+            "serialId": "7060300016",
+            "money": 300,
+            "userId": 12391
+        }
+    ],
+    "code": 0,
+    "message": "成功"
+}
+var cushActiveSuccess = {
+    "data": [
+        {
+            "id": 510553,
+            "code": "K19811",
+            "state": 2,
+            "type": "",
+            "relevancyGift": "",
+            "effectDate": "2016-03-01",
+            "endDate": "2016-06-30",
+            "createTime": "2016-02-28 14:20:00.0",
+            "flags": 300,
+            "serialId": "7060300016",
+            "money": 250,
+            "userId": 12391
+        }
+    ],
+    "code": 0,
+    "message": "成功"
+}
+var cushOverSuccess = {
+    "data": [
+        {
+            "id": 510553,
+            "code": "K19811",
+            "state": 1,
+            "type": "",
+            "relevancyGift": "",
+            "effectDate": "2016-03-01",
+            "endDate": "2016-06-30",
+            "createTime": "2016-02-28 14:20:00.0",
+            "flags": 300,
+            "serialId": "7060300016",
+            "money": 250,
+            "userId": 12391
+        },
+		{
+            "id": 510553,
+            "code": "K19811",
+            "state": 3,
+            "type": "",
+            "relevancyGift": "",
+            "effectDate": "2016-03-01",
+            "endDate": "2016-06-30",
+            "createTime": "2016-02-28 14:20:00.0",
+            "flags": 300,
+            "serialId": "7060300016",
+            "money": 300,
+            "userId": 12391
+        }
+    ],
+    "code": 0,
+    "message": "成功"
+}
 
 routes.post("/wx/login/wxlogin",function(req,res){
     var userName = req.body.phone;
@@ -166,6 +258,25 @@ routes.post("/wx/mycount/updateUserInfo",function(req,res){
 })
 routes.post("/wx/order/queryOrderList",function(req,res){
 	res.json(orderSuccess);
+	res.end();
+})
+
+routes.post("/wx/order/orderCacel",function(req,res){
+	res.json(orderCancelSuccess);
+	res.end();
+})
+
+routes.post("/wx/order/findAllVouchers",function(req,res){
+	res.json(cushSuccess);
+	res.end();
+})
+
+routes.post("/wx/order/activate",function(req,res){
+	res.json(cushActiveSuccess);
+	res.end();
+})
+routes.post("/wx/order/overdue",function(req,res){
+	res.json(cushOverSuccess);
 	res.end();
 })
 
