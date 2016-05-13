@@ -91,17 +91,16 @@ body {
     left: 50%;
     margin-top: -15px;
     margin-left: -50px; }
-  .header .header-item, .header .header-item-left, .header .header-item-right {
+  .header .header-item {
     height: 40px;
+    width: 40px;
     line-height: 40px;
     margin-top: 5px; }
-    .header .header-item img, .header .header-item-left img, .header .header-item-right img {
+    .header .header-item img {
       height: 20px;
       vertical-align: middle; }
-  .header .header-item-left {
-    margin-left: 15px; }
-  .header .header-item-right {
-    margin-right: 15px; }
+  .header .header-item-width {
+    width: 80px; }
 
 .prduct-container {
   padding-left: 10px;
@@ -140,6 +139,7 @@ body {
       text-align: center;
       margin-top: 5px; }
       .prduct-container .item .item-qiang .text {
+        color: #959595;
         margin-right: 80px;
         text-decoration: line-through; }
       .prduct-container .item .item-qiang .btn {
@@ -147,6 +147,10 @@ body {
         background-color: #FF5A00;
         float: right;
         color: #fff; }
+    .prduct-container .item .no {
+      border: solid 1px #959595; }
+      .prduct-container .item .no .btn {
+        background-color: #959595; }
 
 .button-menu {
   position: fixed;
@@ -413,6 +417,7 @@ body {
 .product-bg {
   position: fixed;
   z-index: 1;
+  top: 0px;
   background-color: rgba(0, 0, 0, 0.4);
   height: 100%;
   width: 100%; }

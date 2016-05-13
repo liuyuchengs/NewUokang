@@ -106,6 +106,7 @@ body{
 	.header-item{
 		$item-height:40px;
 		height:$item-height;
+		width:$item-height;
 		line-height: $item-height;
 		@include vertical-center($header-height,$item-height);
 		img{
@@ -113,13 +114,8 @@ body{
 			vertical-align: middle;
 		}
 	}
-	.header-item-left{
-		@extend .header-item;
-		margin-left: $header-padding;
-	}
-	.header-item-right{
-		@extend .header-item;
-		margin-right:$header-padding;
+	.header-item-width{
+		width:80px;
 	}
 
 }
@@ -172,6 +168,7 @@ body{
 			text-align: center;
 			margin-top: 5px;
 			.text{
+				color:#959595;
 				margin-right:80px;
 				text-decoration: line-through;
 			}
@@ -182,7 +179,12 @@ body{
 				color:#fff;
 			}
 		}
-
+		.no{
+			border: solid 1px #959595;
+			.btn{
+				background-color: #959595;
+			}
+		}
 	}
 }
 
@@ -515,6 +517,7 @@ body{
 .product-bg{
 	position: fixed;
     z-index: 1;
+	top:0px;
     background-color: rgba(0,0,0,0.4);
     height: 100%;
     width: 100%;

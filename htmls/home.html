@@ -9,14 +9,14 @@
 </head>
 <body ng-controller="homeCtrl">
 	<div class="header" data-ng-init="load()">
-		<div class="header-item-left float-left">
+		<div class="header-item float-left header-item-width">
 			<img src="../contents/svg/address.svg">
 			<span>深圳市</span>
 		</div>
 		<div class="title">
 			悠康医生
 		</div>
-		<div class="header-item-right float-right">
+		<div class="header-item float-right">
 			<img src="../contents/svg/search.svg">
 		</div>
 	</div>
@@ -206,8 +206,8 @@
 	<div class="has-menu"></div>
 	<div ng-include="'tip.html'"></div>
 	<div ng-include="'loading.html'"></div>
-	<script src="../javascripts/lib/swiper.min.js"></script>
 	<script src="../javascripts/lib/jquery.min.js"></script>
+	<script src="../javascripts/lib/swiper.min.js"></script>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/self/module.min.js"></script>
 	<script src="../javascripts/self/homeCtrl.min.js"></script>
@@ -216,10 +216,8 @@
 		window.onload = function(){
 			//根据设备宽度初始化图片大小
 			var width = screen.width;
-			var picHeight = (width/750)*400;
 			$(".swiper-img").each(function(index,element){
 				element.style.width = width+"px";
-				element.style.height = picHeight+"px";
 			});
 			//初始化swiper
 			var myswiper = new Swiper(".swiper-container",{

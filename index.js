@@ -20,6 +20,8 @@ app.post("/wx/order/orderCacel",accountRoute);
 app.post("/wx/order/findAllVouchers",accountRoute);
 app.post("/wx/order/activate",accountRoute);
 app.post("/wx/order/overdue",accountRoute);
+app.post("/wx/gift/queryproduct",accountRoute);
+app.post("/wx/product/querylist",accountRoute);
 app.listen(8080,function(){
     console.log("app is listen ");
 })

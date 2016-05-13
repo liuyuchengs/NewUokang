@@ -7,9 +7,8 @@
 	<title>悠康医生</title>
 </head>
 <body ng-controller="productCtrl">
-	<div class="product-bg" ng-if="hasBg"></div>
 	<div class="header">
-		<div class="header-item-left float-left">
+		<div class="header-item float-left">
 			<a href="home.html">
 				<img src="../contents/svg/back.svg">
 			</a>
@@ -17,7 +16,7 @@
 		<div class="title">
 			牙科
 		</div>
-		<div class="header-item-right float-right" ng-click="question()">
+		<div class="header-item float-right" ng-click="question()">
 			<img src="../contents/svg/question.svg">
 		</div>
 	</div>
@@ -138,263 +137,38 @@
 					<p>牙周治疗</p>
 				</div>
 			</li>
+			<li>
+				<div class="item" ng-class="{'item-check':classParams.other}" ng-click="classSelect('other')">
+					<img src="../contents/svg/qita.svg">
+					<p>其他</p>
+				</div>
+			</li>
 		</ul>
 	</div>
-	<ul class="prduct-container">
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
+	<ul class="prduct-container" ng-repeat = "product in products">
+		<li class="item" ng-click="detail(product.id,product.hospitalId)">
+			<img class="item-img float-left" ng-src="{{product.smallImg}}" fallback-src="../contents/img/p_default.png">
 			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
+				<div class="item-title" ng-bind="product.title"></div>
+				<div class="item-subhead" ng-bind="product.hospital.name"></div>
 				<div class="item-price">
 					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
+						<span class="saleprice">￥{{product.preferPrice}}/副</span>
 					</div>
 					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
+						<span class="price float-left">￥{{product.standPrice}}</span>
 					</div>
 					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
+						<span class="item-count float-right">{{product.sales}}人下单</span>
 					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
 				</div>
 			</div>
 		</li>
 	</ul>
+	<div class="cush-tip" ng-if="noProduct">没有项目信息,请选择其他区域或者时间!</div>
+	<div class="product-bg" ng-if="hasBg"></div>
 	<div ng-include="'tip.html'"></div>
+	<div ng-include="'loading.html'"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/self/module.min.js"></script>
 	<script src="../javascripts/self/productCtrl.min.js"></script>
