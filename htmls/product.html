@@ -13,8 +13,7 @@
 				<img src="../contents/svg/back.svg">
 			</a>
 		</div>
-		<div class="title">
-			牙科
+		<div class="title" ng-bind="title">
 		</div>
 		<div class="header-item float-right" ng-click="question()">
 			<img src="../contents/svg/question.svg">
@@ -37,113 +36,65 @@
 	</div>
 	<div class="drop-menu">
 		<ul id="drop-order" class="drop-menu-list" ng-show="hasOrder">
-			<li ng-class="{'li-check':orderParams.default}" ng-click="orderSelect('default')">
+			<li ng-class="{'li-check':orderParams.default.has}" ng-click="orderSelect('default')">
 				<span>默认排序</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':orderParams.price}" ng-click="orderSelect('price')">
+			<li ng-class="{'li-check':orderParams.price.has}" ng-click="orderSelect('price')">
 				<span>价格最低</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':orderParams.priceDesc}" ng-click="orderSelect('priceDesc')">
+			<li ng-class="{'li-check':orderParams.priceDesc.has}" ng-click="orderSelect('priceDesc')">
 				<span>价格最高</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':orderParams.scoreDesc}" ng-click="orderSelect('scoreDesc')">
+			<li ng-class="{'li-check':orderParams.scoreDesc.has}" ng-click="orderSelect('scoreDesc')">
 				<span>评分最高</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':orderParams.countDesc}" ng-click="orderSelect('countDesc')">
+			<li ng-class="{'li-check':orderParams.countDesc.has}" ng-click="orderSelect('countDesc')">
 				<span>销量最高</span>
 				<div></div>
 			</li>
 		</ul>
 		<ul id="drop-area" class="drop-menu-list" ng-show="hasArea">
-			<li ng-class="{'li-check':areaParams.default}" ng-click="areaSelect('default')">
+			<li ng-class="{'li-check':areaParams.default.has}" ng-click="areaSelect('default')">
 				<span >所有区域</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.futian}" ng-click="areaSelect('futian')">
+			<li ng-class="{'li-check':areaParams.futian.has}" ng-click="areaSelect('futian')">
 				<span>福田区</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.nanshan}" ng-click="areaSelect('nanshan')">
+			<li ng-class="{'li-check':areaParams.nanshan.has}" ng-click="areaSelect('nanshan')">
 				<span>南山区</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.luohu}" ng-click="areaSelect('luohu')">
+			<li ng-class="{'li-check':areaParams.luohu.has}" ng-click="areaSelect('luohu')">
 				<span>罗湖区</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.baoan}" ng-click="areaSelect('baoan')">
+			<li ng-class="{'li-check':areaParams.baoan.has}" ng-click="areaSelect('baoan')">
 				<span>宝安区</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.longhua}" ng-click="areaSelect('longhua')">
+			<li ng-class="{'li-check':areaParams.longhua.has}" ng-click="areaSelect('longhua')">
 				<span>龙华新区</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.longgang}" ng-click="areaSelect('longgang')">
+			<li ng-class="{'li-check':areaParams.longgang.has}" ng-click="areaSelect('longgang')">
 				<span>龙岗区</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.yantian}" ng-click="areaSelect('yantian')">
+			<li ng-class="{'li-check':areaParams.yantian.has}" ng-click="areaSelect('yantian')">
 				<span>盐田区</span>
 				<div></div>
 			</li>
 		</ul>
-		<ul id="drop-class" class="drop-menu-grid" ng-show="hasClass">
-			<li>
-				<div class="item" ng-class="{'item-check':classParams.default}" ng-click="classSelect('default')">
-					<img src="../contents/svg/all.svg">
-					<p> 全部 </p>
-				</div>
-				<div class="item" ng-class="{'item-check':classParams.zzy}" ng-click="classSelect('zzy')">
-					<img src="../contents/svg/zzy.svg">
-					<p>种植牙</p>
-				</div>
-				<div class="item" ng-class="{'item-check':classParams.xiya}" ng-click="classSelect('xiya')">
-					<img src="../contents/svg/xiya.svg">
-					<p> 洗牙 </p>
-				</div>
-				<div class="item" ng-class="{'item-check':classParams.kcy}" ng-click="classSelect('kcy')">
-					<img src="../contents/svg/kcy.svg">
-					<p>烤瓷牙</p>
-				</div>
-				<div class="item" ng-class="{'item-check':classParams.buya}" ng-click="classSelect('buya')">
-					<img src="../contents/svg/buya.svg">
-					<p> 补牙 </p>
-				</div>
-			</li>
-			<li>
-				<div class="item" ng-class="{'item-check':classParams.baya}" ng-click="classSelect('baya')">
-					<img src="../contents/svg/baya.svg">
-					<p>拔牙</p>
-				</div>
-				<div class="item" ng-class="{'item-check':classParams.ycmr}" ng-click="classSelect('ycmr')">
-					<img src="../contents/svg/ycmr.svg">
-					<p>牙齿美容</p>
-				</div>
-				<div class="item" ng-class="{'item-check':classParams.jiaozheng}" ng-click="classSelect('jiaozheng')">
-					<img src="../contents/svg/jiaozheng.svg">
-					<p>牙齿矫正</p>
-				</div>
-				<div class="item" ng-class="{'item-check':classParams.yichi}" ng-click="classSelect('yichi')">
-					<img src="../contents/svg/yichi.svg">
-					<p>义齿</p>
-				</div>
-				<div class="item" ng-class="{'item-check':classParams.yzzl}" ng-click="classSelect('yzzl')">
-					<img src="../contents/svg/yzzl.svg">
-					<p>牙周治疗</p>
-				</div>
-			</li>
-			<li>
-				<div class="item" ng-class="{'item-check':classParams.other}" ng-click="classSelect('other')">
-					<img src="../contents/svg/qita.svg">
-					<p>其他</p>
-				</div>
-			</li>
-		</ul>
+		<ul id="drop-class" class="drop-menu-grid" ng-show="hasClass" ng-include="'item-yake.html'" ng-if="productParams.yake.has"></ul>
+		<ul id="drop-class" class="drop-menu-grid" ng-show="hasClass" ng-include="'item-meirong.html'" ng-if="productParams.meirong.has" ></ul>
+		<ul id="drop-class" class="drop-menu-grid" ng-show="hasClass" ng-include="'item-fck.html'" ng-if="productParams.fck.has"></ul>
+		<ul id="drop-class" class="drop-menu-grid" ng-show="hasClass" ng-include="'item-zhongyi.html'" ng-if="productParams.zhongyi.has"></ul>
 	</div>
 	<ul class="prduct-container" ng-repeat = "product in products">
 		<li class="item" ng-click="detail(product.id,product.hospitalId)">

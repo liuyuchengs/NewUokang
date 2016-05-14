@@ -1211,15 +1211,16 @@ body{
 	height:40px;
 	text-align: center;
 	line-height:40px;
-	border-bottom: solid 1px $line-color;
 	div{
 		flex:1;
+		border-bottom: solid 1px $line-color;
 	}
 	div:first-child{
 		border-right:solid 1px $line-color;
 	}
 	.select-color{
 		color:$header-background-color;
+		border-bottom: solid 2px $header-background-color;
 	}
 }
 

@@ -970,14 +970,15 @@ body {
   flex-direction: row;
   height: 40px;
   text-align: center;
-  line-height: 40px;
-  border-bottom: solid 1px #eeeeee; }
+  line-height: 40px; }
   .discount-filter div {
-    flex: 1; }
+    flex: 1;
+    border-bottom: solid 1px #eeeeee; }
   .discount-filter div:first-child {
     border-right: solid 1px #eeeeee; }
   .discount-filter .select-color {
-    color: #1fc1d9; }
+    color: #1fc1d9;
+    border-bottom: solid 2px #1fc1d9; }
 
 /*
 ** ******订单确认页面*****
