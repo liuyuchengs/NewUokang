@@ -12,7 +12,6 @@ app.get("/",function(req,res){
 app.get("/product/info",function(req,res){
     res.send("/product/info");
 })
-
 app.post("/wx/login/wxlogin",accountRoute);
 app.post("/wx/mycount/updateUserInfo",accountRoute);
 app.post("/wx/order/queryOrderList",accountRoute);
