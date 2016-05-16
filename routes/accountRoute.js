@@ -1560,6 +1560,28 @@ var productSuccess = [
         "amount":null
     }
 ]
+var giftCheck = {
+	result:0
+}
+var giftSuccess = {
+	data:{
+		"id":773,
+	    "username":"123",
+	    "mobile":"18620369802",
+	    "daydate":"2016-05-17",
+	    "giftCode":"2016D1057SZ0517",
+	    "status":0,
+	    "hospitalAddress":"深圳市南山区蛇口兴华路9号海上世界海滨商业大厦4001",
+	    "hospitalName":"深圳市吾华口腔",
+	    "productName":"全套洗牙(超声波+喷砂+抛光)",
+	    "createtime":"2016-05-16",
+	    "userId":12391
+	},
+	code:0
+
+}
+
+
 
 routes.post("/wx/login/wxlogin",function(req,res){
     var userName = req.body.phone;
@@ -1612,6 +1634,18 @@ routes.post("/wx/gift/queryproduct",function(req,res){
 routes.post("/wx/product/querylist",function(req,res){
 	var page = req.body.currentPage;
 	res.json(productSuccess);
+	res.end();
+})
+routes.post("/wx/gift/getgiftproduct",function(req,res){
+	res.json(giftSuccess);
+	res.end();
+})
+routes.post("/wx/order/checkCode",function(req,res){
+	res.json(giftCheck);
+	res.end();
+})
+routes.post("/wx/gift/getgiftproduct",function(req,res){
+	res.json(giftSuccess);
 	res.end();
 })
 

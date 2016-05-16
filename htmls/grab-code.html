@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body style="background-color:#F8F8F8">
+<body style="background-color:#F8F8F8" ng-controller="grabCodeCtrl">
 	<div class="header">
 		<div class="header-item float-left">
 			<a href="grab.html">
@@ -20,9 +20,13 @@
 	<div class="has-header"></div>
 	<div class="register-content">
 		<div class="item">
-			<input type="text" placeholder="请输入惠赠码">
+			<input type="text" placeholder="请输入惠赠码" ng-model="queryParams.code">
 		</div>
-		<button class="button-full">获取惠赠</button>
+		<button class="button-full" ng-click="checkCode()">获取惠赠</button>
 	</div>
+	<div ng-include="'tip.html'"></div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/grabCodeCtrl.min.js"></script>
 </body>
 </html>

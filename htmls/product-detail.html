@@ -6,12 +6,10 @@
     <link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body style="background-color:#EFEFF4">
+<body style="background-color:#EFEFF4" ng-controller="detailCtrl">
 	<div class="header">
-		<div class="header-item float-left">
-			<a href="product.html">
-				<img src="../contents/svg/back.svg">
-			</a>
+		<div class="header-item float-left" ng-click="back()">
+			<img src="../contents/svg/back.svg">
 		</div>
 		<div class="title">
 			项目详细
@@ -22,20 +20,162 @@
 	</div>
 	<div class="has-header"></div>
 	<div class="detail-content">
-		<div class="item">
-			<p class="title">
-				<span>项目名称：</span>
-				<span>超声波洗牙+抛光</span>
-			</p>
-			<p class="title">项目介绍</p>
-			<div>
-				超声波洁牙是利用超声波产生的高频、高能振动把牙齿表面的牙结石、牙渍击碎，去除。洁牙的目的主要是清洁去除牙结石，超声波洁牙对牙齿无损伤，是一种高效、卫生、方便、舒适的牙齿洁治手段，定期洁牙是预防牙周病最有效最经济的方法。加德美齿科采用的机器是瑞士原装进口EMS无痛洁牙机，医师治疗手法皆符合台湾牙周总监医师洁牙标准，无痛，无敏感，不同于一般洗牙.
-			</div>
-			<p class="title">案例照片</p>
+		<div class="img-wrap">
 			<div class="img">
+				<img src="../contents/temp/tooth.png">
+				<div class="img-description">
 
+				</div>
+			</div>
+			<div class="money">
+				<div class="dealMoney">
+					<div class="btn">元/次</div>
+					<div class="text">￥50000</div>
+				</div>
+				<div class="sourceMoney">
+					<span>门市价:</span>
+					<span>￥90000元/次</span>
+				</div>
+			</div>
+		</div>
+		<ul class="doc-content">
+			<li>
+				<img class="docImg" src="../contents/temp/doc1.png">
+				<div class="text">
+					<div class="text-header">
+						<span class="name">林园哲</span>
+						<span class="score">4.3分</span>
+					</div>
+					<div class="text-description">
+						<span>擅长:</span>
+						<span>全口无牙及缺牙的种植牙，牙周病治疗(松动牙治疗)，无痛手术，美齿修整，复杂口腔疾病治疗</span>
+					</div>
+					<div class="time">
+						<div>
+							<img src="../contents/svg/time.svg">
+							<span>下单时间：</span>
+						</div>
+						<img class="arrow" src="../contents/svg/right-arrow.svg">
+						<span class="select-time">请选择</span>
+					</div>
+				</div>
+			</li>
+			<li>
+				<img class="docImg" src="../contents/temp/doc2.png">
+				<div class="text">
+					<div class="text-header">
+						<span class="name">董存瑞</span>
+						<span class="score">4.2分</span>
+					</div>
+					<div class="text-description">
+						<span>擅长:</span>
+						<span>高级矫正 (美国隐形矫正，全口暴牙矫正，金属及陶瓷矫正，牙缝过大矫正，儿童及青少年矫正，成人矫正)高级矫正 (美国隐形矫正，全口暴牙矫正，金属及陶瓷矫正，牙缝过大矫正，儿童及青少年矫正，成人矫正)高级矫正 (美国隐形矫正，全口暴牙矫正，金属及陶瓷矫正，牙缝过大矫正，儿童及青少年矫正，成人矫正)</span>
+					</div>
+					<div class="time">
+						<div>
+							<img src="../contents/svg/time.svg">
+							<span>下单时间：</span>
+						</div>
+						<img class="arrow" src="../contents/svg/right-arrow.svg">
+						<span class="select-time selected">2016-05-19 09:30</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div class="product">
+			<div class="product-header">
+				<span>项目介绍</span>
+			</div>
+			<div class="img products">
+				<img src="../contents/temp/toothbf.png">
+				<img src="../contents/temp/toothaf.png">
+			</div>
+			<div class="product-header">超声波洁牙+抛光</div>
+			<div class="text">超声波洁牙是利用超声波产生的高频、高能振动把牙齿表面的牙结石、牙渍击碎，去除。洁牙的目的主要是清洁去除牙结石，超声波洁牙对牙齿无损伤，是一种高效、卫生、方便、舒适的牙齿洁治手段，定期洁牙是预防牙周病最有效最经济的方法。加德美齿科采用的机器是瑞士原装进口EMS无痛洁牙机，医师治疗手法皆符合台湾牙周总监医师洁牙标准，无痛，无敏感，不同于一般洗牙.
+			</div>
+		</div>
+		<div class="product">
+			<div class="product-header">
+				<span>医院介绍</span>
+			</div>
+			<div class="img">
+				<img src="../contents/temp/hos1.jpg">
+				<img src="../contents/temp/hos2.jpg">
+			</div>
+			<div class="hos-title">
+				<p>加德美口腔南山区卓越维港店</p>
+				<p><span>地址：</span><span class="address">南山区卓越维港名苑9-13栋裙楼1-27</span></p>
+			</div>
+			<div class="text">加德美口腔美学联盟于2007年创立于台湾，我们创立的理念为欧美先进诊断及实用治疗为标竿。2015年我们于深圳南山设立了大陆第一家分店，最先进的口腔门诊，集合了来自台湾的先进医疗团队，来提供您最棒的医疗服务，让您拥有自信的微笑就是我们的成就，我们会一直坚持最初的理念，不断专注与进步，让您每一次的治疗都成为一种美好的享受，为您打造最灿烂的笑容。
+顶尖专业的医疗团队与口腔设备是我们最重要的核心，我们会不断的进行新技术引进与提升，来让我们的客户享受最棒的服务。
+我们更是深圳唯一：
+DENTIUM 种植体培训中心暨CAD-CAM CENTER，我们除了平日的客户医疗服务外，我们还对国内口腔专业人员进行国际化的培训交流，以提升水平。
 			</div>
 		</div>
 	</div>
+	<div class="select-times">
+		<ul>
+			<li>
+				<div class="day">
+					2016-5-16
+				</div>
+				<div class="time">
+					<div class="item">
+						<span>09:30</span>
+						<div class="icon check"></div>
+					</div>
+					<div class="item">
+						<span>10:30</span>
+						<div class="icon"></div>
+					</div>
+					<div class="item">
+						<span>11:30</span>
+						<div class="icon"></div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="day">
+					2016-5-16
+				</div>
+				<div class="time">
+					<div class="item">
+						<span>09:30</span>
+						<div class="icon"></div>
+					</div >
+					<div class="item">
+						<span>10:30</span>
+						<div class="icon"></div>
+					</div>
+					<div class="item">
+						<span>11:30</span>
+						<div class="icon"></div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="day">
+					2016-5-16
+				</div>
+				<div class="time">
+					<div class="item">
+						<span>09:30</span>
+						<div class="icon"></div>
+					</div>
+					<div class="item">
+						<span>10:30</span>
+						<div class="icon"></div>
+					</div>
+					<div class="item">
+						<span>11:30</span>
+						<div class="icon"></div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/detailCtrl.min.js"></script>
 </body>
 </html>

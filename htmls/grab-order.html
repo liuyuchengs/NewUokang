@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body >
-	<div class="header">
+<body ng-controller="grabOrderCtrl">
+	<div class="header" >
 		<div class="header-item float-left">
 			<a href="home.html">
 				<img src="../contents/svg/back.svg">
@@ -21,24 +21,27 @@
 	<ul class="grab-order-content">
 		<li>
 			<div class="title">惠赠单号</div>
-			<div class="text">135464891</div>
+			<div class="text" ng-bind="gift.giftCode"></div>
 		</li>
 		<li>
 			<div class="title">项目</div>
-			<div class="text">洗牙</div>
+			<div class="text" ng-bind="gift.productName"></div>
 		</li>
 		<li>
 			<div class="title">机构</div>
-			<div class="text">友睦齿科福田时代广场店</div>
+			<div class="text" ng-bind="gift.hospitalName"></div>
 		</li>
 		<li>
 			<div class="title">地址</div>
-			<div class="text">友睦齿科福田时代广场店</div>
+			<div class="text" ng-bind="gift.hospitalAddress"></div>
 		</li>
 		<li>
 			<div class="title">就医时间</div>
-			<div class="text">2016-05-15</div>
+			<div class="text" ng-bind="gift.daydate"></div>
 		</li>
 	</ul>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/grabOrderCtrl.min.js"></script>
 </body>
 </html>
