@@ -1580,7 +1580,7 @@ var giftSuccess = {
 	code:0
 
 }
-
+var findSuccess = "y";
 
 
 routes.post("/wx/login/wxlogin",function(req,res){
@@ -1646,6 +1646,10 @@ routes.post("/wx/order/checkCode",function(req,res){
 })
 routes.post("/wx/gift/getgiftproduct",function(req,res){
 	res.json(giftSuccess);
+	res.end();
+})
+routes.post("/wx/findpass/findPassPhontCheck",function(req,res){
+	res.send(findSuccess);
 	res.end();
 })
 

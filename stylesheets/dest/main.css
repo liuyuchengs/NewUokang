@@ -1284,16 +1284,20 @@ body {
 
 .select-times {
   position: fixed;
-  top: 50px;
+  top: 0px;
   left: 0px;
   height: 100%;
   width: 100%;
-  z-index: 20px;
-  background-color: #EFEFF4; }
+  z-index: 10;
+  background-color: #EFEFF4;
+  overflow-y: scroll; }
+  .select-times .pad {
+    height: 100px; }
   .select-times ul {
     background-color: #fff;
     border-bottom: solid 1px #dcdcdc;
-    list-style: none; }
+    list-style: none;
+    margin-top: 50px; }
     .select-times ul li {
       border-bottom: solid 1px #eee;
       position: relative; }

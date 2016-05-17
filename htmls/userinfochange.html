@@ -21,7 +21,7 @@
 	<div class="change">
 		<div class="text" ng-bind="title"></div>
 		<div class="input">
-			<input type="text" placeholder="{{tip}}" ng-model="val" ng-if="hasinput">
+			<input type="text" placeholder="{{tip}}" ng-model="$parent.val" ng-if="hasinput">
 			<div ng-class="{'select':sexparams.men}" ng-if="hassex" ng-click="select('男')">男</div>
 			<div ng-class="{'select':sexparams.women}" ng-if="hassex" ng-click="select('女')">女</div>
 		</div>
