@@ -1633,7 +1633,12 @@ routes.post("/wx/gift/queryproduct",function(req,res){
 })
 routes.post("/wx/product/querylist",function(req,res){
 	var page = req.body.currentPage;
-	res.json(productSuccess);
+	if(page<3){
+		res.json(productSuccess);
+	}else{
+		var resulte = [];
+		res.json(resulte);
+	}
 	res.end();
 })
 routes.post("/wx/gift/getgiftproduct",function(req,res){

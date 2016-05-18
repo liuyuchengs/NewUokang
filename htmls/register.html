@@ -20,7 +20,7 @@
 	<div class="has-header"></div>
 	<div class="register-content">
 		<div class="item">
-			<input type="text" placeholder="请输入手机号码" ng-model="phone">
+			<input type="text" placeholder="请输入手机号码" ng-model="phone" ng-blur="phoneCheck()">
 		</div>
 		<div class="item-code">
 			<button class="item-btn float-right able" ng-bind="codeText" ng-click="getCode()"></button>

@@ -7,45 +7,41 @@
 	<title>悠康医生</title>
 </head>
 <body style="background-color:#EFEFF4" ng-controller="detailCtrl">
-	<div class="header">
+	<div class="header" ng-hide="hasSelectTime">
 		<div class="header-item float-left" ng-click="back()">
 			<img src="../contents/svg/back.svg">
 		</div>
 		<div class="title">
 			项目详细
 		</div>
-		<div class="header-item float-right" ng-click="question()">
-			<img src="../contents/svg/question.svg">
-		</div>
 	</div>
-	<div class="header">
+	<div class="header" ng-show="hasSelectTime">
 		<div class="header-item float-left" ng-click="back()">
 			<img src="../contents/svg/back.svg">
 		</div>
 		<div class="title">
 			选择就医时间
 		</div>
-		<div class="header-item float-right" ng-click="question()">
+		<div class="header-item float-right" ng-click="">
 			确定
 		</div>
 	</div>
 	<div class="has-header"></div>
-	<div class="detail-content overflowhide">
+	<div class="detail-content" ng-class="{'overflowhide':hasSelectTime}">
 		<div class="img-wrap">
 			<div class="img">
 				<img src="../contents/temp/tooth.png">
 				<div class="img-description">
-
 				</div>
 			</div>
 			<div class="money">
 				<div class="dealMoney">
-					<div class="btn">元/次</div>
-					<div class="text">￥50000</div>
+					<div class="btn" ng-bind="productInfo.preferPriceType"></div>
+					<div class="text">￥{{productInfo.preferPrice}}</div>
 				</div>
 				<div class="sourceMoney">
 					<span>门市价:</span>
-					<span>￥90000元/次</span>
+					<span>￥{{productInfo.standPrice}}{{productInfo.pricetype}}</span>
 				</div>
 			</div>
 		</div>
@@ -101,9 +97,8 @@
 				<img src="../contents/temp/toothbf.png">
 				<img src="../contents/temp/toothaf.png">
 			</div>
-			<div class="product-header">超声波洁牙+抛光</div>
-			<div class="text">超声波洁牙是利用超声波产生的高频、高能振动把牙齿表面的牙结石、牙渍击碎，去除。洁牙的目的主要是清洁去除牙结石，超声波洁牙对牙齿无损伤，是一种高效、卫生、方便、舒适的牙齿洁治手段，定期洁牙是预防牙周病最有效最经济的方法。加德美齿科采用的机器是瑞士原装进口EMS无痛洁牙机，医师治疗手法皆符合台湾牙周总监医师洁牙标准，无痛，无敏感，不同于一般洗牙.
-			</div>
+			<div class="product-header" ng-bind="productInfo.title"></div>
+			<div class="text" ng-bind="productInfo.introduction"></div>
 		</div>
 		<div class="product">
 			<div class="product-header">
@@ -124,8 +119,7 @@ DENTIUM 种植体培训中心暨CAD-CAM CENTER，我们除了平日的客户医�
 			</div>
 		</div>
 	</div>
-	<div class="select-times">
-
+	<div class="select-times" ng-show="hasSelectTime">
 		<ul>
 			<li>
 				<div class="day">

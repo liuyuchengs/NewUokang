@@ -116,7 +116,7 @@
 			</div>
 		</li>
 	</ul>
-	<div class="cush-tip" ng-if="noProduct">没有项目信息,请选择其他区域或者时间!</div>
+	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
 	<div class="product-bg" ng-if="hasBg"></div>
 	<div ng-include="'tip.html'"></div>
 	<div ng-include="'loading.html'"></div>

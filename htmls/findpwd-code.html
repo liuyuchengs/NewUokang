@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body style="background-color:#F8F8F8">
+<body style="background-color:#F8F8F8" ng-controller = "findpassCtrl">
 	<div class="header">
 		<div class="header-item float-left">
 			<a href="findpwd-phone.html">
@@ -20,15 +20,15 @@
 	<div class="has-header"></div>
 	<div class="register-content">
 		<div class="item-code">
-			<button class="item-btn float-right able">获取短信验证码</button>
+			<button class="item-btn float-right able" ng-click="getCode()" ng-bind="codeText"></button>
 			<div class="item-input">
-				<input type="text" placeholder="请输入短信验证码">
+				<input type="text" placeholder="请输入短信验证码" ng-model="code">
 			</div>
 		</div>
 		<div class="item-tip">
 			若超时或未接收到验证码，可再次获取短信验证码！
 		</div>
-		<button class="button-full">下一步</button>
+		<button class="button-full" ng-click="checkCode()">下一步</button>
 		<div ng-include="'tip.html'"></div>
 		<script src="../javascripts/lib/angular.min.js"></script>
 		<script src="../javascripts/self/module.min.js"></script>
