@@ -31,17 +31,19 @@
 		<div class="img-wrap">
 			<div class="img">
 				<img src="../contents/temp/tooth.png">
-				<div class="img-description">
+				<div class="img-description">[隐适美隐形矫正] 舒适透明，可自行摘戴、容易维护口腔卫生等特点
 				</div>
 			</div>
 			<div class="money">
 				<div class="dealMoney">
-					<div class="btn" ng-bind="productInfo.preferPriceType"></div>
-					<div class="text">￥{{productInfo.preferPrice}}</div>
+					<div class="btn" >元/次</div><!--ng-bind="productInfo.preferPriceType"-->
+					<div class="text">500</div><!--￥{{productInfo.preferPrice}}-->
 				</div>
 				<div class="sourceMoney">
 					<span>门市价:</span>
-					<span>￥{{productInfo.standPrice}}{{productInfo.pricetype}}</span>
+					<span>￥900</span>
+					<span>9人下单</span>
+					<!--{{productInfo.standPrice}}{{productInfo.pricetype}}-->
 				</div>
 			</div>
 		</div>
@@ -237,6 +239,14 @@ DENTIUM 种植体培训中心暨CAD-CAM CENTER，我们除了平日的客户医�
 			</li>
 		</ul>
 	</div>
+	<div class="markorder-menu">
+		<div class="order-btn">下单</div>
+		<div class="order-text">
+			<p><span>专享价：￥</span><span class="money">400</span></p>
+			<p><span>门店价：￥</span><span class="money">500</span></p>
+		</div>
+	</div>
+	<div class="has-user-menu"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/self/module.min.js"></script>
 	<script src="../javascripts/self/detailCtrl.min.js"></script>
