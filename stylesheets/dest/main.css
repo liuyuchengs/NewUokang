@@ -132,6 +132,9 @@ body {
         line-height: 20px; }
     .prduct-container .item .saleprice {
       color: #1fc1d9; }
+    .prduct-container .item .priceType {
+      color: #1fc1d9;
+      font-size: 12px; }
     .prduct-container .item .price {
       font-size: 12px;
       text-decoration: line-through;
@@ -1064,6 +1067,8 @@ body {
     line-height: 22px; }
     .markorder-menu .order-text .money {
       color: #1fc1d9; }
+  .markorder-menu .disable {
+    background-color: gray; }
 
 /*
 ** ******订单支付页面******
@@ -1170,28 +1175,33 @@ body {
       width: 100%;
       height: 160px; }
     .detail-content .img-wrap .img .img-description {
-      padding: 10px 15px;
       background: rgba(66, 41, 6, 0.6);
       color: #fff;
       bottom: 0;
-      position: absolute; }
+      position: absolute;
+      width: 100%; }
+      .detail-content .img-wrap .img .img-description p {
+        margin: 10px 15px; }
   .detail-content .img-wrap .money {
     padding: 10px 15px;
     overflow: hidden; }
+    .detail-content .img-wrap .money .container {
+      overflow: hidden; }
     .detail-content .img-wrap .money .dealMoney {
       border: solid 1px #FF5A00;
       height: 30px;
       line-height: 30px;
       text-align: center;
-      width: 120px; }
+      float: left; }
       .detail-content .img-wrap .money .dealMoney .text {
         color: #FF5A00;
-        margin-right: 50px; }
+        float: left;
+        padding: 0px 5px; }
       .detail-content .img-wrap .money .dealMoney .btn {
-        width: 50px;
         background-color: #FF5A00;
-        float: right;
-        color: #fff; }
+        float: left;
+        color: #fff;
+        padding: 0px 5px; }
     .detail-content .img-wrap .money .sourceMoney {
       height: 32px;
       line-height: 32px;

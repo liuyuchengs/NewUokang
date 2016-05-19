@@ -159,6 +159,10 @@ body{
 		.saleprice{
 			color: #1fc1d9;
 		}
+		.priceType{
+			color:#1fc1d9;
+			font-size:$small-font-size;
+		}
 		.price{
 			font-size:$small-font-size;
 			text-decoration: line-through;
@@ -1321,6 +1325,9 @@ body{
 			color:$header-background-color;
 		}
 	}
+	.disable{
+		background-color: gray;
+	}
 }
 
 /*
@@ -1453,32 +1460,39 @@ body{
 				height:160px;
 			}
 			.img-description{
-				padding: 10px 15px;
 			    background: rgba(66, 41, 6, 0.6);
 			    color: #fff;
 			    bottom: 0;
 			    position: absolute;
+				width:100%;
+				p{
+					margin:10px 15px;
+				}
 			}
 		}
 		.money{
 			padding:10px 15px;
 			overflow: hidden;
+			.container{
+				overflow: hidden;
+			}
 			.dealMoney{
 				$bg-color:#FF5A00;
 				border:solid 1px $bg-color;
 				height:30px;
 				line-height: 30px;
 				text-align: center;
-				width:120px;
+				float:left;
 				.text{
 					color:#FF5A00;
-					margin-right:50px;
+					float:left;
+					padding:0px 5px;
 				}
 				.btn{
-					width:50px;
 					background-color:$bg-color;
-					float:right;
+					float:left;
 					color:#fff;
+					padding:0px 5px;
 				}
 			}
 			.sourceMoney{
