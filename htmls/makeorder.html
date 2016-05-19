@@ -22,31 +22,27 @@
 		<ul class="orderinfo">
 			<li>
 				<div class="title">项目：</div>
-				<div class="text">超声波洁牙+抛光</div>
+				<div class="text" ng-bind="orderInfo.productName"></div>
 			</li>
 			<li>
 				<div class="title">机构：</div>
-				<div class="text">佳的美口腔南山区卓越维港店</div>
+				<div class="text" ng-bind="orderInfo.hospitalName"></div>
 			</li>
 			<li>
 				<div class="title">医生：</div>
-				<div class="text">林原则</div>
+				<div class="text" ng-bind="orderInfo.doctorName"></div>
 			</li>
 			<li>
 				<div class="title">地址：</div>
-				<div class="text">南山区卓越维港名苑9-13栋裙楼1-27号</div>
+				<div class="text" ng-bind="orderInfo.hospitalAddress"></div>
 			</li>
 			<li>
 				<div class="title">就医时间：</div>
-				<div class="text">2016-05-11 11:00</div>
+				<div class="text" ng-bind="orderInfo.treatmentTime"></div>
 			</li>
 			<li>
 				<div class="title">套餐价格：</div>
-				<div class="text money">￥500.0</div>
-			</li>
-			<li>
-				<div class="title">实付价格：</div>
-				<div class="text money">￥450.0</div>
+				<div class="text money" ng-bind="orderInfo.preferPrice"></div>
 			</li>
 			<li>
 				<div class="title">就医人：</div>
@@ -65,7 +61,7 @@
 			<div ng-class="{'check':hasCheck}" ng-click="selectCush()"></div>
 			<img src="../contents/svg/djq.svg">
 			<span>本订单可使用代金券￥</span>
-			<span class="money">50</span>
+			<span class="money" ng-bind="orderInfo.giftMoney"></span>
 		</div>
 		<div class="base-separator"></div>
 		<div class="makeorder-tip">
@@ -77,8 +73,8 @@
 	<div class="markorder-menu">
 		<div class="order-btn">提交订单</div>
 		<div class="order-text">
-			<p><span>到店付：￥</span><span class="money">400</span></p>
-			<p><span>在线付：￥</span><span class="money">50</span></p>
+			<p><span>在线付：￥</span><span class="money" ng-bind="orderInfo.dealMoney">50</span></p>
+			<p><span>到店付：￥</span><span class="money" ng-bind="orderInfo.payMoney">400</span></p>
 		</div>
 	</div>
 	<div class="has-user-menu"></div>

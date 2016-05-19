@@ -1023,7 +1023,7 @@ body {
     float: right;
     height: 50px;
     width: 50px;
-    background: url("../../contents/svg/switch-on.svg");
+    background: url("../../contents/svg/switch-off.svg");
     background-size: contain;
     margin-top: 5px;
     margin-right: 10px; }
@@ -1031,7 +1031,7 @@ body {
     height: 20px;
     margin-left: 10px; }
   .order-content .quan .check {
-    background: url("../../contents/svg/switch-off.svg");
+    background: url("../../contents/svg/switch-on.svg");
     background-size: contain; }
 
 .order-content .money {
