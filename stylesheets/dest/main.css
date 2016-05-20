@@ -124,12 +124,14 @@ body {
       margin-left: 90px; }
     .prduct-container .item .item-subhead {
       font-size: 12px;
-      line-height: 25px; }
+      margin-top: 5px; }
     .prduct-container .item .item-price {
       overflow: hidden;
       margin-top: 18px; }
       .prduct-container .item .item-price div {
         line-height: 20px; }
+      .prduct-container .item .item-price .item-count {
+        font-size: 12px; }
     .prduct-container .item .saleprice {
       color: #1fc1d9; }
     .prduct-container .item .priceType {

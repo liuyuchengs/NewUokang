@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body ng-controller="discountCtrl">
+<body ng-controller="discountCtrl" data-ng-init="load()">
 	<div class="header">
 		<div class="header-item float-left">
 			<a href="home.html">
@@ -22,73 +22,33 @@
 	</div>
 	<div class="has-header"></div>
 	<div class="discount-filter">
-		<div class="select-color">最抵</div>
-		<div ng-click="goto('/new/htmls/discount-month.html')">本月特惠</div>
+		<div ng-class="{'select-color':discountSelect}" ng-click="switchState('discount')">最抵</div>
+		<div ng-class="{'select-color':!discountSelect}" ng-click="switchState('month')">本月特惠</div>
 	</div>
 	<ul class="prduct-container">
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
+		<li class="item" ng-repeat = "item in productInfo">
+			<img class="item-img float-left" ng-src="{{item.samllimg}}" fallback-src="../contents/img/p_default.png">
 			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
+				<div class="item-title" ng-bind="item.title"></div>
+				<div class="item-subhead" ng-bind="item.address"></div>
 				<div class="item-price">
 					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
+						<span class="saleprice">￥{{item.preferPrice}}</span>
+						<span class="priceType">{{item.preferPriceType}}</span>
 					</div>
 					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
+						<span class="price float-left">￥{{item.standPrice}}</span>
 					</div>
 					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
-					</div>
-
-				</div>
-			</div>
-		</li>
-		<li class="item">
-			<img class="item-img float-left" src="../contents/img/pic1.jpg">
-			<div class="item-desc">
-				<div class="item-title">隐形矫正牙齿</div>
-				<div class="item-subhead">
-					友睦齿科福田时代广场店
-				</div>
-				<div class="item-price">
-					<div class="float-left">
-						<span class="saleprice">￥42750/副</span>
-					</div>
-					<div class="float-left margin-l">
-						<span class="price float-left">￥45000</span>
-					</div>
-					<div class="margin-right">
-						<span class="item-count float-right">20人下单</span>
+						<span class="item-count float-right">{{item.sales}}人下单</span>
 					</div>
 				</div>
 			</div>
 		</li>
 	</ul>
+	<div ng-include="'tip.html'"></div>
+	<div ng-include="'loading.html'"></div>
+	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/self/module.min.js"></script>
 	<script src="../javascripts/self/discountCtrl.min.js"></script>

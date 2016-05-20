@@ -147,13 +147,16 @@ body{
 		}
 		.item-subhead{
 			font-size: $small-font-size;
-			line-height: 25px;
+			margin-top: 5px;
 		}
 		.item-price{
 			overflow: hidden;
 			margin-top: 18px;
 			div{
 				line-height: 20px;
+			}
+			.item-count{
+				font-size: $small-font-size;
 			}
 		}
 		.saleprice{
@@ -178,7 +181,7 @@ body{
 			.text{
 				color:#959595;
 				margin-right:80px;
-				text-decoration: line-through;
+				text-decoration:line-through;
 			}
 			.btn{
 				width:80px;
