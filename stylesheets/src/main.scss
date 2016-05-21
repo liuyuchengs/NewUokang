@@ -1693,3 +1693,103 @@ body{
 		}
 	}
 }
+
+/*
+*****健康咨询*****
+*/
+.new-nav{
+	height:40px;
+	width:100%;
+	display:flex;
+	flex-direction: row;
+	flex-flow: nowrap;
+	.nav-item{
+		flex:1;
+		text-align: center;
+		line-height: 40px;
+		border:{
+			right:solid 1px #eee;
+			bottom:solid 1px #eee;
+		}
+	}
+	.select{
+		color:$header-background-color;
+		border-bottom:solid 1px $header-background-color;
+	}
+}
+.item-container{
+	list-style: none;
+	li{
+		margin:{
+			left:15px;
+			right:15px;
+		}
+		padding:{
+			top:15px;
+			bottom:15px;
+		}
+		border-bottom:solid 1px #eee;
+		img{
+			height:60px;
+			float:left;
+			border-radius:3px;
+		}
+		div{
+			margin-left:65px;
+			.date{
+				color:#959595;
+				margin-top:25px;
+			}
+		}
+	}
+}
+//资讯详情页
+.newdetail-content{
+	.content-header{
+		height:60px;
+		padding:{
+			top:10px;
+			bottom:10px;
+		}
+		margin:{
+			left:15px;
+			right:15px;
+		}
+		border-bottom: solid 1px #eee;
+		.date{
+			color:#959595;
+			margin-top:25px;
+		}
+	}
+	.text{
+		margin-top: 20px;
+		padding: 10px 15px;
+	}
+}
+
+/*
+******体检页面******
+*/
+.exam-filter{
+	display:flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	a{
+		display: block;
+		height:40px;
+		text-align: center;
+		line-height:40px;
+		flex:1;
+		border-right:solid 1px #eee;
+		border-bottom: solid 1px #eee;
+		color:#000;
+		text-decoration: none;
+	}
+	a:last-child{
+		border-right:none;
+	}
+	.select{
+		color:$header-background-color;
+		border-bottom:solid 2px $header-background-color;
+	}
+}

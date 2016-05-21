@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1.3,user-scalable=no">
+    <link rel="stylesheet" href="../stylesheets/dest/main.css">
+		<link rel="stylesheet" href="../stylesheets/dest/swiper.min.css">
+	<title>悠康医生</title>
+</head>
+<body ng-controller="newsCtrl" data-ng-init="load()">
+	<div class="header">
+		<div class="header-item float-left">
+			<a href="home.html">
+				<img src="../contents/svg/back.svg">
+			</a>
+		</div>
+		<div class="title">健康资讯</div>
+	</div>
+	<div class="has-header"></div>
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+		   <div class="swiper-slide">
+			   <a href="#">
+				   <img class="swiper-img" src="../contents/img/wrap1.png">
+			   </a>
+		   </div>
+		   <div class="swiper-slide">
+			   <a href="#">
+			   		<img class="swiper-img" src="../contents/img/wrap1.png">
+			   </a>
+
+		   </div>
+		   <div class="swiper-slide">
+			   <a href="#">
+			   		<img class="swiper-img" src="../contents/img/wrap1.png">
+			   </a>
+		   </div>
+	   </div>
+	   <div class="swiper-pagination"></div>
+	</div>
+	<div class="new-nav">
+		<div class="nav-item" ng-class="{'select':navParam.all.has}" ng-click="switch('all')">综合</div>
+		<div class="nav-item" ng-class="{'select':navParam.yake.has}" ng-click="switch('yake')">牙科</div>
+		<div class="nav-item" ng-class="{'select':navParam.meirong.has}" ng-click="switch('meirong')">美容</div>
+		<div class="nav-item" ng-class="{'select':navParam.fck.has}" ng-click="switch('fck')">妇产科</div>
+		<div class="nav-item" ng-class="{'select':navParam.zhongyi.has}" ng-click="switch('zhongyi')">中医理疗</div>
+	</div>
+	<ul class="item-container">
+		<li ng-repeat="new in news" ng-click="detail(new.id)">
+			<img ng-src="{{new.picture}}" fallback-src="../contents/img/p_default.png">
+			<div>
+				<p class="title" ng-bind="new.title"></p>
+				<p class="date" ng-bind="new.createtimeStr"></p>
+			</div>
+		</li>
+	</ul>
+	<div ng-include="'tip.html'"></div>
+	<div ng-include="'loading.html'"></div>
+	<script src="../javascripts/lib/jquery.min.js"></script>
+	<script src="../javascripts/lib/swiper.min.js"></script>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/newsCtrl.min.js"></script>
+	<script>
+		//页面初始化
+		window.onload = function(){
+			//根据设备宽度初始化图片大小
+			var width = screen.width;
+			$(".swiper-img").each(function(index,element){
+				element.style.width = width+"px";
+			});
+			//初始化swiper
+			var myswiper = new Swiper(".swiper-container",{
+	    		loop: true,
+	    		pagination: '.swiper-pagination',
+				autoplay: 5000,
+				autoplayDisableOnInteraction:false,
+			})
+		}
+	</script>
+</body>
+</html>
