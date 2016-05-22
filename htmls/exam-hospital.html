@@ -1,10 +1,13 @@
-<div class="filter">
-	<div class="filter-item" ng-class="{'check-color':menuParams.area}" ng-click="switchMenu('area')">
-		<span class="filter-text">位置</span>
-		<div></div>
-	</div>
-	<div class="filter-item float-left" ng-class="{'check-color':menuParams.order}" ng-click="switchMenu('order')">
-		<span class="filter-text ">排序</span>
-		<div></div>
-	</div>
-</div>
+<ul class="prduct-container"  data-ng-init="load()">
+	<li class="item" ng-repeat = "hospital in hospitals">
+		<img class="item-img float-left" ng-src="{{hospital.logo}}" fallback-src="../contents/img/p_default.png">
+		<div class="item-desc">
+			<div class="item-title" ng-bind="hospital.name"></div>
+			<div class="score" ng-bind="hospital.score"></div>
+			<div class="item-subhead" ng-bind="hospital.address"></div>
+		</div>
+	</li>
+</ul>
+<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
+<div ng-include="'tip.html'"></div>
+<div ng-include="'loading.html'"></div>

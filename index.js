@@ -24,6 +24,9 @@ app.post("/wx/product/querylist",accountRoute);
 app.post("/wx/order/checkCode",accountRoute);
 app.post("/wx/gift/getgiftproduct",accountRoute);
 app.post("/wx/findpass/findPassPhontCheck",accountRoute);
+app.post("/wx/product/querylist",accountRoute);
+app.post("/wx/hospital/querylist",accountRoute);
+
 app.listen(8080,function(){
     console.log("app is listen ");
 })

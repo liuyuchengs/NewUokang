@@ -128,9 +128,11 @@
 			<img src="../contents/img/prompt.png">
 		</div>
 	</div>
+	<div class="cush-tip" ng-if="noGrab">{{$parent.noProductText}}</div>
 	<div ng-include="'tip.html'"></div>
 	<div ng-include="'loading.html'"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/lib/angular.route.min.js"></script>
 	<script src="../javascripts/self/module.min.js"></script>
 	<script src="../javascripts/self/grabCtrl.min.js"></script>
 </body>

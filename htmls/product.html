@@ -96,8 +96,8 @@
 		<ul id="drop-class" class="drop-menu-grid" ng-show="hasClass" ng-include="'item-fck.html'" ng-if="productParams.fck.has"></ul>
 		<ul id="drop-class" class="drop-menu-grid" ng-show="hasClass" ng-include="'item-zhongyi.html'" ng-if="productParams.zhongyi.has"></ul>
 	</div>
-	<ul class="prduct-container" ng-repeat = "product in products">
-		<li class="item" ng-click="detail(product.id,product.hospitalId)">
+	<ul class="prduct-container" >
+		<li class="item" ng-repeat = "product in products" ng-click="detail(product.id,product.hospitalId)" >
 			<img class="item-img float-left" ng-src="{{product.smallImg}}" fallback-src="../contents/img/p_default.png">
 			<div class="item-desc">
 				<div class="item-title" ng-bind="product.title"></div>
@@ -122,6 +122,7 @@
 	<div ng-include="'tip.html'"></div>
 	<div ng-include="'loading.html'"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/lib/angular.route.min.js"></script>
 	<script src="../javascripts/self/module.min.js"></script>
 	<script src="../javascripts/self/productCtrl.min.js"></script>
 </body>

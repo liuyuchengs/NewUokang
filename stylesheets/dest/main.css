@@ -122,25 +122,32 @@ body {
       border-radius: 2px; }
     .prduct-container .item .item-desc {
       margin-left: 90px; }
-    .prduct-container .item .item-subhead {
-      font-size: 12px;
-      margin-top: 5px; }
-    .prduct-container .item .item-price {
-      overflow: hidden;
-      margin-top: 18px; }
-      .prduct-container .item .item-price div {
-        line-height: 20px; }
-      .prduct-container .item .item-price .item-count {
-        font-size: 12px; }
-    .prduct-container .item .saleprice {
-      color: #1fc1d9; }
-    .prduct-container .item .priceType {
-      color: #1fc1d9;
-      font-size: 12px; }
-    .prduct-container .item .price {
-      font-size: 12px;
-      text-decoration: line-through;
-      color: #333333; }
+      .prduct-container .item .item-desc .item-subhead {
+        font-size: 12px;
+        margin-top: 5px; }
+      .prduct-container .item .item-desc .score {
+        color: #1fc1d9;
+        margin-top: 5px; }
+      .prduct-container .item .item-desc .item-price {
+        overflow: hidden;
+        margin-top: 18px; }
+        .prduct-container .item .item-desc .item-price div {
+          line-height: 20px; }
+        .prduct-container .item .item-desc .item-price .item-count {
+          font-size: 12px; }
+        .prduct-container .item .item-desc .item-price .vip {
+          color: #1fc1d9; }
+        .prduct-container .item .item-desc .item-price .saleprice {
+          color: #1fc1d9; }
+        .prduct-container .item .item-desc .item-price .priceType {
+          color: #1fc1d9;
+          font-size: 12px; }
+        .prduct-container .item .item-desc .item-price .price {
+          font-size: 12px;
+          text-decoration: line-through;
+          color: #959595; }
+    .prduct-container .item .exam-desc {
+      margin-left: 10px; }
     .prduct-container .item .item-qiang {
       border: solid 1px #FF5A00;
       height: 30px;
@@ -422,6 +429,9 @@ body {
       .drop-menu .drop-menu-grid li .item-check {
         color: #1fc1d9;
         border-bottom: solid 2px #1fc1d9; }
+
+.exam-drop-menu {
+  top: 133px; }
 
 .product-bg {
   position: fixed;
@@ -1413,7 +1423,10 @@ body {
 .exam-filter {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap; }
+  flex-wrap: nowrap;
+  position: relative;
+  z-index: 10;
+  background-color: #fff; }
   .exam-filter a {
     display: block;
     height: 40px;
@@ -1429,3 +1442,61 @@ body {
   .exam-filter .select {
     color: #1fc1d9;
     border-bottom: solid 2px #1fc1d9; }
+
+/*
+*****体检详细页面*****
+*/
+.examDetail-container .img-container {
+  width: 100%;
+  height: 160px;
+  margin-bottom: 5px;
+  position: relative; }
+  .examDetail-container .img-container img {
+    height: 160px;
+    width: 100%; }
+  .examDetail-container .img-container .img-description {
+    background: rgba(66, 41, 6, 0.6);
+    color: #fff;
+    bottom: 0;
+    position: absolute;
+    width: 100%; }
+    .examDetail-container .img-container .img-description p {
+      margin: 10px 15px; }
+
+.examDetail-container .examDetail-filter {
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-top: solid 1px #eee; }
+  .examDetail-container .examDetail-filter .item {
+    flex: 1;
+    text-align: center;
+    border-right: solid 1px #eee;
+    border-bottom: solid 1px #eee; }
+  .examDetail-container .examDetail-filter .item:last-child {
+    border-right: none; }
+  .examDetail-container .examDetail-filter .select {
+    border-bottom: solid 2px #1fc1d9;
+    color: #1fc1d9; }
+
+.examDetail-container .examDetail-content {
+  padding: 0px 15px; }
+  .examDetail-container .examDetail-content .productInfo .description .title {
+    height: 40px;
+    line-height: 40px;
+    border-bottom: solid 1px #eee; }
+  .examDetail-container .examDetail-content .productInfo .description .text {
+    color: #959595;
+    margin-top: 10px; }
+  .examDetail-container .examDetail-content .productInfo .product {
+    margin-top: 20px; }
+    .examDetail-container .examDetail-content .productInfo .product .title {
+      height: 40px;
+      line-height: 40px;
+      border-bottom: solid 1px #eee; }
+    .examDetail-container .examDetail-content .productInfo .product .items {
+      color: #959595;
+      margin-left: 18px;
+      margin-top: 10px; }
