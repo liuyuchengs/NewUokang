@@ -28,7 +28,7 @@
 				<div class="title">机构：</div>
 				<div class="text" ng-bind="orderInfo.hospitalName"></div>
 			</li>
-			<li>
+			<li ng-show = "hasDoctor">
 				<div class="title">医生：</div>
 				<div class="text" ng-bind="orderInfo.doctorName"></div>
 			</li>

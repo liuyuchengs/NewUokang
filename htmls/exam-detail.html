@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body ng-controller="examDetailCtrl" data-ng-init="load()">
+<body ng-controller="examDetailCtrl" data-ng-init="load()" ng-class="{'overflowhide':hasSelectTime}">
 	<div class="header">
 		<div class="header-item float-left">
 			<a href="exam.html">
@@ -19,39 +19,83 @@
 	<div class="has-header"></div>
 	<div class="examDetail-container">
 		<div class="img-container">
-			<img src="../contents/img/p_default.png">
+			<img ng-src="{{product.smallImg}}" fallback-src="../contents/img/p_default.png">
 			<div class="img-description">
-				<p>基础套餐(常规)30-40岁人群</p>
+				<p ng-bind="product.title"></p>
 			</div>
 		</div>
 		<div class="examDetail-filter">
-			<div class="item select">套餐详情</div>
-			<div class="item">医院详情</div>
-			<div class="item">须知</div>
+			<div class="item" ng-class="{'select':filterParams.product.has}" ng-click="switch('product')">套餐详情</div>
+			<div class="item" ng-class="{'select':filterParams.hospital.has}" ng-click="switch('hospital')">医院详情</div>
+			<div class="item" ng-class="{'select':filterParams.notice.has}" ng-click="switch('notice')">须知</div>
 		</div>
 		<div class="examDetail-content">
-			<div class="productInfo">
+			<div class="productInfo" ng-show="filterParams.product.has">
 				<div class="description">
 					<div class="title">套餐介绍</div>
-					<div class="text">
-注重常规与心血管、肿瘤早期检测同时为客户提供疾病风险评估、制定健康规划等综合性健康指导，共计52项。
-					</div>
+					<div class="text" ng-bind="product.introduction"></div>
 				</div>
 				<div class="product">
 					<div class="title">套餐项目</div>
 					<ol class="items">
-						<li>一般检查</li>
-						<li>内科常规检查</li>
-						<li>外壳常规检查</li>
-						<li>口腔科常规检查</li>
-						<li>眼科</li>
+						<li ng-repeat="item in productItem" ng-bind="item.name"></li>
 					</ol>
 				</div>
 			</div>
-			<div class="hospitalInfo">
-				
+			<div class="hospitalInfo" ng-show="filterParams.hospital.has">
+				<div class="img">
+					<img ng-src="{{hospital.logo}}" fallback-src="../contents/img/p_default.png">
+					<img ng-src="{{hospitalImg}}" fallback-src="../contents/img/p_default.png">
+				</div>
+				<div class="title">
+					<p class="name" ng-bind="hospital.name"></p>
+					<p class="address">
+						<span>地址：</span>
+						<span ng-bind="hospital.address"></span></p>
+					<p class="phone">
+						<span>联系电话：</span>
+						<span ng-bind="hospital.telephone"></span>
+					</p>
+				</div>
+				<div class="text" ng-bind="hospital.description"></div>
+			</div>
+			<div class="noticeInfo" ng-show="filterParams.notice.has">
+				<div class="text" ng-bind="product.notice"></div>
 			</div>
 		</div>
 	</div>
+	<div class="markorder-menu">
+		<div class="order-btn" ng-click="selectTimeBtn()" ng-class="{'disable':noSchedule}">下单</div>
+		<div class="order-text">
+			<p><span>专享价：￥</span><span class="money">{{product.preferPrice}}{{product.preferPriceType}}</span></p>
+			<p><span>门店价：￥</span><span class="money" ng-bind="product.standPrice"></span></p>
+		</div>
+	</div>
+	<div class="has-user-menu"></div>
+	<div class="selecttime" ng-show="hasSelectTime">
+		<div class="container">
+			<div class="selecttime-header">
+				选择体检日期
+			</div>
+			<div class="times">
+				<ul>
+					<li ng-repeat="schedule in schedules"  ng-class="{'select':scheduleParams[schedule.scheduleid].has}" ng-click="selectTime(schedule.scheduleid)">
+						<span ng-bind="schedule.dateStr"></span>
+						<div></div>
+					</li>
+				</ul>
+			</div>
+			<div class="btn">
+				<div class="item" ng-click="cancelTime()">取消</div>
+				<div class="item" ng-click="detail()">确定</div>
+			</div>
+		</div>
+	</div>
+	<div ng-include="'loading.html'"></div>
+	<div ng-include="'tip.html'"></div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/lib/angular.route.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/examDetailCtrl.min.js"></script>
 </body>
 </html>

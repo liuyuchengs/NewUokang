@@ -330,6 +330,8 @@ body {
       margin-left: -40px; }
       .tehui .tehui-tehui .item img {
         height: 50px; }
+    .tehui .tehui-tehui .sales {
+      color: #1FC1D9; }
 
 .hot {
   height: 30px;
@@ -1500,3 +1502,91 @@ body {
       color: #959595;
       margin-left: 18px;
       margin-top: 10px; }
+  .examDetail-container .examDetail-content .hospitalInfo .img {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative; }
+    .examDetail-container .examDetail-content .hospitalInfo .img img {
+      width: 47%; }
+    .examDetail-container .examDetail-content .hospitalInfo .img img:last-child {
+      float: right; }
+  .examDetail-container .examDetail-content .hospitalInfo .title {
+    border-bottom: solid 1px #eee; }
+    .examDetail-container .examDetail-content .hospitalInfo .title .marginPosition, .examDetail-container .examDetail-content .hospitalInfo .title .name, .examDetail-container .examDetail-content .hospitalInfo .title .address, .examDetail-container .examDetail-content .hospitalInfo .title .phone {
+      margin-top: 10px;
+      margin-bottom: 10px; }
+    .examDetail-container .examDetail-content .hospitalInfo .title .address span:last-child {
+      color: #959595; }
+    .examDetail-container .examDetail-content .hospitalInfo .title .phone span:last-child {
+      color: #1fc1d9; }
+  .examDetail-container .examDetail-content .hospitalInfo .text {
+    margin-top: 10px;
+    color: #959595; }
+  .examDetail-container .examDetail-content .noticeInfo .text {
+    padding: 10px;
+    color: #959595; }
+
+.selecttime {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 30; }
+  .selecttime .container {
+    position: absolute;
+    height: 300px;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -40%;
+    background-color: #fff;
+    overflow: scroll; }
+    .selecttime .container .selecttime-header {
+      height: 40px;
+      line-height: 40px;
+      color: #fff;
+      background-color: #1fc1d9;
+      text-align: center; }
+    .selecttime .container .times {
+      width: 100%;
+      height: 219px;
+      overflow: scroll; }
+      .selecttime .container .times ul {
+        list-style: none;
+        padding-left: 10px;
+        padding-right: 10px; }
+      .selecttime .container .times li {
+        height: 40px;
+        line-height: 40px;
+        border-bottom: solid 1px #eee; }
+        .selecttime .container .times li div {
+          float: right;
+          height: 20px;
+          width: 20px;
+          margin-top: 10px;
+          background: url("../../contents/svg/uncheck.svg");
+          background-size: contain; }
+      .selecttime .container .times li:last-child {
+        border-bottom: none; }
+      .selecttime .container .times .select div {
+        background: url("../../contents/svg/check.svg");
+        background-size: contain; }
+    .selecttime .container .btn {
+      height: 40px;
+      line-height: 40px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      border-top: solid 1px #eee;
+      position: absolute;
+      bottom: 0px;
+      width: 100%; }
+      .selecttime .container .btn .item {
+        flex: 1;
+        text-align: center;
+        border-right: solid 1px #eee; }
+      .selecttime .container .btn .item:last-child {
+        color: #1fc1d9; }

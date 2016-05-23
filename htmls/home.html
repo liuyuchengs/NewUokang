@@ -24,7 +24,7 @@
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
 		   <div class="swiper-slide">
-			   <a href="#">
+			   <a href="grab.html">
 				   <img class="swiper-img" src="../contents/img/wrap1.png">
 			   </a>
 		   </div>
@@ -99,8 +99,8 @@
 			</div>
 		</div>
 		<div class="tehui-tehui float-left" ng-click="gotoMenu('/new/htmls/discount.html')">
-			<div class="item">
-				<img src="../contents/svg/tehui.svg">
+			<div class="item sales">
+				<img src="../contents/svg/sales.svg">
 				<p>特惠区</p>
 			</div>
 		</div>
@@ -158,8 +158,8 @@
 			</div>
 	  	</div>
 	</div>
-	<div class="has-menu"></div>
 	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
+	<div class="has-menu"></div>
 	<div ng-include="'tip.html'"></div>
 	<div ng-include="'loading.html'"></div>
 	<script src="../javascripts/lib/jquery.min.js"></script>
@@ -170,7 +170,7 @@
 	<script src="../javascripts/self/homeCtrl.min.js"></script>
 	<script>
 		//页面初始化
-		window.onload = function(){
+		(function(){
 			//根据设备宽度初始化图片大小
 			var width = screen.width;
 			$(".swiper-img").each(function(index,element){
@@ -183,7 +183,7 @@
 				autoplay: 5000,
 				autoplayDisableOnInteraction:false,
 			})
-		}
+		})();
 	</script>
 </body>
 </html>
