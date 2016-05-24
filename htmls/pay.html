@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body>
+<body ng-controller="payCtrl" data-ng-init="init()">
 	<div class="header">
 		<div class="header-item float-left">
 			<a href="home.html">
@@ -28,15 +28,22 @@
 			<img src="../contents/svg/dingdan.svg">
 			<div class="title-text">
 				<p>订单提交成功，请您尽快完成支付！</p>
-                <p>支付金额￥<span class="money">500</span></p>
+                <p>支付金额￥<span class="money" ng-bind="order.dealMoney"></span></p>
 			</div>
 		</div>
 		<div class="large-separator"></div>
-		<div class="pay-item">
+		<div class="pay-item" ng-click="pay()">
 			<img src="../contents/svg/wx-icon.svg">
 			<span>微信支付</span>
 			<img src="../contents/svg/right-arrow.svg">
 		</div>
 	</div>
+	<div ng-include="'tip.html'"></div>
+	<div ng-include="'loading.html'"></div>
+	<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/lib/angular.route.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/payCtrl.min.js"></script>
 </body>
 </html>

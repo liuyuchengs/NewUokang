@@ -8,10 +8,8 @@
 </head>
 <body ng-controller="examDetailCtrl" data-ng-init="load()" ng-class="{'overflowhide':hasSelectTime}">
 	<div class="header">
-		<div class="header-item float-left">
-			<a href="exam.html">
-				<img src="../contents/svg/back.svg">
-			</a>
+		<div class="header-item float-left" ng-click="back()">
+			<img src="../contents/svg/back.svg">
 		</div>
 		<div class="title">套餐详细
 		</div>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1.3,user-scalable=no">
+    <link rel="stylesheet" href="../stylesheets/dest/main.css">
+	<title>悠康医生</title>
+</head>
+<body ng-controller="wrapExamCtrl" data-ng-init="load()">
+	<div class="header">
+		<div class="header-item float-left">
+			<a href="home.html">
+				<img src="../contents/svg/back.svg">
+			</a>
+		</div>
+		<div class="title">
+			体检特惠
+		</div>
+	</div>
+	<div class="has-header"></div>
+	<ul class="prduct-container" >
+		<li class="item" ng-repeat = "product in products" ng-click="detail(product.id,product.hospitalId)">
+			<div class="item-desc exam-desc">
+				<div class="item-title" ng-bind="product.title"></div>
+				<div class="item-subhead" ng-bind="product.name"></div>
+				<div class="item-price">
+					<div class="float-left">
+						<span class="saleprice">￥{{product.preferPrice}}</span>
+						<span class="priceType">{{product.preferPriceType}}</span>
+					</div>
+					<div class="float-left margin-l">
+						<span class="price float-left">￥{{product.standPrice}}</span>
+					</div>
+					<div class="float-left margin-l">
+						<span class="vip">专享</span>
+					</div>
+					<div class="margin-right">
+						<span class="item-count float-right">{{product.sales}}人下单</span>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
+	<div ng-include="'tip.html'"></div>
+	<div ng-include="'loading.html'"></div>
+	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/lib/angular.route.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/wrapExamCtrl.min.js"></script>
+</body>
+</html>
