@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body style="background-color:#EFEFF4" ng-controller="payResultCtrl">
+<body style="background-color:#EFEFF4" ng-controller="payResultCtrl" data-ng-init="init()">
 	<div class="header">
 		<div class="header-item float-left">
 			<a href="home.html">
@@ -25,27 +25,27 @@
 	<div class="has-header"></div>
 	<div class="payresult-content">
 		<div class="result-header">
-            <div class="container success">
+            <div class="container" ng-class="{'success':hasSuccess}">
                 <div></div>
-                <p>订单支付成功</p>
+                <p ng-bind="resultValue"></p>
             </div>
         </div>
 		<ul class="item-group">
-			<li >
+			<li ng-if="!hasSuccess" ng-click="payAgain()">
 				<img class="icon" src="../contents/svg/wx-icon.svg">
 				<div class="text unborder">
 					<span>再次支付</span>
 					<img src="../contents/svg/right-arrow.svg">
 				</div>
 			</li>
-			<li>
+			<li ng-click="checkOrder()">
 				<img class="icon" src="../contents/svg/dingdan.svg">
 				<div class="text">
 					<span>查看订单</span>
 					<img src="../contents/svg/right-arrow.svg">
 				</div>
 			</li>
-			<li>
+			<li ng-click="toHome()">
 				<img class="icon" src="../contents/svg/see.svg">
 				<div class="text">
 					<span>继续浏览</span>
@@ -57,6 +57,6 @@
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/lib/angular.route.min.js"></script>
 	<script src="../javascripts/self/module.min.js"></script>
-	<script src="../javascripts/self/payCtrl.min.js"></script>
+	<script src="../javascripts/self/payResultCtrl.min.js"></script>
 </body>
 </html>

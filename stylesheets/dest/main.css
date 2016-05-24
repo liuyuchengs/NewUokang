@@ -1127,7 +1127,7 @@ body {
   background-color: #fff; }
   .payresult-content .result-header .container {
     width: 100px;
-    height: 80px;
+    height: 90px;
     text-align: center;
     color: #CF123E;
     font-size: 16px;
@@ -1136,7 +1136,7 @@ body {
     left: 50%;
     top: 50%;
     margin-left: -50px;
-    margin-top: -40px; }
+    margin-top: -45px; }
     .payresult-content .result-header .container div {
       height: 60px;
       width: 60px;
