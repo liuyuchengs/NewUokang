@@ -118,6 +118,7 @@ body {
     border-bottom: solid 1px #eeeeee; }
     .prduct-container .item .item-img {
       height: 80px;
+      width: 80px;
       margin-right: 5px;
       border-radius: 2px; }
     .prduct-container .item .item-desc {
@@ -176,8 +177,8 @@ body {
   width: 100%;
   background-color: #F8F8F8;
   height: 50px;
-  border-top: solid 1px #ABABAB;
-  color: #7C8085; }
+  border-top: solid 1px #9f9f9f;
+  color: #9f9f9f; }
   .button-menu .button-menu-item {
     width: 25%;
     height: 100%;
@@ -191,10 +192,35 @@ body {
       margin-top: 5px; }
       .button-menu .button-menu-item .icon p {
         line-height: 15px; }
-      .button-menu .button-menu-item .icon img {
-        height: 25px; }
+      .button-menu .button-menu-item .icon div {
+        height: 25px;
+        width: 25px; }
+      .button-menu .button-menu-item .icon .homeIcon {
+        background: url("../../contents/svg/home-uncheck.svg");
+        background-size: contain; }
+      .button-menu .button-menu-item .icon .doctorIcon {
+        background: url("../../contents/svg/doctor-uncheck.svg");
+        background-size: contain; }
+      .button-menu .button-menu-item .icon .InteractionIcon {
+        background: url("../../contents/svg/hudong-uncheck.svg");
+        background-size: contain; }
+      .button-menu .button-menu-item .icon .userIcon {
+        background: url("../../contents/svg/user-uncheck.svg");
+        background-size: contain; }
     .button-menu .button-menu-item .check {
       color: #1fc1d9; }
+      .button-menu .button-menu-item .check .homeIcon {
+        background: url("../../contents/svg/home-check.svg");
+        background-size: contain; }
+      .button-menu .button-menu-item .check .doctorIcon {
+        background: url("../../contents/svg/doctor-check.svg");
+        background-size: contain; }
+      .button-menu .button-menu-item .check .InteractionIcon {
+        background: url("../../contents/svg/hudong-check.svg");
+        background-size: contain; }
+      .button-menu .button-menu-item .check .userIcon {
+        background: url("../../contents/svg/user-check.svg");
+        background-size: contain; }
 
 .tip {
   position: fixed;
@@ -953,7 +979,6 @@ body {
   .grab-order-content li {
     margin: 0px 10px;
     overflow: hidden;
-    height: 40px;
     line-height: 40px;
     border-bottom: solid 1px #dcdcdc; }
     .grab-order-content li .title {
@@ -961,7 +986,10 @@ body {
       float: left;
       text-align: center; }
     .grab-order-content li .text {
-      margin-left: 100px; }
+      margin-left: 100px;
+      line-height: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px; }
 
 .grab-imgtip {
   position: fixed;
@@ -1243,6 +1271,9 @@ body {
       border-bottom: solid 1px #eeeeee; }
       .detail-content .doc-content li .text .text-header {
         margin-bottom: 10px; }
+        .detail-content .doc-content li .text .text-header .score {
+          color: #1fc1d9;
+          float: right; }
       .detail-content .doc-content li .text .text-description span:nth-child(2) {
         font-size: 12px;
         color: #959595; }
@@ -1590,3 +1621,36 @@ body {
         border-right: solid 1px #eee; }
       .selecttime .container .btn .item:last-child {
         color: #1fc1d9; }
+
+/*
+** 医生页面
+*/
+.doctor-content ul {
+  list-style: none; }
+  .doctor-content ul li {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 10px 15px; }
+    .doctor-content ul li p {
+      overflow: hidden;
+      margin-bottom: 5px; }
+    .doctor-content ul li p:last-child {
+      margin-bottom: 0px; }
+    .doctor-content ul li img {
+      height: 97px;
+      width: 73px;
+      float: left; }
+    .doctor-content ul li .text {
+      margin-left: 90px; }
+      .doctor-content ul li .text .name span:last-child {
+        font-size: 12px; }
+      .doctor-content ul li .text .score {
+        font-size: 12px; }
+        .doctor-content ul li .text .score span:first-child {
+          color: #1fc1d9; }
+        .doctor-content ul li .text .score span:last-child {
+          color: #959595; }
+      .doctor-content ul li .text .use {
+        font-size: 12px; }
+        .doctor-content ul li .text .use span:last-child {
+          color: #959595; }

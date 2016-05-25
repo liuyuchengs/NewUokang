@@ -50,7 +50,7 @@
 		</div>
 		<ul class="doc-content" ng-if="hasDoctor">
 			<li ng-repeat="doctor in doctorInfo">
-				<img class="docImg" ng-src="doctor.face" fallback-src="../contents/img/p_default.png">
+				<img class="docImg" ng-src="{{doctor.face}}" fallback-src="../contents/img/p_default.png">
 				<div class="text">
 					<div class="text-header">
 						<span class="name" ng-bind="doctor.doctorname"></span>

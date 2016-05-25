@@ -142,32 +142,7 @@
 			</div>
 		</li>
 	</ul>
-	<div class="button-menu">
-	    <div class="button-menu-item">
-			<div class="icon check">
-		  		<img src="../contents/svg/home-check.svg">
-		  		<p>首页</p>
-			</div>
-	  	</div>
-	  	<div class="button-menu-item" ng-click="alert('敬请期待！')">
-			<div class="icon">
-		  		<img src="../contents/svg/doctor-uncheck.svg">
-		  		<p>医生</p>
-			</div>
-	  	</div>
-	  	<div class="button-menu-item" ng-click="alert('敬请期待！')">
-			<div class="icon">
-		  		<img src="../contents/svg/hos-uncheck.svg">
-		  		<p>机构</p>
-			</div>
-	  	</div>
-	  	<div class="button-menu-item" ng-click="gotoMenu('/new/htmls/user.html')">
-			<div class="icon">
-		  		<img src="../contents/svg/user-uncheck.svg">
-		  		<p>个人</p>
-			</div>
-	  	</div>
-	</div>
+	<div ng-include="'bottom-menu.html'"></div>
 	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
 	<div class="has-menu"></div>
 	<div ng-include="'tip.html'"></div>

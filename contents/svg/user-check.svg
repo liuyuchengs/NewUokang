@@ -1,4 +1,7 @@
-<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"><![CDATA[
-@font-face { font-family: ifont; src: url("http://at.alicdn.com/t/font_1442373896_4754455.eot?#iefix") format("embedded-opentype"), url("http://at.alicdn.com/t/font_1442373896_4754455.woff") format("woff"), url("http://at.alicdn.com/t/font_1442373896_4754455.ttf") format("truetype"), url("http://at.alicdn.com/t/font_1442373896_4754455.svg#ifont") format("svg"); }
-
-]]></style></defs><g class="transform-group"><g transform="scale(0.1953125, 0.1953125)"><path d="M965.913 974.513c-43.709 69.874-82.433 0-82.433 0C847.156 788.28 705.117 643.385 513.386 643.385c-345.868 0-372.519 331.129-372.519 331.129l0 0c-47.481 64.674-82.782 0-82.782 0 0-171.062 114.31-324.473 277.072-385.912C251.217 531.5 196.056 435.217 196.056 326.054c0-175.265 142.066-317.331 317.33-317.331 175.266 0 317.332 142.066 317.332 317.331 0 112.72-58.934 211.456-147.51 267.749C946.861 692.86 965.913 974.513 965.913 974.513zM747.936 326.054c0-129.536-105.014-234.549-234.55-234.549-129.535 0-234.549 105.013-234.549 234.549s105.014 234.548 234.549 234.548C642.923 560.602 747.936 455.59 747.936 326.054z" fill="#1fc1d9"></path></g></g></svg>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="50pt" height="50pt" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<g id="#29c1d7ff">
+<path fill="#29c1d7" opacity="1.00" d=" M 23.61 0.00 L 26.22 0.00 C 29.63 0.56 33.03 2.27 34.70 5.43 C 38.61 12.39 36.60 21.49 31.19 27.08 C 31.88 28.56 32.27 30.53 34.07 31.05 C 39.91 33.68 47.71 35.59 50.00 42.36 L 50.00 45.39 C 49.42 47.58 47.55 48.82 45.78 50.00 L 4.23 50.00 C 2.53 48.89 0.82 47.65 0.00 45.71 L 0.00 42.64 C 1.82 35.93 9.51 33.85 15.18 31.40 C 17.29 30.90 18.17 28.95 18.81 27.09 C 13.40 21.49 11.38 12.39 15.30 5.43 C 16.95 2.32 20.27 0.62 23.61 0.00 Z" />
+</g>
+</svg>

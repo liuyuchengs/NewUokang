@@ -43,14 +43,14 @@
 			</li>
 		</ul>
 		<ul class="item-group">
-			<li>
+			<li ng-click="alert('敬请期待!')">
 				<img class="icon" src="../contents/svg/u-zixun.svg">
 				<div class="text unborder">
 					<span>我的咨询</span>
 					<img src="../contents/svg/right-arrow.svg">
 				</div>
 			</li>
-			<li ng-click="goto('/new/htmls/friend.html')">
+			<li ng-click="alert('敬请期待!')">
 				<img class="icon" src="../contents/svg/u-friend.svg">
 				<div class="text">
 					<span>我的亲友</span>
@@ -66,32 +66,7 @@
 			</li>
 		</ul>
 	</div>
-	<div class="button-menu">
-		<div ng-click="gotoMenu('/new/htmls/home.html')" class="button-menu-item">
-			<div class="icon">
-				<img src="../contents/svg/home-uncheck.svg">
-				<p>首页</p>
-			</div>
-		</div>
-		<div ng-click="alert('敬请期待!')" class="button-menu-item">
-			<div class="icon">
-				<img src="../contents/svg/doctor-uncheck.svg">
-				<p>医生</p>
-			</div>
-		</div>
-		<div ng-click="alert('敬请期待!')" class="button-menu-item">
-			<div class="icon">
-				<img src="../contents/svg/hos-uncheck.svg">
-				<p>机构</p>
-			</div>
-		</div>
-		<div class="button-menu-item">
-			<div class="icon check">
-				<img src="../contents/svg/user-check.svg">
-				<p>个人</p>
-			</div>
-		</div>
-	</div>
+	<div ng-include="'bottom-menu.html'"></div>
 	<div class="has-user-menu"></div>
 	<div ng-include="'tip.html'"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>

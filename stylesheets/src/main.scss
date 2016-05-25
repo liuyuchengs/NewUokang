@@ -14,7 +14,7 @@ $header-height:50px;
 $header-padding:15px;
 //底部菜单栏变量
 $bottom-menu-bg:#F8F8F8;
-$bottom-line-bg:#ABABAB;
+$bottom-line-bg:#9f9f9f;
 $bottom-menu-height:50px;
 $bottom-icon-height:40px;
 //产品列表筛选
@@ -139,6 +139,7 @@ body{
 		border-bottom: solid 1px $line-color;
 		.item-img{
 			height:$img-height;
+			width:$img-height;
 			margin-right: 5px;
 			border-radius: 2px;
 		}
@@ -211,7 +212,7 @@ body{
 
 //底部菜单
 .button-menu{
-	$color:#7C8085;
+	$color:#9f9f9f;
 	position: fixed;
 	z-index: 20;
 	bottom: 0px;
@@ -235,12 +236,45 @@ body{
 			p{
 				line-height: 15px;
 			}
-			img{
+			div{
 				height:25px;
+				width:25px;
+			}
+			.homeIcon{
+				background:url("../../contents/svg/home-uncheck.svg");
+				background-size: contain;
+			}
+			.doctorIcon{
+				background:url("../../contents/svg/doctor-uncheck.svg");
+				background-size: contain;
+			}
+			.InteractionIcon{
+				background:url("../../contents/svg/hudong-uncheck.svg");
+				background-size: contain;
+			}
+			.userIcon{
+				background:url("../../contents/svg/user-uncheck.svg");
+				background-size: contain;
 			}
 		}
-		.check{
+		.check {
 			color:$header-background-color;
+			.homeIcon{
+				background:url("../../contents/svg/home-check.svg");
+				background-size: contain;
+			}
+			.doctorIcon{
+				background:url("../../contents/svg/doctor-check.svg");
+				background-size: contain;
+			}
+			.InteractionIcon{
+				background:url("../../contents/svg/hudong-check.svg");
+				background-size: contain;
+			}
+			.userIcon{
+				background:url("../../contents/svg/user-check.svg");
+				background-size: contain;
+			}
 		}
 	}
 }
@@ -1192,7 +1226,6 @@ body{
 	li{
 		margin:0px 10px;
 		overflow: hidden;
-		height:40px;
 		line-height: 40px;
 			border-bottom:solid 1px $line-color;
 		.title{
@@ -1202,6 +1235,11 @@ body{
 		}
 		.text{
 			margin-left: 100px;
+			line-height: 20px;
+			margin:{
+				top:10px;
+				bottom:10px;
+			}
 		}
 	}
 }
@@ -1545,6 +1583,10 @@ body{
 				border-bottom:solid 1px #eeeeee;
 				.text-header{
 					margin-bottom: 10px;
+					.score{
+						color:$header-background-color;
+						float:right;
+					}
 				}
 				.text-description{
 					span:nth-child(2){
@@ -2016,6 +2058,58 @@ body{
 			}
 			.item:last-child{
 				color:$header-background-color;
+			}
+		}
+	}
+}
+
+/*
+** 医生页面
+*/
+.doctor-content{
+	ul{
+		list-style: none;
+		li{
+			background-color:#fff;
+			margin-bottom:10px;
+			padding:10px 15px;
+			p{
+				overflow: hidden;
+				margin-bottom: 5px;
+			}
+			p:last-child{
+				margin-bottom: 0px;
+			}
+			img{
+				height:97px;
+				width:73px;
+				float:left;
+			}
+			.text{
+				margin-left:90px;
+				.name{
+					span:last-child{
+						font-size: $small-font-size;
+					}
+				}
+				.score{
+					font-size: $small-font-size;
+					span:first-child{
+						color:$header-background-color;
+					}
+					span:last-child{
+						color:#959595;
+					}
+				}
+				.address{
+
+				}
+				.use{
+					font-size:$small-font-size;
+					span:last-child{
+						color:#959595;
+					}
+				}
 			}
 		}
 	}

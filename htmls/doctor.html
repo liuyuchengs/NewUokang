@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="../stylesheets/dest/main.css">
+	<title>悠康医生</title>
+</head>
+<body style="background-color:#EFEFF4" ng-controller="doctorCtrl" data-ng-init="load()">
+	<div class="header">
+		<div class="title">
+			找医生
+		</div>
+    </div>
+	<div class="has-header"></div>
+	<div class="filter">
+		<div class="filter-item" ng-class="{'check-color':menuParams.area}" ng-click="switchMenu('area')">
+			<span class="filter-text">专科</span>
+			<div></div>
+		</div>
+		<div class="filter-item float-left" ng-class="{'check-color':menuParams.order}" ng-click="switchMenu('order')">
+			<span class="filter-text ">区域</span>
+			<div></div>
+		</div>
+		<div class="filter-item float-left" ng-class="{'check-color':menuParams.classes}" ng-click="switchMenu('class')">
+			<span class="filter-text">排序</span>
+			<div></div>
+		</div>
+	</div>
+	<div class="doctor-content">
+		<ul class="doctor-wrap">
+			<li>
+				<img src="../contents/temp/doc1.png">
+				<div class="text">
+					<p class="name">
+						<span class="float-left">林园泽</span>
+						<span class="float-right">主治医师</span>
+					</p>
+					<p class="score">
+						<span class="float-left">5分</span>
+						<span class="float-right">20人下单</span>
+					</p>
+					<p class="address">
+						加德美口腔南山区卓越维港店
+					</p>
+					<p class="use">
+						<span>擅长:</span>
+						<span>全口无牙及缺牙的种植牙，牙周病治疗(松动牙治疗),无痛手术，美齿修整，复杂口腔疾病</span>
+					</p>
+				</div>
+			</li>
+			<li>
+				<img src="../contents/temp/doc1.png">
+				<div class="text">
+					<p class="name">
+						<span class="float-left">林园泽</span>
+						<span class="float-right">主治医师</span>
+					</p>
+					<p class="score">
+						<span class="float-left">5分</span>
+						<span class="float-right">20人下单</span>
+					</p>
+					<p class="address">
+						加德美口腔南山区卓越维港店
+					</p>
+					<p class="use">
+						<span>擅长:</span>
+						<span>全口无牙及缺牙的种植牙，牙周病治疗(松动牙治疗),无痛手术，美齿修整，复杂口腔疾病</span>
+					</p>
+				</div>
+			</li>
+			<li>
+				<img src="../contents/temp/doc1.png">
+				<div class="text">
+					<p class="name">
+						<span class="float-left">林园泽</span>
+						<span class="float-right">主治医师</span>
+					</p>
+					<p class="score">
+						<span class="float-left">5分</span>
+						<span class="float-right">20人下单</span>
+					</p>
+					<p class="address">
+						加德美口腔南山区卓越维港店
+					</p>
+					<p class="use">
+						<span>擅长:</span>
+						<span>全口无牙及缺牙的种植牙，牙周病治疗(松动牙治疗),无痛手术，美齿修整，复杂口腔疾病</span>
+					</p>
+				</div>
+			</li>
+			<li>
+				<img src="../contents/temp/doc1.png">
+				<div class="text">
+					<p class="name">
+						<span class="float-left">林园泽</span>
+						<span class="float-right">主治医师</span>
+					</p>
+					<p class="score">
+						<span class="float-left">5分</span>
+						<span class="float-right">20人下单</span>
+					</p>
+					<p class="address">
+						加德美口腔南山区卓越维港店
+					</p>
+					<p class="use">
+						<span>擅长:</span>
+						<span>全口无牙及缺牙的种植牙，牙周病治疗(松动牙治疗),无痛手术，美齿修整，复杂口腔疾病</span>
+					</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div ng-include="'bottom-menu.html'"></div>
+	<div class="has-user-menu"></div>
+	<div ng-include="'tip.html'"></div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/lib/angular.route.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/doctorCtrl.min.js"></script>
+</body>
+</html>
