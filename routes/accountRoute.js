@@ -2377,6 +2377,14 @@ routes.post("/wx/hospital/querylist",function(req,res){
 	res.end();
 })
 
+routes.post("/weixin/check/getjsconfig",function(req,res){
+	res.send(examHosSuccess);
+	res.end();
+})
+
+
+
+
 
 
 module.exports = routes;

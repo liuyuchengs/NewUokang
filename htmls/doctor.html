@@ -27,6 +27,22 @@
 			<div></div>
 		</div>
 	</div>
+	<div class="drop-menu">
+		<ul id="drop-order" class="drop-menu-list" >
+			<li ng-class="{'li-check':orderParams.default.has}" ng-click="orderSelect('default')">
+				<span>默认排序</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':orderParams.price.has}" ng-click="orderSelect('price')">
+				<span>按职称</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':orderParams.priceDesc.has}" ng-click="orderSelect('priceDesc')">
+				<span>按评分</span>
+				<div></div>
+			</li>
+		</ul>
+	</div>
 	<div class="doctor-content">
 		<ul class="doctor-wrap">
 			<li>

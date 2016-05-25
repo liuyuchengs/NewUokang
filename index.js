@@ -26,6 +26,8 @@ app.post("/wx/gift/getgiftproduct",accountRoute);
 app.post("/wx/findpass/findPassPhontCheck",accountRoute);
 app.post("/wx/product/querylist",accountRoute);
 app.post("/wx/hospital/querylist",accountRoute);
+app.post("/weixin/check/getjsconfig",accountRoute);
+
 
 app.listen(8080,function(){
     console.log("app is listen ");
