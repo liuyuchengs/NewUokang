@@ -14,64 +14,64 @@
     </div>
 	<div class="has-header"></div>
 	<div class="filter">
-		<div class="filter-item" ng-class="{'check-color':menuParams.area}" ng-click="switchMenu('area')">
+		<div class="filter-item" ng-class="{'check-color':menuParams.professional.has}" ng-click="switchMenu('professional')">
 			<span class="filter-text">专科</span>
 			<div></div>
 		</div>
-		<div class="filter-item float-left" ng-class="{'check-color':menuParams.order}" ng-click="switchMenu('order')">
+		<div class="filter-item float-left" ng-class="{'check-color':menuParams.order.has}" ng-click="switchMenu('order')">
 			<span class="filter-text ">区域</span>
 			<div></div>
 		</div>
-		<div class="filter-item float-left" ng-class="{'check-color':menuParams.classes}" ng-click="switchMenu('class')">
+		<div class="filter-item float-left" ng-class="{'check-color':menuParams.area.has}" ng-click="switchMenu('area')">
 			<span class="filter-text">排序</span>
 			<div></div>
 		</div>
 	</div>
 	<div class="drop-menu">
-		<ul id="drop-order" class="drop-menu-list" >
-			<li ng-class="{'li-check':orderParams.default.has}" ng-click="orderSelect('default')">
+		<ul id="drop-order" class="drop-menu-list" ng-show="menuParams.order.has">
+			<li ng-class="{'li-check':orderParams.default.has}" ng-click="selectMenu('default','order')">
 				<span>默认排序</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':orderParams.price.has}" ng-click="orderSelect('price')">
+			<li ng-class="{'li-check':orderParams.title.has}" ng-click="selectMenu('title','order')">
 				<span>按职称</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':orderParams.priceDesc.has}" ng-click="orderSelect('priceDesc')">
+			<li ng-class="{'li-check':orderParams.score.has}" ng-click="selectMenu('score','order')">
 				<span>按评分</span>
 				<div></div>
 			</li>
 		</ul>
-		<ul id="drop-area" class="drop-menu-list" ng-show="hasArea">
-			<li ng-class="{'li-check':areaParams.default.has}" ng-click="areaSelect('default')">
+		<ul id="drop-area" class="drop-menu-list" ng-show="menuParams.area.has">
+			<li ng-class="{'li-check':areaParams.default.has}" ng-click="selectMenu('default','area')">
 				<span >所有区域</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.futian.has}" ng-click="areaSelect('futian')">
+			<li ng-class="{'li-check':areaParams.futian.has}" ng-click="selectMenu('futian','area')">
 				<span>福田区</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.nanshan.has}" ng-click="areaSelect('nanshan')">
+			<li ng-class="{'li-check':areaParams.nanshan.has}" ng-click="selectMenu('nanshan','area')">
 				<span>南山区</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.luohu.has}" ng-click="areaSelect('luohu')">
+			<li ng-class="{'li-check':areaParams.luohu.has}" ng-click="selectMenu('luohu','area')">
 				<span>罗湖区</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.baoan.has}" ng-click="areaSelect('baoan')">
+			<li ng-class="{'li-check':areaParams.baoan.has}" ng-click="selectMenu('baoan','area')">
 				<span>宝安区</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.longhua.has}" ng-click="areaSelect('longhua')">
+			<li ng-class="{'li-check':areaParams.longhua.has}" ng-click="selectMenu('longhua','area')">
 				<span>龙华新区</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.longgang.has}" ng-click="areaSelect('longgang')">
+			<li ng-class="{'li-check':areaParams.longgang.has}" ng-click="selectMenu('longgang','area')">
 				<span>龙岗区</span>
 				<div></div>
 			</li>
-			<li ng-class="{'li-check':areaParams.yantian.has}" ng-click="areaSelect('yantian')">
+			<li ng-class="{'li-check':areaParams.yantian.has}" ng-click="selectMenu('yantian','area')">
 				<span>盐田区</span>
 				<div></div>
 			</li>
@@ -163,6 +163,8 @@
 	</div>
 	<div ng-include="'bottom-menu.html'"></div>
 	<div class="has-user-menu"></div>
+	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
+	<div class="product-bg" ng-if="hasBg"></div>
 	<div ng-include="'tip.html'"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/lib/angular.route.min.js"></script>
