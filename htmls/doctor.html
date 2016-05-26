@@ -42,6 +42,40 @@
 				<div></div>
 			</li>
 		</ul>
+		<ul id="drop-area" class="drop-menu-list" ng-show="hasArea">
+			<li ng-class="{'li-check':areaParams.default.has}" ng-click="areaSelect('default')">
+				<span >所有区域</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':areaParams.futian.has}" ng-click="areaSelect('futian')">
+				<span>福田区</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':areaParams.nanshan.has}" ng-click="areaSelect('nanshan')">
+				<span>南山区</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':areaParams.luohu.has}" ng-click="areaSelect('luohu')">
+				<span>罗湖区</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':areaParams.baoan.has}" ng-click="areaSelect('baoan')">
+				<span>宝安区</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':areaParams.longhua.has}" ng-click="areaSelect('longhua')">
+				<span>龙华新区</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':areaParams.longgang.has}" ng-click="areaSelect('longgang')">
+				<span>龙岗区</span>
+				<div></div>
+			</li>
+			<li ng-class="{'li-check':areaParams.yantian.has}" ng-click="areaSelect('yantian')">
+				<span>盐田区</span>
+				<div></div>
+			</li>
+		</ul>
 	</div>
 	<div class="doctor-content">
 		<ul class="doctor-wrap">
