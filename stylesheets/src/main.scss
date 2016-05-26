@@ -86,6 +86,7 @@ body{
 	background-color: $header-background-color;
 	color:$header-color;
 	border: none;
+	margin-bottom:20px;
 }
 
 //标题头
@@ -113,10 +114,16 @@ body{
 		width:$item-height;
 		line-height: $item-height;
 		@include vertical-center($header-height,$item-height);
+		a{
+			display: inline-block;
+			height:100%;
+			width:100%;
+		}
 		img{
 			height:20px;
 			vertical-align: middle;
 		}
+
 	}
 	.header-item-width{
 		width:80px;
@@ -305,6 +312,7 @@ body{
 		.tip-btn{
 			height:39px;
 			border-top: solid 1px $line-color;
+			display: -webkit-box;
 			display: flex;
 			flex-direction: row;
 			flex-flow: nowrap;
@@ -312,7 +320,11 @@ body{
 				border-left:solid 1px $line-color;
 			}
 			.item{
-				flex:1;
+				/*解决ios8.0+下不等分问题*/
+				width:100%;
+				-webkit-box-flex: 1.0;
+				-moz-box-flex: 1.0;
+				flex:1.0;
 				text-align: center;
 				line-height: 39px;
 				color:$header-background-color;
@@ -466,6 +478,7 @@ body{
 	height:$filter-height;
 	line-height: $filter-height;
 	text-align: center;
+	display: -webkit-box;
 	display:flex;
 	flex-direction:row;
 	flex-wrap: nowrap;
@@ -475,7 +488,10 @@ body{
 	border-bottom:solid 1px $line-color;
 	.filter-item{
 		height: 100%;
-		flex: 1;
+		width:100%;
+		-webkit-box-flex: 1.0;
+		-moz-box-flex: 1.0;
+		flex:1.0;
 		border-right: solid 1px $line-color;
 		img{
 			height:15px;
@@ -488,6 +504,9 @@ body{
 			background: url("../../contents/svg/filter-uncheck.svg");
 			background-size: contain;
 		}
+	}
+	.filter-item:last-child{
+		border-right: none;
 	}
 	.check-color{
 		color:$header-background-color;
@@ -547,12 +566,16 @@ body{
 		list-style: none;
 		li{
 			$line-height: 60px;
+			display: -webkit-box;
 			display: flex;
 			flex-direction: row;
 			flex-wrap: nowrap;
 			height: $line-height;
 			.item{
-				flex: 1;
+				width:100%;
+				-webkit-box-flex: 1.0;
+				-moz-box-flex: 1.0;
+				flex:1.0;
 				border-right: solid 1px $line-color;
 				border-bottom: solid 1px $line-color;
 				text-align: center;
@@ -826,13 +849,17 @@ body{
 */
 .myorder-content{
 	.filter{
+		display: -webkit-box;
 		display:flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
 		height:40px;
 		background-color:#ffffff;
 		.item{
-			flex:1;
+			width:100%;
+			-webkit-box-flex: 1.0;
+			-moz-box-flex: 1.0;
+			flex:1.0;
 			text-align: center;
 			line-height: 40px;
 			border-bottom: solid 1px #dcdcdc;
@@ -1115,7 +1142,7 @@ body{
 		}
 	}
 	.userinfo-tip{
-		height:60px;
+		height:40px;
 		margin:10px 15px 0px;
 		color:$header-background-color;
 	}
@@ -1269,6 +1296,7 @@ body{
 ** ******特惠页面******
 */
 .discount-filter{
+	display: -webkit-box;
 	display:flex;
 	flex-wrap: nowrap;
 	flex-direction: row;
@@ -1276,7 +1304,10 @@ body{
 	text-align: center;
 	line-height:40px;
 	div{
-		flex:1;
+		width:100%;
+		-webkit-box-flex: 1.0;
+		-moz-box-flex: 1.0;
+		flex:1.0;
 		border-bottom: solid 1px $line-color;
 	}
 	div:first-child{
@@ -1757,11 +1788,15 @@ body{
 .new-nav{
 	height:40px;
 	width:100%;
+	display: -webkit-box;
 	display:flex;
 	flex-direction: row;
 	flex-flow: nowrap;
 	.nav-item{
-		flex:1;
+		width:100%;
+		-webkit-box-flex: 1.0;
+		-moz-box-flex: 1.0;
+		flex:1.0;
 		text-align: center;
 		line-height: 40px;
 		border:{
@@ -1828,6 +1863,7 @@ body{
 ******体检页面******
 */
 .exam-filter{
+	display: -webkit-box;
 	display:flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
@@ -1837,9 +1873,12 @@ body{
 	a{
 		display: block;
 		height:40px;
+		width:100%;
 		text-align: center;
 		line-height:40px;
-		flex:1;
+		-webkit-box-flex: 1.0;
+		-moz-box-flex: 1.0;
+		flex:1.0;
 		border-right:solid 1px #eee;
 		border-bottom: solid 1px #eee;
 		color:#000;
@@ -1881,12 +1920,16 @@ body{
 	.examDetail-filter{
 		height:40px;
 		line-height: 40px;
+		display: -webkit-box;
 		display:flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
 		border-top: solid 1px #eee;
 		.item{
-			flex:1;
+			width:100%;
+			-webkit-box-flex: 1.0;
+			-moz-box-flex: 1.0;
+			flex:1.0;
 			text-align: center;
 			border:{
 				right:solid 1px #eee;
@@ -2044,6 +2087,7 @@ body{
 		.btn{
 			height:40px;
 			line-height: 40px;
+			display: -webkit-box;
 			display: flex;
 			flex-direction: row;
 			flex-wrap: nowrap;
@@ -2052,7 +2096,10 @@ body{
 			bottom: 0px;
 			width:100%;
 			.item{
-				flex: 1;
+				width:100%;
+				-webkit-box-flex: 1.0;
+				-moz-box-flex: 1.0;
+				flex:1.0;
 				text-align: center;
 				border-right:solid 1px #eee;
 			}

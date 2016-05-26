@@ -74,7 +74,8 @@ body {
   height: 40px;
   background-color: #1fc1d9;
   color: #fff;
-  border: none; }
+  border: none;
+  margin-bottom: 20px; }
 
 .header {
   position: fixed;
@@ -100,6 +101,10 @@ body {
     width: 40px;
     line-height: 40px;
     margin-top: 5px; }
+    .header .header-item a {
+      display: inline-block;
+      height: 100%;
+      width: 100%; }
     .header .header-item img {
       height: 20px;
       vertical-align: middle; }
@@ -248,13 +253,18 @@ body {
     .tip .container .tip-btn {
       height: 39px;
       border-top: solid 1px #eeeeee;
+      display: -webkit-box;
       display: flex;
       flex-direction: row;
       flex-flow: nowrap; }
       .tip .container .tip-btn .item:nth-child(2) {
         border-left: solid 1px #eeeeee; }
       .tip .container .tip-btn .item {
-        flex: 1;
+        /*解决ios8.0+下不等分问题*/
+        width: 100%;
+        -webkit-box-flex: 1.0;
+        -moz-box-flex: 1.0;
+        flex: 1.0;
         text-align: center;
         line-height: 39px;
         color: #1fc1d9; }
@@ -377,6 +387,7 @@ body {
   height: 40px;
   line-height: 40px;
   text-align: center;
+  display: -webkit-box;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -386,7 +397,10 @@ body {
   border-bottom: solid 1px #eeeeee; }
   .filter .filter-item {
     height: 100%;
-    flex: 1;
+    width: 100%;
+    -webkit-box-flex: 1.0;
+    -moz-box-flex: 1.0;
+    flex: 1.0;
     border-right: solid 1px #eeeeee; }
     .filter .filter-item img {
       height: 15px;
@@ -397,6 +411,8 @@ body {
       display: inline-block;
       background: url("../../contents/svg/filter-uncheck.svg");
       background-size: contain; }
+  .filter .filter-item:last-child {
+    border-right: none; }
   .filter .check-color {
     color: #1fc1d9; }
     .filter .check-color div {
@@ -440,12 +456,16 @@ body {
   .drop-menu .drop-menu-grid {
     list-style: none; }
     .drop-menu .drop-menu-grid li {
+      display: -webkit-box;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
       height: 60px; }
       .drop-menu .drop-menu-grid li .item {
-        flex: 1;
+        width: 100%;
+        -webkit-box-flex: 1.0;
+        -moz-box-flex: 1.0;
+        flex: 1.0;
         border-right: solid 1px #eeeeee;
         border-bottom: solid 1px #eeeeee;
         text-align: center;
@@ -652,13 +672,17 @@ body {
 ** ******我的订单页面******
 */
 .myorder-content .filter {
+  display: -webkit-box;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   height: 40px;
   background-color: #ffffff; }
   .myorder-content .filter .item {
-    flex: 1;
+    width: 100%;
+    -webkit-box-flex: 1.0;
+    -moz-box-flex: 1.0;
+    flex: 1.0;
     text-align: center;
     line-height: 40px;
     border-bottom: solid 1px #dcdcdc; }
@@ -892,7 +916,7 @@ body {
       border-top: none; }
 
 .userinfo-content .userinfo-tip {
-  height: 60px;
+  height: 40px;
   margin: 10px 15px 0px;
   color: #1fc1d9; }
 
@@ -1014,6 +1038,7 @@ body {
 ** ******特惠页面******
 */
 .discount-filter {
+  display: -webkit-box;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -1021,7 +1046,10 @@ body {
   text-align: center;
   line-height: 40px; }
   .discount-filter div {
-    flex: 1;
+    width: 100%;
+    -webkit-box-flex: 1.0;
+    -moz-box-flex: 1.0;
+    flex: 1.0;
     border-bottom: solid 1px #eeeeee; }
   .discount-filter div:first-child {
     border-right: solid 1px #eeeeee; }
@@ -1404,11 +1432,15 @@ body {
 .new-nav {
   height: 40px;
   width: 100%;
+  display: -webkit-box;
   display: flex;
   flex-direction: row;
   flex-flow: nowrap; }
   .new-nav .nav-item {
-    flex: 1;
+    width: 100%;
+    -webkit-box-flex: 1.0;
+    -moz-box-flex: 1.0;
+    flex: 1.0;
     text-align: center;
     line-height: 40px;
     border-right: solid 1px #eee;
@@ -1454,6 +1486,7 @@ body {
 ******体检页面******
 */
 .exam-filter {
+  display: -webkit-box;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -1463,9 +1496,12 @@ body {
   .exam-filter a {
     display: block;
     height: 40px;
+    width: 100%;
     text-align: center;
     line-height: 40px;
-    flex: 1;
+    -webkit-box-flex: 1.0;
+    -moz-box-flex: 1.0;
+    flex: 1.0;
     border-right: solid 1px #eee;
     border-bottom: solid 1px #eee;
     color: #000;
@@ -1499,12 +1535,16 @@ body {
 .examDetail-container .examDetail-filter {
   height: 40px;
   line-height: 40px;
+  display: -webkit-box;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   border-top: solid 1px #eee; }
   .examDetail-container .examDetail-filter .item {
-    flex: 1;
+    width: 100%;
+    -webkit-box-flex: 1.0;
+    -moz-box-flex: 1.0;
+    flex: 1.0;
     text-align: center;
     border-right: solid 1px #eee;
     border-bottom: solid 1px #eee; }
@@ -1608,6 +1648,7 @@ body {
     .selecttime .container .btn {
       height: 40px;
       line-height: 40px;
+      display: -webkit-box;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
@@ -1616,7 +1657,10 @@ body {
       bottom: 0px;
       width: 100%; }
       .selecttime .container .btn .item {
-        flex: 1;
+        width: 100%;
+        -webkit-box-flex: 1.0;
+        -moz-box-flex: 1.0;
+        flex: 1.0;
         text-align: center;
         border-right: solid 1px #eee; }
       .selecttime .container .btn .item:last-child {
