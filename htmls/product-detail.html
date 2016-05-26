@@ -25,7 +25,7 @@
 	</div>
 	<div class="has-header"></div>
 	<div class="detail-content" ng-class="{'overflowhide':selectTime}">
-		<div class="img-wrap">
+		<!--<div class="img-wrap">
 			<div class="img">
 				<img ng-src="{{productInfo.smallImg}}" fallback-src="../contents/img/p_default.png">
 				<div class="img-description">
@@ -47,30 +47,7 @@
 					<span>{{productInfo.sales}}人下单</span>
 				</div>
 			</div>
-		</div>
-		<ul class="doc-content" ng-if="hasDoctor">
-			<li ng-repeat="doctor in doctorInfo">
-				<img class="docImg" ng-src="{{doctor.face}}" fallback-src="../contents/img/p_default.png">
-				<div class="text">
-					<div class="text-header">
-						<span class="name" ng-bind="doctor.doctorname"></span>
-						<span class="score">{{doctor.score}}分</span>
-					</div>
-					<div class="text-description">
-						<span>擅长:</span>
-						<span ng-bind="doctor.hobby"></span>
-					</div>
-					<div class="time" ng-click="chooseSchedule(doctor.id,doctor.doctorname)">
-						<div>
-							<img src="../contents/svg/time.svg">
-							<span>下单时间：</span>
-						</div>
-						<img class="arrow" src="../contents/svg/right-arrow.svg">
-						<span class="select-time" ng-class="{'selected':doctor.hasSelecTimeValue}" ng-bind="doctor.selectTimeValue"></span>
-					</div>
-				</div>
-			</li>
-		</ul>
+		</div>-->
 		<div class="product">
 			<div class="product-header">
 				<span>项目介绍</span>
@@ -96,6 +73,32 @@
 			</div>
 			<div class="text" ng-bind="hospitalInfo.description"></div>
 		</div>
+		<ul class="doc-content" ng-if="hasDoctor">
+			<div class="product-header">
+				<span>选择就医时间</span>
+			</div>
+			<li ng-repeat="doctor in doctorInfo">
+				<img class="docImg" ng-src="{{doctor.face}}" fallback-src="../contents/img/p_default.png">
+				<div class="text">
+					<div class="text-header">
+						<span class="name" ng-bind="doctor.doctorname"></span>
+						<span class="score">{{doctor.score}}分</span>
+					</div>
+					<div class="text-description">
+						<span>擅长:</span>
+						<span ng-bind="doctor.hobby"></span>
+					</div>
+					<div class="time" ng-click="chooseSchedule(doctor.id,doctor.doctorname)">
+						<div>
+							<img src="../contents/svg/time.svg">
+							<span>下单时间：</span>
+						</div>
+						<img class="arrow" src="../contents/svg/right-arrow.svg">
+						<span class="select-time" ng-class="{'selected':doctor.hasSelecTimeValue}" ng-bind="doctor.selectTimeValue"></span>
+					</div>
+				</div>
+			</li>
+		</ul>
 	</div>
 	<div class="select-times" ng-show="selectTime">
 		<ul>

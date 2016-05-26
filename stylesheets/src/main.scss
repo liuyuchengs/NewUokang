@@ -1598,10 +1598,18 @@ body{
 	}
 	.doc-content{
 		margin-top:20px;
+		padding-top:15px;
 		list-style: none;
 		background-color:#fff;
 		border-top: solid 1px #dcdcdc;
 		border-bottom: solid 1px #dcdcdc;
+		.product-header{
+			height:30px;
+			line-height: 30px;
+			border-bottom: solid 1px #eee;
+			margin-left: 10px;
+			margin-right:10px;
+		}
 		li{
 			margin:10px 10px 0px 10px;
 			.docImg{
@@ -1717,6 +1725,9 @@ body{
 				color:#959595;
 			}
 		}
+	}
+	.product:first-child{
+		margin-top:0px;
 	}
 }
 .select-times{
@@ -1899,11 +1910,9 @@ body{
 .examDetail-container{
 	.img-container{
 		width:100%;
-		height:160px;
 		margin-bottom: 5px;
 		position: relative;
 		img{
-			height:160px;
 			width:100%;
 		}
 		.img-description{
