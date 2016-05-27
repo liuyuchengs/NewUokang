@@ -26,7 +26,7 @@
 		<div ng-class="{'select-color':!discountSelect}" ng-click="switchState('month')">本月特惠</div>
 	</div>
 	<ul class="prduct-container">
-		<li class="item" ng-repeat = "item in productInfo" ng-click="detail(item.id,item.hospitalId)">
+		<li class="item" ng-repeat = "item in productInfo" ng-click="detail(item.id,item.hospitalId,item.preferPrice)">
 			<img class="item-img float-left" ng-src="{{item.samllimg}}" fallback-src="../contents/img/p_default.png">
 			<div class="item-desc">
 				<div class="item-title" ng-bind="item.title"></div>

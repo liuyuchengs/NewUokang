@@ -14,7 +14,7 @@ input, button {
   font-size: 14px; }
 
 body {
-  color: #000000;
+  color: #333;
   font-size: 14px;
   font-family: "微软雅黑",Helvetica,Sans-serif;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
@@ -477,6 +477,53 @@ body {
       .drop-menu .drop-menu-grid li .item-check {
         color: #1fc1d9;
         border-bottom: solid 2px #1fc1d9; }
+  .drop-menu .drop-menu-double {
+    list-style: none;
+    padding: 0 10px 20px;
+    color: #333; }
+    .drop-menu .drop-menu-double li .title {
+      height: 40px;
+      line-height: 40px;
+      border-bottom: solid 1px #ddd; }
+      .drop-menu .drop-menu-double li .title div {
+        height: 20px;
+        width: 20px;
+        display: inline-block;
+        background: url("../../contents/svg/down-arrow.svg");
+        background-size: contain;
+        margin-top: 10px;
+        float: right; }
+    .drop-menu .drop-menu-double li .select div {
+      background: url("../../contents/svg/top-arrow.svg");
+      background-size: contain; }
+    .drop-menu .drop-menu-double li .contents {
+      margin-top: 10px;
+      border-bottom: solid 1px #ddd;
+      color: #666;
+      overflow: hidden; }
+      .drop-menu .drop-menu-double li .contents .contents-item {
+        width: 25%;
+        height: 25px;
+        float: left;
+        padding-right: 5px;
+        margin-bottom: 10px;
+        line-height: 25px;
+        text-align: center;
+        box-sizing: border-box;
+        position: relative; }
+      .drop-menu .drop-menu-double li .contents .contents-item::before {
+        content: "";
+        display: block;
+        border: solid 1px #ddd;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 7px; }
+      .drop-menu .drop-menu-double li .contents .check::before {
+        border: solid 1px #1fc1d9; }
+      .drop-menu .drop-menu-double li .contents .check {
+        color: #1fc1d9; }
 
 .exam-drop-menu {
   top: 133px; }
@@ -674,8 +721,8 @@ body {
 .myorder-content .filter {
   display: -webkit-box;
   display: flex;
-  flex-direction: row;
   flex-wrap: nowrap;
+  flex-direction: row;
   height: 40px;
   background-color: #ffffff; }
   .myorder-content .filter .item {
@@ -1469,6 +1516,7 @@ body {
     border-bottom: solid 1px #eee; }
     .item-container li img {
       height: 60px;
+      width: 60px;
       float: left;
       border-radius: 3px; }
     .item-container li div {
@@ -1706,3 +1754,7 @@ body {
         font-size: 12px; }
         .doctor-content ul li .text .use span:last-child {
           color: #959595; }
+
+/*
+** 医生页面
+*/

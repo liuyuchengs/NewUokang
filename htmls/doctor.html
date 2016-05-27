@@ -76,6 +76,163 @@
 				<div></div>
 			</li>
 		</ul>
+		<ul class="drop-menu-double" ng-show="menuParams.professional.has">
+			<li>
+				<div class="title" ng-class="{'select':professionalParams.yake.has}" ng-click="selectProfression('yake')">
+					<span>牙科</span>
+					<div></div>
+				</div>
+				<div class="contents" ng-show="professionalParams.yake.has">
+					<div class="contents-item" ng-class="{'check':professionalParams.yake.val.zzy.has}"
+					ng-click="selectProfressionItem('zzy','yake')">
+						种植牙
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.yake.val.xiya.has}" ng-click="selectProfressionItem('xiya','yake')">
+						洗牙
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.yake.val.kcy.has}" ng-click="selectProfressionItem('kcy','yake')">
+						烤瓷牙
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.yake.val.buya.has}" ng-click="selectProfressionItem('buya','yake')">
+						补牙
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.yake.val.baya.has}" ng-click="selectProfressionItem('baya','yake')">
+						拔牙
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.yake.val.ycmr.has}" ng-click="selectProfressionItem('ycmr','yake')">
+						牙齿美容
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.yake.val.jiaozheng.has}" ng-click="selectProfressionItem('jiaozheng','yake')">
+						牙齿矫正
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.yake.val.yichi.has}" ng-click="selectProfressionItem('yichi','yake')">
+						义齿
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.yake.val.yzzl.has}" ng-click="selectProfressionItem('yzzl','yake')">
+						牙周治疗
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.yake.val.qita.has}" ng-click="selectProfressionItem('qita','yake')">
+						其他
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="title" ng-class="{'select':professionalParams.meirong.has}" ng-click="selectProfression('meirong')">
+					<span>医学美容</span>
+					<div></div>
+				</div>
+				<div class="contents" ng-show="professionalParams.meirong.has">
+					<div class="contents-item" ng-class="{'check':professionalParams.meirong.val.yanbu.has}" ng-click="selectProfressionItem('yanbu','meirong')">
+						眼部整形
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.meirong.val.mianbu.has}" ng-click="selectProfressionItem('mianbu','meirong')">
+						面部整形
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.meirong.val.bibu.has}" ng-click="selectProfressionItem('bibu','meirong')">
+						鼻部整形
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.meirong.val.xiong.has}" ng-click="selectProfressionItem('xiong','meirong')">
+						胸部整形
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.meirong.val.xizhi.has}" ng-click="selectProfressionItem('xizhi','meirong')">
+						吸脂整形
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.meirong.val.simi.has}" ng-click="selectProfressionItem('simi','meirong')">
+						私密整形
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.meirong.val.zhushe.has}" ng-click="selectProfressionItem('zhushe','meirong')">
+						注射整形
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.meirong.val.jiguang.has}" ng-click="selectProfressionItem('jiguang','meirong')">
+						激光整形
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.meirong.val.koucun.has}" ng-click="selectProfressionItem('koucun','meirong')">
+						口唇整形
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.meirong.val.qita.has}" ng-click="selectProfressionItem('qita','meirong')">
+						其他
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="title" ng-class="{'select':professionalParams.fck.has}" ng-click="selectProfression('fck')">
+					<span>高端妇产科</span>
+					<div></div>
+				</div>
+				<div class="contents" ng-show="professionalParams.fck.has">
+					<div class="contents-item" ng-class="{'check':professionalParams.fck.val.jiancha.has}" ng-click="selectProfressionItem('jiancha','fck')">
+						产前检查
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.fck.val.fenmian.has}" ng-click="selectProfressionItem('fenmian','fck')">
+						分娩
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="title" ng-class="{'select':professionalParams.zhongyi.has}" ng-click="selectProfression('zhongyi')">
+					<span>中医理疗</span>
+					<div></div>
+				</div>
+				<div class="contents" ng-show="professionalParams.zhongyi.has">
+					<div class="contents-item" ng-class="{'check':professionalParams.zhongyi.val.toubu.has}" ng-click="selectProfressionItem('toubu','zhongyi')">
+						头部
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.zhongyi.val.jianjing.has}" ng-click="selectProfressionItem('jianjing','zhongyi')">
+						肩颈
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.zhongyi.val.yaobu.has}" ng-click="selectProfressionItem('yaobu','zhongyi')">
+						腰部
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.zhongyi.val.tuibu.has}" ng-click="selectProfressionItem('tuibu','zhongyi')">
+						腿部
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.zhongyi.val.quanshen.has}" ng-click="selectProfressionItem('quanshen','zhongyi')">
+						全身
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.zhongyi.val.jingluo.has}" ng-click="selectProfressionItem('jingluo','zhongyi')">
+						经络
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.zhongyi.val.qita.has}" ng-click="selectProfressionItem('qita','zhongyi')">
+						其他
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="title" ng-class="{'select':professionalParams.tijian.has}" ng-click="selectProfression('tijian')">
+					<span>体检</span>
+					<div></div>
+				</div>
+				<div class="contents" ng-show="professionalParams.tijian.has">
+					<div class="contents-item" ng-class="{'check':professionalParams.tijian.val.shangye.has}" ng-click="selectProfressionItem('shangye','tijian')">
+						商业体检
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.tijian.val.changgui.has}" ng-click="selectProfressionItem('changgui','tijian')">
+						常规体检
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.tijian.val.zhongnian.has}" ng-click="selectProfressionItem('zhongnian','tijian')">
+						中年体检
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.tijian.val.laonian.has}" ng-click="selectProfressionItem('laonian','tijian')">
+						老年体检
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.tijian.val.ruzhi.has}" ng-click="selectProfressionItem('ruzhi','tijian')">
+						入职体检
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.tijian.val.yunqian.has}" ng-click="selectProfressionItem('yunqian','tijian')">
+						孕前体检
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.tijian.val.qingnian.has}" ng-click="selectProfressionItem('qingnian','tijian')">
+						青年体检
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.tijian.val.ertong.has}" ng-click="selectProfressionItem('ertong','tijian')">
+						儿童体检
+					</div>
+					<div class="contents-item" ng-class="{'check':professionalParams.tijian.val.manbing.has}" ng-click="selectProfressionItem('manbing','tijian')">
+						慢病体检
+					</div>
+				</div>
+			</li>
+		</ul>
 	</div>
 	<div class="doctor-content">
 		<ul class="doctor-wrap">
