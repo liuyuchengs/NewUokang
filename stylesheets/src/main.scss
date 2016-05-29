@@ -1,366 +1,4 @@
 @import "tool.scss";
-/*
-* ******全局变量******
-*/
-$line-color:#eeeeee;
-$font-size:14px;
-$color:#333;
-$small-font-size:12px;
-$large-font-size:16px;
-//标题头变量
-$header-background-color:#1fc1d9;
-$header-color:#fff;
-$header-height:50px;
-$header-padding:15px;
-//底部菜单栏变量
-$bottom-menu-bg:#F8F8F8;
-$bottom-line-bg:#9f9f9f;
-$bottom-menu-height:50px;
-$bottom-icon-height:40px;
-//产品列表筛选
-$filter-height:40px;
-
-/*
-* ******全局样式******
-*/
-body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,input{
-    margin:0;padding:0;border:0;
-}
-input,button{
-	font-size: $font-size;
-}
-body{
-	color:$color;
-	font-size:$font-size;
-	font-family: "微软雅黑",Helvetica,Sans-serif;
-	-webkit-tap-highlight-color:rgba(255,255,255,0);
-}
-
-/*
-* ******基础样式******
-*/
-.float-left{
-	float: left;
-}
-.float-right{
-	float: right;
-}
-.margin-l{
-	margin-left: 5px;
-}
-.margin-r{
-	margin-right:5px;
-}
-.base-separator{
-	@include separate(10px,#eeeeee,#eeeeee);
-}
-.large-separator{
-	@include separate(24px,#eeeeee,#eeeeee);
-}
-.has-header{
-	height:$header-height;
-	width: 100%;
-}
-.has-menu{
-	height: $bottom-menu-height;
-	width: 100%;
-}
-.has-user-menu{
-	height:55px;
-	width: 100%;
-}
-.check-color{
-	color:#1fc1d9;
-}
-.overflowhide{
-	position:fixed;
-	top:0px;
-	left:0px;
-	width:100%;
-}
-
-//整宽按钮
-.button-full{
-	width:100%;
-	height:40px;
-	background-color: $header-background-color;
-	color:$header-color;
-	border: none;
-	margin-bottom:20px;
-}
-
-//标题头
-.header{
-    position: fixed;
-    top: 0px;
-    width:100%;
-    height:$header-height;
-    background-color: $header-background-color;
-    color: $header-color;
-    text-align: center;
-    z-index: 20;
-    .title{
-		$title-height:30px;
-		$title-width:100px;
-		height:$title-height;
-		width: $title-width;
-		line-height: $title-height;
-        font-size: $large-font-size;
-		@include hor-abosult-center($title-height,$title-width);
-    }
-	.header-item{
-		$item-height:40px;
-		height:$item-height;
-		width:$item-height;
-		line-height: $item-height;
-		@include vertical-center($header-height,$item-height);
-		a{
-			display: inline-block;
-			height:100%;
-			width:100%;
-		}
-		img{
-			height:20px;
-			vertical-align: middle;
-		}
-
-	}
-	.header-item-width{
-		width:80px;
-	}
-
-}
-
-//产品列表
-.prduct-container{
-	$con-padding:10px;
-	padding-left: $con-padding;
-	padding-right:$con-padding;
-	overflow: hidden;
-	list-style: none;
-	.item{
-		$img-height:80px;
-		padding-top: $con-padding;
-		padding-bottom: $con-padding;
-		overflow: hidden;
-		border-bottom: solid 1px $line-color;
-		.item-img{
-			height:$img-height;
-			width:$img-height;
-			margin-right: 5px;
-			border-radius: 2px;
-		}
-		.item-desc{
-			margin-left:($img-height+10px);
-			.item-subhead{
-				font-size: $small-font-size;
-				margin-top: 5px;
-			}
-			.score{
-				color:$header-background-color;
-				margin-top: 5px;
-			}
-			.item-price{
-				overflow: hidden;
-				margin-top: 18px;
-				div{
-					line-height: 20px;
-				}
-				.item-count{
-					font-size: $small-font-size;
-				}
-				.vip{
-					color:#1fc1d9;
-				}
-				.saleprice{
-					color: #1fc1d9;;
-				}
-				.priceType{
-					color:#1fc1d9;
-					font-size:$small-font-size;
-				}
-				.price{
-					font-size:$small-font-size;
-					text-decoration: line-through;
-					color:#959595;
-				}
-			}
-		}
-		.exam-desc{
-			margin-left: 10px;
-		}
-		.item-qiang{
-			$bg-color:#FF5A00;
-			border:solid 1px $bg-color;
-			height:30px;
-			line-height: 30px;
-			text-align: center;
-			margin-top: 5px;
-			.text{
-				color:#959595;
-				margin-right:80px;
-				text-decoration:line-through;
-			}
-			.btn{
-				width:80px;
-				background-color:$bg-color;
-				float:right;
-				color:#fff;
-			}
-		}
-		.no{
-			border: solid 1px #959595;
-			.btn{
-				background-color: #959595;
-			}
-		}
-	}
-}
-
-//底部菜单
-.button-menu{
-	$color:#9f9f9f;
-	position: fixed;
-	z-index: 20;
-	bottom: 0px;
-	left: 0px;
-	width:100%;
-	background-color: $bottom-menu-bg;
-	height:$bottom-menu-height;
-	border-top: solid 1px $bottom-line-bg;
-	color:$color;
-	.button-menu-item{
-		width:25%;
-		height: 100%;
-		float: left;
-		text-align: center;
-		.icon{
-			display: inline-block;
-			text-align: center;
-			height:$bottom-icon-height;
-			font-size: $small-font-size;
-			@include vertical-center($bottom-menu-height,$bottom-icon-height);
-			p{
-				line-height: 15px;
-			}
-			div{
-				height:25px;
-				width:25px;
-			}
-			.homeIcon{
-				background:url("../../contents/svg/home-uncheck.svg");
-				background-size: contain;
-			}
-			.doctorIcon{
-				background:url("../../contents/svg/doctor-uncheck.svg");
-				background-size: contain;
-			}
-			.InteractionIcon{
-				background:url("../../contents/svg/hudong-uncheck.svg");
-				background-size: contain;
-			}
-			.userIcon{
-				background:url("../../contents/svg/user-uncheck.svg");
-				background-size: contain;
-			}
-		}
-		.check {
-			color:$header-background-color;
-			.homeIcon{
-				background:url("../../contents/svg/home-check.svg");
-				background-size: contain;
-			}
-			.doctorIcon{
-				background:url("../../contents/svg/doctor-check.svg");
-				background-size: contain;
-			}
-			.InteractionIcon{
-				background:url("../../contents/svg/hudong-check.svg");
-				background-size: contain;
-			}
-			.userIcon{
-				background:url("../../contents/svg/user-check.svg");
-				background-size: contain;
-			}
-		}
-	}
-}
-
-//提示框
-.tip{
-	position: fixed;
-	top: 0px;
-	left:0px;
-	height:100%;
-	width:100%;
-	z-index: 100;
-	background-color: rgba(0,0,0,0.3);
-	.container{
-		$tip-width:260px;
-		$tip-height:130px;
-		width: $tip-width;
-		height: $tip-height;
-		border-radius: 5px;
-		@include hor-abosult-center($tip-height,$tip-width);
-		background-color: #fff;
-		box-shadow: 0px 0px 10px #696969;
-		.tip-text{
-			height:50px;
-			text-align: center;
-			padding: 20px;
-		}
-		.tip-btn{
-			height:39px;
-			border-top: solid 1px $line-color;
-			display: -webkit-box;
-			display: flex;
-			flex-direction: row;
-			flex-flow: nowrap;
-			.item:nth-child(2){
-				border-left:solid 1px $line-color;
-			}
-			.item{
-				/*解决ios8.0+下不等分问题*/
-				width:100%;
-				-webkit-box-flex: 1.0;
-				-moz-box-flex: 1.0;
-				flex:1.0;
-				text-align: center;
-				line-height: 39px;
-				color:$header-background-color;
-			}
-		}
-	}
-
-}
-//loding动画
-.loding{
-	position:fixed;
-	top:0px;
-	left:0px;
-	width:100%;
-	height:100%;
-	z-index:100;
-	background-color:rgba(0,0,0,0.4);
-	display: block;
-	.content{
-		text-align: center;
-		width:140px;
-		height:70px;
-		position:absolute;
-		left:50%;
-		top:50%;
-		margin-top:-35px;
-		margin-left:-70px;
-		border-radius:5px;
-		padding-top: 10px;
-		background-color:#fff;
-		img{
-			width:40px;
-			height:40px;
-		}
-	}
-}
 
 /*
 * ******主页******
@@ -396,9 +34,8 @@ body{
 //特惠专区
 .tehui{
 	$line-height:100px;
-
-	border-bottom:solid 1px $line-color;
 	overflow: hidden;
+	position: relative;
 	.tehui-qiang{
 		width:70%;
 		height:$line-height;
@@ -433,7 +70,6 @@ body{
 		$item-width:$item-height;
 		width:28%;
 		height:$line-height;
-		border-left: solid 1px $line-color;
 		position: relative;
 		text-align: center;
 		.item{
@@ -450,15 +86,22 @@ body{
 			color:#1FC1D9;
 		}
 	}
+	.tehui-tehui::before{
+		border-left: solid 1px $line-color;
+		@include half-border;
+	}
 }
-
+.tehui::before{
+	border-bottom:solid 1px $line-color;
+	@include half-border;
+}
 //热门专区
 
 .hot{
 	$hot-height:35px;
 	height:30px;
-	border-bottom: solid 1px $line-color;
 	padding-left: 15px;
+	position: relative;
 	div{
 		$item-height:20px;
 		height:$item-height;
@@ -469,117 +112,115 @@ body{
 		}
 	}
 }
+.hot::before{
+	border-bottom: solid 1px $line-color;
+	@include half-border;
+}
 
 /*
 * ******产品列表页面******
 */
 //filter
-.filter{
-	height:$filter-height;
-	line-height: $filter-height;
-	text-align: center;
-	display: -webkit-box;
-	display:flex;
-	flex-direction:row;
-	flex-wrap: nowrap;
-	z-index: 10;
-	background-color: #fff;
-	position: relative;
-	border-bottom:solid 1px $line-color;
-	.filter-item{
-		height: 100%;
-		width:100%;
-		-webkit-box-flex: 1.0;
-		-moz-box-flex: 1.0;
-		flex:1.0;
-		border-right: solid 1px $line-color;
-		img{
-			height:15px;
-			width:15px
-		}
-		div{
-			height: 15px;
-			width:15px;
-			display: inline-block;
-			background: url("../../contents/svg/filter-uncheck.svg");
-			background-size: contain;
-		}
-	}
-	.filter-item:last-child{
-		border-right: none;
-	}
-	.check-color{
-		color:$header-background-color;
-		div{
-			background: url("../../contents/svg/filter-check.svg");
-			background-size: contain;
-		}
-	}
-}
-
-//下拉列表
-.drop-menu{
-	width:100%;
-	position: absolute;
-	top:91px;
-	left:0px;
-	z-index:10;
-	background-color: #fff;
-	.drop-menu-list{
-		padding-left: 10px;
-		padding-right: 10px;
-		list-style: none;
-		border-bottom: solid 1px $line-color;
-		li{
-			$li-height:40px;
-			line-height: 40px;
-			height:$li-height;
-			border-bottom: solid 1px $line-color;
-			span{
-				float: left;
-			}
-			div{
-				height:20px;
-				width:20px;
-				float:right;
-				@include vertical-center($li-height,20px);
-				background:url("../../contents/svg/uncheck.svg");
-				background-size:contain;
-			}
+.drop{
+	.filter{
+		height:40px;
+		line-height: 40px;
+		text-align: center;
+		z-index: 10;
+		background-color: #fff;
+		position: relative;
+		.filter-item{
+			height: 100%;
+			width:33.3%;
+			float: left;
+			position: relative;
 			img{
-				height:20px;
-				@include vertical-center($li-height,20px);
-				float:right;
+				height:15px;
+				width:15px
 			}
-		}
-		.li-check{
 			div{
-				background:url("../../contents/svg/check.svg");
-				background-size:contain;
+				height: 15px;
+				width:15px;
+				display: inline-block;
+				background: url("../../contents/svg/filter-uncheck.svg");
+				background-size: contain;
 			}
 		}
-		li:last-child{
-			border: none;
+		.filter-item::before{
+			border-right: solid 1px $line-color;
+			@include half-border(right);
+		}
+		.check-color{
+			color:$main-color;
+			div{
+				background: url("../../contents/svg/filter-check.svg");
+				background-size: contain;
+			}
 		}
 	}
-	.drop-menu-grid{
-		list-style: none;
-		li{
-			$line-height: 60px;
-			display: -webkit-box;
-			display: flex;
-			flex-direction: row;
-			flex-wrap: nowrap;
-			height: $line-height;
-			.item{
-				width:100%;
-				-webkit-box-flex: 1.0;
-				-moz-box-flex: 1.0;
-				flex:1.0;
-				border-right: solid 1px $line-color;
+	.filter::before{
+		border-bottom: solid 1px $line-color;
+		@include half-border(bottom);
+	}
+	//下拉列表
+	.drop-menu{
+		width:100%;
+		position: relative;
+		left:0px;
+		z-index:10;
+		background-color: #fff;
+		.drop-menu-list{
+			padding-left: 10px;
+			padding-right: 10px;
+			list-style: none;
+			padding-bottom:20px;
+			li{
+				$li-height:40px;
+				line-height: 40px;
+				height:$li-height;
+				position: relative;
+				span{
+					float: left;
+				}
+				div{
+					height:20px;
+					width:20px;
+					float:right;
+					@include vertical-center($li-height,20px);
+					background:url("../../contents/svg/uncheck.svg");
+					background-size:contain;
+				}
+				img{
+					height:20px;
+					@include vertical-center($li-height,20px);
+					float:right;
+				}
+			}
+			li::before{
 				border-bottom: solid 1px $line-color;
+				@include half-border;
+			}
+			.li-check{
+				div{
+					background:url("../../contents/svg/check.svg");
+					background-size:contain;
+				}
+			}
+			li:last-child{
+				border: none;
+			}
+		}
+		.drop-menu-grid{
+			list-style: none;
+			overflow: hidden;
+			padding-bottom:20px;
+			.item{
+				width:20%;
+				height:60px;
+				float:left;
 				text-align: center;
 				padding-top:7px;
+				position: relative;
 				img{
 					height:25px;
 				}
@@ -587,73 +228,111 @@ body{
 					line-height: 16px;
 				}
 			}
+			.item::before{
+				border-right: solid 1px $line-color;
+				border-bottom: solid 1px $line-color;
+				@include half-border;
+			}
+			.item:nth-child(5n)::before{
+				border-right:none;
+			}
 			.item-check{
-				color:$header-background-color;
-				border-bottom: solid 2px $header-background-color;
+				color:$main-color;
+			}
+			.item-check::before{
+				border-bottom: solid 2px #1fc1d9;
+			}
+			.item-check::after{
+				position: absolute;
+				content:"";
+				bottom:0;
+				right:0;
+				height:13px;
+				width:13px;
+				background: #1fc1d9 url("../../contents/img/selected.png") no-repeat center;
+				background-size:9px auto;
 			}
 		}
-	}
-	.drop-menu-double{
-		list-style: none;
-		padding: 0 10px 20px;
-		color:#333;
-		li{
-			.title{
-				height:40px;
-				line-height: 40px;
-				border-bottom: solid 1px #ddd;
-				div{
-					height:20px;
-					width:20px;
-					display: inline-block;
-					background:url("../../contents/svg/down-arrow.svg");
-					background-size: contain;
-					margin-top: 10px;
-					float: right;
-				}
-			}
-			.select{
-				div{
-					background:url("../../contents/svg/top-arrow.svg");
-					background-size: contain;
-				}
-			}
-			.contents{
-				margin-top:10px;
-				border-bottom: solid 1px #ddd;
-				color:#666;
-				overflow: hidden;
-				.contents-item{
-					width:25%;
-					height:25px;
-					float:left;
-					padding-right:5px;
-					margin-bottom: 10px;
-					line-height: 25px;
-					text-align: center;
-					box-sizing: border-box;
+		.drop-menu-double{
+			list-style: none;
+			padding: 0 10px 20px;
+			color:#333;
+			li{
+				.title{
+					height:40px;
+					line-height: 40px;
 					position: relative;
+					div{
+						height:20px;
+						width:20px;
+						display: inline-block;
+						background:url("../../contents/svg/down-arrow.svg");
+						background-size: contain;
+						margin-top: 10px;
+						float: right;
+					}
 				}
-				.contents-item::before{
-					content:"";
-					display: block;
-					border:solid 1px #ddd;
-					position: absolute;
-					top:0;
-					bottom:0;
-					left:0;
-					right:7px;
+				.title::before{
+					border-bottom: solid 1px $line-color;
+					@include half-border(bottom);
 				}
+				.select{
+					div{
+						background:url("../../contents/svg/top-arrow.svg");
+						background-size: contain;
+					}
+				}
+				.contents{
+					margin-top:10px;
+					color:#666;
+					position: relative;
+					overflow: hidden;
+					.contents-item{
+						width:25%;
+						height:25px;
+						float:left;
+						padding-right:5px;
+						margin-bottom: 10px;
+						line-height: 25px;
+						text-align: center;
+						box-sizing: border-box;
+						span{
+							display: block;
+							position: relative;
+						}
+						span::before{
+							border:solid 1px $line-color;
+							@include half-border;
+						}
+					}
 
-				.check::before{
-					border:solid 1px #1fc1d9;
+					.check{
+						span::before{
+							border-color: #1fc1d9;
+						}
+						span::after{
+							position: absolute;
+							content:"";
+							bottom:0;
+							right:0;
+							height:13px;
+							width:13px;
+							background: #1fc1d9 url("../../contents/img/selected.png") no-repeat center;
+							background-size:9px auto;
+						}
+					}
+					.check{
+						color: #1fc1d9;
+					}
 				}
-				.check{
-					color: #1fc1d9;
+				.contents::before{
+					border-bottom: solid 1px $line-color;
+					@include half-border;
 				}
 			}
 		}
 	}
+
 }
 .exam-drop-menu{
 	top:133px;
@@ -662,7 +341,7 @@ body{
 	position: fixed;
     z-index: 1;
 	top:0px;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.8);
     height: 100%;
     width: 100%;
 }
@@ -676,11 +355,11 @@ body{
     .login-item{
 		$item-height:60px;
         height:$item-height;
-        border-bottom: solid 1px $line-color;
         margin-top: 5px;
         margin-bottom: 5px;
 		margin-left: $margin;
 		margin-right:$margin;
+		position: relative;
         .login-item-icon{
             width:20px;
             height:100%;
@@ -703,6 +382,10 @@ body{
 			}
         }
     }
+	.login-item::before{
+		border-bottom: solid 1px $line-color;
+		@include half-border(bottom);
+	}
 	.login-tip{
 	    height:40px;
 		margin-left: $margin;
@@ -710,7 +393,7 @@ body{
 	    .login-tip-item{
 	        float: left;
 	        margin-right:20px;
-	        color:$header-background-color;
+	        color:$main-color;
 	        text-decoration: none;
 	    }
 	}
@@ -728,7 +411,7 @@ body{
 	}
 	.agree-title{
 		font-size: $large-font-size;
-		color:$header-background-color;
+		color:$main-color;
 		margin-top: 10px;
 	}
 	.agree-content{
@@ -766,7 +449,7 @@ body{
 	.item{
 		margin-bottom: 15px;
 		height:44px;
-		border: solid 1px #D7D7D7;
+		border: solid 1px #ddd;
 		input{
 			height:100%;
 			width:100%;
@@ -787,17 +470,17 @@ body{
 		}
 		.item-input{
 			margin-right:140px;
-			border: solid 1px #D7D7D7;
+			border: solid 1px #ddd;
 			height:100%;
 		}
 		.item-btn{
 			width:130px;
 			height:44px;
-			border: solid 1px #D7D7D7;
+			float: right;
 		}
 		.able{
 			color:#fff;
-			background: $header-background-color;
+			background: $main-color;
 			border: none;
 		}
 	}
@@ -805,7 +488,7 @@ body{
 		margin-bottom: 15px;
 		height:44px;
 		a,a:visited{
-			color:$header-background-color;
+			color:$main-color;
 		}
 	}
 	.item-sex{
@@ -817,13 +500,17 @@ body{
 		}
 		button{
 			@extend .button;
-			border: solid 1px #D7D7D7;
+			position: relative;
 			background-color:#fff;
+		}
+		button::before{
+			border: solid 1px #D7D7D7;
+			@include half-border;
 		}
 		.select-btn{
 			@extend .button;
 			border:none;
-			background-color:$header-background-color;
+			background-color:$main-color;
 			color:#fff;
 		}
 		button:nth-child(1){
@@ -847,7 +534,7 @@ body{
 		height:$height;
 		overflow: hidden;
 		background-color: #ffffff;
-		border-bottom:solid 1px $group-line-color;
+		position: relative;
 		.img{
 			height:$img-height;
 			border-radius: 30px;
@@ -867,12 +554,15 @@ body{
 			float: left;
 		}
 	}
+	.user::before{
+		border-bottom:solid 1px $group-line-color;
+		@include half-border;
+	}
 	.item-group{
 		$item-height:50px;
 		$item-icon-height:20px;
 		list-style: none;
-		border-top: solid 1px $group-line-color;
-		border-bottom:solid 1px $group-line-color;
+		position: relative;
 		margin-top: 20px;
 		background-color: #ffffff;
 		li{
@@ -887,7 +577,7 @@ body{
 			.text{
 				line-height: $item-height;
 				overflow: hidden;
-				border-top:solid 1px $line-color;
+				position: relative;
 				span{
 					float: left;
 				}
@@ -898,10 +588,19 @@ body{
 					margin-right: 10px;
 				}
 			}
-			.unborder{
+			.text::before{
+				border-top:solid 1px $line-color;
+				@include half-border;
+			}
+			.unborder::before{
 				border-top: none;
 			}
 		}
+	}
+	.item-group::before{
+		border-top: solid 1px $group-line-color;
+		border-bottom:solid 1px $group-line-color;
+		@include half-border;
 	}
 }
 
@@ -910,24 +609,25 @@ body{
 */
 .myorder-content{
 	.filter{
-		display: -webkit-box;
-		display:flex;
-		flex-wrap: nowrap;
-		flex-direction: row;
 		height:40px;
 		background-color:#ffffff;
+		overflow: hidden;
 		.item{
-			width:100%;
-			-webkit-box-flex: 1.0;
-			-moz-box-flex: 1.0;
-			flex:1.0;
+			width:25%;
+			float: left;
 			text-align: center;
 			line-height: 40px;
+			position: relative;
+		}
+		.item::before{
 			border-bottom: solid 1px #dcdcdc;
+			@include half-border;
 		}
 		.select{
-			color:$header-background-color;
-			border-bottom: solid 2px $header-background-color;
+			color:$main-color;
+		}
+		.select::before{
+			border-bottom: solid 2px $main-color;
 		}
 	}
 	#order-tip{
@@ -962,7 +662,7 @@ body{
 				    font-size:10px;
 				}
 				.order-list-state{
-				    color: $header-background-color;
+				    color: $main-color;
 				    float: right;
 				}
 			}
@@ -992,8 +692,8 @@ body{
 				}
 				.order-btn-unfinish{
 					@extend .order-btn;
-				    border:solid 1px $header-background-color;
-				    color: $header-background-color;
+				    border:solid 1px $main-color;
+				    color: $main-color;
 					background-color:#ffffff;
 				}
 			}
@@ -1205,7 +905,7 @@ body{
 	.userinfo-tip{
 		height:40px;
 		margin:10px 15px 0px;
-		color:$header-background-color;
+		color:$main-color;
 	}
 }
 
@@ -1293,8 +993,8 @@ body{
 		}
 		.select{
 			border: none;
-			border: solid 1px $header-background-color;
-			background-color: $header-background-color;
+			border: solid 1px $main-color;
+			background-color: $main-color;
 			color:#fff;
 		}
 	}
@@ -1375,8 +1075,8 @@ body{
 		border-right:solid 1px $line-color;
 	}
 	.select-color{
-		color:$header-background-color;
-		border-bottom: solid 2px $header-background-color;
+		color:$main-color;
+		border-bottom: solid 2px $main-color;
 	}
 }
 
@@ -1436,27 +1136,27 @@ body{
 		}
 	}
 	.money{
-		color:$header-background-color;
+		color:$main-color;
 	}
 	.makeorder-tip{
 		margin:0px 10px 0px 10px;
 	}
 }
 .markorder-menu{
-	$color:#7C8085;
+	$f-color:#7C8085;
 	position: fixed;
 	z-index: 10;
 	bottom: 0px;
 	left: 0px;
 	width:100%;
-	background-color: $bottom-menu-bg;
-	height:$bottom-menu-height;
-	color:$color;
+	background-color: $bg-color;
+	height:50px;
+	color:$f-color;
 	box-shadow: 0px -3px 5px #eee;
 	.order-btn{
 		width:100px;
 		height:100%;
-		background-color: $header-background-color;
+		background-color: $main-color;
 		color:#ffffff;
 		font-size: $large-font-size;
 		float:right;
@@ -1467,10 +1167,10 @@ body{
 		margin-right:100px;
 		margin-left: 10px;
 		height:100%;
-		color: $color;
+		color: $f-color;
 		line-height: 22px;
 		.money{
-			color:$header-background-color;
+			color:$main-color;
 		}
 	}
 	.disable{
@@ -1496,7 +1196,7 @@ body{
 		.title-text{
 			float: left;
 			.money{
-				color:$header-background-color;
+				color:$main-color;
 			}
 		}
 	}
@@ -1667,7 +1367,7 @@ body{
 		.product-header{
 			height:30px;
 			line-height: 30px;
-			border-bottom: solid 1px #eee;
+			border-bottom: solid 1px $line-color;
 			margin-left: 10px;
 			margin-right:10px;
 		}
@@ -1680,11 +1380,11 @@ body{
 			}
 			.text{
 				margin-left: 80px;
-				border-bottom:solid 1px #eeeeee;
+				border-bottom:solid 1px $line-color;
 				.text-header{
 					margin-bottom: 10px;
 					.score{
-						color:$header-background-color;
+						color:$main-color;
 						float:right;
 					}
 				}
@@ -1700,7 +1400,7 @@ body{
 					margin-top: 10px;
 					div{
 						display: inline-block;
-						background-color:$header-background-color;
+						background-color:$main-color;
 						color:#fff;
 						height:30px;
 						img{
@@ -1714,7 +1414,7 @@ body{
 					}
 					.select-time{
 						float:right;
-						color: $header-background-color;
+						color: $main-color;
 					}
 					.selected{
 						font-size:$small-font-size;
@@ -1742,7 +1442,7 @@ body{
 		.product-header{
 			height:30px;
 			line-height: 30px;
-			border-bottom: solid 1px #eee;
+			border-bottom: solid 1px $line-color;
 		}
 		.img{
 			padding-top: 10px;
@@ -1758,7 +1458,7 @@ body{
 		.img-tip{
 			height:20px;
 			width:25px;
-			background-color:$header-background-color;
+			background-color:$main-color;
 			color:#fff;
 			text-align: center;
 		}
@@ -1780,7 +1480,7 @@ body{
 		}
 		.hos-title{
 			padding-bottom:10px;
-			border-bottom:solid 1px #eee;
+			border-bottom:solid 1px $line-color;
 			.address{
 				font-size: $small-font-size;
 				color:#959595;
@@ -1809,7 +1509,7 @@ body{
 		list-style: none;
 		margin-top: 50px;
 		li{
-			border-bottom:solid 1px #eee;
+			border-bottom:solid 1px $line-color;
 			position: relative;
 			.day{
 				width:120px;
@@ -1820,14 +1520,14 @@ body{
 				top:50%;
 				left:0px;
 				margin-top:-20px;
-				color:$header-background-color;
+				color:$main-color;
 			}
 			.time{
 				margin-left:120px;
 				.item{
 					height:40px;
 					line-height: 40px;
-					border-bottom:solid 1px #eee;
+					border-bottom:solid 1px $line-color;
 					margin-right:10px;
 				}
 				.item:last-child{
@@ -1860,25 +1560,24 @@ body{
 .new-nav{
 	height:40px;
 	width:100%;
-	display: -webkit-box;
-	display:flex;
-	flex-direction: row;
-	flex-flow: nowrap;
+	overflow: hidden;
 	.nav-item{
-		width:100%;
-		-webkit-box-flex: 1.0;
-		-moz-box-flex: 1.0;
-		flex:1.0;
+		width:20%;
+		float:left;
 		text-align: center;
 		line-height: 40px;
-		border:{
-			right:solid 1px #eee;
-			bottom:solid 1px #eee;
-		}
+		position: relative;
+	}
+	.nav-item::before{
+		border-right:solid 1px $line-color;
+		border-bottom:solid 1px $line-color;
+		@include half-border;
 	}
 	.select{
-		color:$header-background-color;
-		border-bottom:solid 1px $header-background-color;
+		color:$main-color;
+	}
+	.select::before{
+		border-bottom:solid 2px $main-color;
 	}
 }
 .item-container{
@@ -1892,7 +1591,7 @@ body{
 			top:15px;
 			bottom:15px;
 		}
-		border-bottom:solid 1px #eee;
+		border-bottom:solid 1px $line-color;
 		img{
 			height:60px;
 			width:60px;
@@ -1920,7 +1619,7 @@ body{
 			left:15px;
 			right:15px;
 		}
-		border-bottom: solid 1px #eee;
+		border-bottom: solid 1px $line-color;
 		.date{
 			color:#959595;
 			margin-top:25px;
@@ -1952,8 +1651,8 @@ body{
 		-webkit-box-flex: 1.0;
 		-moz-box-flex: 1.0;
 		flex:1.0;
-		border-right:solid 1px #eee;
-		border-bottom: solid 1px #eee;
+		border-right:solid 1px $line-color;
+		border-bottom: solid 1px $line-color;
 		color:#000;
 		text-decoration: none;
 	}
@@ -1961,8 +1660,8 @@ body{
 		border-right:none;
 	}
 	.select{
-		color:$header-background-color;
-		border-bottom:solid 2px $header-background-color;
+		color:$main-color;
+		border-bottom:solid 2px $main-color;
 	}
 }
 
@@ -1995,7 +1694,7 @@ body{
 		display:flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		border-top: solid 1px #eee;
+		border-top: solid 1px $line-color;
 		.item{
 			width:100%;
 			-webkit-box-flex: 1.0;
@@ -2003,16 +1702,16 @@ body{
 			flex:1.0;
 			text-align: center;
 			border:{
-				right:solid 1px #eee;
-				bottom:solid 1px #eee;
+				right:solid 1px $line-color;
+				bottom:solid 1px $line-color;
 			}
 		}
 		.item:last-child{
 			border-right:none;
 		}
 		.select{
-			border-bottom:solid 2px $header-background-color;
-			color:$header-background-color;
+			border-bottom:solid 2px $main-color;
+			color:$main-color;
 		}
 	}
 	.examDetail-content{
@@ -2022,7 +1721,7 @@ body{
 				.title{
 					height:40px;
 					line-height: 40px;
-					border-bottom:solid 1px #eee;
+					border-bottom:solid 1px $line-color;
 				}
 				.text{
 					color:#959595;
@@ -2034,7 +1733,7 @@ body{
 				.title{
 					height:40px;
 					line-height: 40px;
-					border-bottom:solid 1px #eee;
+					border-bottom:solid 1px $line-color;
 				}
 				.items{
 					color:#959595;
@@ -2058,7 +1757,7 @@ body{
 				}
 			}
 			.title{
-				border-bottom: solid 1px #eee;
+				border-bottom: solid 1px $line-color;
 				.marginPosition{
 					margin:{
 						top:10px;
@@ -2077,7 +1776,7 @@ body{
 				.phone{
 					@extend .marginPosition;
 					span:last-child{
-						color:$header-background-color;
+						color:$main-color;
 					}
 				}
 			}
@@ -2117,7 +1816,7 @@ body{
 			height:40px;
 			line-height: 40px;
 			color:#fff;
-			background-color: $header-background-color;
+			background-color: $main-color;
 			text-align: center;
 		}
 		.times{
@@ -2134,7 +1833,7 @@ body{
 			li{
 				height:40px;
 				line-height: 40px;
-				border-bottom: solid 1px #eee;
+				border-bottom: solid 1px $line-color;
 				div{
 					float: right;
 					height:20px;
@@ -2162,7 +1861,7 @@ body{
 			display: flex;
 			flex-direction: row;
 			flex-wrap: nowrap;
-			border-top:solid 1px #eee;
+			border-top:solid 1px $line-color;
 			position: absolute;
 			bottom: 0px;
 			width:100%;
@@ -2172,10 +1871,10 @@ body{
 				-moz-box-flex: 1.0;
 				flex:1.0;
 				text-align: center;
-				border-right:solid 1px #eee;
+				border-right:solid 1px $line-color;
 			}
 			.item:last-child{
-				color:$header-background-color;
+				color:$main-color;
 			}
 		}
 	}
@@ -2208,24 +1907,26 @@ body{
 				.name{
 					span:last-child{
 						font-size: $small-font-size;
+						float:right;
 					}
 				}
 				.score{
 					font-size: $small-font-size;
 					span:first-child{
-						color:$header-background-color;
+						color:$main-color;
 					}
 					span:last-child{
-						color:#959595;
+						color:$s-color;
+						float:right;
 					}
 				}
 				.address{
-
+					color:$s-color;
 				}
 				.use{
 					font-size:$small-font-size;
 					span:last-child{
-						color:#959595;
+						color:$t-color;
 					}
 				}
 			}
@@ -2234,5 +1935,279 @@ body{
 }
 
 /*
-** 医生页面
+* 医生详细页面
 */
+.doctor-detail-content{
+	.title{
+		background-color: #fff;
+		padding:{
+			left:10px;
+			right:10px;
+		}
+		.line{
+			padding:{
+				top:10px;
+				bottom:10px;
+			};
+			overflow: hidden;
+			border-bottom:solid 1px #ddd;
+		}
+		img{
+			height:97px;
+			width:73px;
+			float:left;
+		}
+		.text{
+			margin-left: 90px;
+			p{
+				margin-bottom:10px;
+			}
+			.score{
+				span:first-child{
+					color:$main-color;
+				}
+				span:last-child{
+					color:$s-color;
+					float:right;
+				}
+			}
+			.address{
+				color:$s-color;
+			}
+		}
+	}
+	.description{
+		background-color:#fff;
+		padding: 10px;
+		span:last-child{
+			color:$t-color;
+			font-size:$small-font-size;
+		}
+	}
+	.last{
+		padding-top:0px;
+		margin-bottom:20px;
+	}
+	.time{
+		background-color: #fff;
+		.title{
+			height:40px;
+			line-height: 40px;
+			position: relative;
+			border-bottom: solid 1px #ddd;
+			div{
+				height: 20px;
+			    width: 20px;
+			    display: inline-block;
+			    background: url("../../contents/svg/down-arrow.svg");
+			    background-size: contain;
+			    margin-top: 10px;
+			    float: right;
+			}
+		}
+		.select{
+			div{
+				background: url("../../contents/svg/top-arrow.svg");
+				background-size: contain;
+			}
+		}
+		.docter-select-times{
+			margin-bottom:20px;
+			padding:{
+				left:10px;
+				right:10px;
+			}
+			ul{
+				background-color: #fff;
+				border-bottom:solid 1px #dcdcdc;
+				list-style: none;
+				li{
+					border-bottom:solid 1px $line-color;
+					position: relative;
+					.day{
+						width:120px;
+						height:40px;
+						line-height: 40px;
+						text-align: center;
+						position: absolute;
+						top:50%;
+						left:0px;
+						margin-top:-20px;
+						color:$main-color;
+					}
+					.time{
+						margin-left:120px;
+						.item{
+							height:40px;
+							line-height: 40px;
+							border-bottom:solid 1px $line-color;
+							margin-right:10px;
+						}
+						.item:last-child{
+							border:none;
+						}
+						.icon{
+							display: inline-block;
+							float:right;
+							height:20px;
+							width:20px;
+							margin-top:10px;
+							background:url("../../contents/svg/uncheck.svg");
+							background-size: contain;
+						}
+						.check{
+							background:url("../../contents/svg/check.svg");
+							background-size: contain;
+						}
+					}
+				}
+				li:last-child{
+					border: none;
+				}
+			}
+		}
+	}
+	.product{
+		.title{
+			height:40px;
+			line-height: 40px;
+			position: relative;
+			border-bottom: solid 1px #ddd;
+			div{
+				height: 20px;
+			    width: 20px;
+			    display: inline-block;
+			    background: url("../../contents/svg/down-arrow.svg");
+			    background-size: contain;
+			    margin-top: 10px;
+			    float: right;
+			}
+		}
+		.select{
+			div{
+				background: url("../../contents/svg/top-arrow.svg");
+				background-size: contain;
+			}
+		}
+		ul{
+			list-style: none;
+			background-color: #fff;
+			li{
+				border-bottom: solid 1px #ddd;
+				margin-left:10px;
+				margin-right:10px;
+				padding-top:5px;
+				padding-bottom:5px;
+				.item-title{
+
+				}
+				.item-money{
+					line-height: 30px;
+					.dealMoney{
+						color: $main-color;
+					}
+					.price{
+						color:$t-color;
+						font-size: $small-font-size;
+						text-decoration: line-through;
+					}
+					button{
+						float:right;
+						border: none;
+						width:60px;
+						height:30px;
+						background-color: $main-color;
+						color:#fff;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*
+** 互动页面
+*/
+.interaction-content{
+	padding: 0px 10px;
+	.switch{
+		text-align: center;
+		height:40px;
+		position: relative;
+		.item{
+			width:80px;
+			height:40px;
+			line-height: 40px;
+			display: inline-block;
+			position: relative;
+		}
+		.select{
+			color:$main-color;
+		}
+		.select::before{
+			border-bottom:solid 2px $main-color;
+			@include half-border(bottom);
+		}
+	}
+	.switch::before{
+		border-bottom:solid 1px $line-color;
+		@include half-border(bottom);
+	}
+	.card{
+		list-style: none;
+		li{
+			overflow: hidden;
+			padding: 10px 0px;
+			position: relative;
+			.headimg{
+				width: 50px;
+				height:50px;
+				border-radius: 50px;
+				float: left;
+			}
+			.container{
+				margin-left: 55px;
+				.name{
+					color:$main-color;
+				}
+				.text{
+					color:$t-color;
+					margin-top:5px;
+				}
+				.img{
+					margin-top:5px;
+					img{
+						height:70px;
+						width:70px;
+						margin-right:5px;
+					}
+				}
+				.info{
+					height:20px;
+					line-height: 20px;
+					margin-top: 5px;
+					color:$t-color;
+					img{
+						height:20px;
+						width:20px;
+						vertical-align: middle;
+					}
+					.mess{
+						display: inline-block;
+						float: right;
+						margin-left: 10px;
+					}
+					.see{
+						display: inline-block;
+						float: right;
+					}
+				}
+			}
+		}
+		li::before{
+			border-bottom:solid 1px $line-color;
+			@include half-border(bottom);
+		}
+
+	}
+}

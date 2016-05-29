@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="../stylesheets/dest/main.css">
+	<title>悠康医生</title>
+</head>
+<body style="background-color:#EFEFF4" ng-controller="doctorDetailCtrl" data-ng-init="load()">
+	<div class="header">
+		<div class="title">
+			医生详细
+		</div>
+    </div>
+	<div class="has-header"></div>
+	<div class="doctor-detail-content">
+		<div class="title">
+			<div class="line">
+				<img src="../contents/temp/doc1.png">
+				<div class="text">
+					<p class="name">
+						林园泽
+					</p>
+					<p class="score">
+						<span>5分</span>
+						<span>25人下单</span>
+					</p>
+					<p class="addreses">
+						加德美口腔南山区卓越维港店
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="description">
+			<span>医生擅长：</span>
+			<span>
+				全口无牙及缺牙的种植牙，牙周病治疗(松动牙治疗)，无痛手术，美齿修整，复杂口腔疾病治疗
+			</span>
+		</div>
+		<div class="description last">
+			<span>医生简介：</span>
+			<span>
+				2003 年毕业于台湾中山口腔医学大学，专精于牙周炎及种植手术之研究，跟随台湾牙周种植手术权威Alan Tuan 教授,定期于美国南加州大学及Nowzari-Tuan Institude 进行牙周及种植手术之技术更新,并跟随美国 Beverly Hills 种植手术专家Hessam Nowzari学习无痛手术,及高阶手术技巧。专精慢性牙周炎（松动牙）治疗及手术，种植牙，口腔自体骨移植，牙周修补手术及全口无牙假牙重建治疗，于2007年在台湾加德美齿科集团设立高端手术门诊，并于2013年成为 华南区 Dentium 牙周种植手术培训专家,定期为华南区医生培训手术，除此之外，林医师更着重于病患的治疗感觉，无压力，不过度治疗，实用治疗，跟病患讨论，是其看诊特点。 美国南加州大学牙周植牙研究所研究员 Nowzari-Tuan Institude 牙周植牙专科医师 台湾口腔重建学会口腔重建植牙专科医师 台湾中山口腔医学大学牙医学士 现职 台湾 加州牙周种植专科门诊总监 深圳 加德美齿科牙周种植总监
+			</span>
+		</div>
+		<div class="time">
+			<div class="title" ng-class="{'select':hasTime}" ng-click="selectTime()">
+				<span>选择就医时间</span>
+				<div></div>
+			</div>
+			<div class="docter-select-times" ng-show="hasTime">
+				<ul>
+			<!-- ngRepeat: schedule in scheduleInfo --><li ng-repeat="schedule in scheduleInfo" class="ng-scope">
+				<div class="day ng-binding" ng-bind="schedule.date">2016-05-30</div>
+				<div class="time">
+					<!-- ngRepeat: time in schedule.timeList --><div class="item ng-scope" ng-repeat="time in schedule.timeList" ng-click="chooseTime(time.scheduleid,time.date)">
+						<span ng-bind="time.starttime" class="ng-binding">15:00</span>
+						<div class="icon check" ng-class="{'check':scheduleParams[time.scheduleid].has}"></div>
+					</div><!-- end ngRepeat: time in schedule.timeList -->
+				</div>
+			</li><!-- end ngRepeat: schedule in scheduleInfo --><li ng-repeat="schedule in scheduleInfo" class="ng-scope">
+				<div class="day ng-binding" ng-bind="schedule.date">2016-05-31</div>
+				<div class="time">
+					<!-- ngRepeat: time in schedule.timeList --><div class="item ng-scope" ng-repeat="time in schedule.timeList" ng-click="chooseTime(time.scheduleid,time.date)">
+						<span ng-bind="time.starttime" class="ng-binding">15:30</span>
+						<div class="icon" ng-class="{'check':scheduleParams[time.scheduleid].has}"></div>
+					</div><!-- end ngRepeat: time in schedule.timeList -->
+				</div>
+			</li><!-- end ngRepeat: schedule in scheduleInfo --><li ng-repeat="schedule in scheduleInfo" class="ng-scope">
+				<div class="day ng-binding" ng-bind="schedule.date">2016-06-01</div>
+				<div class="time">
+					<!-- ngRepeat: time in schedule.timeList --><div class="item ng-scope" ng-repeat="time in schedule.timeList" ng-click="chooseTime(time.scheduleid,time.date)">
+						<span ng-bind="time.starttime" class="ng-binding">15:00</span>
+						<div class="icon" ng-class="{'check':scheduleParams[time.scheduleid].has}"></div>
+					</div><!-- end ngRepeat: time in schedule.timeList -->
+				</div>
+			</li><!-- end ngRepeat: schedule in scheduleInfo --><li ng-repeat="schedule in scheduleInfo" class="ng-scope">
+				<div class="day ng-binding" ng-bind="schedule.date">2016-06-02</div>
+				<div class="time">
+					<!-- ngRepeat: time in schedule.timeList --><div class="item ng-scope" ng-repeat="time in schedule.timeList" ng-click="chooseTime(time.scheduleid,time.date)">
+						<span ng-bind="time.starttime" class="ng-binding">15:00</span>
+						<div class="icon" ng-class="{'check':scheduleParams[time.scheduleid].has}"></div>
+					</div><!-- end ngRepeat: time in schedule.timeList -->
+				</div>
+			</li><!-- end ngRepeat: schedule in scheduleInfo --><li ng-repeat="schedule in scheduleInfo" class="ng-scope">
+				<div class="day ng-binding" ng-bind="schedule.date">2016-06-03</div>
+				<div class="time">
+					<!-- ngRepeat: time in schedule.timeList --><div class="item ng-scope" ng-repeat="time in schedule.timeList" ng-click="chooseTime(time.scheduleid,time.date)">
+						<span ng-bind="time.starttime" class="ng-binding">15:00</span>
+						<div class="icon" ng-class="{'check':scheduleParams[time.scheduleid].has}"></div>
+					</div><!-- end ngRepeat: time in schedule.timeList -->
+				</div>
+			</li><!-- end ngRepeat: schedule in scheduleInfo --><li ng-repeat="schedule in scheduleInfo" class="ng-scope">
+				<div class="day ng-binding" ng-bind="schedule.date">2016-06-04</div>
+				<div class="time">
+					<!-- ngRepeat: time in schedule.timeList --><div class="item ng-scope" ng-repeat="time in schedule.timeList" ng-click="chooseTime(time.scheduleid,time.date)">
+						<span ng-bind="time.starttime" class="ng-binding">15:00</span>
+						<div class="icon" ng-class="{'check':scheduleParams[time.scheduleid].has}"></div>
+					</div><!-- end ngRepeat: time in schedule.timeList -->
+				</div>
+			</li><!-- end ngRepeat: schedule in scheduleInfo --><li ng-repeat="schedule in scheduleInfo" class="ng-scope">
+				<div class="day ng-binding" ng-bind="schedule.date">2016-06-06</div>
+				<div class="time">
+					<!-- ngRepeat: time in schedule.timeList --><div class="item ng-scope" ng-repeat="time in schedule.timeList" ng-click="chooseTime(time.scheduleid,time.date)">
+						<span ng-bind="time.starttime" class="ng-binding">14:30</span>
+						<div class="icon" ng-class="{'check':scheduleParams[time.scheduleid].has}"></div>
+					</div><!-- end ngRepeat: time in schedule.timeList -->
+				</div>
+			</li><!-- end ngRepeat: schedule in scheduleInfo --><li ng-repeat="schedule in scheduleInfo" class="ng-scope">
+				<div class="day ng-binding" ng-bind="schedule.date">2016-06-07</div>
+				<div class="time">
+					<!-- ngRepeat: time in schedule.timeList --><div class="item ng-scope" ng-repeat="time in schedule.timeList" ng-click="chooseTime(time.scheduleid,time.date)">
+						<span ng-bind="time.starttime" class="ng-binding">15:00</span>
+						<div class="icon" ng-class="{'check':scheduleParams[time.scheduleid].has}"></div>
+					</div><!-- end ngRepeat: time in schedule.timeList -->
+				</div>
+			</li><!-- end ngRepeat: schedule in scheduleInfo --><li ng-repeat="schedule in scheduleInfo" class="ng-scope">
+				<div class="day ng-binding" ng-bind="schedule.date">2016-06-08</div>
+				<div class="time">
+					<!-- ngRepeat: time in schedule.timeList --><div class="item ng-scope" ng-repeat="time in schedule.timeList" ng-click="chooseTime(time.scheduleid,time.date)">
+						<span ng-bind="time.starttime" class="ng-binding">14:30</span>
+						<div class="icon" ng-class="{'check':scheduleParams[time.scheduleid].has}"></div>
+					</div><!-- end ngRepeat: time in schedule.timeList -->
+				</div>
+			</li><!-- end ngRepeat: schedule in scheduleInfo --><li ng-repeat="schedule in scheduleInfo" class="ng-scope">
+				<div class="day ng-binding" ng-bind="schedule.date">2016-06-09</div>
+				<div class="time">
+					<!-- ngRepeat: time in schedule.timeList --><div class="item ng-scope" ng-repeat="time in schedule.timeList" ng-click="chooseTime(time.scheduleid,time.date)">
+						<span ng-bind="time.starttime" class="ng-binding">15:30</span>
+						<div class="icon" ng-class="{'check':scheduleParams[time.scheduleid].has}"></div>
+					</div><!-- end ngRepeat: time in schedule.timeList -->
+				</div>
+			</li><!-- end ngRepeat: schedule in scheduleInfo -->
+		</ul>
+			</div>
+		</div>
+		<div class="product">
+			<div class="title" ng-class="{'select':hasProduct}" ng-click="selectProduct()">
+				<span>选择就医项目</span>
+				<div></div>
+			</div>
+			<ul ng-show="hasProduct">
+				<li>
+					<p class="item-title">全口牙种植重建</p>
+					<p class="item-money">
+						<span class="dealMoney">
+							￥18500 元/颗
+						</span>
+						<span class="price">
+							￥22500
+						</span>
+						<button>下单</button>
+					</p>
+				</li>
+				<li>
+					<p class="item-title">全口牙种植重建</p>
+					<p class="item-money">
+						<span class="dealMoney">
+							￥18500 元/颗
+						</span>
+						<span class="price">
+							￥22500
+						</span>
+						<button>下单</button>
+					</p>
+				</li>
+				<li>
+					<p class="item-title">全口牙种植重建</p>
+					<p class="item-money">
+						<span class="dealMoney">
+							￥18500 元/颗
+						</span>
+						<span class="price">
+							￥22500
+						</span>
+						<button>下单</button>
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
+	<div ng-include="'section/tip.html'"></div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/lib/angular.route.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/doctorDetailCtrl.min.js"></script>
+</body>
+</html>
