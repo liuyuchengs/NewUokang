@@ -2510,3 +2510,10 @@ body {
         left: 0;
         right: -100%;
         bottom: -100%; }
+
+.test {
+  -webkit-box-shadow: 5 5 red;
+  -moz-box-shadow: 5 5 red;
+  -ms-box-shadow: 5 5 red;
+  -o-box-shadow: 5 5 red;
+  box-shadow: 5 5 red; }

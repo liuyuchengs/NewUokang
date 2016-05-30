@@ -11,6 +11,14 @@ $f-color:#333; //主文本
 $s-color:#666; //次文本
 $t-color:#999; //大段长文本
 
+//浏览器兼容性
+$prefix-webkit:true !default;
+$prefix-mozilla:true !default;
+$prefix-ms:true !default;
+$prefix-opera:true !default;
+$prefix-spec:true !default;
+
+
 /*
 ** ******全局样式*****
 */
@@ -92,7 +100,43 @@ body{
 		bottom:-100%;
 	}
 }
+//三角形
+@mixin triangle($direction,$size,$borderColor){
+	height:0px;
+	width:0px;
+	border:solid $size transparent;
+	@if $direction==top {
+		border-bottom: solid $size $borderColor;
+	}@else if $direction==left{
+		border-right: solid $size $borderColor;
+	}@else if $direction==right{
+		border-left:solid $size $borderColor;
+	}@else if $direction==bottom{
+		border-top:solid $size borderColor;
+	}
+}
 
+//兼容性属性
+@mixin prefixer($property,$value,$prefixes){
+	@each $prefix in $prefixes{
+		@if $prefix==webkit and $prefix-webkit==true{
+			-webkit-#{$property}:$value;
+		}@else if $prefix==moz and $prefix-mozilla==true{
+			-moz-#{$property}:$value;
+		}@else if $prefix==ms and $prefix-ms==true{
+			-ms-#{$property}:$value;
+		}@else if $prefix==o and $prefix-opera==true{
+			-o-#{$property}:$value;
+		}@else if $prefix==spec and $prefix-spec==true{
+			#{$property}:$value;
+		}
+	}
+}
+
+//兼容性box-shadow
+@mixin box-shadow($shadow...){
+	@include prefixer(box-shadow,$shadow,webkit moz ms o spec);
+}
 
 /*
 * ******基础样式******
