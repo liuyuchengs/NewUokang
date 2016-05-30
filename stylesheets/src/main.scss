@@ -162,6 +162,26 @@
 		border-bottom: solid 1px $line-color;
 		@include half-border(bottom);
 	}
+	.col-2{
+		.filter-item{
+			width:50%;
+		}
+	}
+	.col-3{
+		.filter-item{
+			width:33.3%;
+		}
+	}
+	.col-4{
+		.filter-item{
+			width:25%;
+		}
+	}
+	.col-5{
+		.filter-item{
+			width:20%;
+		}
+	}
 	//下拉列表
 	.drop-menu{
 		width:100%;
@@ -332,10 +352,6 @@
 			}
 		}
 	}
-
-}
-.exam-drop-menu{
-	top:133px;
 }
 .product-bg{
 	position: fixed;
@@ -1635,32 +1651,30 @@
 ******体检页面******
 */
 .exam-filter{
-	display: -webkit-box;
-	display:flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
 	position: relative;
 	z-index: 10;
 	background-color: #fff;
+	overflow:hidden;
 	a{
 		display: block;
 		height:40px;
-		width:100%;
+		width:50%;
 		text-align: center;
 		line-height:40px;
-		-webkit-box-flex: 1.0;
-		-moz-box-flex: 1.0;
-		flex:1.0;
-		border-right:solid 1px $line-color;
-		border-bottom: solid 1px $line-color;
 		color:#000;
 		text-decoration: none;
+		position: relative;
+		float: left;
 	}
-	a:last-child{
-		border-right:none;
+	a::before{
+		border-right:solid 1px $line-color;
+		border-bottom: solid 1px $line-color;
+		@include half-border;
 	}
 	.select{
 		color:$main-color;
+	}
+	.select::before{
 		border-bottom:solid 2px $main-color;
 	}
 }
@@ -2160,13 +2174,13 @@
 			padding: 10px 0px;
 			position: relative;
 			.headimg{
-				width: 50px;
-				height:50px;
-				border-radius: 50px;
+				width: 30px;
+				height:30px;
+				border-radius: 30px;
 				float: left;
 			}
 			.container{
-				margin-left: 55px;
+				margin-left: 40px;
 				.name{
 					color:$main-color;
 				}
@@ -2177,7 +2191,7 @@
 				.img{
 					margin-top:5px;
 					img{
-						height:70px;
+						height:60px;
 						width:70px;
 						margin-right:5px;
 					}
@@ -2191,6 +2205,7 @@
 						height:20px;
 						width:20px;
 						vertical-align: middle;
+						border-radius: 2px;
 					}
 					.mess{
 						display: inline-block;
@@ -2209,5 +2224,105 @@
 			@include half-border(bottom);
 		}
 
+	}
+}
+
+/*
+** 互动详细页面
+*/
+.inte-detail-content{
+	padding:0px 10px;
+	.userinfo{
+		padding:10px 0px;
+		position: relative;
+		img{
+			height:80px;
+			width:80px;
+			border-radius: 80px;
+			float: left;
+		}
+		.text{
+			margin-left:100px;
+			p{
+				line-height: 20px;
+			}
+			.title{
+				color:$t-color;
+			}
+		}
+	}
+	.userinfo::before{
+		border-bottom: solid 1px $line-color;
+		@include half-border(bottom);
+	}
+	.description{
+		padding:10px 0px;
+		line-height:20px;
+		position:relative;
+		.title{
+			color:$t-color;
+			width:45px;
+			float: left;
+		}
+		.text{
+			margin-left: 45px;
+		}
+	}
+	.description::before{
+		border-bottom: solid 1px $line-color;
+		@include half-border(bottom);
+	}
+	.info{
+		padding:0px 0px 10px;
+		position:relative;
+		p{
+			line-height: 30px;
+		}
+		.imgs{
+			overflow: hidden;
+			img{
+				height:60px;
+				width:70px;
+				margin-right:5px;
+				border-radius: 2px;
+			}
+		}
+		.text{
+			line-height: 20px;
+			color:$t-color;
+			font-size:$small-font-size;
+		}
+	}
+	.info::before{
+		border-bottom: solid 1px $line-color;
+		@include half-border(bottom);
+	}
+	.no-border::before{
+		border-bottom:none;
+	}
+	.bottom{
+		color:$t-color;
+		margin-bottom: 20px;
+		overflow: hidden;
+		.item-container{
+			width:25%;
+			text-align: center;
+			float:left;
+			.item{
+				width:70px;
+				height:30px;
+				line-height: 30px;
+				position: relative;
+				img{
+					width:20px;
+					height:20px;
+					vertical-align: middle;
+				}
+			}
+			.item::before{
+				border: solid 1px #ddd;
+				@include half-border;
+			}
+		}
 	}
 }

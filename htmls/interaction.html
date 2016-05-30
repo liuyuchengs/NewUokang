@@ -18,84 +18,37 @@
 	<div class="has-header"></div>
 	<div class="interaction-content">
 		<div class="switch">
-			<div class="item select">看牙</div>
-			<div class="item">术美</div>
-			<div class="item">孕·生</div>
+			<div class="item" ng-class="{'select':navParams.kanya.has}" ng-click="switchNav('kanya')">看牙</div>
+			<div class="item" ng-class="{'select':navParams.shumei.has}" ng-click="switchNav('shumei')">术美</div>
+			<div class="item" ng-class="{'select':navParams.yunsheng.has}" ng-click="switchNav('yunsheng')">孕·生</div>
 		</div>
 		<ul class="card">
-			<li>
-				<img class="headimg" src="../contents/temp/head-img.png">
+			<li ng-repeat="post in posts" ng-click="detail(post.id)">
+				<img class="headimg" ng-src="{{post.faceImage}}" fallback-src="../contents/temp/head-img.png">
 				<div class="container">
-					<p class="name">悦己者美</p>
-					<p class="text">已经五天啦，继续晒美图，回复得好快啊，几乎看不出来手术的痕迹</p>
+					<p class="name" ng-bind="post.userName"></p>
+					<p class="text" ng-bind="post.postName"></p>
 					<div class="img">
-						<img src="../contents/temp/tooth.png">
-						<img src="../contents/temp/tooth.png">
-						<img src="../contents/temp/tooth.png">
+						<img ng-repeat="img in post.list2" ng-src="{{img}}">
 					</div>
 					<div class="info">
-						<span>59分钟前</span>
+						<span ng-bind="post.middTimeStr"></span>
 						<div class="mess">
 							<img src="../contents/svg/mess.svg">
-							<span>26</span>
+							<span ng-bind="post.visitNum"></span>
 						</div>
 						<div class="see">
 							<img src="../contents/svg/see-grey.svg">
-							<span>265</span>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li>
-				<img class="headimg" src="../contents/temp/head-img.png">
-				<div class="container">
-					<p class="name">悦己者美</p>
-					<p class="text">已经五天啦，继续晒美图，回复得好快啊，几乎看不出来手术的痕迹</p>
-					<div class="img">
-						<img src="../contents/temp/tooth.png">
-						<img src="../contents/temp/tooth.png">
-						<img src="../contents/temp/tooth.png">
-					</div>
-					<div class="info">
-						<span>59分钟前</span>
-						<div class="mess">
-							<img src="../contents/svg/mess.svg">
-							<span>26</span>
-						</div>
-						<div class="see">
-							<img src="../contents/svg/see-grey.svg">
-							<span>265</span>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li>
-				<img class="headimg" src="../contents/temp/head-img.png">
-				<div class="container">
-					<p class="name">悦己者美</p>
-					<p class="text">已经五天啦，继续晒美图，回复得好快啊，几乎看不出来手术的痕迹</p>
-					<div class="img">
-						<img src="../contents/temp/tooth.png">
-						<img src="../contents/temp/tooth.png">
-						<img src="../contents/temp/tooth.png">
-					</div>
-					<div class="info">
-						<span>59分钟前</span>
-						<div class="mess">
-							<img src="../contents/svg/mess.svg">
-							<span>26</span>
-						</div>
-						<div class="see">
-							<img src="../contents/svg/see-grey.svg">
-							<span>265</span>
+							<span ng-bind="post.commentNum"></span>
 						</div>
 					</div>
 				</div>
 			</li>
 		</ul>
 	</div>
-	<div ng-include="'section/bottom-menu.html'"></div>
+	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
 	<div class="has-menu"></div>
+	<div ng-include="'section/bottom-menu.html'"></div>
 	<div ng-include="'section/tip.html'"></div>
 	<div ng-include="'section/loading.html'"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>

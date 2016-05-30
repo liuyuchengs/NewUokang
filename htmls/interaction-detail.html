@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="../stylesheets/dest/main.css">
+	<title>悠康医生</title>
+</head>
+<body  ng-controller="interactionDetailCtrl" data-ng-init="load()">
+	<div class="header">
+		<div class="header-item float-left">
+			<a href="interaction.html">
+				<img src="../contents/svg/back.svg">
+			</a>
+		</div>
+		<div class="title">
+			主题详情
+		</div>
+    </div>
+	<div class="has-header"></div>
+	<div class="inte-detail-content">
+		<div class="userinfo">
+			<img src="../contents/temp/head-img.png">
+			<div class="text">
+				<p>
+					<span class="title">姓名：</span>
+					<span>文慧</span>
+				</p>
+				<p>
+					<span class="title">性别：</span>
+					<span>女</span>
+				</p>
+				<p>
+					<span class="title">年龄：</span>
+					<span>25</span>
+				</p>
+				<p>
+					<span class="title">地区：</span>
+					<span>深圳南山区</span>
+				</p>
+			</div>
+		</div>
+		<div class="description">
+			<div class="title">
+				简介：
+			</div>
+			<div class="text" ng-bind="post.postIntro"></div>
+		</div>
+		<div class="info">
+			<p>术前</p>
+			<div class="imgs">
+				<img ng-repeat="img in  post.list1" ng-src="{{img}}">
+			</div>
+		</div>
+		<div class="info">
+			<p>术后</p>
+			<div class="imgs">
+				<img ng-repeat="img in  post.list2" ng-src="{{img}}">
+			</div>
+		</div>
+		<div class="info no-border">
+			<p>过程</p>
+			<span class="text" ng-bind="post.postContent"></span>
+		</div>
+		<div class="bottom">
+			<div class="item-container">
+				<div class="item">
+					<span ng-bind="post.visitNum"></span>
+					<img src="../contents/svg/see-grey.svg">
+				</div>
+			</div>
+			<div class="item-container">
+				<div class="item">
+					<span ng-bind="post.praiseNum"></span>
+					<img src="../contents/svg/like.svg">
+				</div>
+			</div>
+			<div class="item-container">
+				<div class="item">
+					<span>分享</span>
+					<img src="../contents/svg/share.svg">
+				</div>
+			</div>
+			<div class="item-container">
+				<div class="item">
+					<span>评论</span>
+					<img src="../contents/svg/mess.svg">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-include="'section/tip.html'"></div>
+	<div ng-include="'section/loading.html'"></div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/lib/angular.route.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/interactionDetailCtrl.min.js"></script>
+</body>
+</html>
