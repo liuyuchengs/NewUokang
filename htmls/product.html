@@ -57,6 +57,10 @@
 					<span>销量最高</span>
 					<div></div>
 				</li>
+				<li ng-class="{'li-check':orderParams.disDesc.has}" ng-click="orderSelect('disDesc')">
+					<span>距离最近</span>
+					<div></div>
+				</li>
 			</ul>
 			<ul id="drop-area" class="drop-menu-list" ng-show="hasArea">
 				<li ng-class="{'li-check':areaParams.default.has}" ng-click="areaSelect('default')">
