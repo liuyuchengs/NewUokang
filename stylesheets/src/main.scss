@@ -35,7 +35,7 @@
 .tehui{
 	$line-height:100px;
 	overflow: hidden;
-	position: relative;
+	@include half-border-bottom($line-color);
 	.tehui-qiang{
 		width:70%;
 		height:$line-height;
@@ -70,8 +70,8 @@
 		$item-width:$item-height;
 		width:28%;
 		height:$line-height;
-		position: relative;
 		text-align: center;
+		@include half-border-left($line-color);
 		.item{
 			display: inline-block;
 			text-align: center;
@@ -86,14 +86,6 @@
 			color:#1FC1D9;
 		}
 	}
-	.tehui-tehui::before{
-		border-left: solid 1px $line-color;
-		@include half-border;
-	}
-}
-.tehui::before{
-	border-bottom:solid 1px $line-color;
-	@include half-border;
 }
 //热门专区
 
@@ -101,7 +93,7 @@
 	$hot-height:35px;
 	height:30px;
 	padding-left: 15px;
-	position: relative;
+	@include half-border-bottom($line-color);
 	div{
 		$item-height:20px;
 		height:$item-height;
@@ -111,10 +103,6 @@
 			height:$item-height;
 		}
 	}
-}
-.hot::before{
-	border-bottom: solid 1px $line-color;
-	@include half-border;
 }
 
 /*
@@ -128,12 +116,12 @@
 		text-align: center;
 		z-index: 10;
 		background-color: #fff;
-		position: relative;
+		@include half-border-bottom($line-color);
 		.filter-item{
 			height: 100%;
 			width:33.3%;
 			float: left;
-			position: relative;
+			@include half-border-right($line-color);
 			img{
 				height:15px;
 				width:15px
@@ -146,10 +134,6 @@
 				background-size: contain;
 			}
 		}
-		.filter-item::before{
-			border-right: solid 1px $line-color;
-			@include half-border(right);
-		}
 		.check-color{
 			color:$main-color;
 			div{
@@ -157,10 +141,6 @@
 				background-size: contain;
 			}
 		}
-	}
-	.filter::before{
-		border-bottom: solid 1px $line-color;
-		@include half-border(bottom);
 	}
 	.col-2{
 		.filter-item{
@@ -198,7 +178,7 @@
 				$li-height:40px;
 				line-height: 40px;
 				height:$li-height;
-				position: relative;
+				@include half-border-bottom($line-color);
 				span{
 					float: left;
 				}
@@ -215,10 +195,6 @@
 					@include vertical-center($li-height,20px);
 					float:right;
 				}
-			}
-			li::before{
-				border-bottom: solid 1px $line-color;
-				@include half-border;
 			}
 			.li-check{
 				div{
@@ -240,18 +216,13 @@
 				float:left;
 				text-align: center;
 				padding-top:7px;
-				position: relative;
+				@include half-border-all(right bottom,$line-color);
 				img{
 					height:25px;
 				}
 				p{
 					line-height: 16px;
 				}
-			}
-			.item::before{
-				border-right: solid 1px $line-color;
-				border-bottom: solid 1px $line-color;
-				@include half-border;
 			}
 			.item:nth-child(5n)::before{
 				border-right:none;
@@ -281,7 +252,7 @@
 				.title{
 					height:40px;
 					line-height: 40px;
-					position: relative;
+					@include half-border-bottom($line-color);
 					div{
 						height:20px;
 						width:20px;
@@ -292,10 +263,6 @@
 						float: right;
 					}
 				}
-				.title::before{
-					border-bottom: solid 1px $line-color;
-					@include half-border(bottom);
-				}
 				.select{
 					div{
 						background:url("../../contents/svg/top-arrow.svg");
@@ -305,7 +272,7 @@
 				.contents{
 					margin-top:10px;
 					color:#666;
-					position: relative;
+					@include half-border-bottom($line-color);
 					overflow: hidden;
 					.contents-item{
 						width:25%;
@@ -318,11 +285,7 @@
 						box-sizing: border-box;
 						span{
 							display: block;
-							position: relative;
-						}
-						span::before{
-							border:solid 1px $line-color;
-							@include half-border;
+							@include half-border-all(top right bottom left,$line-color);
 						}
 					}
 
@@ -344,10 +307,6 @@
 					.check{
 						color: #1fc1d9;
 					}
-				}
-				.contents::before{
-					border-bottom: solid 1px $line-color;
-					@include half-border;
 				}
 			}
 		}
@@ -375,7 +334,7 @@
         margin-bottom: 5px;
 		margin-left: $margin;
 		margin-right:$margin;
-		position: relative;
+		@include half-border-bottom($line-color);
         .login-item-icon{
             width:20px;
             height:100%;
@@ -398,10 +357,6 @@
 			}
         }
     }
-	.login-item::before{
-		border-bottom: solid 1px $line-color;
-		@include half-border(bottom);
-	}
 	.login-tip{
 	    height:40px;
 		margin-left: $margin;
@@ -516,12 +471,8 @@
 		}
 		button{
 			@extend .button;
-			position: relative;
 			background-color:#fff;
-		}
-		button::before{
-			border: solid 1px #D7D7D7;
-			@include half-border;
+			@include half-border-all(top right bottom left,#d7d7d7);
 		}
 		.select-btn{
 			@extend .button;
@@ -550,7 +501,7 @@
 		height:$height;
 		overflow: hidden;
 		background-color: #ffffff;
-		position: relative;
+		@include half-border-bottom($line-color);
 		.img{
 			height:$img-height;
 			border-radius: 30px;
@@ -570,17 +521,13 @@
 			float: left;
 		}
 	}
-	.user::before{
-		border-bottom:solid 1px $group-line-color;
-		@include half-border;
-	}
 	.item-group{
 		$item-height:50px;
 		$item-icon-height:20px;
 		list-style: none;
-		position: relative;
 		margin-top: 20px;
 		background-color: #ffffff;
+		@include half-border-all(top bottom,$group-line-color);
 		li{
 			overflow: hidden;
 			.icon{
@@ -593,7 +540,7 @@
 			.text{
 				line-height: $item-height;
 				overflow: hidden;
-				position: relative;
+				@include half-border-top($line-color);
 				span{
 					float: left;
 				}
@@ -604,19 +551,10 @@
 					margin-right: 10px;
 				}
 			}
-			.text::before{
-				border-top:solid 1px $line-color;
-				@include half-border;
-			}
 			.unborder::before{
 				border-top: none;
 			}
 		}
-	}
-	.item-group::before{
-		border-top: solid 1px $group-line-color;
-		border-bottom:solid 1px $group-line-color;
-		@include half-border;
 	}
 }
 
@@ -633,17 +571,11 @@
 			float: left;
 			text-align: center;
 			line-height: 40px;
-			position: relative;
-		}
-		.item::before{
-			border-bottom: solid 1px #dcdcdc;
-			@include half-border;
+			@include half-border-bottom(#dcdcdc);
 		}
 		.select{
 			color:$main-color;
-		}
-		.select::before{
-			border-bottom: solid 2px $main-color;
+			@include half-border-bottom($main-color,2px);
 		}
 	}
 	#order-tip{
@@ -1582,18 +1514,11 @@
 		float:left;
 		text-align: center;
 		line-height: 40px;
-		position: relative;
-	}
-	.nav-item::before{
-		border-right:solid 1px $line-color;
-		border-bottom:solid 1px $line-color;
-		@include half-border;
+		@include half-border-all(right bottom,$line-color);
 	}
 	.select{
 		color:$main-color;
-	}
-	.select::before{
-		border-bottom:solid 2px $main-color;
+		@include half-border-all(bottom,$main-color,2px);
 	}
 }
 .item-container{
@@ -1607,7 +1532,7 @@
 			top:15px;
 			bottom:15px;
 		}
-		border-bottom:solid 1px $line-color;
+		@include half-border-bottom($line-color);
 		img{
 			height:60px;
 			width:60px;
@@ -1635,9 +1560,9 @@
 			left:15px;
 			right:15px;
 		}
-		border-bottom: solid 1px $line-color;
+		@include half-border-bottom($line-color);
 		.date{
-			color:#959595;
+			color:$t-color;
 			margin-top:25px;
 		}
 	}
@@ -1663,19 +1588,12 @@
 		line-height:40px;
 		color:#000;
 		text-decoration: none;
-		position: relative;
 		float: left;
-	}
-	a::before{
-		border-right:solid 1px $line-color;
-		border-bottom: solid 1px $line-color;
-		@include half-border;
+		@include half-border-all(right bottom,$line-color);
 	}
 	.select{
 		color:$main-color;
-	}
-	.select::before{
-		border-bottom:solid 2px $main-color;
+		@include half-border-bottom($line-color,2px);
 	}
 }
 
@@ -2147,7 +2065,7 @@
 	.switch{
 		text-align: center;
 		height:40px;
-		position: relative;
+		@include half-border-bottom($line-color);
 		.item{
 			width:80px;
 			height:40px;
@@ -2157,22 +2075,15 @@
 		}
 		.select{
 			color:$main-color;
+			@include half-border-bottom($main-color,2px);
 		}
-		.select::before{
-			border-bottom:solid 2px $main-color;
-			@include half-border(bottom);
-		}
-	}
-	.switch::before{
-		border-bottom:solid 1px $line-color;
-		@include half-border(bottom);
 	}
 	.card{
 		list-style: none;
 		li{
 			overflow: hidden;
 			padding: 10px 0px;
-			position: relative;
+			@include half-border-bottom($line-color);
 			.headimg{
 				width: 30px;
 				height:30px;
@@ -2219,11 +2130,6 @@
 				}
 			}
 		}
-		li::before{
-			border-bottom:solid 1px $line-color;
-			@include half-border(bottom);
-		}
-
 	}
 }
 
@@ -2234,7 +2140,8 @@
 	padding:0px 10px;
 	.userinfo{
 		padding:10px 0px;
-		position: relative;
+		overflow: hidden;
+		@include half-border-bottom($line-color);
 		img{
 			height:80px;
 			width:80px;
@@ -2249,16 +2156,17 @@
 			.title{
 				color:$t-color;
 			}
+			.post-title{
+				margin-top:10px;
+				color:$t-color;
+			}
 		}
-	}
-	.userinfo::before{
-		border-bottom: solid 1px $line-color;
-		@include half-border(bottom);
 	}
 	.description{
 		padding:10px 0px;
 		line-height:20px;
-		position:relative;
+		overflow: hidden;
+		@include half-border-bottom($line-color);
 		.title{
 			color:$t-color;
 			width:45px;
@@ -2268,13 +2176,9 @@
 			margin-left: 45px;
 		}
 	}
-	.description::before{
-		border-bottom: solid 1px $line-color;
-		@include half-border(bottom);
-	}
 	.info{
 		padding:0px 0px 10px;
-		position:relative;
+		@include half-border-bottom($line-color);
 		p{
 			line-height: 30px;
 		}
@@ -2293,10 +2197,6 @@
 			font-size:$small-font-size;
 		}
 	}
-	.info::before{
-		border-bottom: solid 1px $line-color;
-		@include half-border(bottom);
-	}
 	.no-border::before{
 		border-bottom:none;
 	}
@@ -2312,16 +2212,12 @@
 				width:70px;
 				height:30px;
 				line-height: 30px;
-				position: relative;
+				@include half-border-all(top right bottom right,$line-color);
 				img{
 					width:20px;
 					height:20px;
 					vertical-align: middle;
 				}
-			}
-			.item::before{
-				border: solid 1px #ddd;
-				@include half-border;
 			}
 		}
 	}

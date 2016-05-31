@@ -111,6 +111,23 @@ body {
     padding-bottom: 10px;
     overflow: hidden;
     position: relative; }
+    .prduct-container .item:before {
+      -webkit-transform: scale(0.5);
+      -moz-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+      transform: scale(0.5);
+      -webkit-transform-origin: 0% 0%;
+      -moz-transform-origin: 0% 10%;
+      -ms-transform-origin: 0% 0%;
+      transform-origin: 0% 0%;
+      content: "";
+      position: absolute;
+      box-sizing: border-box;
+      display: block;
+      left: 0;
+      right: -100%;
+      bottom: 0;
+      border-bottom: solid 1px #ddd; }
     .prduct-container .item .item-img {
       height: 80px;
       width: 80px;
@@ -163,24 +180,6 @@ body {
       border: solid 1px #959595; }
       .prduct-container .item .no .btn {
         background-color: #959595; }
-  .prduct-container .item::before {
-    border-bottom: solid 1px #ddd;
-    -webkit-transform: scale(0.5);
-    -moz-transform: scale(0.5);
-    -ms-transform: scale(0.5);
-    transform: scale(0.5);
-    -webkit-transform-origin: 0% 0%;
-    -moz-transform-origin: 0% 10%;
-    -ms-transform-origin: 0% 0%;
-    transform-origin: 0% 0%;
-    content: "";
-    position: absolute;
-    box-sizing: border-box;
-    display: block;
-    top: 0;
-    left: 0;
-    right: -100%;
-    bottom: -100%; }
 
 .button-menu {
   position: fixed;
@@ -259,35 +258,7 @@ body {
       text-align: center;
       padding: 20px;
       position: relative; }
-    .tip .container .tip-text::before {
-      border-bottom: solid 1px #ddd;
-      -webkit-transform: scale(0.5);
-      -moz-transform: scale(0.5);
-      -ms-transform: scale(0.5);
-      transform: scale(0.5);
-      -webkit-transform-origin: 0% 0%;
-      -moz-transform-origin: 0% 10%;
-      -ms-transform-origin: 0% 0%;
-      transform-origin: 0% 0%;
-      content: "";
-      position: absolute;
-      box-sizing: border-box;
-      display: block;
-      top: 0;
-      left: 0;
-      right: -100%;
-      bottom: -100%; }
-    .tip .container .tip-btn {
-      height: 39px;
-      display: -webkit-box;
-      display: flex;
-      flex-direction: row;
-      flex-flow: nowrap;
-      position: relative; }
-      .tip .container .tip-btn .item:nth-child(2) {
-        position: relative; }
-      .tip .container .tip-btn .item:nth-child(2)::before {
-        border-left: solid 1px #ddd;
+      .tip .container .tip-text:before {
         -webkit-transform: scale(0.5);
         -moz-transform: scale(0.5);
         -ms-transform: scale(0.5);
@@ -300,10 +271,36 @@ body {
         position: absolute;
         box-sizing: border-box;
         display: block;
-        top: 0;
         left: 0;
         right: -100%;
-        bottom: -100%; }
+        bottom: 0;
+        border-bottom: solid 1px #ddd; }
+    .tip .container .tip-btn {
+      height: 39px;
+      display: -webkit-box;
+      display: flex;
+      flex-direction: row;
+      flex-flow: nowrap;
+      position: relative; }
+      .tip .container .tip-btn .item:nth-child(2) {
+        position: relative; }
+        .tip .container .tip-btn .item:nth-child(2):before {
+          -webkit-transform: scale(0.5);
+          -moz-transform: scale(0.5);
+          -ms-transform: scale(0.5);
+          transform: scale(0.5);
+          -webkit-transform-origin: 0% 0%;
+          -moz-transform-origin: 0% 10%;
+          -ms-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+          content: "";
+          position: absolute;
+          box-sizing: border-box;
+          display: block;
+          left: 0;
+          top: 0;
+          bottom: -100%;
+          border-left: solid 1px #ddd; }
       .tip .container .tip-btn .item {
         /*解决ios8.0+下不等分问题*/
         width: 100%;

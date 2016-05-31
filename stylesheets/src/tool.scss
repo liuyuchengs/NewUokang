@@ -64,42 +64,88 @@ body{
 	left:($count - 1)*$left;
 }
 //0.5px的全边框，all:伪元素占据页面大小，top,left,right,bottom:上，下，左，右
-@mixin half-border($border:all){
-	-webkit-transform:scale(0.5);
-	-moz-transform: scale(0.5);
-	-ms-transform: scale(0.5);
-	transform: scale(0.5);
-	-webkit-transform-origin:0% 0%;
-	-moz-transform-origin: 0% 10%;
-	-ms-transform-origin: 0% 0%;
-	transform-origin: 0% 0%;
-	content: "";
-	position: absolute;
-	box-sizing: border-box;
-	display: block;
-	@if($border==all){
-		top:0;
-		left:0;
-		right:-100%;
-		bottom:-100%;
-	}@else if($border==bottom){
-		left:0;
-		right:-100%;
-		bottom:0;
-	}@else if($border==top){
-		left:0;
-		right:-100%;
-		top:0;
-	}@else if($border==left){
-		left:0;
-		top:0;
-		bottom:-100%;
-	}@else if($border==right){
-		right:0;
-		top:0;
-		bottom:-100%;
+@mixin half-border($border,$color,$size:1px){
+	position:relative;
+	&:before{
+		-webkit-transform:scale(0.5);
+		-moz-transform: scale(0.5);
+		-ms-transform: scale(0.5);
+		transform: scale(0.5);
+		-webkit-transform-origin:0% 0%;
+		-moz-transform-origin: 0% 10%;
+		-ms-transform-origin: 0% 0%;
+		transform-origin: 0% 0%;
+		content: "";
+		position: absolute;
+		box-sizing: border-box;
+		display: block;
+		@if($border==bottom){
+			left:0;
+			right:-100%;
+			bottom:0;
+			border-bottom:solid $size $color;
+		}@else if($border==top){
+			left:0;
+			right:-100%;
+			top:0;
+			border-top:solid $size $color;
+		}@else if($border==left){
+			left:0;
+			top:0;
+			bottom:-100%;
+			border-left:solid $size $color;
+		}@else if($border==right){
+			right:0;
+			top:0;
+			bottom:-100%;
+			border-right:solid $size $color;
+		}
 	}
 }
+//多0.5px边框
+@mixin half-border-all($directions,$color,$size:1px){
+	position:relative;
+	&:before{
+		-webkit-transform:scale(0.5);
+		-moz-transform: scale(0.5);
+		-ms-transform: scale(0.5);
+		transform: scale(0.5);
+		-webkit-transform-origin:0% 0%;
+		-moz-transform-origin: 0% 10%;
+		-ms-transform-origin: 0% 0%;
+		transform-origin: 0% 0%;
+		content: "";
+		position: absolute;
+		box-sizing: border-box;
+		display: block;
+		top:0;
+		left:0;
+		bottom:-100%;
+		right:-100%;
+		@each $direction in $directions{
+			border-#{$direction}:solid $size $color;
+		}
+	}
+}
+
+//上0.5px边框
+@mixin half-border-top($color,$size:1px){
+	@include half-border(top,$color,$size);
+}
+//下0.5px边框
+@mixin half-border-bottom($color,$size:1px){
+	@include half-border(bottom,$color);
+}
+//左0.5px边框
+@mixin half-border-left($color,$size:1px){
+	@include half-border(left,$color);
+}
+//右0.5px边框
+@mixin half-border-right($color,$size:1px){
+	@include half-border(right,$color);
+}
+
+
 //三角形
 @mixin triangle($direction,$size,$borderColor){
 	height:0px;
@@ -231,7 +277,7 @@ body{
 		padding-top: $con-padding;
 		padding-bottom: $con-padding;
 		overflow: hidden;
-		position: relative;
+		@include half-border-bottom($line-color)
 		.item-img{
 			height:$img-height;
 			width:$img-height;
@@ -302,10 +348,6 @@ body{
 				background-color: #959595;
 			}
 		}
-	}
-	.item::before{
-		border-bottom: solid 1px $line-color;
-		@include half-border;
 	}
 }
 //底部菜单
@@ -400,11 +442,7 @@ body{
 			height:50px;
 			text-align: center;
 			padding: 20px;
-			position: relative;
-		}
-		.tip-text::before{
-			border-bottom: solid 1px $line-color;
-			@include half-border;
+			@include half-border-bottom($line-color);
 		}
 		.tip-btn{
 			height:39px;
@@ -414,11 +452,7 @@ body{
 			flex-flow: nowrap;
 			position: relative;
 			.item:nth-child(2){
-				position: relative;
-			}
-			.item:nth-child(2)::before{
-				border-left:solid 1px $line-color;
-				@include half-border;
+				@include half-border-left($line-color);
 			}
 			.item{
 				/*解决ios8.0+下不等分问题*/
