@@ -25,8 +25,9 @@ $prefix-spec:true !default;
 body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,input{
     margin:0;padding:0;border:0;
 }
-input,button{
+input,button,textarea{
 	font-size: $font-size;
+	font-family: "微软雅黑",Helvetica,Sans-serif;
 }
 body{
 	color:$f-color;
@@ -263,6 +264,18 @@ body{
 	}
 	.header-item-width{
 		width:80px;
+		.btn{
+			width:60px;
+			height:30px;
+			border-radius: 3px;
+			line-height:30px;
+			margin-right:10px;
+			background-color:#fff;
+			color:$main-color;
+			text-align: center;
+			display: inline-block;
+			margin-top:5px;
+		}
 	}
 }
 //产品列表

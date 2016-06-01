@@ -10,8 +10,9 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
   padding: 0;
   border: 0; }
 
-input, button {
-  font-size: 14px; }
+input, button, textarea {
+  font-size: 14px;
+  font-family: "微软雅黑",Helvetica,Sans-serif; }
 
 body {
   color: #333;
@@ -100,6 +101,17 @@ body {
       vertical-align: middle; }
   .header .header-item-width {
     width: 80px; }
+    .header .header-item-width .btn {
+      width: 60px;
+      height: 30px;
+      border-radius: 3px;
+      line-height: 30px;
+      margin-right: 10px;
+      background-color: #fff;
+      color: #1fc1d9;
+      text-align: center;
+      display: inline-block;
+      margin-top: 5px; }
 
 .prduct-container {
   padding-left: 10px;

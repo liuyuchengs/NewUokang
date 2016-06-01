@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="../stylesheets/dest/main.css">
+	<title>悠康医生</title>
+</head>
+<body  ng-controller="writeCtrl" data-ng-init="load()">
+	<div class="header">
+		<div class="header-item float-left">
+			<a href="interaction.html">
+				<img src="../contents/svg/back.svg">
+			</a>
+		</div>
+		<div class="title">
+			发布消息
+		</div>
+    </div>
+	<div class="has-header"></div>
+	<div class="write-content">
+		<div class="item" ng-click="goTo('/new/htmls/write-question.html')">
+			<img src="../contents/svg/ask.svg">
+			<p class="main">发帖提问</p>
+			<p class="sub">仅认证专家才能回答您的问题</p>
+		</div>
+		<div class="item">
+			<img src="../contents/svg/talk.svg">
+			<p class="main">随便聊聊</p>
+			<p class="sub">只要是就医话题，都可以聊</p>
+		</div>
+		<div class="item">
+			<img src="../contents/svg/write-node.svg">
+			<p class="main">写日记</p>
+			<p class="sub">写一篇您的就医日记，分享给其他的美童</p>
+		</div>
+	</div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/lib/angular.route.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/writeCtrl.min.js"></script>
+</body>
+</html>

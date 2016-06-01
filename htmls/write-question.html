@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="../stylesheets/dest/main.css">
+	<title>悠康医生</title>
+</head>
+<body style="background-color:#f2f2f2"  ng-controller="interactionDetailCtrl" data-ng-init="load()">
+	<div class="header">
+		<div class="header-item float-left">
+			<a href="write.html">
+				<img src="../contents/svg/back.svg">
+			</a>
+		</div>
+		<div class="title">
+			向专家提问
+		</div>
+		<div class="header-item header-item-width float-right">
+			<div class="btn">
+				提交
+			</div>
+		</div>
+    </div>
+	<div class="has-header"></div>
+	<div class="question-content">
+		<div class="white-bg">
+			<textarea class="input" placeholder="请在问题中尽量具体地描述您的情况，如年龄、性别、希望得到帮助等"></textarea>
+			<div class="photo">
+				<div class="camare">
+					<img src="../contents/svg/camare.svg">
+				</div>
+				<div class="imgs">
+					<span>可上传九张照片</span>
+				</div>
+			</div>
+		</div>
+		<div class="select-btn">
+			<div class="item">
+				<span>你想整哪里？</span>
+				<div class="drop"></div>
+			</div>
+			<div class="item float-right">
+				<span>照片仅医生可见</span>
+				<div class="check"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

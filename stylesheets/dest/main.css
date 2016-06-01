@@ -10,8 +10,9 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
   padding: 0;
   border: 0; }
 
-input, button {
-  font-size: 14px; }
+input, button, textarea {
+  font-size: 14px;
+  font-family: "微软雅黑",Helvetica,Sans-serif; }
 
 body {
   color: #333;
@@ -100,6 +101,17 @@ body {
       vertical-align: middle; }
   .header .header-item-width {
     width: 80px; }
+    .header .header-item-width .btn {
+      width: 60px;
+      height: 30px;
+      border-radius: 3px;
+      line-height: 30px;
+      margin-right: 10px;
+      background-color: #fff;
+      color: #1fc1d9;
+      text-align: center;
+      display: inline-block;
+      margin-top: 5px; }
 
 .prduct-container {
   padding-left: 10px;
@@ -2518,6 +2530,33 @@ body {
       float: left; }
     .inte-detail-content .description .text {
       margin-left: 45px; }
+  .inte-detail-content .select-item .item {
+    height: 40px;
+    line-height: 40px;
+    color: #1fc1d9;
+    position: relative; }
+    .inte-detail-content .select-item .item:before {
+      -webkit-transform: scale(0.5);
+      -moz-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+      transform: scale(0.5);
+      -webkit-transform-origin: 0% 0%;
+      -moz-transform-origin: 0% 10%;
+      -ms-transform-origin: 0% 0%;
+      transform-origin: 0% 0%;
+      content: "";
+      position: absolute;
+      box-sizing: border-box;
+      display: block;
+      left: 0;
+      right: -100%;
+      bottom: 0;
+      border-bottom: solid 1px #ddd; }
+    .inte-detail-content .select-item .item img {
+      height: 20px;
+      width: 20px;
+      margin-top: 10px;
+      float: right; }
   .inte-detail-content .info {
     padding: 0px 0px 10px;
     position: relative; }
@@ -2551,8 +2590,87 @@ body {
       line-height: 20px;
       color: #999;
       font-size: 12px; }
-  .inte-detail-content .no-border::before {
-    border-bottom: none; }
+  .inte-detail-content .message ul {
+    list-style: none;
+    padding: 10px 0px; }
+    .inte-detail-content .message ul li {
+      padding: 10px 0px;
+      position: relative; }
+      .inte-detail-content .message ul li:before {
+        -webkit-transform: scale(0.5);
+        -moz-transform: scale(0.5);
+        -ms-transform: scale(0.5);
+        transform: scale(0.5);
+        -webkit-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 10%;
+        -ms-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        content: "";
+        position: absolute;
+        box-sizing: border-box;
+        display: block;
+        left: 0;
+        right: -100%;
+        bottom: 0;
+        border-bottom: solid 1px #ddd; }
+      .inte-detail-content .message ul li .head-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        float: left; }
+      .inte-detail-content .message ul li .text {
+        margin-left: 40px; }
+        .inte-detail-content .message ul li .text .name span:first-child {
+          color: #1fc1d9; }
+        .inte-detail-content .message ul li .text .name span:last-child {
+          color: #999;
+          float: right; }
+        .inte-detail-content .message ul li .text .title {
+          color: #999;
+          margin-top: 5px; }
+        .inte-detail-content .message ul li .text .reply {
+          background-color: #f2f2f2;
+          padding: 5px;
+          position: relative;
+          margin-top: 15px;
+          font-size: 12px;
+          color: #999; }
+          .inte-detail-content .message ul li .text .reply .reply-mess {
+            color: #666; }
+        .inte-detail-content .message ul li .text .reply::before {
+          content: "";
+          position: absolute;
+          height: 0px;
+          width: 0px;
+          border: solid 10px #f2f2f2;
+          border-left-color: transparent;
+          border-right-color: transparent;
+          border-top-color: transparent;
+          top: -20px;
+          left: 15px; }
+        .inte-detail-content .message ul li .text .footer {
+          height: 30px;
+          line-height: 30px;
+          margin-top: 20px; }
+          .inte-detail-content .message ul li .text .footer .time {
+            color: #999; }
+          .inte-detail-content .message ul li .text .footer .btn {
+            height: 25px;
+            line-height: 25px;
+            width: 70px;
+            border-radius: 5px;
+            text-align: center;
+            float: right;
+            margin-right: 10px;
+            color: #fff; }
+            .inte-detail-content .message ul li .text .footer .btn img {
+              height: 20px;
+              width: 20px;
+              vertical-align: middle; }
+          .inte-detail-content .message ul li .text .footer .blue {
+            background-color: #94BDFF; }
+          .inte-detail-content .message ul li .text .footer .purple {
+            background-color: #FF9BCE; }
   .inte-detail-content .bottom {
     color: #999;
     margin-bottom: 20px;
@@ -2586,15 +2704,124 @@ body {
           border-top: solid 1px #ddd;
           border-right: solid 1px #ddd;
           border-bottom: solid 1px #ddd;
-          border-right: solid 1px #ddd; }
+          border-left: solid 1px #ddd; }
         .inte-detail-content .bottom .item-container .item img {
           width: 20px;
           height: 20px;
           vertical-align: middle; }
 
-.test {
-  -webkit-box-shadow: 5 5 red;
-  -moz-box-shadow: 5 5 red;
-  -ms-box-shadow: 5 5 red;
-  -o-box-shadow: 5 5 red;
-  box-shadow: 5 5 red; }
+/*
+** 发布信息
+*/
+.write-content {
+  padding: 0px 10px; }
+  .write-content .title {
+    line-height: 40px; }
+  .write-content .item {
+    text-align: center;
+    line-height: 25px;
+    padding: 10px 0px;
+    position: relative; }
+    .write-content .item:before {
+      -webkit-transform: scale(0.5);
+      -moz-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+      transform: scale(0.5);
+      -webkit-transform-origin: 0% 0%;
+      -moz-transform-origin: 0% 10%;
+      -ms-transform-origin: 0% 0%;
+      transform-origin: 0% 0%;
+      content: "";
+      position: absolute;
+      box-sizing: border-box;
+      display: block;
+      left: 0;
+      right: -100%;
+      bottom: 0;
+      border-bottom: solid 1px #ddd; }
+    .write-content .item img {
+      height: 50px;
+      width: 50px; }
+    .write-content .item .main {
+      font-size: 16px; }
+    .write-content .item .sub {
+      color: #999; }
+
+/*
+** 提问
+*/
+.question-content {
+  color: #999; }
+  .question-content .white-bg {
+    background-color: #fff; }
+  .question-content .input {
+    line-height: 25px;
+    height: 120px;
+    width: 100%;
+    padding: 10px 10px;
+    border: none;
+    box-sizing: border-box;
+    color: #999; }
+  .question-content .photo {
+    position: relative;
+    overflow: hidden; }
+    .question-content .photo:before {
+      -webkit-transform: scale(0.5);
+      -moz-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+      transform: scale(0.5);
+      -webkit-transform-origin: 0% 0%;
+      -moz-transform-origin: 0% 10%;
+      -ms-transform-origin: 0% 0%;
+      transform-origin: 0% 0%;
+      content: "";
+      position: absolute;
+      box-sizing: border-box;
+      display: block;
+      left: 0;
+      right: -100%;
+      top: 0;
+      border-top: solid 1px #ddd; }
+    .question-content .photo .camare {
+      margin: 10px 0px 30px 10px;
+      height: 60px;
+      width: 60px;
+      background-color: #f2f2f2;
+      border: dashed 1px #1fc1d9;
+      text-align: center;
+      float: left; }
+      .question-content .photo .camare img {
+        margin: 10px 0px;
+        height: 40px;
+        width: 40px;
+        margin-top: 10px; }
+    .question-content .photo .imgs {
+      margin-left: 80px;
+      margin-top: 10px; }
+  .question-content .select-btn .item {
+    width: 130px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #fff;
+    display: inline-block;
+    border: solid 1px #ddd;
+    border-radius: 3px;
+    margin: 10px; }
+    .question-content .select-btn .item div {
+      height: 20px;
+      width: 20px;
+      display: inline-block;
+      vertical-align: middle; }
+    .question-content .select-btn .item .drop {
+      background: url("../../contents/svg/down-arrow.svg");
+      background-size: contain; }
+    .question-content .select-btn .item .check {
+      background: url("../../contents/svg/check.svg");
+      background-size: contain; }
+  .question-content .select-btn .select .drop {
+    background: url("../../contents/svg/top-arrow.svg");
+    background-size: contain; }
+  .question-content .select-btn .select .check {
+    background: url("../../contents/svg/check-grey.svg");
+    background-size: contain; }

@@ -28,6 +28,20 @@
 				<p class="post-title" ng-bind="post.postName"></p>
 			</div>
 		</div>
+		<div class="select-item">
+			<div class="item">
+				<span>医院名称</span>
+				<img src="../contents/svg/right-arrow.svg">
+			</div>
+			<div class="item">
+				<span>医生</span>
+				<img src="../contents/svg/right-arrow.svg">
+			</div>
+			<div class="item">
+				<span>我也想做</span>
+				<img src="../contents/svg/right-arrow.svg">
+			</div>
+		</div>
 		<div class="description">
 			<div class="title">
 				简介：
@@ -46,9 +60,76 @@
 				<img ng-repeat="img in  post.list2" ng-src="{{img}}">
 			</div>
 		</div>
-		<div class="info no-border">
+		<div class="info">
 			<p>过程</p>
 			<span class="text" ng-bind="post.postContent"></span>
+		</div>
+		<div class="message">
+			<ul>
+				<li ng-repeat="reply in post.commentList">
+					<img class="head-img" ng-src="{{reply.userImage}}">
+					<div class="text">
+						<p class="name">
+							<span ng-bind="reply.userName"></span>
+							<span>{{reply.praiseNum}}楼</span>
+						</p>
+						<p class="title" ng-bind="reply.content"></p>
+						<div class="reply" ng-if="replay.hasReply">
+							<p ng-repeat="mess in reply.repliesMessageList">
+								<span ng-bind="mess.userName"></span>
+								<span class="reply-mess" ng-if="mess.isReply"> 回复 </span>
+								<span ng-bind="mess.replyName">小康康</span>
+								<span>:</span>
+								<span ng-bind="mess.content"></span>
+							</p>
+						</div>
+						<div class="footer">
+							<span class="time" ng-bind="reply.createDateStr"></span>
+							<div class="btn blue">
+								<img src="../contents/svg/like-white.svg">
+								<span>点赞</span>
+							</div>
+							<div class="btn purple" >
+								<img src="../contents/svg/mess-white.svg">
+								<span>回复</span>
+							</div>
+						</div>
+					</div>
+				</li>
+				<!--<li>
+					<img class="head-img" src="../contents/temp/head-img.png">
+					<div class="text">
+						<p class="name">
+							<span>许璐璐</span>
+							<span>2楼</span>
+						</p>
+						<p class="title">
+							已经5天了，继续晒美图，回复得好快啊，几乎看不出来手术的痕迹
+						</p>
+						<div class="reply">
+							<p>
+								<span>小康康</span><span>:</span>
+								<span>真的变美了吗？</span>
+							</p>
+							<p>
+								<span>许璐璐</span><span class="reply-mess"> 回复 </span><span>小康康</span><span>:</span>
+								<span>真的变美了，骗你是小狗,不信你自己去试试</span>
+							</p>
+						</div>
+						<div class="footer">
+							<span class="time">05-18</span>
+							<div class="btn blue">
+								<img src="../contents/svg/like-white.svg">
+								<span>点赞</span>
+							</div>
+							<div class="btn purple" >
+								<img src="../contents/svg/mess-white.svg">
+								<span>回复</span>
+							</div>
+						</div>
+					</div>
+				</li>-->
+			</ul>
 		</div>
 		<div class="bottom">
 			<div class="item-container">

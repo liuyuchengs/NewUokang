@@ -2176,6 +2176,20 @@
 			margin-left: 45px;
 		}
 	}
+	.select-item{
+		.item{
+			height: 40px;
+			line-height: 40px;
+			color:$main-color;
+			@include half-border-bottom($line-color);
+			img{
+				height:20px;
+				width:20px;
+				margin-top:10px;
+				float: right;
+			}
+		}
+	}
 	.info{
 		padding:0px 0px 10px;
 		@include half-border-bottom($line-color);
@@ -2197,8 +2211,90 @@
 			font-size:$small-font-size;
 		}
 	}
-	.no-border::before{
-		border-bottom:none;
+	.message{
+		ul{
+			list-style: none;
+			padding:10px 0px;
+			li{
+				padding:10px 0px;
+				@include half-border-bottom($line-color);
+				.head-img{
+					width: 30px;
+					height: 30px;
+					border-radius: 30px;
+					float: left;
+				}
+				.text{
+					margin-left: 40px;
+					.name{
+						span:first-child{
+							color:$main-color;
+						}
+						span:last-child{
+							color:$t-color;
+							float:right;
+						}
+					}
+					.title{
+						color:$t-color;
+						margin-top:5px;
+					}
+					.reply{
+						background-color:$bg-color;
+						padding:5px;
+						position: relative;
+						margin-top:15px;
+						font-size:$small-font-size;
+						color:$t-color;
+						.reply-mess{
+							color:$s-color;
+						}
+					}
+					.reply::before{
+						content: "";
+						position:absolute;
+						height:0px;
+						width:0px;
+						border: solid 10px $bg-color;
+						border-left-color: transparent;
+						border-right-color:transparent;
+						border-top-color:transparent;
+						top:-20px;
+						left:15px;
+					}
+
+					.footer{
+						height:30px;
+						line-height: 30px;
+						margin-top:20px;
+						.time{
+							color:$t-color;
+						}
+						.btn{
+							height:25px;
+							line-height:25px;
+							width:70px;
+							border-radius: 5px;
+							text-align: center;
+							float:right;
+							margin-right:10px;
+							color:#fff;
+							img{
+								height:20px;
+								width:20px;
+								vertical-align: middle;
+							}
+						}
+						.blue{
+							background-color:#94BDFF;
+						}
+						.purple{
+							background-color:#FF9BCE;
+						}
+					}
+				}
+			}
+		}
 	}
 	.bottom{
 		color:$t-color;
@@ -2212,7 +2308,7 @@
 				width:70px;
 				height:30px;
 				line-height: 30px;
-				@include half-border-all(top right bottom right,$line-color);
+				@include half-border-all(top right bottom left,$line-color);
 				img{
 					width:20px;
 					height:20px;
@@ -2222,6 +2318,108 @@
 		}
 	}
 }
-.test{
-	@include box-shadow(5 5 red);
+
+/*
+** 发布信息
+*/
+.write-content{
+	padding:0px 10px;
+	.title{
+		line-height: 40px;
+	}
+	.item{
+		text-align: center;
+		line-height: 25px;
+		padding:10px 0px;
+		@include half-border-bottom($line-color);
+		img{
+			height:50px;
+			width:50px;
+		}
+		.main{
+			font-size: $large-font-size;
+		}
+		.sub{
+			color:$t-color;
+		}
+	}
+}
+
+/*
+** 提问
+*/
+.question-content{
+	color:$t-color;
+	.white-bg{
+		background-color:#fff;
+	}
+	.input{
+		line-height: 25px;
+		height:120px;
+		width:100%;
+		padding:10px 10px;
+		border: none;
+		box-sizing: border-box;
+		color:$t-color;
+	}
+	.photo{
+		@include half-border-top($line-color);
+		overflow: hidden;
+		.camare{
+			margin:10px 0px 30px 10px;
+			height:60px;
+			width:60px;
+			background-color: $bg-color;
+			border:dashed 1px $main-color;
+			text-align: center;
+			float: left;
+			img{
+				margin:10px 0px;
+				height:40px;
+				width:40px;
+				margin-top:10px;
+			}
+		}
+		.imgs{
+			margin-left:80px;
+			margin-top:10px;
+		}
+	}
+	.select-btn{
+		.item{
+			width:130px;
+			height:30px;
+			line-height:30px;
+			text-align: center;
+			background-color: #fff;
+			display: inline-block;
+			border:solid 1px $line-color;
+			border-radius: 3px;
+			margin:10px;
+			div{
+				height:20px;
+				width:20px;
+				display: inline-block;
+				vertical-align: middle;
+			}
+			.drop{
+				background:url("../../contents/svg/down-arrow.svg");
+				background-size: contain;
+			}
+			.check{
+				background:url("../../contents/svg/check.svg");
+				background-size: contain;
+			}
+		}
+		.select{
+			.drop{
+				background:url("../../contents/svg/top-arrow.svg");
+				background-size: contain;
+			}
+			.check{
+				background:url("../../contents/svg/check-grey.svg");
+				background-size: contain;
+			}
+		}
+	}
 }
