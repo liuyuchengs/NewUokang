@@ -2262,6 +2262,53 @@
 						top:-20px;
 						left:15px;
 					}
+					.input{
+						padding: 10px 0px;
+						@include half-border-bottom($line-color);
+						.input-container{
+							@include half-border-all(top right bottom left,$line-color);
+							height:100px;
+							line-height: 20px;
+							padding: 10px;
+							textarea{
+								outline: none;
+								border: none;
+								width:90%;
+								position: absolute;
+								top:10px;
+								bottom:10px;
+								left:5%
+							}
+						}
+						.btn{
+							margin-top: 10px;
+							overflow: hidden;
+							.btn-item{
+								height:30px;
+								line-height:30px;
+								width:47%;
+								text-align: center;
+							}
+							.btn-cancel{
+								height:30px;
+								line-height:30px;
+								width:47%;
+								text-align: center;
+								float:left;
+								background-color:$bg-color;
+								@include half-border-all(top right bottom left,$line-color);
+							}
+							.btn-color{
+								height:30px;
+								line-height:30px;
+								width:47%;
+								text-align: center;
+								background-color: $main-color;
+								color: #fff;
+								float:right;
+							}
+						}
+					}
 
 					.footer{
 						height:30px;
@@ -2277,7 +2324,7 @@
 							border-radius: 5px;
 							text-align: center;
 							float:right;
-							margin-right:10px;
+							margin-left:10px;
 							color:#fff;
 							img{
 								height:20px;
