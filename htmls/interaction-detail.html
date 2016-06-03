@@ -80,23 +80,32 @@
 								<span class="reply-mess" ng-if="mess.isReply"> 回复 </span>
 								<span ng-bind="mess.replyName" ng-if="mess.isReply">小康康</span>
 								<span>:</span>
-								<span ng-bind="mess.content"></span>
+								<span ng-bind="mess.content" ng-click="showReplyInput(reply.id,mess.userId,mess.userName)"></span>
 							</p>
+						</div>
+						<div class="input" ng-if="reply.hasReplyInput">
+							<div class="input-container">
+								<div class="arrow"><textarea name="name" placeholder="输入你的回复..." ng-model="reply.message"></textarea></div>
+							</div>
+							<div class="btn">
+								<div class="btn-cancel" ng-click="hideReplyInput(reply.id)">取消</div>
+								<div class="btn-color" ng-click="sendReply(reply.message)" >回复</div>
+							</div>
 						</div>
 						<div class="footer">
 							<span class="time" ng-bind="reply.createDateStr"></span>
 							<div class="btn blue" ng-click="thumb(reply.id,'1')">
 								<img src="../contents/svg/like-white.svg">
-								<span ng-bind="reply.praiseInfo"></span>
+								<span ng-bind="reply.praiseNum"></span>
 							</div>
-							<div class="btn purple" >
+							<div class="btn purple" ng-click="showReplyInput(reply.id)">
 								<img src="../contents/svg/mess-white.svg">
 								<span>回复</span>
 							</div>
 						</div>
 					</div>
 				</li>
-				<li>
+				<!--<li>
 					<img class="head-img" src="../contents/temp/head-img.png">
 					<div class="text">
 						<p class="name">
@@ -137,10 +146,19 @@
 							</div>
 						</div>
 					</div>
-				</li>
+				</li>-->
 			</ul>
 		</div>
 		<div class="bottom">
+			<div class="input" ng-if="showPostinput">
+				<div class="input-container">
+					<div class="arrow"><textarea name="name" placeholder="输入你的回复..." ng-model="post.message"></textarea></div>
+				</div>
+				<div class="btn">
+					<div class="btn-cancel" ng-click="hidePostInput()">取消</div>
+					<div class="btn-color" ng-click="sendPost(post.message)" >回复</div>
+				</div>
+			</div>
 			<div class="item-container">
 				<div class="item">
 					<span ng-bind="post.visitNum"></span>
@@ -160,7 +178,7 @@
 				</div>
 			</div>
 			<div class="item-container">
-				<div class="item">
+				<div class="item" ng-click="showPostInput()">
 					<span>评论</span>
 					<img src="../contents/svg/mess.svg">
 				</div>
