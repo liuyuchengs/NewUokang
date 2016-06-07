@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body  ng-controller="interactionDetailCtrl" data-ng-init="load()">
+<body  ng-controller="interactionDetailCtrl" data-ng-init="init()">
 	<div class="header">
 		<div class="header-item float-left">
 			<a href="interaction.html">
@@ -19,6 +19,10 @@
     </div>
 	<div class="has-header"></div>
 	<div class="inte-detail-content">
+		<!--<div class="img-wrap">
+			<span>关闭</span>
+			<img src="../contents/temp/wrap.jpg">
+		</div>-->
 		<div class="userinfo">
 			<img src="../contents/temp/head-img.png">
 			<div class="text">
@@ -29,17 +33,23 @@
 			</div>
 		</div>
 		<div class="select-item">
-			<div class="item">
+			<div class="item" ng-if="post.hospitalName" ng-click="goHospital(post.hospitalId)">
+				<img src="../contents/svg/interaction-hos.svg" class="icon">
 				<span>医院名称</span>
-				<img src="../contents/svg/right-arrow.svg">
+				<img class="arrow" src="../contents/svg/right-arrow.svg">
+				<span class="value" ng-bind="post.hospitalName"></span>
 			</div>
-			<div class="item">
+			<div class="item" ng-if="post.doctorName" ng-click="goDoctor(post.doctorId)">
+				<img src="../contents/svg/interaction-doc.svg" class="icon">
 				<span>医生</span>
-				<img src="../contents/svg/right-arrow.svg">
+				<img class="arrow" src="../contents/svg/right-arrow.svg">
+				<span class="value" ng-bind="post.doctorName"></span>
 			</div>
-			<div class="item">
+			<div class="item" ng-if="post.productName" ng-click="goWant(post.productId)">
+				<img src="../contents/svg/interaction-want.svg" class="icon">
 				<span>我也想做</span>
-				<img src="../contents/svg/right-arrow.svg">
+				<img class="arrow" src="../contents/svg/right-arrow.svg">
+				<span class="value" ng-bind="post.productName">南山</span>
 			</div>
 		</div>
 		<div class="description">
@@ -64,9 +74,46 @@
 			<p>过程</p>
 			<span class="text" ng-bind="post.postContent"></span>
 		</div>
+		<div class="bottom">
+			<div class="bottom-container">
+				<div class="item-container">
+					<div class="item">
+						<span ng-bind="post.visitNum"></span>
+						<img src="../contents/svg/see-grey.svg">
+					</div>
+				</div>
+				<div class="item-container">
+					<div class="item" ng-click="thumb(post.id,'0')">
+						<span ng-bind="post.praiseNum"></span>
+						<img src="../contents/svg/like.svg">
+					</div>
+				</div>
+				<div class="item-container">
+					<div class="item">
+						<span>分享</span>
+						<img src="../contents/svg/share.svg">
+					</div>
+				</div>
+				<div class="item-container">
+					<div class="item" ng-click="showPostInput()">
+						<span>评论</span>
+						<img src="../contents/svg/mess.svg">
+					</div>
+				</div>
+			</div>
+			<div class="input no-bottom" ng-if="showPostinput">
+				<div class="input-container">
+					<div class="arrow"><textarea name="name" placeholder="输入你的回复..." ng-model="post.message"></textarea></div>
+				</div>
+				<div class="btn">
+					<div class="btn-cancel" ng-click="hidePostInput()">取消</div>
+					<div class="btn-color" ng-click="sendPost(post.message)" >回复</div>
+				</div>
+			</div>
+		</div>
 		<div class="message">
 			<ul>
-				<li ng-repeat="reply in post.commentList">
+				<li ng-repeat="reply in replyMess.commentList">
 					<img class="head-img" ng-src="{{reply.userImage}}">
 					<div class="text">
 						<p class="name">
@@ -85,11 +132,11 @@
 						</div>
 						<div class="input" ng-if="reply.hasReplyInput">
 							<div class="input-container">
-								<div class="arrow"><textarea name="name" placeholder="输入你的回复..." ng-model="reply.message"></textarea></div>
+								<div class="arrow"><textarea name="name" placeholder="{{inputStyle}}"  ng-model="reply.message"></textarea></div>
 							</div>
 							<div class="btn">
 								<div class="btn-cancel" ng-click="hideReplyInput(reply.id)">取消</div>
-								<div class="btn-color" ng-click="sendReply(reply.message)" >回复</div>
+								<div class="btn-color" ng-click="sendReply(reply.message,reply.id)" >回复</div>
 							</div>
 						</div>
 						<div class="footer">
@@ -148,41 +195,6 @@
 					</div>
 				</li>-->
 			</ul>
-		</div>
-		<div class="bottom">
-			<div class="input" ng-if="showPostinput">
-				<div class="input-container">
-					<div class="arrow"><textarea name="name" placeholder="输入你的回复..." ng-model="post.message"></textarea></div>
-				</div>
-				<div class="btn">
-					<div class="btn-cancel" ng-click="hidePostInput()">取消</div>
-					<div class="btn-color" ng-click="sendPost(post.message)" >回复</div>
-				</div>
-			</div>
-			<div class="item-container">
-				<div class="item">
-					<span ng-bind="post.visitNum"></span>
-					<img src="../contents/svg/see-grey.svg">
-				</div>
-			</div>
-			<div class="item-container">
-				<div class="item" ng-click="thumb(post.id,'0')">
-					<span ng-bind="post.praiseNum"></span>
-					<img src="../contents/svg/like.svg">
-				</div>
-			</div>
-			<div class="item-container">
-				<div class="item">
-					<span>分享</span>
-					<img src="../contents/svg/share.svg">
-				</div>
-			</div>
-			<div class="item-container">
-				<div class="item" ng-click="showPostInput()">
-					<span>评论</span>
-					<img src="../contents/svg/mess.svg">
-				</div>
-			</div>
 		</div>
 	</div>
 	<div ng-include="'section/tip.html'"></div>

@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body  ng-controller="interactionCtrl" data-ng-init="load()">
+<body  ng-controller="interactionCtrl" data-ng-init="init()">
 	<div class="header">
 		<div class="title">
 			交互
@@ -37,11 +37,11 @@
 						<span ng-bind="post.middTimeStr"></span>
 						<div class="mess">
 							<img src="../contents/svg/mess.svg">
-							<span ng-bind="post.visitNum"></span>
+							<span ng-bind="post.commentNum"></span>
 						</div>
 						<div class="see">
 							<img src="../contents/svg/see-grey.svg">
-							<span ng-bind="post.commentNum"></span>
+							<span ng-bind="post.visitNum"></span>
 						</div>
 					</div>
 				</div>
