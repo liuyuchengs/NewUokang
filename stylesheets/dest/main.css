@@ -2216,6 +2216,22 @@ body {
 /*
 * 医生详细页面
 */
+.doctor-detail-content .select-date {
+  background-color: #fff; }
+  .doctor-detail-content .select-date .arrow {
+    width: 60px;
+    height: 50px;
+    line-height: 50px; }
+  .doctor-detail-content .select-date .width {
+    width: 210px;
+    display: block;
+    margin-left: 60px; }
+    .doctor-detail-content .select-date .width .day-item {
+      text-align: center;
+      height: 50px;
+      line-height: 50px;
+      background-color: #fff; }
+
 .doctor-detail-content .title {
   background-color: #fff;
   padding-left: 10px;

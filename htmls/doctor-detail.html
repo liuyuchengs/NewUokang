@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
+	<link rel="stylesheet" href="../stylesheets/dest/swiper.min.css">
 	<title>悠康医生</title>
 </head>
 <body style="background-color:#EFEFF4" ng-controller="doctorDetailCtrl" data-ng-init="init()">
@@ -19,36 +20,49 @@
     </div>
 	<div class="has-header"></div>
 	<div class="doctor-detail-content">
+		<div class="select-date">
+			<div class="arrow float-left" ng-click="toPage('per')">上一页</div>
+			<div class="arrow float-right" ng-click="toPage('next')">下一页</div>
+			<div class="width">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide day-item">六月一日</div>
+						<div class="swiper-slide day-item">六月二日</div>
+						<div class="swiper-slide day-item">六月三日</div>
+						<div class="swiper-slide day-item">六月四日</div>
+						<div class="swiper-slide day-item">六月五日</div>
+						<div class="swiper-slide day-item">六月六日</div>
+						<div class="swiper-slide day-item">六月七日</div>
+						<div class="swiper-slide day-item">六月八日</div>
+						<div class="swiper-slide day-item">六月九日</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="title">
 			<div class="line">
 				<img src="../contents/temp/doc1.png">
 				<div class="text">
 					<p class="name">
-						<span>林园泽</span>
-						<span>主治医师</span>
+						<span ng-bind="doctorInfo.doctorname"></span>
+						<span ng-bind="doctorInfo.professionTitle"></span>
 					</p>
 					<p class="score">
-						<span>5分</span>
-						<span>25人下单</span>
+						<span ng-bind="doctorInfo.score"></span>
+						<span>{{doctorInfo.sales}}人下单</span>
 						<span>查看评论</span>
 					</p>
-					<p class="address">
-						加德美口腔南山区卓越维港店
-					</p>
+					<p class="address" ng-bind="doctorInfo.position"></p>
 					<p class="use">
 						<span>擅长：</span>
-						<span class="texts">
-							全口无牙及缺牙的种植牙，牙周病治疗(松动牙治疗)，无痛手术，美齿修整，复杂口腔疾病治疗
-						</span>
+						<span class="texts" ng-bind="doctorInfo.hobby"></span>
 					</p>
 				</div>
 			</div>
 		</div>
 		<div class="description" ng-class="{'show-text':hasShowDescription}">
 			<span>医生简介：</span>
-			<span class="text">
-				2003 年毕业于台湾中山口腔医学大学，专精于牙周炎及种植手术之研究，跟随台湾牙周种植手术权威Alan Tuan 教授,定期于美国南加州大学及Nowzari-Tuan Institude 进行牙周及种植手术之技术更新,并跟随美国 Beverly Hills 种植手术专家Hessam Nowzari学习无痛手术,及高阶手术技巧。专精慢性牙周炎（松动牙）治疗及手术，种植牙，口腔自体骨移植，牙周修补手术及全口无牙假牙重建治疗，于2007年在台湾加德美齿科集团设立高端手术门诊，并于2013年成为 华南区 Dentium 牙周种植手术培训专家,定期为华南区医生培训手术，除此之外，林医师更着重于病患的治疗感觉，无压力，不过度治疗，实用治疗，跟病患讨论，是其看诊特点。 美国南加州大学牙周植牙研究所研究员 Nowzari-Tuan Institude 牙周植牙专科医师 台湾口腔重建学会口腔重建植牙专科医师 台湾中山口腔医学大学牙医学士 现职 台湾 加州牙周种植专科门诊总监 深圳 加德美齿科牙周种植总监
-			</span>
+			<span class="text" ng-bind="doctorInfo.workexperience"></span>
 			<span class="show-btn" ng-click="showDescription()" ng-bind="btnValue"></span>
 		</div>
 		<div class="ask-doctor">
@@ -105,6 +119,8 @@
 	</div>
 	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
 	<div ng-include="'section/tip.html'"></div>
+	<script src="../javascripts/lib/jquery.min.js"></script>
+	<script src="../javascripts/lib/swiper.min.js"></script>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/lib/angular.route.min.js"></script>
 	<script src="../javascripts/self/module.min.js"></script>
