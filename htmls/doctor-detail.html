@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="../stylesheets/dest/swiper.min.css">
 	<title>悠康医生</title>
 </head>
-<body style="background-color:#EFEFF4" ng-controller="doctorDetailCtrl" data-ng-init="init()">
+<body style="background-color:#EFEFF4" ng-controller="doctorDetailCtrl" data-ng-init="init()" ng-class="{'overflowhide':time.openSelect}">
 	<div class="header">
 		<div class="header-item float-left">
 			<a href="doctor.html">
@@ -20,28 +20,29 @@
     </div>
 	<div class="has-header"></div>
 	<div class="doctor-detail-content">
-		<div class="select-date">
-			<div class="arrow float-left" ng-click="toPage('per')">上一页</div>
-			<div class="arrow float-right" ng-click="toPage('next')">下一页</div>
-			<div class="width">
-				<div class="swiper-container">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide day-item">六月一日</div>
-						<div class="swiper-slide day-item">六月二日</div>
-						<div class="swiper-slide day-item">六月三日</div>
-						<div class="swiper-slide day-item">六月四日</div>
-						<div class="swiper-slide day-item">六月五日</div>
-						<div class="swiper-slide day-item">六月六日</div>
-						<div class="swiper-slide day-item">六月七日</div>
-						<div class="swiper-slide day-item">六月八日</div>
-						<div class="swiper-slide day-item">六月九日</div>
+		<div class="select-date" ng-show="time.openSelect" >
+			<div class="select-date-container">
+				<div class="day-container">
+					<div class="left-arrow" ng-click="toPage('per',$event)"></div>
+					<div class="right-arrow" ng-click="toPage('next',$event)"></div>
+					<div class="width">
+						<div class="swiper-container">
+							<div class="swiper-wrapper" >
+								<div class="swiper-slide day-item" ng-repeat="day in time.timeList" ng-class="{'select':day.has}" ng-bind="day.value.date" ng-click="switchDay(day.value.date)"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="time-container" ng-repeat="day in time.timeList" ng-show="day.has">
+					<div class="time-item" ng-repeat="time in day.value.timeList" ng-click="selectTime(time.scheduleid,time.starttime,day.value.date)" ng-class="{'select':time.has}">
+						<span ng-bind="time.starttime"></span>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="title">
 			<div class="line">
-				<img src="../contents/temp/doc1.png">
+				<img ng-src="{{doctorInfo.face}}">
 				<div class="text">
 					<p class="name">
 						<span ng-bind="doctorInfo.doctorname"></span>
@@ -68,11 +69,11 @@
 		<div class="ask-doctor">
 			<span>咨询医生</span>
 		</div>
-		<div class="date">
+		<div class="date" ng-click="openSelect()">
 			<span>预约时间</span>
 			<div class="arrow"></div>
-			<div class="time no-border">15:00</div>
-			<div class="time ">6月1日</div>
+			<div class="time no-border" ng-bind="time.selectTime"></div>
+			<div class="time" ng-bind="time.selectDay"></div>
 		</div>
 		<div class="product">
 			<ul>

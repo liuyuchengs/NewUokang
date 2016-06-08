@@ -2293,6 +2293,398 @@ var examHosSuccess = {
     "startIndex":-10
 }
 
+var doctorSche = {
+    "data":[
+        {
+            "date":"2016-06-09",
+            "dateStr":"2016-06-09",
+            "weekDay":"星期四",
+            "timeList":[
+                {
+                    "scheduleid":39614,
+                    "doctorid":null,
+                    "date":"2016-06-09 09:00",
+                    "starttime":"09:00",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39615,
+                    "doctorid":null,
+                    "date":"2016-06-09 09:30",
+                    "starttime":"09:30",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39616,
+                    "doctorid":null,
+                    "date":"2016-06-09 10:00",
+                    "starttime":"10:00",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39617,
+                    "doctorid":null,
+                    "date":"2016-06-09 10:30",
+                    "starttime":"10:30",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39618,
+                    "doctorid":null,
+                    "date":"2016-06-09 11:00",
+                    "starttime":"11:00",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39619,
+                    "doctorid":null,
+                    "date":"2016-06-09 11:30",
+                    "starttime":"11:30",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39620,
+                    "doctorid":null,
+                    "date":"2016-06-09 14:00",
+                    "starttime":"14:00",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39621,
+                    "doctorid":null,
+                    "date":"2016-06-09 14:30",
+                    "starttime":"14:30",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39623,
+                    "doctorid":null,
+                    "date":"2016-06-09 15:00",
+                    "starttime":"15:00",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39625,
+                    "doctorid":null,
+                    "date":"2016-06-09 15:30",
+                    "starttime":"15:30",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39626,
+                    "doctorid":null,
+                    "date":"2016-06-09 16:00",
+                    "starttime":"16:00",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39628,
+                    "doctorid":null,
+                    "date":"2016-06-09 16:30",
+                    "starttime":"16:30",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                }
+            ],
+            "scheduleid":39628
+        },
+        {
+            "date":"2016-06-10",
+            "dateStr":"2016-06-10",
+            "weekDay":"星期五",
+            "timeList":[
+                {
+                    "scheduleid":39622,
+                    "doctorid":null,
+                    "date":"2016-06-10 14:30",
+                    "starttime":"14:30",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39624,
+                    "doctorid":null,
+                    "date":"2016-06-10 15:00",
+                    "starttime":"15:00",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39627,
+                    "doctorid":null,
+                    "date":"2016-06-10 16:00",
+                    "starttime":"16:00",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                },
+                {
+                    "scheduleid":39629,
+                    "doctorid":null,
+                    "date":"2016-06-10 16:30",
+                    "starttime":"16:30",
+                    "endtime":null,
+                    "checked":false,
+                    "numberLimit":null,
+                    "remain":null,
+                    "hospitalId":null
+                }
+            ],
+            "scheduleid":39629
+        },
+		{
+			"date":"2016-06-11",
+			"dateStr":"2016-06-09",
+			"weekDay":"星期四",
+			"timeList":[
+				{
+					"scheduleid":39614,
+					"doctorid":null,
+					"date":"2016-06-09 09:00",
+					"starttime":"09:00",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39615,
+					"doctorid":null,
+					"date":"2016-06-09 09:30",
+					"starttime":"09:30",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39616,
+					"doctorid":null,
+					"date":"2016-06-09 10:00",
+					"starttime":"10:00",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39617,
+					"doctorid":null,
+					"date":"2016-06-09 10:30",
+					"starttime":"10:30",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39618,
+					"doctorid":null,
+					"date":"2016-06-09 11:00",
+					"starttime":"11:00",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39619,
+					"doctorid":null,
+					"date":"2016-06-09 11:30",
+					"starttime":"11:30",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39620,
+					"doctorid":null,
+					"date":"2016-06-09 14:00",
+					"starttime":"14:00",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39621,
+					"doctorid":null,
+					"date":"2016-06-09 14:30",
+					"starttime":"14:30",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39623,
+					"doctorid":null,
+					"date":"2016-06-09 15:00",
+					"starttime":"15:00",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39625,
+					"doctorid":null,
+					"date":"2016-06-09 15:30",
+					"starttime":"15:30",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39626,
+					"doctorid":null,
+					"date":"2016-06-09 16:00",
+					"starttime":"16:00",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39628,
+					"doctorid":null,
+					"date":"2016-06-09 16:30",
+					"starttime":"16:30",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				}
+			],
+			"scheduleid":39628
+		},
+		{
+			"date":"2016-06-12",
+			"dateStr":"2016-06-10",
+			"weekDay":"星期五",
+			"timeList":[
+				{
+					"scheduleid":39622,
+					"doctorid":null,
+					"date":"2016-06-10 14:30",
+					"starttime":"14:30",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39624,
+					"doctorid":null,
+					"date":"2016-06-10 15:00",
+					"starttime":"15:00",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39627,
+					"doctorid":null,
+					"date":"2016-06-10 16:00",
+					"starttime":"16:00",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				},
+				{
+					"scheduleid":39629,
+					"doctorid":null,
+					"date":"2016-06-10 16:30",
+					"starttime":"16:30",
+					"endtime":null,
+					"checked":false,
+					"numberLimit":null,
+					"remain":null,
+					"hospitalId":null
+				}
+			],
+			"scheduleid":39629
+		}
+
+	],
+    "code":0,
+    "message":"成功"
+}
+
 routes.post("/wx/login/wxlogin",function(req,res){
     var userName = req.body.phone;
     var password = req.body.password;
@@ -2379,6 +2771,11 @@ routes.post("/wx/hospital/querylist",function(req,res){
 
 routes.post("/weixin/check/getjsconfig",function(req,res){
 	res.send(examHosSuccess);
+	res.end();
+})
+
+routes.post("/wx/order/querybydoctorid",function(req,res){
+	res.send(doctorSche);
 	res.end();
 })
 

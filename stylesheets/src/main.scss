@@ -1879,23 +1879,105 @@
 */
 .doctor-detail-content{
 	.select-date{
-		background-color: #fff;
-		.arrow{
-			width:60px;
-			height:50px;
-			line-height: 50px;
-		}
-		.width{
-			width:210px;
-			display: block;
-			margin-left:60px;
-			.day-item{
-				text-align: center;
-				height:50px;
-				line-height: 50px;
-				background-color: #fff;
+		position: fixed;
+		top:0px;
+		left:0px;
+		width:100%;
+		height:100%;
+		background-color:rgba(0,0,0,0.3);
+		z-index:30;
+		.select-date-container{
+			width:280px;
+			min-height: 120px;
+			background-color: #fff;
+			padding:10px;
+			box-sizing: border-box;
+			position:absolute;
+			top:50%;
+			left:50%;
+			margin-top:-60px;
+			margin-left:-140px;
+			color:$t-color;
+			border-radius: 3px;
+			.day-container{
+				height:30px;
+				.arrow{
+					height:20px;
+					width:20px;
+					margin-top:5px;
+				}
+				.left-arrow{
+					@extend .arrow;
+					float:left;
+					background:url("../../contents/svg/left-arrow.svg");
+					background-size:contain;
+				}
+				.right-arrow{
+					@extend .arrow;
+					float:right;
+					background:url("../../contents/svg/right-arrow.svg");
+					background-size:contain;
+				}
+				.width{
+					width:220px;
+					float:left;
+					border-bottom:solid 1px $line-color;
+					padding-top:5px;
+					padding-bottom:5px;
+					.day-item{
+						text-align: center;
+						height:20px;
+						line-height: 20px;
+						background-color: #fff;
+						border-right:solid 1px $line-color;
+					}
+					.day-item:last-child{
+						border-right:none;
+					}
+					.select{
+						color:$main-color;
+					}
+				}
+			}
+			.time-container{
+				margin-left: 20px;
+				margin-right:20px;
+				padding-top:10px;
+				.time-item{
+					width:55px;
+					height:30px;
+					line-height: 30px;
+					display: inline-block;
+					text-align: center;
+					float:left;
+					position: relative;
+				}
+				.select{
+					color:$main-color;
+					span::before{
+						position: absolute;
+						content:"";
+						top:0;
+						left:0;
+						bottom:0;
+						right:0;
+						border:solid 1px $main-color;
+						border-color: #1fc1d9;
+					}
+					span::after{
+						position: absolute;
+						content:"";
+						bottom:0;
+						right:0;
+						height:13px;
+						width:13px;
+						background: #1fc1d9 url("../../contents/img/selected.png") no-repeat center;
+						background-size:9px auto;
+					}
+				}
 			}
 		}
+
 	}
 	.title{
 		background-color: #fff;

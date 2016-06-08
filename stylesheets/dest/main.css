@@ -1740,7 +1740,7 @@ body {
           color: #1fc1d9; }
         .detail-content .doc-content li .text .time .selected {
           font-size: 12px; }
-        .detail-content .doc-content li .text .time .arrow {
+        .detail-content .doc-content li .text .time .arrow, .detail-content .doc-content li .text .time .doctor-detail-content .select-date .select-date-container .day-container .left-arrow, .doctor-detail-content .select-date .select-date-container .day-container .detail-content .doc-content li .text .time .left-arrow, .detail-content .doc-content li .text .time .doctor-detail-content .select-date .select-date-container .day-container .right-arrow, .doctor-detail-content .select-date .select-date-container .day-container .detail-content .doc-content li .text .time .right-arrow {
           height: 20px;
           margin-top: 5px;
           float: right; }
@@ -2217,20 +2217,88 @@ body {
 * 医生详细页面
 */
 .doctor-detail-content .select-date {
-  background-color: #fff; }
-  .doctor-detail-content .select-date .arrow {
-    width: 60px;
-    height: 50px;
-    line-height: 50px; }
-  .doctor-detail-content .select-date .width {
-    width: 210px;
-    display: block;
-    margin-left: 60px; }
-    .doctor-detail-content .select-date .width .day-item {
-      text-align: center;
-      height: 50px;
-      line-height: 50px;
-      background-color: #fff; }
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 30; }
+  .doctor-detail-content .select-date .select-date-container {
+    width: 280px;
+    min-height: 120px;
+    background-color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -140px;
+    color: #999;
+    border-radius: 3px; }
+    .doctor-detail-content .select-date .select-date-container .day-container {
+      height: 30px; }
+      .doctor-detail-content .select-date .select-date-container .day-container .arrow, .doctor-detail-content .select-date .select-date-container .day-container .left-arrow, .doctor-detail-content .select-date .select-date-container .day-container .right-arrow {
+        height: 20px;
+        width: 20px;
+        margin-top: 5px; }
+      .doctor-detail-content .select-date .select-date-container .day-container .left-arrow {
+        float: left;
+        background: url("../../contents/svg/left-arrow.svg");
+        background-size: contain; }
+      .doctor-detail-content .select-date .select-date-container .day-container .right-arrow {
+        float: right;
+        background: url("../../contents/svg/right-arrow.svg");
+        background-size: contain; }
+      .doctor-detail-content .select-date .select-date-container .day-container .width {
+        width: 220px;
+        float: left;
+        border-bottom: solid 1px #ddd;
+        padding-top: 5px;
+        padding-bottom: 5px; }
+        .doctor-detail-content .select-date .select-date-container .day-container .width .day-item {
+          text-align: center;
+          height: 20px;
+          line-height: 20px;
+          background-color: #fff;
+          border-right: solid 1px #ddd; }
+        .doctor-detail-content .select-date .select-date-container .day-container .width .day-item:last-child {
+          border-right: none; }
+        .doctor-detail-content .select-date .select-date-container .day-container .width .select {
+          color: #1fc1d9; }
+    .doctor-detail-content .select-date .select-date-container .time-container {
+      margin-left: 20px;
+      margin-right: 20px;
+      padding-top: 10px; }
+      .doctor-detail-content .select-date .select-date-container .time-container .time-item {
+        width: 55px;
+        height: 30px;
+        line-height: 30px;
+        display: inline-block;
+        text-align: center;
+        float: left;
+        position: relative; }
+      .doctor-detail-content .select-date .select-date-container .time-container .select {
+        color: #1fc1d9; }
+        .doctor-detail-content .select-date .select-date-container .time-container .select span::before {
+          position: absolute;
+          content: "";
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          border: solid 1px #1fc1d9;
+          border-color: #1fc1d9; }
+        .doctor-detail-content .select-date .select-date-container .time-container .select span::after {
+          position: absolute;
+          content: "";
+          bottom: 0;
+          right: 0;
+          height: 13px;
+          width: 13px;
+          background: #1fc1d9 url("../../contents/img/selected.png") no-repeat center;
+          background-size: 9px auto; }
 
 .doctor-detail-content .title {
   background-color: #fff;
@@ -2305,7 +2373,7 @@ body {
   line-height: 50px;
   margin-bottom: 20px;
   padding: 0px 10px; }
-  .doctor-detail-content .date .arrow {
+  .doctor-detail-content .date .arrow, .doctor-detail-content .date .select-date .select-date-container .day-container .left-arrow, .doctor-detail-content .select-date .select-date-container .day-container .date .left-arrow, .doctor-detail-content .date .select-date .select-date-container .day-container .right-arrow, .doctor-detail-content .select-date .select-date-container .day-container .date .right-arrow {
     background: url("../../contents/svg/right-arrow.svg");
     background-size: contain;
     float: right;
@@ -2335,7 +2403,7 @@ body {
     padding-bottom: 5px;
     position: relative;
     line-height: 25px; }
-    .doctor-detail-content .product ul li .arrow {
+    .doctor-detail-content .product ul li .arrow, .doctor-detail-content .product ul li .select-date .select-date-container .day-container .left-arrow, .doctor-detail-content .select-date .select-date-container .day-container .product ul li .left-arrow, .doctor-detail-content .product ul li .select-date .select-date-container .day-container .right-arrow, .doctor-detail-content .select-date .select-date-container .day-container .product ul li .right-arrow {
       height: 20px;
       width: 20px;
       position: absolute;
@@ -2560,7 +2628,7 @@ body {
       right: -100%;
       bottom: 0;
       border-bottom: solid 1px #ddd; }
-    .inte-detail-content .select-item .item .arrow {
+    .inte-detail-content .select-item .item .arrow, .inte-detail-content .select-item .item .doctor-detail-content .select-date .select-date-container .day-container .left-arrow, .doctor-detail-content .select-date .select-date-container .day-container .inte-detail-content .select-item .item .left-arrow, .inte-detail-content .select-item .item .doctor-detail-content .select-date .select-date-container .day-container .right-arrow, .doctor-detail-content .select-date .select-date-container .day-container .inte-detail-content .select-item .item .right-arrow {
       height: 20px;
       width: 20px;
       margin-top: 10px;
