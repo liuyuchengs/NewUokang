@@ -14,7 +14,7 @@ var loginSuccess = {
         "gender":null,
         "device":null,
         "password":null,
-        "accessToken":"4f884a60062940cda7484fdaf8f2af3f",
+        "accessToken":"db284606729f481fb48d7bdbb373231b",
         "remark":null,
         "giftCode":1,
         "face":null,
@@ -2688,7 +2688,7 @@ var doctorSche = {
 routes.post("/wx/login/wxlogin",function(req,res){
     var userName = req.body.phone;
     var password = req.body.password;
-    if(userName=="18620369802"&password=="uokang123"){
+    if(userName=="18124792560"&password=="uokang123"){
         res.json(loginSuccess);
     }else{
         res.json(loginError);

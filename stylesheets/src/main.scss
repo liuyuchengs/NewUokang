@@ -1013,6 +1013,22 @@
 ** ******特惠页面******
 */
 .discount-filter{
+	margin:0px 10px;
+	text-align: center;
+	@include half-border-bottom($line-color);
+	div{
+		height:40px;
+		width:80px;
+		line-height:40px;
+		text-align: center;
+		display: inline-block;
+		position: relative;;
+	}
+	.select-color{
+		color:$main-color;
+		border-bottom:solid 2px $main-color;
+	}
+	/*
 	display: -webkit-box;
 	display:flex;
 	flex-wrap: nowrap;
@@ -1033,7 +1049,7 @@
 	.select-color{
 		color:$main-color;
 		border-bottom: solid 2px $main-color;
-	}
+	}*/
 }
 
 /*
@@ -1594,14 +1610,15 @@
 		width:50%;
 		text-align: center;
 		line-height:40px;
-		color:#000;
+		color:#0
+
+		00;
 		text-decoration: none;
 		float: left;
 		@include half-border-all(right bottom,$line-color);
 	}
 	.select{
 		color:$main-color;
-		@include half-border-bottom($line-color,2px);
 	}
 }
 
@@ -2016,8 +2033,22 @@
 				}
 			}
 			.use{
+				height:80px;
+				overflow: hidden;
+				position:relative;
 				.texts{
 					color:$s-color;
+				}
+				.show-btn{
+					color:$green-color;
+					text-decoration: underline;
+					position: absolute;
+					right: 10px;
+					bottom: 0px;
+					background: #fff;
+					display: inline-block;
+					padding-left: 5px;
+					padding-right: 5px;
 				}
 			}
 		}
@@ -2030,6 +2061,7 @@
 		padding:{
 			left:10px;
 			right:10px;
+			top:5px;
 		}
 		.text{
 			color:$s-color;
@@ -2540,15 +2572,15 @@
 ** 发布信息
 */
 .write-content{
-	padding:0px 10px;
 	.title{
 		line-height: 40px;
 	}
 	.item{
+		background-color: #fff;
 		text-align: center;
 		line-height: 25px;
-		padding:10px 0px;
-		@include half-border-bottom($line-color);
+		padding:15px 0px;
+		margin-bottom:15px;
 		img{
 			height:50px;
 			width:50px;
@@ -2639,4 +2671,102 @@
 			}
 		}
 	}
+}
+
+/**
+* 随便说说页面
+*/
+.say-content{
+	.switch{
+		overflow: hidden;
+		.item{
+			height:40px;
+			width:33.33%;
+			display: inline-block;
+			text-align:center;
+			line-height:40px;
+			float:left;
+		}
+		.select{
+			color:$main-color;
+			border-bottom:solid 2px $main-color;
+		}
+	}
+	.product{
+		height:40px;
+		line-height: 40px;
+		background-color:#fff;
+		margin-bottom:10px;
+		span{
+			margin-left:10px;
+		}
+		.icon{
+			height:20px;
+			width:20px;
+			margin-top:10px;
+			margin-right:10px;
+			float:right;
+			background:url("../../contents/svg/right-arrow.svg");
+			background-size: contain;
+		}
+	}
+	.title{
+		background-color:#fff;
+		@include half-border-bottom($line-color);
+		.input-tip{
+			height:30px;
+			width:20%;
+			line-height:30px;
+			float:left;
+			text-align: center;
+		}
+		textarea{
+			width:75%;
+			height:100%;
+			line-height: 30px;
+			border: none;
+			padding:0px;
+			margin:0px;
+			color:$t-color;
+		}
+	}
+	.white-bg{
+		background-color:#fff;
+		.input{
+			line-height: 25px;
+			height:120px;
+			width:100%;
+			padding:10px 10px;
+			border: none;
+			box-sizing: border-box;
+			color:$t-color;
+		}
+		.photo{
+			@include half-border-top($line-color);
+			overflow: hidden;
+			p{
+				text-indent: 10px;
+			}
+			.camare{
+				margin:10px 0px 30px 10px;
+				height:60px;
+				width:60px;
+				background-color: $bg-color;
+				border:dashed 1px $main-color;
+				text-align: center;
+				float: left;
+				img{
+					margin:10px 0px;
+					height:40px;
+					width:40px;
+					margin-top:10px;
+				}
+			}
+			.imgs{
+				margin-left:80px;
+				margin-top:10px;
+			}
+		}
+	}
+
 }

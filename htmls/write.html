@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body  ng-controller="writeCtrl" data-ng-init="load()">
+<body style="background-color:#EFEFF4" ng-controller="writeCtrl" data-ng-init="load()">
 	<div class="header">
 		<div class="header-item float-left">
 			<a href="interaction.html">
@@ -19,22 +19,18 @@
     </div>
 	<div class="has-header"></div>
 	<div class="write-content">
-		<div class="item" ng-click="goTo('/new/htmls/write-question.html')">
-			<img src="../contents/svg/ask.svg">
-			<p class="main">发帖提问</p>
-			<p class="sub">仅认证专家才能回答您的问题</p>
-		</div>
-		<div class="item">
+		<div class="item"  ng-click="goTo('/new/htmls/write-say.html')">
 			<img src="../contents/svg/talk.svg">
 			<p class="main">随便聊聊</p>
-			<p class="sub">只要是就医话题，都可以聊</p>
+			<p class="sub">来分享你的健康心得吧</p>
 		</div>
-		<div class="item">
+		<div class="item"  ng-click="goTo('/new/htmls/write-note.html')">
 			<img src="../contents/svg/write-node.svg">
 			<p class="main">写日记</p>
-			<p class="sub">写一篇您的就医日记，分享给其他的美童</p>
+			<p class="sub">这里有聊不完的健康话题</p>
 		</div>
 	</div>
+	<div ng-include="'section/tip.html'"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/lib/angular.route.min.js"></script>
 	<script src="../javascripts/self/module.min.js"></script>

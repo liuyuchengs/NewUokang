@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="../stylesheets/dest/main.css">
+	<title>悠康医生</title>
+</head>
+<body style="background-color:#EFEFF4" ng-controller="writeCtrl" data-ng-init="load()">
+	<div class="header">
+		<div class="header-item float-left">
+			<a href="write.html">
+				<img src="../contents/svg/back.svg">
+			</a>
+		</div>
+		<div class="title">
+			随便说说
+		</div>
+		<div class="header-item header-item-width float-right" ng-click="addPost()">
+			发布
+		</div>
+    </div>
+	<div class="has-header"></div>
+	<div class="say-content">
+		<div class="switch">
+			<div class="item" ng-class="{'select':switchParams.kanya.has}" ng-click="switch('kanya')">看牙</div>
+			<div class="item" ng-class="{'select':switchParams.qiumei.has}" ng-click="switch('qiumei')">求美</div>
+			<div class="item" ng-class="{'select':switchParams.yunsheng.has}" ng-click="switch('yunsheng')">孕·生</div>
+		</div>
+		<div class="title">
+			<div class="input-tip">标题</div>
+			<textarea  placeholder="(20字符以内)" ng-model="queryParams.postName"></textarea>
+		</div>
+		<div class="white-bg">
+			<textarea class="input" placeholder="想写点什么呢" ng-model="queryParams.postContent"></textarea>
+			<div class="photo">
+				<div class="camare">
+					<img src="../contents/svg/camare.svg">
+				</div>
+				<div class="imgs">
+					<span>添加照片</span>
+				</div>
+				<input type="file">
+			</div>
+		</div>
+	</div>
+	<div ng-include="'section/tip.html'"></div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/lib/angular.route.min.js"></script>
+	<script src="../javascripts/self/module.min.js"></script>
+	<script src="../javascripts/self/writeCtrl.min.js"></script>
+</body>
+</html>
