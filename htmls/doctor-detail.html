@@ -53,21 +53,21 @@
 						<span>{{doctorInfo.sales}}人下单</span>
 						<span>查看评论</span>
 					</p>
-					<p class="address" ng-bind="doctorInfo.position"></p>
-					<p class="use">
+					<p class="address" ng-bind="doctorInfo.hospitalname"></p>
+					<p class="use" ng-class="{'show-text':use.has}">
 						<span>擅长：</span>
 						<span class="texts" ng-bind="doctorInfo.hobby"></span>
-						<span class="show-btn" ng-click="showDescription()" ng-bind="btnValue"></span>
+						<span class="show-btn" ng-click="showUse()" ng-bind="use.val"></span>
 					</p>
 				</div>
 			</div>
 		</div>
-		<div class="description" ng-class="{'show-text':hasShowDescription}">
+		<div class="description" ng-class="{'show-text':description.has}">
 			<span>医生简介：</span>
 			<span class="text" ng-bind="doctorInfo.workexperience"></span>
-			<span class="show-btn" ng-click="showDescription()" ng-bind="btnValue"></span>
+			<span class="show-btn" ng-click="showDescription()" ng-bind="description.val"></span>
 		</div>
-		<div class="ask-doctor">
+		<div class="ask-doctor" ng-click="ask()">
 			<span>咨询医生</span>
 		</div>
 		<div class="date" ng-click="openSelect()">
@@ -78,41 +78,16 @@
 		</div>
 		<div class="product">
 			<ul>
-				<li>
-					<div class="arrow"></div>
-					<p class="item-title">全口牙种植重建</p>
-					<p class="sales">15人下单</p>
+				<li ng-repeat="product in doctorInfo.dentallist" ng-click="orderDetail(product.id,product.title,product.standPrice)">
+					<div class="arrow" ></div>
+					<p class="item-title" ng-bind="product.title"></p>
+					<p class="sales">{{product.sales}}人下单</p>
 					<p class="item-money">
 						<span class="dealMoney">
-							￥18500 元/颗
+							￥{{product.preferPrice}}{{product.preferPriceType}}
 						</span>
 						<span class="price">
-							￥22500
-						</span>
-					</p>
-				</li>
-				<li>
-					<div class="arrow"></div>
-					<p class="item-title">全口牙种植重建</p>
-					<p class="sales">15人下单</p>
-					<p class="item-money">
-						<span class="dealMoney">
-							￥18500 元/颗
-						</span>
-						<span class="price">
-							￥22500
-						</span>
-					</p>
-				</li><li>
-					<div class="arrow"></div>
-					<p class="item-title">全口牙种植重建</p>
-					<p class="sales">15人下单</p>
-					<p class="item-money">
-						<span class="dealMoney">
-							￥18500 元/颗
-						</span>
-						<span class="price">
-							￥22500
+							￥{{product.standPrice}}
 						</span>
 					</p>
 				</li>

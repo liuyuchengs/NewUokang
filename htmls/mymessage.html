@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="../stylesheets/dest/main.css">
+	<title>悠康医生</title>
+</head>
+<body ng-controller="askDoctorCtrl" data-ng-init="load()">
+	<div class="header">
+		<div class="header-item float-left">
+			<a href="user.html">
+				<img src="../contents/svg/back.svg">
+			</a>
+		</div>
+		<div class="title">
+			我的消息
+		</div>
+    </div>
+	<div class="has-header"></div>
+	<div class="message-content">
+		<div class="switch">
+			<div class="item select">回复</div>
+			<div class="item" ng-class="{'select':switchParams.yunsheng.has}" ng-click="switch('yunsheng')">通知</div>
+		</div>
+	</div>
+</body>
+</html>

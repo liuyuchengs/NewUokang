@@ -14,9 +14,9 @@
 			</a>
 		</div>
 		<div class="title">
-			随便说说
+			随便聊聊
 		</div>
-		<div class="header-item header-item-width float-right" ng-click="addPost()">
+		<div class="header-item header-item-width float-right" ng-click="addSayPost()">
 			发布
 		</div>
     </div>
@@ -34,17 +34,49 @@
 		<div class="white-bg">
 			<textarea class="input" placeholder="想写点什么呢" ng-model="queryParams.postContent"></textarea>
 			<div class="photo">
-				<div class="camare">
+				<div class="camare" ng-click="chooseSayPic()">
 					<img src="../contents/svg/camare.svg">
 				</div>
-				<div class="imgs">
-					<span>添加照片</span>
+				<div class="imgs" >
+					<p id="tip" ng-if="noSelect">添加照片(最多可上传6张照片)</p>
+					<div class="item" ng-show="beforeParams.input1.has">
+						<input type="file" id="input1" class="input-item" accept="image/png,image/jpeg">
+						<img id="img1" class="display-img" ng-src="{{beforeParams.input1.url}}" accept="image/png,image/jpeg">
+						<img src="../contents/svg/delete.svg" class="icon" ng-click="removeBefore('input1')" accept="image/png,image/jpeg">
+					</div>
+					<div class="item" ng-show="beforeParams.input2.has">
+						<input type="file" id="input2" class="input-item">
+						<img id="img1" class="display-img" ng-src="{{beforeParams.input2.url}}">
+						<img src="../contents/svg/delete.svg" class="icon" ng-click="removeBefore('input2')">
+					</div>
+					<div class="item" ng-show="beforeParams.input3.has">
+						<input type="file" id="input3" class="input-item">
+						<img id="img1" class="display-img" ng-src="{{beforeParams.input3.url}}">
+						<img src="../contents/svg/delete.svg" class="icon" ng-click="removeBefore('input3')">
+					</div>
+					<div class="item" ng-show="beforeParams.input4.has">
+						<input type="file" id="input4" class="input-item" accept="image/png,image/jpeg">
+						<img id="img1" class="display-img" ng-src="{{beforeParams.input4.url}}" accept="image/png,image/jpeg">
+						<img src="../contents/svg/delete.svg" class="icon" ng-click="removeBefore('input4')" accept="image/png,image/jpeg">
+					</div>
+					<div class="item" ng-show="beforeParams.input5.has">
+						<input type="file" id="input5" class="input-item">
+						<img id="img1" class="display-img" ng-src="{{beforeParams.input5.url}}">
+						<img src="../contents/svg/delete.svg" class="icon" ng-click="removeBefore('input5')">
+					</div>
+					<div class="item" ng-show="beforeParams.input6.has">
+						<input type="file" id="input6" class="input-item">
+						<img id="img1" class="display-img" ng-src="{{beforeParams.input6.url}}">
+						<img src="../contents/svg/delete.svg" class="icon" ng-click="removeBefore('input6')">
+					</div>
 				</div>
-				<input type="file">
+				<img id="display">
 			</div>
 		</div>
 	</div>
+	<div ng-include="'section/uploading.html'"></div>
 	<div ng-include="'section/tip.html'"></div>
+	<script src="../javascripts/lib/jquery.min.js"></script>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/lib/angular.route.min.js"></script>
 	<script src="../javascripts/self/module.min.js"></script>

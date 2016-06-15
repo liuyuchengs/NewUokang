@@ -23,31 +23,11 @@
 	<div class="has-header"></div>
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
-		   <div class="swiper-slide">
-			   <a ng-href="{{banners[0].url}}" >
-				   <img class="swiper-img" ng-src="{{banners[0].path}}">
+		   <div class="swiper-slide" ng-repeat="banner in banners">
+			   <a ng-href="{{banner.url}}" >
+				   <img class="swiper-img" ng-src="{{banner.path}}" ng-style="imgStyle">
 			   </a>
 		   </div>
-		   <div class="swiper-slide">
-			  <a ng-href="{{banners[1].url}}" >
-				  <img class="swiper-img" ng-src="{{banners[1].path}}">
-			  </a>
-		  </div>
-		  <div class="swiper-slide">
-			  <a ng-href="{{banners[2].url}}" >
-				  <img class="swiper-img" ng-src="{{banners[2].path}}">
-			  </a>
-		  </div>
-		  <div class="swiper-slide">
-			  <a ng-href="{{banners[3].url}}" >
-				  <img class="swiper-img" ng-src="{{banners[3].path}}">
-			  </a>
-		  </div>
-		  <div class="swiper-slide">
-			  <a ng-href="{{banners[4].url}}" >
-				  <img class="swiper-img" ng-src="{{banners[4].path}}">
-			  </a>
-		  </div>
 	   </div>
 	   <div class="swiper-pagination"></div>
 	</div>
@@ -155,20 +135,6 @@
 	<script src="../javascripts/self/module.min.js"></script>
 	<script src="../javascripts/self/homeCtrl.min.js"></script>
 	<script>
-		$(function(){
-			//根据设备宽度初始化图片大小
-			var width = screen.width;
-			$(".swiper-img").each(function(index,element){
-				element.style.width = width+"px";
-			});
-			//初始化swiper
-			var myswiper = new Swiper(".swiper-container",{
-				loop: false,
-				pagination: '.swiper-pagination',
-				autoplay: 5000,
-				autoplayDisableOnInteraction:false,
-			})
-		})
 	</script>
 </body>
 </html>

@@ -10,6 +10,7 @@
 	$type-line-height:100px;
 	$type-item-height:80px;
 	$type-item-width:80px;
+	@include half-border-all(bottom,$line-color);
 	.type-line{
 		height:$type-line-height;
 		position: relative;
@@ -35,7 +36,7 @@
 .tehui{
 	$line-height:100px;
 	overflow: hidden;
-	@include half-border-bottom($line-color);
+	@include half-border-all(top bottom,$line-color);
 	.tehui-qiang{
 		width:70%;
 		height:$line-height;
@@ -501,15 +502,13 @@
 ** ******个人页面******
 */
 .user-content{
-	$group-line-color:#dcdcdc;
 	.user{
 		$height:80px;
 		$img-height:60px;
 		$icon-height:20px;
-		height:$height;
 		overflow: hidden;
 		background-color: #ffffff;
-		@include half-border-bottom($line-color);
+		@include half-border-all(bottom,$line-color);
 		.img{
 			height:$img-height;
 			border-radius: 30px;
@@ -535,7 +534,7 @@
 		list-style: none;
 		margin-top: 20px;
 		background-color: #ffffff;
-		@include half-border-all(top bottom,$group-line-color);
+		@include half-border-all(top bottom,$line-color);
 		li{
 			overflow: hidden;
 			.icon{
@@ -571,7 +570,6 @@
 */
 .myorder-content{
 	.filter{
-		height:40px;
 		background-color:#ffffff;
 		overflow: hidden;
 		.item{
@@ -579,11 +577,11 @@
 			float: left;
 			text-align: center;
 			line-height: 40px;
-			@include half-border-bottom(#dcdcdc);
+			border-bottom:solid 2px #fff;
 		}
 		.select{
 			color:$main-color;
-			@include half-border-bottom($main-color,2px);
+			border-bottom:solid 2px $main-color;
 		}
 	}
 	#order-tip{
@@ -603,14 +601,13 @@
 	    margin:0px;
 		li{
 		    margin:15px 8px 0px 8px;
-		    border:solid 1px #dcdcdc;
+		    border:solid 1px $line-color;
 		    border-radius:5px;
 		    padding:0 10px;
 		    background-color: white;
 			.order-list-header{
 			    height:40px;
 			    line-height:40px;
-
 				span:nth-child(1),.order-list-header span:nth-child(2){
 				    float: left;
 				}
@@ -624,8 +621,7 @@
 			}
 			.order-list-content{
 			    line-height: 25px;
-			    border-top:solid 1px #dcdcdc;
-			    border-bottom:solid 1px #dcdcdc;
+			    @include half-border-all(top bottom,$line-color);
 			}
 			.order-list-footer{
 				$footer-height:40px;
@@ -795,7 +791,6 @@
 ** ******个人信息页面******
 */
 .userinfo-content{
-	$group-line-color:#dcdcdc;
 	.img-item{
 		$height:80px;
 		$img-height:60px;
@@ -803,7 +798,7 @@
 		height:$height;
 		overflow: hidden;
 		background-color: #ffffff;
-		border-bottom:solid 1px $group-line-color;
+		@include half-border-all(bottom,$line-color);
 		.img{
 			height:$img-height;
 			border-radius: 5px;
@@ -828,8 +823,7 @@
 		$item-height:50px;
 		$item-icon-height:20px;
 		list-style: none;
-		border-top: solid 1px $group-line-color;
-		border-bottom:solid 1px $group-line-color;
+		@include half-border-all(top bottom,$line-color);
 		margin-top: 20px;
 		background-color: #ffffff;
 		li{
@@ -838,7 +832,7 @@
 			.text{
 				line-height: $item-height;
 				overflow: hidden;
-				border-top:solid 1px $line-color;
+				@include half-border-top($line-color);
 				span:nth-child(1){
 					float: left;
 				}
@@ -1060,7 +1054,7 @@
 		list-style: none;
 		padding:0px 10px 0px 10px;
 		li{
-			border-bottom: solid 1px $line-color;
+			@include half-border-bottom($line-color);
 			line-height: 35px;
 			.title{
 				width:80px;
@@ -1334,12 +1328,11 @@
 		padding-top:15px;
 		list-style: none;
 		background-color:#fff;
-		border-top: solid 1px #dcdcdc;
-		border-bottom: solid 1px #dcdcdc;
+		@include half-border-all(top bottom,$line-color);
 		.product-header{
 			height:30px;
 			line-height: 30px;
-			border-bottom: solid 1px $line-color;
+			@include half-border-bottom($line-color);
 			margin-left: 10px;
 			margin-right:10px;
 		}
@@ -1352,7 +1345,7 @@
 			}
 			.text{
 				margin-left: 80px;
-				border-bottom:solid 1px $line-color;
+				@include half-border-bottom($line-color);
 				.text-header{
 					margin-bottom: 10px;
 					.score{
@@ -1401,20 +1394,19 @@
 		}
 		li:last-child{
 			.text{
-				border: none;
+				@include half-border-bottom(#fff);
 			}
 		}
 	}
 	.product{
 		margin-top:20px;
 		background-color:#fff;
-		border-top: solid 1px #dcdcdc;
-		border-bottom: solid 1px #dcdcdc;
+		@include half-border-all(top bottom,$line-color);
 		padding:15px;
 		.product-header{
 			height:30px;
 			line-height: 30px;
-			border-bottom: solid 1px $line-color;
+			@include half-border-bottom($line-color);
 		}
 		.img{
 			padding-top: 10px;
@@ -1452,7 +1444,7 @@
 		}
 		.hos-title{
 			padding-bottom:10px;
-			border-bottom:solid 1px $line-color;
+			@include half-border-bottom($line-color);
 			.address{
 				font-size: $small-font-size;
 				color:#959595;
@@ -1481,7 +1473,7 @@
 		list-style: none;
 		margin-top: 50px;
 		li{
-			border-bottom:solid 1px $line-color;
+			@include half-border-bottom($line-color);
 			position: relative;
 			.day{
 				width:120px;
@@ -1499,7 +1491,7 @@
 				.item{
 					height:40px;
 					line-height: 40px;
-					border-bottom:solid 1px $line-color;
+					@include half-border-bottom($line-color);
 					margin-right:10px;
 				}
 				.item:last-child{
@@ -1610,9 +1602,7 @@
 		width:50%;
 		text-align: center;
 		line-height:40px;
-		color:#0
-
-		00;
+		color:$f-color;
 		text-decoration: none;
 		float: left;
 		@include half-border-all(right bottom,$line-color);
@@ -1678,7 +1668,7 @@
 				.title{
 					height:40px;
 					line-height: 40px;
-					border-bottom:solid 1px $line-color;
+					@include half-border-bottom($line-color);
 				}
 				.text{
 					color:#959595;
@@ -1690,7 +1680,7 @@
 				.title{
 					height:40px;
 					line-height: 40px;
-					border-bottom:solid 1px $line-color;
+					@include half-border-bottom($line-color);
 				}
 				.items{
 					color:#959595;
@@ -1714,7 +1704,7 @@
 				}
 			}
 			.title{
-				border-bottom: solid 1px $line-color;
+				@include half-border-bottom($line-color);
 				.marginPosition{
 					margin:{
 						top:10px;
@@ -2033,7 +2023,7 @@
 				}
 			}
 			.use{
-				height:80px;
+				height: 40px;
 				overflow: hidden;
 				position:relative;
 				.texts{
@@ -2043,13 +2033,16 @@
 					color:$green-color;
 					text-decoration: underline;
 					position: absolute;
-					right: 10px;
+					right: 0px;
 					bottom: 0px;
 					background: #fff;
 					display: inline-block;
 					padding-left: 5px;
 					padding-right: 5px;
 				}
+			}
+			.show-text{
+				height:auto;
 			}
 		}
 	}
@@ -2147,6 +2140,11 @@
 					margin-top:-10px;
 					background:url("../../contents/svg/right-arrow.svg");
 					background-size:contain;
+				}
+				.item-title{
+					white-space: nowrap;
+    				overflow: hidden;
+					text-overflow: ellipsis;
 				}
 				.sales{
 					color:$t-color;
@@ -2287,6 +2285,7 @@
 		}
 		.text{
 			margin-left:100px;
+			position: relative;
 			p{
 				line-height: 20px;
 			}
@@ -2296,6 +2295,37 @@
 			.post-title{
 				margin-top:10px;
 				color:$t-color;
+			}
+			.follow{
+				position: absolute;
+				top:0px;
+				right:0px;
+				padding: 0px 5px;
+				height:26px;
+				line-height: 26px;
+				border: solid 1px $main-color;
+				color:$main-color;
+				.icon{
+					display: inline-block;
+					height:15px;
+					width:15px;
+					margin-top:-3px;
+					vertical-align: middle;
+					background:url("../../contents/svg/jia.svg");
+					background-size: contain;
+				}
+				.txt{
+					display: inline-block;
+					line-height: 26px;
+				}
+			}
+			.select{
+				color:$t-color;
+				border-color:$t-color;
+				.icon{
+					background:url("../../contents/svg/check-mark.svg");
+					background-size: contain;
+				}
 			}
 		}
 	}
@@ -2544,7 +2574,7 @@
 		}
 		.no-bottom{
 			@include half-border-bottom(#fff);
-			padding:10px 0px 0px;
+			padding:10px 0px 2px;
 		}
 		.bottom-container{
 			overflow: hidden;
@@ -2634,43 +2664,6 @@
 			margin-top:10px;
 		}
 	}
-	.select-btn{
-		.item{
-			width:130px;
-			height:30px;
-			line-height:30px;
-			text-align: center;
-			background-color: #fff;
-			display: inline-block;
-			border:solid 1px $line-color;
-			border-radius: 3px;
-			margin:10px;
-			div{
-				height:20px;
-				width:20px;
-				display: inline-block;
-				vertical-align: middle;
-			}
-			.drop{
-				background:url("../../contents/svg/down-arrow.svg");
-				background-size: contain;
-			}
-			.check{
-				background:url("../../contents/svg/check.svg");
-				background-size: contain;
-			}
-		}
-		.select{
-			.drop{
-				background:url("../../contents/svg/top-arrow.svg");
-				background-size: contain;
-			}
-			.check{
-				background:url("../../contents/svg/check-grey.svg");
-				background-size: contain;
-			}
-		}
-	}
 }
 
 /**
@@ -2693,21 +2686,75 @@
 		}
 	}
 	.product{
-		height:40px;
-		line-height: 40px;
-		background-color:#fff;
 		margin-bottom:10px;
-		span{
-			margin-left:10px;
+		background-color:#fff;
+		.select-title{
+			height:40px;
+			line-height: 40px;
+			span{
+				margin-left:10px;
+			}
+			.icon{
+				height:20px;
+				width:20px;
+				margin-top:10px;
+				margin-right:10px;
+				float:right;
+				background:url("../../contents/svg/down-arrow.svg");
+				background-size: contain;
+			}
+			.txt{
+				color:$main-color;
+				line-height: 40px;
+				float:right;
+				margin-right: 5px;
+				width:200px;
+				text-align: right;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
 		}
-		.icon{
-			height:20px;
-			width:20px;
-			margin-top:10px;
-			margin-right:10px;
-			float:right;
-			background:url("../../contents/svg/right-arrow.svg");
-			background-size: contain;
+		.select{
+			.icon{
+				background:url("../../contents/svg/top-arrow.svg");
+				background-size: contain;
+			}
+		}
+		.select-product{
+			ul{
+				list-style: none;
+				padding:0px 10px;
+				li{
+					height:40px;
+					line-height: 40px;
+					@include half-border-top($line-color);
+					.txt{
+						margin-right:30px;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						span:first-child{
+							margin-right:10px;
+						}
+					}
+					.icon{
+						height:20px;
+						width:20px;
+						margin-top:10px;
+						background:url("../../contents/svg/uncheck.svg");
+						background-size: contain;
+						float: right;
+					}
+				}
+				.select{
+					color:$main-color;
+					.icon{
+						background:url("../../contents/svg/check.svg");
+						background-size:contain;
+					}
+				}
+			}
 		}
 	}
 	.title{
@@ -2718,7 +2765,7 @@
 			width:20%;
 			line-height:30px;
 			float:left;
-			text-align: center;
+			text-indent:10px;
 		}
 		textarea{
 			width:75%;
@@ -2765,8 +2812,75 @@
 			.imgs{
 				margin-left:80px;
 				margin-top:10px;
+				.item{
+					position: relative;
+					display:inline-block;
+					.input-item{
+						display: none;
+					}
+					.display-img{
+						height:60px;
+						width:70px;
+					}
+					.display{
+						display: inline-block;
+					}
+					.icon{
+						height:20px;
+						width:20px;
+						position: absolute;
+						right:0px;
+						top:0px;
+					}
+				}
 			}
 		}
 	}
+	.choose{
+		height:40px;
+		line-height:40px;
+		background-color: #fff;
+		margin-top:10px;
+		.icon{
+			height:16px;
+			width:16px;
+			display: inline-block;
+			margin-top:12px;
+			background:url("../../contents/svg/check-grey.svg");
+			background-size: contain;
+			float:left;
+			margin-left: 10px;
+		}
+		.txt{
+			float:left;
+		}
+	}
+	.select{
+		.icon{
+			background:url("../../contents/svg/check.svg");
+			background-size: contain;
+		}
+	}
+}
 
+/*
+* 我的消息页面
+*/
+.message-content{
+	.switch{
+		overflow: hidden;
+		.item{
+			height:40px;
+			width:50%;
+			display: inline-block;
+			text-align:center;
+			line-height:40px;
+			float:left;
+			background-color:#EFEFF4;
+		}
+		.select{
+			color:$main-color;
+			border-bottom:solid 2px $main-color;
+		}
+	}
 }
