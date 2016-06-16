@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body style="background-color:#EFEFF4" ng-controller="orderCtrl">
+<body style="background-color:#EFEFF4" ng-controller="orderCtrl" data-ng-init="init()">
 	<div class="header">
 		<div class="header-item float-left">
 			<a href="user.html">
@@ -60,7 +60,7 @@
 	<div ng-include="'section/tip.html'"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/lib/angular.route.min.js"></script>
-	<script src="../javascripts/self/module.min.js"></script>
-	<script src="../javascripts/self/orderCtrl.min.js"></script>
+	<script src="../javascripts/dest/module/module.js"></script>
+	<script src="../javascripts/dest/ctrl/orderCtrl.js"></script>
 </body>
 </html>

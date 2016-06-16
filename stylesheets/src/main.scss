@@ -507,8 +507,8 @@
 		$img-height:60px;
 		$icon-height:20px;
 		overflow: hidden;
-		background-color: #ffffff;
-		@include half-border-all(bottom,$line-color);
+		background:url("../../contents/img/user-bg.png");
+		color:#fff;
 		.img{
 			height:$img-height;
 			border-radius: 30px;
@@ -523,16 +523,65 @@
 			@include vertical-center($height,$icon-height);
 			margin-right: 10px;
 		}
-		span{
-			line-height: $height;
-			float: left;
+		.text{
+			display: inline-block;
+			height:60px;
+			margin-top:20px;
+		}
+	}
+	.myorder{
+		margin-bottom:10px;
+		background-color:#fff;
+		.link{
+			height:50px;
+			line-height:50px;
+			@include half-border-bottom($line-color);
+			.icon{
+				height:20px;
+				width:20px;
+				vertical-align: middle;
+				margin: {
+					left:20px;
+					right:20px;
+				}
+			}
+			span{
+				vertical-align: middle;
+			}
+			.arrow{
+				height:20px;
+				width:20px;
+				margin: {
+					top:15px;
+					right:10px;
+				}
+				float:right;
+			}
+		}
+		.items{
+			height:60px;
+			@include half-border-all(bottom,$line-color);
+			.item{
+				width:33.33%;
+				height:60px;
+				text-align: center;
+				display: inline-block;
+				float:left;
+				padding-top:5px;
+				position: relative;
+				img{
+					height:25px;
+					width:25px;
+				}
+				span{}
+			}
 		}
 	}
 	.item-group{
 		$item-height:50px;
 		$item-icon-height:20px;
 		list-style: none;
-		margin-top: 20px;
+		margin-bottom: 10px;
 		background-color: #ffffff;
 		@include half-border-all(top bottom,$line-color);
 		li{
@@ -990,15 +1039,29 @@
 	height:100%;
 	width:100%;
 	div{
-		width:282px;
-		height:288px;
+		width:280px;
+		height:180px;
 		position: absolute;
 		left:50%;
 		top:50%;
 		margin-left:-141px;
-		margin-top:-144px;
-		img{
-			height:100%;
+		margin-top:-90px;
+		background: url("../../contents/img/prompt.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		.close{
+			width:25px;
+			height:25px;
+			position: absolute;
+			top:0px;
+			right:0px;
+		}
+		.share{
+			width:65px;
+			height:25px;
+			position: absolute;
+			bottom:20px;
+			left:105px;
 		}
 	}
 }
@@ -2124,7 +2187,7 @@
 			list-style: none;
 			background-color: #fff;
 			li{
-				border-bottom: solid 1px #ddd;
+				@include half-border-bottom($line-color);
 				margin-left:10px;
 				margin-right:10px;
 				padding-top:5px;
@@ -2171,6 +2234,34 @@
 			}
 			li:last-child{
 				border:none;
+			}
+		}
+	}
+	.assess{
+		margin-top:20px;
+		background-color: #fff;
+		.assess-header{
+			height:40px;
+			line-height: 40px;
+			padding-left:10px;
+			font-size: $large-font-size;
+			border-bottom:solid 1px $line-color;
+		}
+		ul{
+			list-style: none;
+			li{
+				padding:10px 0px;
+				margin:0px 10px;
+				@include half-border-bottom($line-color);
+				.assess-title{
+					margin-bottom:5px;
+					span:last-child{
+						color:$main-color;
+					}
+				}
+				.assess-text{
+					color:$t-color;
+				}
 			}
 		}
 	}

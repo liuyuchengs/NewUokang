@@ -7,26 +7,60 @@
 	<title>悠康医生</title>
 </head>
 <body style="background-color:#EFEFF4" ng-controller="userCtrl" data-ng-init="init()">
-	<div class="header">
-		<div class="title">
-			我的
-		</div>
-    </div>
-	<div class="has-header"></div>
 	<div class="user-content">
 		<div class="user" ng-click="goto('/new/htmls/userinfo.html')">
 			<img class="img" src="../contents/svg/u-img.svg" alt="">
-			<span ng-bind="name"></span>
+			<div class="text">
+				<p ng-bind="name"></p>
+				<p>粉丝：10</p>
+			</div>		
 			<img class="icon" src="../contents/svg/right-arrow.svg">
 		</div>
-		<ul class="item-group">
-			<li ng-click="goto('/new/htmls/order.html')">
+		<div class="myorder" >
+			<div class="link" ng-click="goto('/new/htmls/order.html#?p=all')">
 				<img class="icon" src="../contents/svg/dingdan.svg">
-				<div class="text unborder">
-					<span>我的订单</span>
+				<span>我的订单</span>
+				<img class="arrow" src="../contents/svg/right-arrow.svg">
+			</div>
+			<div class="items">
+				<div class="item" ng-click="goto('/new/htmls/order.html#?p=toPay')">
+					<img src="../contents/img/order-pay.png">
+					<p>待付款</p>
+				</div>
+				<div class="item" ng-click="goto('/new/htmls/order.html#?p=toHos')">
+					<img src="../contents/img/order-go.png">
+					<p>待就医</p>
+				</div>
+				<div class="item" ng-click="goto('/new/htmls/order.html#?p=toAssess')">
+					<img src="../contents/img/order-assess.png">
+					<p>待评价</p>
+				</div>
+			</div>
+		</div>
+		<ul class="item-group">
+			<li ng-click="goto('/new/htmls/mypost.html')">
+				<img class="icon" src="../contents/svg/mypost.svg">
+				<div class="text">
+					<span>我的帖子</span>
 					<img src="../contents/svg/right-arrow.svg">
 				</div>
 			</li>
+			<li ng-click="goto('/new/htmls/mymessage.html')">
+				<img class="icon" src="../contents/svg/mymessage.svg">
+				<div class="text">
+					<span>我的消息</span>
+					<img src="../contents/svg/right-arrow.svg">
+				</div>
+			</li>
+			<li ng-click="goto('/new/htmls/myfollow.html')">
+				<img class="icon" src="../contents/svg/myfollow.svg">
+				<div class="text">
+					<span>我的关注</span>
+					<img src="../contents/svg/right-arrow.svg">
+				</div>
+			</li>
+		</ul>
+		<ul class="item-group">
 			<li ng-click="goto('/new/htmls/cush.html')">
 				<img class="icon" src="../contents/svg/djq.svg">
 				<div class="text">
@@ -41,18 +75,9 @@
 					<img src="../contents/svg/right-arrow.svg">
 				</div>
 			</li>
-			<li ng-click="goto('/new/htmls/mymessage.html')">
-				<img class="icon" src="../contents/svg/message.svg">
-				<div class="text">
-					<span>我的消息</span>
-					<img src="../contents/svg/right-arrow.svg">
-				</div>
-			</li>
-		</ul>
-		<ul class="item-group">
 			<li ng-click="alert('敬请期待!')">
 				<img class="icon" src="../contents/svg/u-zixun.svg">
-				<div class="text unborder">
+				<div class="text">
 					<span>我的咨询</span>
 					<img src="../contents/svg/right-arrow.svg">
 				</div>
@@ -78,7 +103,7 @@
 	<div ng-include="'section/tip.html'"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/lib/angular.route.min.js"></script>
-	<script src="../javascripts/self/module.min.js"></script>
-	<script src="../javascripts/self/userCtrl.min.js"></script>
+	<script src="../javascripts/dest/module/module.js"></script>
+	<script src="../javascripts/dest/ctrl/userCtrl.js"></script>
 </body>
 </html>

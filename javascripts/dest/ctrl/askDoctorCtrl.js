@@ -1,8 +1,9 @@
-app.controller("askDoctorCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
+app.controller("askDoctorCtrl",["$scope","$http","$location","Tool","Ajax",function($scope,$http,$location,Tool,Ajax){
 	$scope.hasSee = true;
 	$scope.content = null;
 	$scope.noSelect = true;
 	$scope.postData = new FormData();
+	$scope.doctorId = null;
 	$scope.params = {
 		input1:{has:false,url:"",val:"#input1"},
 		input2:{has:false,url:"",val:"#input2"},
@@ -11,10 +12,9 @@ app.controller("askDoctorCtrl",["$scope","$http","Tool","Ajax",function($scope,$
 		input5:{has:false,url:"",val:"#input5"},
 		input6:{has:false,url:"",val:"#input6"},
 	}
-	/*
-	** 页面初始化
-	*/
+	
 	$scope.init = function(){
+		$scope.getParams();
 		Ajax.loadHost($scope,function(){
 			Tool.loadUserinfo($scope,function(){
 				Tool.comfirm($scope,"您还没有登录，请先登录",function(){
@@ -23,6 +23,17 @@ app.controller("askDoctorCtrl",["$scope","$http","Tool","Ajax",function($scope,$
 			});
 		});
 		$scope.listen();
+	}
+
+	/**
+	 * 获取医生id参数
+	 */
+	$scope.getParams = function(){
+		if($location.search().id){
+			$scope.doctorId = $location.search().id;
+		}else{
+			history.back();
+		}
 	}
 
 	/*
@@ -170,9 +181,12 @@ app.controller("askDoctorCtrl",["$scope","$http","Tool","Ajax",function($scope,$
 		if($scope.content===null||$scope.content===""){
 			Tool.alert($scope,"请填写咨询内容!");
 		}else{
-			var url = $scope.host+"/new/htmls/ask";
+			var url = $scope.host+"/wx/post/addPost";
 			$scope.mergePic();
+			$scope.postData.append("postName","");
 			$scope.postData.append("postContent",$scope.content);
+			$scope.postData.append("postFlags",3);
+			$scope.postData.append("doctorId",$scope.doctorId);
 			$scope.loading = true;
 			$.ajax({
 			    type: "POST",
@@ -188,7 +202,7 @@ app.controller("askDoctorCtrl",["$scope","$http","Tool","Ajax",function($scope,$
 				success:function(data){
 					$scope.loading = false;
 					if(data.code==0){
-						Tool.goPage("/new/htmls/interaction.html");
+						history.back();
 					}else{
 						Tool.alert($scope,"连接数据失败，请稍后再试!");
 					}
@@ -200,6 +214,7 @@ app.controller("askDoctorCtrl",["$scope","$http","Tool","Ajax",function($scope,$
 			})
 		}
 	}
+
 
 	/*
 	** 返回上一页

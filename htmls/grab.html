@@ -76,22 +76,6 @@
 					<span ng-bind="date.val"></span>
 					<div></div>
 				</li>
-				<li class="check" ng-click="dateSelect(date.val)"
-					<span >2016-6-6</span>
-					<div></div>
-				</li>
-				<li class="check" ng-click="dateSelect(date.val)"
-					<span >2016-6-6</span>
-					<div></div>
-				</li>
-				<li class="check" ng-click="dateSelect(date.val)"
-					<span >2016-6-6</span>
-					<div></div>
-				</li>
-				<li class="check" ng-click="dateSelect(date.val)"
-					<span >2016-6-6</span>
-					<div></div>
-				</li>
 			</ul>
 			<ul id="drop-class" class="drop-menu-list" ng-show="hasClass">
 				<li ng-class="{'li-check':classParams.jieya.has}" ng-click="classSelect('jieya')">
@@ -124,9 +108,10 @@
 		</div>
 	</div>
 	<div class="product-bg" ng-if="hasBg"></div>
-	<div class="grab-imgtip" ng-if="noUsed" ng-click="hideTip()">
+	<div class="grab-imgtip" ng-if="showTip">
 		<div>
-			<img src="../contents/img/prompt.png">
+			<img src="../contents/svg/grab-close.svg" class="close" ng-click="switchTip('close')">
+			<img src="../contents/svg/grab-share.svg" class="share" ng-click="share()">
 		</div>
 	</div>
 	<div class="cush-tip" ng-if="noGrab">{{$parent.noProductText}}</div>
@@ -134,7 +119,7 @@
 	<div ng-include="'section/loading.html'"></div>
 	<script src="../javascripts/lib/angular.min.js"></script>
 	<script src="../javascripts/lib/angular.route.min.js"></script>
-	<script src="../javascripts/self/module.min.js"></script>
-	<script src="../javascripts/self/grabCtrl.min.js"></script>
+	<script src="../javascripts/dest/module/module.js"></script>
+	<script src="../javascripts/dest/ctrl/grabCtrl.js"></script>
 </body>
 </html>
