@@ -1,5 +1,5 @@
 /*
-** 路由系统
+** 体检页面路由
 */
 app.config(["$routeProvider",function($routeProvider){
 	$routeProvider.when("/product",{

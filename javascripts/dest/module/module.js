@@ -3,7 +3,8 @@ var app = angular.module("myApp",['ngRoute']);
 /*
 ** 数据访问类服务
 */
-app.service("Ajax",["$http","Tool",function($http,Tool){
+app.service("Ajax",["$http","$q","Tool",function($http,$q,Tool){
+	//加载host
 	this.loadHost = function(scope,callback){
 		if(Tool.getSession("host")){
 			scope.host = Tool.getSession("host");
@@ -20,6 +21,37 @@ app.service("Ajax",["$http","Tool",function($http,Tool){
 			});
 		}
 	}
+
+	//封装ajax
+	this.get = function (obj) {
+            if (obj.url) {
+                var defered = $q.defer();
+                $http.get(obj.url).success(function (data) {
+                    return defered.resolve(data);
+                }).error(function (data) {
+                    return defered.reject(data);
+                });
+                return defered.promise;
+            }
+        };
+	this.post = function (obj) {
+		if (obj.url && obj.params != null && obj.params != undefined) {
+			var defered = $q.defer();
+			if (!obj.headers) {
+				obj.headers = {
+					'Content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+				};
+			}
+			$http.post(obj.url, obj.params, {
+				headers: obj.headers
+			}).success(function (data) {
+				defered.resolve(data);
+			}).error(function (data) {
+				defered.reject(data);
+			});
+			return defered.promise;
+		}
+	};
 }]);
 
 /*

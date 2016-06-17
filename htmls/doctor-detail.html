@@ -51,7 +51,7 @@
 					<p class="score">
 						<span ng-bind="doctorInfo.score"></span>
 						<span>{{doctorInfo.sales}}人下单</span>
-						<span>查看评论</span>
+						<span ng-click="goAssess()">查看评论</span>
 					</p>
 					<p class="address" ng-bind="doctorInfo.hospitalname"></p>
 					<p class="use" ng-class="{'show-text':use.has}">
@@ -94,30 +94,16 @@
 			</ul>
 		</div>
 		<div class="assess">
-			<div class="assess-header">
+			<div id="doctorAssess" class="assess-header">
 				医生评价
 			</div>
 			<ul>
-				<li>
+				<li ng-repeat="assess in assessInfo">
 					<p class="assess-title">
-						<span>李新雄</span>
-						<span>5分</span>
+						<span ng-bind="assess.user_realname"></span>
+						<span ng-bind="assess.totalscore"></span>
 					</p>
-					<p class="assess-text">感觉不错哦，界面简单，里面的内容丰富，我更加懂得怎么样保护我的牙齿啦</p>
-				</li>
-				<li>
-					<p class="assess-title">
-						<span>李新雄</span>
-						<span>5分</span>
-					</p>
-					<p class="assess-text">感觉不错哦，界面简单，里面的内容丰富，我更加懂得怎么样保护我的牙齿啦</p>
-				</li>
-				<li>
-					<p class="assess-title">
-						<span>李新雄</span>
-						<span>5分</span>
-					</p>
-					<p class="assess-text">感觉不错哦，界面简单，里面的内容丰富，我更加懂得怎么样保护我的牙齿啦</p>
+					<p class="assess-text" ng-bind="assess.appraise"></p>
 				</li>
 			</ul>
 		</div>

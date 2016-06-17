@@ -12,7 +12,8 @@
 			<img class="img" src="../contents/svg/u-img.svg" alt="">
 			<div class="text">
 				<p ng-bind="name"></p>
-				<p>粉丝：10</p>
+				<p ng-if="isLogin">粉丝：<span ng-bind="countFansMan"></span></p>
+				<p ng-if="isLogin">关注的人：<span ng-bind="countFocusMan"></span></p>
 			</div>		
 			<img class="icon" src="../contents/svg/right-arrow.svg">
 		</div>

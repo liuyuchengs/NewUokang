@@ -1,23 +1,25 @@
-<div class="inte-detail-content" ng-controller="myPostReplyCtrl" data-ng-init="init()">
+<div class="inte-detail-content" data-ng-init="init()">
     <div class="message">
         <ul>
-            <li ng-repeat="reply in replys">
-                <img class="head-img" ng-src="{{reply.userImage}}">
+            <li ng-repeat="message in messages">
+                <img class="head-img" src="../contents/temp/head-img.png">
                 <div class="text">
                     <p class="name">
-                        <span ng-bind="reply.userName"></span>
+                        <span ng-bind="message.userName"></span>
                         <span></span>
                     </p>
-                    <p class="title" ng-bind="reply.content"></p>
+                    <p class="title">
+                        <span>回复我：</span><span ng-bind="message.content"></span>
+                    </p>
                     <div class="reply">
                         <p>
                             <span>针对帖子：</span>
-                            <span ng-bind="reply.postName"></span>
+                            <span ng-bind="message.postName"></span>
                         </p>
                     </div>
                     <div class="footer">
-                        <span class="time" ng-bind="reply.dataStr"></span>
-                        <span class="detail-link" ng-click="goPost(reply.postId)">查看详细内容</span>
+                        <span class="time" ng-bind="message.dataStr"></span>
+                        <span class="detail-link" ng-click="detail(message.postId)">查看详细内容</span>
                     </div>
                 </div>
             </li>

@@ -1,13 +1,10 @@
-<div class="interaction-content">
+<div class="interaction-content" data-ng-init="init()">
     <ul class="card">
         <li ng-repeat="post in posts" ng-click="detail(post.id)">
             <img class="headimg" ng-src="{{post.faceImage}}" fallback-src="../contents/temp/head-img.png">
             <div class="container">
                 <p class="name" ng-bind="post.userName"></p>
                 <p class="text" ng-bind="post.postName"></p>
-                <div class="img">
-                    <img ng-repeat="img in post.list2" ng-src="{{img}}">
-                </div>
                 <div class="info">
                     <span ng-bind="post.middTimeStr"></span>
                     <div class="mess">
@@ -23,3 +20,6 @@
         </li>
     </ul>
 </div>
+<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
+<div ng-include="'section/tip.html'"></div>
+<div ng-include="'section/loading.html'"></div>

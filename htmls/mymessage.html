@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body ng-controller="askDoctorCtrl" data-ng-init="load()">
+<body >
 	<div class="header">
 		<div class="header-item float-left">
 			<a href="user.html">
@@ -18,11 +18,24 @@
 		</div>
     </div>
 	<div class="has-header"></div>
-	<div class="message-content">
-		<div class="switch">
-			<div class="item select">回复</div>
-			<div class="item" ng-class="{'select':switchParams.yunsheng.has}" ng-click="switch('yunsheng')">通知</div>
+	<div class="message-content" ng-controller="myMessageCtrl" data-ng-init="init()">
+		<div class="switch third">
+			<div class="item " ng-class="{'select':params.user}" ng-click="switch('user')">
+				<a href="#/user">用户回复</a>
+			</div>
+			<div class="item" ng-class="{'select':params.doctor}" ng-click="switch('doctor')">
+				<a href="#/doctor">医生回复</a>
+			</div>
+			<div class="item" ng-class="{'select':params.system}" ng-click="switch('system')">
+				<a href="#/system">系统通知</a>
+			</div>
 		</div>
 	</div>
+	<div ng-view></div>
+	<script src="../javascripts/lib/angular.min.js"></script>
+	<script src="../javascripts/lib/angular.route.min.js"></script>
+	<script src="../javascripts/dest/module/module.js"></script>
+	<script src="../javascripts/dest/route/messageRoute.js"></script>
+	<script src="../javascripts/dest/ctrl/myMessageCtrl.js"></script>
 </body>
 </html>

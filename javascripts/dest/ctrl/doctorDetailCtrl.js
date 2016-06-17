@@ -1,4 +1,4 @@
-app.controller("doctorDetailCtrl",["$scope","$http","$location","Ajax","Tool",function($scope,$http,$location,Ajax,Tool){
+app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll","Ajax","Tool",function($scope,$http,$location,$anchorScroll,Ajax,Tool){
 	$scope.loading = false;
 	$scope.hasTime = false;
 	$scope.hasProduct = false;
@@ -12,6 +12,7 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","Ajax","Tool",fu
 	}
 	$scope.id = null;
 	$scope.doctorInfo = {};
+	$scope.assessInfo = [];
 	$scope.time = {
 		hasSelect:false,
 		openSelect:false,
@@ -233,7 +234,17 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","Ajax","Tool",fu
 				"content-type":'application/x-www-form-urlencoded;charset=UTF-8',
 			}
 		}).success(function(data){
-
+			if(data.code==0){
+				data.data.forEach(function(item){
+					if(item.totalscore==null){
+						item.totalscore = "暂无评分";
+					}
+					else{
+						item.totalscore = item.totalscore+"分";
+					}
+				})
+				$scope.assessInfo = data.data;
+			}
 		}).error(function(){
 			Tool.alert($scope,"数据连接失败，请稍后再试!");
 		})
@@ -364,5 +375,13 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","Ajax","Tool",fu
 		if(Tool.isLogin()){
 			Tool.goPage("/new/htmls/askdoctor.html#?id="+$scope.id);
 		}
+	}
+
+	/**
+	 * 跳到医生评价
+	 */
+	$scope.goAssess = function(){
+		$location.hash("doctorAssess");
+		$anchorScroll();
 	}
 }])

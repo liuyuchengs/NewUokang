@@ -503,12 +503,13 @@
 */
 .user-content{
 	.user{
-		$height:80px;
+		$height:100px;
 		$img-height:60px;
 		$icon-height:20px;
 		overflow: hidden;
 		background:url("../../contents/img/user-bg.png");
 		color:#fff;
+		height:$height;
 		.img{
 			height:$img-height;
 			border-radius: 30px;
@@ -2321,7 +2322,7 @@
 				.info{
 					height:20px;
 					line-height: 20px;
-					margin-top: 5px;
+					margin-top: 10px;
 					color:$t-color;
 					img{
 						height:20px;
@@ -2384,14 +2385,15 @@
 				color:$t-color;
 			}
 			.post-title{
-				margin-top:10px;
+				margin-top:15px;
 				color:$t-color;
 			}
 			.follow{
 				position: absolute;
 				top:0px;
 				right:0px;
-				padding: 0px 5px;
+				width:70px;
+				text-align: center;
 				height:26px;
 				line-height: 26px;
 				border: solid 1px $main-color;
@@ -2584,6 +2586,11 @@
 						margin-top:20px;
 						.time{
 							color:$t-color;
+						}
+						.detail-link{
+							color:$green-color;
+							text-decoration: underline;
+							float:right;
 						}
 						.btn{
 							height:25px;
@@ -2955,7 +2962,7 @@
 }
 
 /*
-* 我的消息页面
+* 我的帖子页面
 */
 .message-content{
 	.switch{
@@ -2968,10 +2975,85 @@
 			line-height:40px;
 			float:left;
 			background-color:#EFEFF4;
+			a{
+				display: block;
+				text-decoration: none;
+				color:$f-color;
+			}
 		}
 		.select{
-			color:$main-color;
 			border-bottom:solid 2px $main-color;
+			a{
+				color:$main-color;
+			}
+		}
+	}
+	.third{
+		.item{
+			width:33.33%;
 		}
 	}
 }
+/**
+* 我的关注页面
+*/
+.follow-content{
+	.switch{
+		overflow: hidden;
+		.item{
+			height:40px;
+			width:33.33%;
+			display: inline-block;
+			text-align:center;
+			line-height:40px;
+			float:left;
+			background-color:#EFEFF4;
+			a{
+				display: block;
+				text-decoration: none;
+				color:$f-color;
+			}
+		}
+		.select{
+			border-bottom:solid 2px $main-color;
+			a{
+				color:$main-color;
+			}
+		}
+	}
+	.content{
+		.doctor-content{
+			li{
+				.icon{
+					float:left;
+					height:70px;
+				}
+				.follow{
+					position: absolute;
+					top:0px;
+					right:0px;
+					width:70px;
+					text-align: center;
+					height:26px;
+					line-height: 26px;
+					border: solid 1px $main-color;
+					color:$main-color;
+					.icon{
+						display: inline-block;
+						height:15px;
+						width:15px;
+						margin-top:-3px;
+						vertical-align: middle;
+						background:url("../../contents/svg/jia.svg");
+						background-size: contain;
+					}
+					.txt{
+						display: inline-block;
+						line-height: 26px;
+					}
+				}
+			}
+		}
+	}
+}
+
