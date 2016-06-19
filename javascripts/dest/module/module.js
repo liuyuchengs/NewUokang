@@ -1,8 +1,9 @@
 var app = angular.module("myApp",['ngRoute']);
 
 /*
-** 数据访问类服务
+********* 服务区域 ********
 */
+//数据访问类服务
 app.service("Ajax",["$http","$q","Tool",function($http,$q,Tool){
 	//加载host
 	this.loadHost = function(scope,callback){
@@ -54,9 +55,7 @@ app.service("Ajax",["$http","$q","Tool",function($http,$q,Tool){
 	};
 }]);
 
-/*
-**工具类服务
-*/
+//工具类服务
 app.service("Tool",["$location",function($location,Ajax){
 	/*
 	** 操作localStorage和sessionStorage
@@ -82,28 +81,19 @@ app.service("Tool",["$location",function($location,Ajax){
 	this.removeSession = function(key){
 		sessionStorage.removeItem(key);
 	}
-
-	/*
-	** 跳转到下一页，不带host
-	*/
+	//跳转到下一页，不带host
 	this.goPage = function(path){
 		if(this.getSession("host")){
 			location.href = this.getSession("host")+path;
 		}
 	}
-
-	/*
-	** 跳转到指定页面，带host
-	*/
+	//跳转到指定页面，带host
 	this.goUrl = function(url){
 		if(url.length>0){
 			location.href = url;
 		}
 	}
-
-	/*
-	** 获取host
-	*/
+	//获取host
 	this.getHost = function(){
 		var host = "";
 		if(this.getSession("host")){
@@ -210,17 +200,9 @@ app.service("Tool",["$location",function($location,Ajax){
 			if(value=="home"){
 				this.goPage("/new/htmls/home.html");
 			}else if(value=="doctor"){
-				if(this.isLogin()&&this.getLocal("accessToken")=="db284606729f481fb48d7bdbb373231b"){
-					this.goPage("/new/htmls/doctor.html");
-				}else{
-					this.alert(scope,"敬请期待!");
-				}
+				this.goPage("/new/htmls/doctor.html");
 			}else if(value=="interaction"){
-				if(this.isLogin()&&this.getLocal("accessToken")=="db284606729f481fb48d7bdbb373231b"){
-					this.goPage("/new/htmls/interaction.html");
-				}else{
-					this.alert(scope,"敬请期待!");
-				}
+				this.goPage("/new/htmls/interaction.html");
 			}else if(value="user"){
 				this.goPage("/new/htmls/user.html");
 			}
@@ -250,7 +232,7 @@ app.service("Weixin",["$http","Tool",function($http,Tool){
 		wx.ready(function(){
 			wx.checkJsApi({
 				//需要检测的JS接口列表
-				jsApiList: ['getLocation','chooseWXPay'],
+				jsApiList: ['getLocation','chooseWXPay','onMenuShareTimeline'],
 				success: function(result) {
 					//以键值对的形式返回，可用的api值true，不可用为false
 					if(!result.checkResult.getLocation||!result.checkResult.chooseWXPay){
@@ -285,7 +267,7 @@ app.service("Weixin",["$http","Tool",function($http,Tool){
 			timestamp : "",
 			nonceStr : "",
 			signature : "",
-			jsApiList : ['getLocation','chooseWXPay'],
+			jsApiList : ['getLocation','chooseWXPay','onMenuShareTimeline'],
 		};
 		var url = Tool.getSession("host")+"/weixin/check/getjsconfig";
 		var param = "url="+encodeURIComponent(location.href);
@@ -478,3 +460,28 @@ app.service("Params",[function(){
 		tijian:{has:false,val:this.tijianParams,proId:"5"}
 	}
 }])
+
+
+app.filter("DefaultHeadImg",function(){
+	return function(input,sex){
+		if(input===null||input===""){
+			if(sex==="男"||sex===null||sex===""||sex===undefined){
+				input = "../contents/img/men-head.png";
+			}else{
+				input = "../contents/img/women-head.png";
+			}
+		}
+		return input;
+	}
+})
+app.filter("DefaultImg",function(){
+	return function(input,type){
+		if(type==="doc"){
+			input = "../contents/img/doc-head.png";
+		}
+		if(type==="pro"){
+			input = "../contents/img/p_defaualt.png"
+		}
+		return input;
+	}
+})

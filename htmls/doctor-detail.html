@@ -17,6 +17,10 @@
 		<div class="title">
 			医生详细
 		</div>
+		<div class="header-item header-item-width float-right follow" ng-click="switchFollow()">
+			<div class="icon" ng-class="{'select':follow.hasFollow}"></div>
+            <div class="txt" ng-bind="follow.followText"></div>
+		</div>
     </div>
 	<div class="has-header"></div>
 	<div class="doctor-detail-content">

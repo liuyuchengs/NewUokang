@@ -22,7 +22,7 @@
 		<div class="img-item" ng-click="alert('敬请期待!')">
 			<span>我的头像</span>
 			<img class="icon" src="../contents/svg/right-arrow.svg">
-			<img class="img" src="../contents/svg/u-img.svg">
+			<img class="img" ng-src="{{face}}" fallback-src="../contents/img/men-head.png">
 		</div>
 		<ul class="item-group">
 			<li ng-click="change('realname')">

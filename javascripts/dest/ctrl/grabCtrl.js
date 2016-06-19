@@ -256,8 +256,24 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 								$scope.hasTip = false;
 							});
 						}else{
-							//Tool.goPage("/new/htmls/grab-code.html#?productId="+productId+"&hospitalId="+hospitalId+"&dayDate="+$scope.queryParams.dayDate);
-							$scope.switchTip("open");
+							if(Tool.getLocal("share")){
+								Tool.goPage("/new/htmls/grab-code.html#?productId="+productId+"&hospitalId="+hospitalId+"&dayDate="+$scope.queryParams.dayDate);
+							}else{
+								var pageUrl = "/new/htmls/grab-code.html#?productId="+productId+"&hospitalId="+hospitalId+"&dayDate="+$scope.queryParams.dayDate;
+								wx.onMenuShareTimeline({
+									title:"悠康医生是信息就医平台。",
+									link:"https://www.uokang.com/new/htmls/home.html",
+									imgUrl:"https://www.uokang.com/new/contents/img/logo.png",
+									success:function(){
+										Tool.setLocal("share","true");
+										Tool.goPage(pageUrl);
+									},
+									cancel:function(){
+										
+									}
+								})
+								$scope.switchTip("open");
+							}
 						}
 					}
 				}else{
@@ -290,23 +306,6 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		if(params==="open"){
 			$scope.showTip = true;
 		}
-	}
-
-	/**
-	 * 分享至朋友圈
-	 */
-	$scope.share = function(){
-		Weixin.wxShare({
-			title:"悠康医生向您免费赠送高品质的洗牙项目以及精致脱毛项目，快来领取吧。",
-			link:$scope.host+"/new/htmls/grab.html",
-			imgUrl:$scope.host+"/new/contents/logo.png",
-			success:function(){
-
-			},
-			cancel:function(){
-				
-			}
-		})
 	}
 
 }])

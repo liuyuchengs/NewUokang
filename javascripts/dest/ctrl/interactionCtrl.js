@@ -57,7 +57,11 @@ app.controller("interactionCtrl",["$scope","$http","Tool","Ajax",function($scope
 	$scope.mergePost = function(items){
 		items.forEach(function(item){
 			if(item.faceImage==""||item.faceImage==null){
-				item.faceImage = "../contents/temp/head-img.png";
+				if(item.sex==="男"||item.sex===""||item.sex===null){
+					item.faceImage = "../contents/img/men-head.png";
+				}else{
+					item.faceImage = "../contents/img/women-head.png";
+				}
 			}
 			if(item.visitNum==null||item.visitNum==""){
 				item.visitNum=0;

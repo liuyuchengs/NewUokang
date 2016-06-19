@@ -10,6 +10,10 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		has:false,
 		val:"查看全部"
 	}
+	$scope.follow = {
+		hasFollow:false,
+		followText:"关注"
+	}
 	$scope.id = null;
 	$scope.doctorInfo = {};
 	$scope.assessInfo = [];
@@ -137,6 +141,10 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		$scope.loading = true;
 		var url = $scope.host+"/wx/doctor/queryDoctorDetailInfo";
 		var params = "needPackageInfo=true&id="+$scope.id;
+		if(Tool.isLogin()){
+			Tool.loadUserinfo($scope);
+			params += "&accessToken="+$scope.userInfo.accessToken;
+		}
 		$http.post(url,params,{
 			headers:{
 				"content-type":'application/x-www-form-urlencoded;charset=UTF-8',
@@ -148,6 +156,10 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 				$scope.order.hospitalId = data.data.hospitalId;
 				$scope.order.hospitalName = data.data.hospitalname;
 				$scope.order.hospitalAddress = data.data.hospitaladdress;
+				if(data.data.focusState==1){
+					$scope.follow.hasFollow= true;
+					$scope.follow.followText = "已关注";
+				}
 				data.data.dentallist.forEach(function(item){
 					if(item.priceunit!=null&&item.priceunit!=""){
 						item.preferPriceType = item.pricetype+"/"+item.priceunit;
@@ -383,5 +395,70 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 	$scope.goAssess = function(){
 		$location.hash("doctorAssess");
 		$anchorScroll();
+	}
+
+
+	/**
+	** 关注按钮处理函数
+	*/
+	$scope.switchFollow = function(){
+		if(!Tool.isLogin()){
+			Tool.comfirm($scope,"请先登录!",function(){
+				Tool.goPage("/new/htmls/login.html");
+			})
+		}else{
+			Tool.loadUserinfo($scope);
+			if($scope.follow.hasFollow){
+				$scope.cacelFollow();
+			}else{
+				$scope.tofollow();
+			}
+		}
+	}
+
+	/**
+	** 关注发帖医生
+	*/
+	$scope.tofollow = function(){
+		var url = $scope.host+"/wx/post/focus";
+		var params = "flag=2&userId="+$scope.id;
+		$http.post(url,params,{
+			headers:{
+				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
+				'accessToken':$scope.userInfo.accessToken,
+			}
+		}).success(function(data){
+			if(data.code==0){
+				$scope.follow.hasFollow = true;
+				$scope.follow.followText = "已关注";
+			}else{
+				Tool.alert($scope,"关注失败，稍后再试!");
+			}
+		}).error(function(){
+			Tool.alert($scope,"连接数据失败，请稍后再试!");
+		})
+	}
+
+	/**
+	** 取消关注医生
+	*/
+	$scope.cacelFollow = function(){
+		var url = $scope.host+"/wx/post/cacelFocus";
+		var params = "flag=2&userId="+$scope.id;
+		$http.post(url,params,{
+			headers:{
+				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
+				'accessToken':$scope.userInfo.accessToken,
+			}
+		}).success(function(data){
+			if(data.code==0){
+				$scope.follow.hasFollow = false;
+				$scope.follow.followText = "关注";
+			}else{
+				Tool.alert($scope,"取消关注失败，稍后再试!");
+			}
+		}).error(function(){
+			Tool.alert($scope,"连接数据失败，稍后再试!");
+		})
 	}
 }])

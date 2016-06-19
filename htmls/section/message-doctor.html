@@ -2,7 +2,7 @@
     <div class="message">
         <ul>
             <li ng-repeat="message in messages">
-                <img class="head-img" src="../contents/temp/head-img.png">
+                <img class="head-img" ng-src="{{message.faceImage}}"  fallback-src="../contents/img/doc-head.png">
                 <div class="text">
                     <p class="name">
                         <span>医生 {{message.doctorName}}</span>

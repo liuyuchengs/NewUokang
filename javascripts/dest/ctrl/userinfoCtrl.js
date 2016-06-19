@@ -17,6 +17,14 @@ app.controller("userinfoCtrl",["$scope","Ajax","Tool",function($scope,Ajax,Tool)
 		$scope.age = user.age || "";
 		$scope.nickname = user.nickname || "";
 		$scope.email = "";
+		if(user.face===""||user.face===null){
+			if(user.sex==="男"||user.sex===""||user.sex===null){
+				$scope.face = "../contents/img/men-head.png";
+			}
+			if(user.sex==="女"){
+				$scope.face = "../contents/img/women-head.png";
+			}
+		}
 	}
 	//退出登录
 	$scope.exit = function(){

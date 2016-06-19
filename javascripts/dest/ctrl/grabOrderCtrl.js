@@ -6,10 +6,10 @@ app.controller("grabOrderCtrl",["$scope","$http","Tool","Ajax",function($scope,$
 	** 初始化页面
 	*/
 	$scope.init = function(){
-		Ajax.loadHost = function(){
+		Ajax.loadHost($scope,function(){
 			Tool.loadUserinfo($scope);
 			$scope.queryGift();
-		}
+		})
 	}
 
 	/*

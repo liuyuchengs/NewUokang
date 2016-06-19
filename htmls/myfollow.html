@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body>
+<body ng-controller="myFollowCtrl">
 	<div class="header">
 		<div class="header-item float-left">
-			<a href="home.html">
+			<a href="user.html">
 				<img src="../contents/svg/back.svg">
 			</a>
 		</div>
@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<div class="has-header"></div>
-    <div class="follow-content" ng-controller="myFollowCtrl">
+    <div class="follow-content" >
 		<div class="switch">
             <div class="item" ng-class="{'select':params.user}" ng-click="switch('user')">
 				<a href="#/user">个人</a>

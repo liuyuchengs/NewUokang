@@ -47,6 +47,9 @@ app.controller("activityCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 			if(item.smallImg==""||item.smallImg==null){
 				item.smallImg = "../contents/img/p_default.png";
 			}
+            if(item.type===6){
+                item.hasActivity = true;
+            }
 		})
 	}
 
@@ -57,9 +60,10 @@ app.controller("activityCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
         if(productId&&hospitalId&&type){
             if(type===5){
                 Tool.goPage("/new/htmls/exam-detail.html#?productId="+productId+"&hospitalId="+hospitalId);
-            }
-            if(type===2){
-                Tool.goPage("/new/htmls/product-detail.html#?code=123&productId="+productId+"&hospitalId="+hospitalId);
+            }if(type===6){
+                Tool.goPage("/new/htmls/product-detail.html#?productId="+productId+"&hospitalId="+hospitalId+"&activityp=元/次");
+            }else{
+                Tool.goPage("/new/htmls/product-detail.html#?productId="+productId+"&hospitalId="+hospitalId);
             }
         }
     }

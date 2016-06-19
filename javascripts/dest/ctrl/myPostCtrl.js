@@ -31,6 +31,7 @@ app.controller("myPostCtrl",["$scope","$http","$location","Ajax","Tool",function
 app.controller("myPostPublishCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
     $scope.noProduct = false;
     $scope.posts = [];
+	$scope.user = {};
     $scope.queryParams = {
 		pageRows:10,
 		currentPage:1
@@ -39,6 +40,7 @@ app.controller("myPostPublishCtrl",["$scope","$http","Tool","Ajax",function($sco
     $scope.init = function(){
 		Ajax.loadHost($scope,function(){
             Tool.loadUserinfo($scope);
+			$scope.user = Tool.getLocal("user");
             $scope.queryPost();
 		})
 	}
@@ -58,7 +60,7 @@ app.controller("myPostPublishCtrl",["$scope","$http","Tool","Ajax",function($sco
 		}).success(function(data){
 			if(data.data.length<1){
 				if($scope.posts.length<1){
-					$scope.noProductText = "没有项目信息,请选择其他区域或者时间!";
+					$scope.noProductText = "您还没有发布帖子!";
 				}else{
 					$scope.noProductText = "已经没有了!";
 				}
@@ -80,7 +82,11 @@ app.controller("myPostPublishCtrl",["$scope","$http","Tool","Ajax",function($sco
 	$scope.mergePost = function(items){
 		items.forEach(function(item){
 			if(item.faceImage==""||item.faceImage==null){
-				item.faceImage = "../contents/temp/head-img.png";
+				if($scope.user.sex==="男"||$scope.user.sex===""||$scope.user.sex===null){
+					item.faceImage = "../contents/img/men-head.png";
+				}else{
+					item.faceImage = "../contents/img/women-head.png";
+				}
 			}
 			if(item.visitNum==null||item.visitNum==""){
 				item.visitNum=0;
@@ -128,6 +134,7 @@ app.controller("myPostPublishCtrl",["$scope","$http","Tool","Ajax",function($sco
 app.controller("myPostReplyCtrl",["$scope","$http","$q","Tool","Ajax",function($scope,$http,$q,Tool,Ajax){
     $scope.noProduct = false;
     $scope.replys = [];
+	$scope.user = {};
     $scope.queryParams = {
 		pageRows:10,
 		currentPage:1
@@ -136,6 +143,7 @@ app.controller("myPostReplyCtrl",["$scope","$http","$q","Tool","Ajax",function($
     $scope.init = function(){
 		Ajax.loadHost($scope,function(){
             Tool.loadUserinfo($scope);
+			$scope.user = Tool.getLocal("user");
             $scope.queryReply();
 		})
 	}
@@ -178,7 +186,11 @@ app.controller("myPostReplyCtrl",["$scope","$http","$q","Tool","Ajax",function($
 	$scope.mergeReply = function(items){
 		items.forEach(function(item){
 			if(item.userImage==""||item.userImage==null){
-				item.userImage = "../contents/temp/head-img.png";
+				if($scope.user.sex==="男"||$scope.user.sex===""|$scope.user.sex===null){
+					item.userImage = "../contents/img/men-head.png";
+				}else{
+					item.userImage = "../contents/img/women-head.png";
+				}
 			}
             item.dataStr = item.createDateStr.slice(5,10);
 		})

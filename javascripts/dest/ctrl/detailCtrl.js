@@ -11,6 +11,11 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 	$scope.productInfo;
 	$scope.hospitalInfo;
 	$scope.doctorInfo = [];
+	$scope.activityp = "";
+	$scope.follow = {
+		hasFollow:false,
+		followText:"关注"
+	}
 	$scope.productImg = [
 		{
 			"url":"../../contents/img/p_default.png"
@@ -76,6 +81,9 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		if($location.search().code){
 			$scope.order.code = $location.search().code;
 		}
+		if($location.search().activityp){
+			$scope.activityp = $location.search().activityp;
+		}
 	}
 
 	/*
@@ -92,13 +100,21 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		$scope.loading = true;
 		var url = $scope.host+"/wx/product/querybyid";
 		var params = "productId="+$scope.proId;
+		if(Tool.isLogin()){
+			Tool.loadUserinfo($scope);
+			params += "&accessToken="+$scope.userInfo.accessToken;
+		}
 		$http.post(url,params,{
 			headers:{
 				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
 			}
 		}).success(function(data){
-			$scope.mergeProdcut(data);
-			$scope.productInfo = data;
+			if(data.data.focusState===1){
+				$scope.follow.hasFollow = true;
+				$scope.follow.followText = "已关注";
+			}
+			$scope.mergeProdcut(data.data);
+			$scope.productInfo = data.data;
 			$scope.order.productName = $scope.productInfo.title;
 			$scope.order.preferPrice = "￥"+$scope.productInfo.preferPrice+$scope.productInfo.preferPriceType;
 		}).error(function(){
@@ -363,6 +379,69 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 				item.selectTimeValue = "请选择";
 				item.hasSelecTimeValue = false;
 			}
+		})
+	}
+	/**
+	** 关注按钮处理函数
+	*/
+	$scope.switchFollow = function(){
+		if(!Tool.isLogin()){
+			Tool.comfirm($scope,"请先登录!",function(){
+				Tool.goPage("/new/htmls/login.html");
+			})
+		}else{
+			Tool.loadUserinfo($scope);
+			if($scope.follow.hasFollow){
+				$scope.cacelFollow();
+			}else{
+				$scope.tofollow();
+			}
+		}
+	}
+
+	/**
+	** 关注项目
+	*/
+	$scope.tofollow = function(){
+		var url = $scope.host+"/wx/post/focus";
+		var params = "flag=3&userId="+$scope.proId;
+		$http.post(url,params,{
+			headers:{
+				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
+				'accessToken':$scope.userInfo.accessToken,
+			}
+		}).success(function(data){
+			if(data.code==0){
+				$scope.follow.hasFollow = true;
+				$scope.follow.followText = "已关注";
+			}else{
+				Tool.alert($scope,"关注失败，稍后再试!");
+			}
+		}).error(function(){
+			Tool.alert($scope,"连接数据失败，请稍后再试!");
+		})
+	}
+
+	/**
+	** 取消关注项目
+	*/
+	$scope.cacelFollow = function(){
+		var url = $scope.host+"/wx/post/cacelFocus";
+		var params = "flag=3&userId="+$scope.proId;
+		$http.post(url,params,{
+			headers:{
+				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
+				'accessToken':$scope.userInfo.accessToken,
+			}
+		}).success(function(data){
+			if(data.code==0){
+				$scope.follow.hasFollow = false;
+				$scope.follow.followText = "关注";
+			}else{
+				Tool.alert($scope,"取消关注失败，稍后再试!");
+			}
+		}).error(function(){
+			Tool.alert($scope,"连接数据失败，稍后再试!");
 		})
 	}
 }])

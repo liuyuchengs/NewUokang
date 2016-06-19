@@ -31,6 +31,7 @@
 					</div>
 					<div class="float-left margin-l">
 						<span class="price float-left">￥{{product.standPrice}}</span>
+						<span class="price float-left" ng-if="product.hasActivity">元/次</span>
 					</div>
 					<div class="margin-right">
 						<span class="item-count float-right">{{product.sales}}人下单</span>

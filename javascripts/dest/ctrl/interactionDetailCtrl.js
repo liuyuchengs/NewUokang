@@ -24,7 +24,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 	** 页面初始化
 	*/
 	$scope.init =function(){
-		Ajax.loadHost($scope,function(){
+		Ajax.loadHost($scope,function(){		
 			$scope.getQueryString();
 			$scope.queryPost();
 			$scope.queryMessage();
@@ -89,6 +89,13 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 				if(data.data.focusState===1){
 					$scope.follow.hasFollow = true;
 					$scope.follow.followText = "已关注"
+				}
+				if($scope.post.faceImage===null||$scope.post.faceImage===""){
+					if($scope.post.sex==="男"||$scope.post.sex===null||$scope.post.sex===""){
+						$scope.post.faceImage = "../contents/img/men-head.png";
+					}else{
+						$scope.post.faceImage = "../contents/img/women-head.png";
+					}
 				}
 			}else{
 				Tool.alert($scope,data.message);
@@ -156,6 +163,13 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 				}
 				if(parseInt(reply.praiseNum)<1){
 					reply.praiseNum = "点赞"
+				}
+				if(reply.userImage===null||reply.userImage===""){
+					if(reply.sex==="男"||reply.sex===null||reply.sex===""){
+						reply.userImage = "../contents/img/men-head.png";
+					}else{
+						reply.userImage = "../contents/img/women-head.png";
+					}
 				}
 				if(reply.repliesMessageList.length>0){
 					reply.hasReply=true;
@@ -332,6 +346,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 				if(data.code==0){
 					$scope.hidePostInput();
 					data.data.count = $scope.replyMess.commentList.length+1;
+					$scope.mergeNewReply(data.data);
 					$scope.replyMess.commentList.push(data.data);
 				}else{
 					Tool.alert($scope,data.message);
@@ -339,6 +354,20 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 			}).error(function(){
 				Tool.alert($scope,"连接数据失败，请稍后重试!");
 			})
+		}
+	}
+
+	/**
+	 * 检查新发表的评论信息
+	 */
+	$scope.mergeNewReply = function(reply){
+		if(reply.userImage===null||reply.userImage===""){
+			var user = Tool.getLocal("user");
+			if(user.sex==="男"||user.sex===""||user.sex===null){
+				reply.userImage = "../contents/img/men-head.png";
+			}else{
+				reply.userImage = "../contents/img/women-head.png";
+			}
 		}
 	}
 

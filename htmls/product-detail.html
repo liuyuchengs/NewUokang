@@ -14,6 +14,10 @@
 		<div class="title">
 			项目详细
 		</div>
+		<div class="header-item header-item-width float-right follow" ng-click="switchFollow()">
+			<div class="icon" ng-class="{'select':follow.hasFollow}"></div>
+            <div class="txt" ng-bind="follow.followText"></div>
+		</div>
 	</div>
 	<div class="header" ng-show="selectTime">
 		<div class="header-item float-left" ng-click="selectTime=false">
@@ -117,7 +121,7 @@
 		<div class="order-btn" ng-class="{'disable':noSelectTime}" ng-click="orderDetail()">下单</div>
 		<div class="order-text">
 			<p><span>专享价：￥</span><span class="money">{{productInfo.preferPrice}}{{productInfo.preferPriceType}}</span></p>
-			<p><span>门店价：￥</span><span class="money" ng-bind="productInfo.standPrice"></span></p>
+			<p><span>门店价：￥</span><span class="money">{{productInfo.standPrice}}{{activityp}}</span></p>
 		</div>
 	</div>
 	<div class="has-user-menu"></div>

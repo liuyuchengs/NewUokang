@@ -38,6 +38,9 @@ body{
 	-webkit-tap-highlight-color:rgba(255,255,255,0);
 	line-height: 20px;
 }
+span,p{
+	word-wrap: break-word;
+}
 
 /*
 ** ******mixin部分******
@@ -276,6 +279,24 @@ body{
 			text-align: center;
 			display: inline-block;
 			margin-top:5px;
+		}
+	}
+	.follow{
+		.icon{
+			display: inline-block;
+			height:15px;
+			width:15px;
+			margin-top:-3px;
+			vertical-align: middle;
+			background:url("../../contents/svg/jia-white.svg");
+			background-size: contain;
+		}
+		.txt{
+			display: inline-block;
+		}
+		.select{
+			background:url("../../contents/svg/check-mark-white.svg");
+			background-size: contain;
 		}
 	}
 }

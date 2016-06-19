@@ -9,11 +9,12 @@
 <body style="background-color:#EFEFF4" ng-controller="userCtrl" data-ng-init="init()">
 	<div class="user-content">
 		<div class="user" ng-click="goto('/new/htmls/userinfo.html')">
-			<img class="img" src="../contents/svg/u-img.svg" alt="">
+			<img class="img" ng-src="{{user.face}}" fallback-src="../contents/img/men-head.png">
 			<div class="text">
-				<p ng-bind="name"></p>
+				<p ng-if="isLogin" ng-bind="user.nickname"></p>
 				<p ng-if="isLogin">粉丝：<span ng-bind="countFansMan"></span></p>
-				<p ng-if="isLogin">关注的人：<span ng-bind="countFocusMan"></span></p>
+				<p ng-if="isLogin">关注：<span ng-bind="countFocusMan"></span></p>
+				<p class="login-tip" ng-bind="user.tip"></p>
 			</div>		
 			<img class="icon" src="../contents/svg/right-arrow.svg">
 		</div>
@@ -76,13 +77,13 @@
 					<img src="../contents/svg/right-arrow.svg">
 				</div>
 			</li>
-			<li ng-click="alert('敬请期待!')">
+			<!--<li ng-click="alert('敬请期待!')">
 				<img class="icon" src="../contents/svg/u-zixun.svg">
 				<div class="text">
 					<span>我的咨询</span>
 					<img src="../contents/svg/right-arrow.svg">
 				</div>
-			</li>
+			</li>-->
 			<li ng-click="alert('敬请期待!')">
 				<img class="icon" src="../contents/svg/u-friend.svg">
 				<div class="text">

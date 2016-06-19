@@ -1,5 +1,5 @@
 app.controller("userCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
-	$scope.name;
+	$scope.user ={};
 	$scope.hasUserMenu = true;
 	$scope.isLogin = false;
 	$scope.goto = function(path){
@@ -27,17 +27,25 @@ app.controller("userCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 
 	$scope.switchText = function(){
 		if(Tool.isLogin()){
-			var name = Tool.getLocal("user").realname;
+			$scope.user = Tool.getLocal("user");
 			Tool.loadUserinfo($scope);
 			$scope.isLogin = true;
-			if(name){
-				$scope.name = name;
-			}else{
-				$scope.name = "您还没有填写名字";
+			if($scope.user.nickname===""||$scope.user.nickname===null){
+				$scope.user.nickname = "您还没有填写昵称";
+			}
+			if($scope.user.face===""||$scope.user.face===null){
+				if($scope.user.sex==="男"||$scope.user.sex===""||$scope.user.sex===null){
+					$scope.user.face = "../contents/img/men-head.png";
+				}
+				if($scope.user.sex==="女"){
+					$scope.user.face = "../contents/img/women-head.png";
+				}
 			}
 		}else{
-			$scope.name = "点击登录注册";
+			$scope.user.face = "../contents/img/men-head.png";
+			$scope.user.tip = "点击登录注册";
 		}
+		
 	}
 
 	$scope.menuClick = function(value){

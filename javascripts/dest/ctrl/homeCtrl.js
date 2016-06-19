@@ -7,8 +7,8 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 	$scope.noProductText = "";
 	$scope.banners = [];
 	$scope.hasHomeMenu = true;
-	$scope.key = "LFQBZ-7UNCX-VDR44-T34PN-OX2VQ-M2BNI"; //个人私钥，后续可更换为企业密钥
-	$scope.locationInfo ="定位中.."
+	//$scope.key = "LFQBZ-7UNCX-VDR44-T34PN-OX2VQ-M2BNI"; //个人私钥，后续可更换为企业密钥
+	$scope.locationInfo ="深圳市"
 	$scope.imgStyle = {
 		"width":screen.width
 	}
@@ -31,7 +31,9 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 		});
 	}
 
-	//逆地址服务
+	/**
+	 ** 逆地址服务暂不用
+	*/ 
 	$scope.getLocation = function(latitude,longitude){
 		var url = "https://apis.map.qq.com/ws/geocoder/v1/?output=jsonp&callback=JSON_CALLBACK&location="+latitude+","+longitude+"&key="+$scope.key;
 		$http.jsonp(url).success(function(data){
@@ -46,7 +48,6 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 		}).error(function(){
 			$scope.locationInfo = "定位失败";
 		})
-
 	}
 
 	//滚动监听
@@ -134,14 +135,8 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 	*/
 	$scope.mergeBanner = function(items){
 		for(var index in items){
-			if(index==2){
-				items[index].url="section/wrap-c.html";
-			}else if(index==3){
-				items[index].url="section/wrap-d.html";
-			}else if(index==4){
-				items[index].url="section/wrap-e.html";
-			}else{
-				items[index].url= "#";
+			if(index==0){
+				items[index].url="section/wrap-a.html";
 			}
 		}
 	}
@@ -154,11 +149,25 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 		var myswiper = new Swiper(".swiper-container",{
 			loop:false,
 			pagination: '.swiper-pagination',
-			autoplay: 5000,
+			autoplay: 2000,
 			autoplayDisableOnInteraction:false,
 			observeParents:true,  //
 			observer:true,
+			//第一张轮播图显示6s,其他的2s
+			onSlideChangeEnd: function(swiper){
+				if(swiper.activeIndex==0){
+					swiper.stopAutoplay();
+					setTimeout(function(){
+						if(swiper.activeIndex==0){
+							swiper.startAutoplay();
+						}
+					},4000)
+				}else{
+					swiper.startAutoplay();
+				}
+			}
 		})
+
 	}
 
 	/*

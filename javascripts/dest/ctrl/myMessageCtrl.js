@@ -76,6 +76,9 @@ app.controller("messageUserCtrl",["$scope","$http","Tool","Ajax",function($scope
     $scope.mergeMessage = function(items){
         items.forEach(function(item){
             item.dataStr = item.createDateStr.slice(5,10);
+            if(item.userImage===null||item.userImage===""){
+                item.userImage = "../contents/img/men-head.png";
+            }
         })
     }
     /*
@@ -173,6 +176,9 @@ app.controller("messageDoctorCtrl",["$scope","$http","Ajax","Tool",function($sco
                 item.noReply = false;
             }else{
                 item.noReply = true;
+            }
+            if(item.faceImage===null||item.faceImage===""){
+                item.faceImage = "../contents/img/doc-head.png";
             }
         })
     }

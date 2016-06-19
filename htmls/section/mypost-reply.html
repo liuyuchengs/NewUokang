@@ -1,8 +1,8 @@
-<div class="inte-detail-content" ng-controller="myPostReplyCtrl" data-ng-init="init()">
+<div class="inte-detail-content" data-ng-init="init()">
     <div class="message">
         <ul>
             <li ng-repeat="reply in replys">
-                <img class="head-img" ng-src="{{reply.userImage}}">
+                <img class="head-img" ng-src="{{reply.userImage}}" fallback-src="../contents/img/men-head.png">
                 <div class="text">
                     <p class="name">
                         <span ng-bind="reply.userName"></span>
