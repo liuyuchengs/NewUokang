@@ -16,9 +16,6 @@
 		<div class="title">
 			悠康医生
 		</div>
-		<div class="header-item float-right">
-			<img src="../contents/svg/search.svg">
-		</div>
 	</div>
 	<div class="has-header"></div>
 	<div class="swiper-container">
@@ -109,21 +106,21 @@
 				<div class="item-subhead" ng-bind="item.hospitalname"></div>
 				<div class="item-price">
 					<div class="float-left">
-						<span class="saleprice">￥{{item.preferPrice}}</span>
-						<span class="priceType">{{item.preferPriceType}}</span>
+						<span class="saleprice" ng-bind-template="￥{{item.preferPrice}}"></span>
+						<span class="priceType" ng-bind-template="{{item.preferPriceType}}"></span>
 					</div>
 					<div class="float-left margin-l">
-						<span class="price float-left">￥{{item.standPrice}}</span>
+						<span class="price float-left" ng-bind-template="￥{{item.standPrice}}"></span>
 					</div>
 					<div class="margin-right">
-						<span class="item-count float-right">{{item.sales}}人下单</span>
+						<span class="item-count float-right" ng-bind-template="{{item.sales}}人下单"></span>
 					</div>
 				</div>
 			</div>
 		</li>
 	</ul>
 	<div ng-include="'section/bottom-menu.html'"></div>
-	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
+	<div class="cush-tip" ng-if="noProduct" ng-bind="$parent.noProductText"></div>
 	<div class="has-menu"></div>
 	<div ng-include="'section/tip.html'"></div>
 	<div ng-include="'section/loading.html'"></div>

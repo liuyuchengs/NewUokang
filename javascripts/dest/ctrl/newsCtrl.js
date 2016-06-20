@@ -6,6 +6,9 @@ app.controller("newsCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 	$scope.loading = false;
 	$scope.noProduct = false;
 	$scope.noProductText = "";
+	$scope.imgStyle = {
+		"width":screen.width
+	}
 	$scope.navParam = {
 		"all":{
 			has:true,
@@ -40,6 +43,7 @@ app.controller("newsCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 		if(height>window.innerHeight){
 			if (height - window.scrollY - window.innerHeight < 100) {
 				$scope.loadNext();
+				$scope.initSwiper();
 			}
 		}
 	}
@@ -48,6 +52,18 @@ app.controller("newsCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 		Ajax.loadHost($scope,function(){
 			$scope.loadNews();
 		});
+	}
+
+	/**
+	** 初始化图片轮播插件
+	*/
+	$scope.initSwiper = function(){
+		var myswiper = new Swiper(".swiper-container",{
+			loop: true,
+			pagination: '.swiper-pagination',
+			autoplay: 5000,
+			autoplayDisableOnInteraction:false,
+		})
 	}
 
 	/*

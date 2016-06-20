@@ -110,7 +110,7 @@
 					<div class="text">
 						<p class="name">
 							<span ng-bind="reply.userName"></span>
-							<span>{{reply.count}}楼</span>
+							<span ng-bind-template="{{reply.count}}楼"></span>
 						</p>
 						<p class="title" ng-bind="reply.content"></p>
 						<div class="reply" ng-if="reply.hasReply">

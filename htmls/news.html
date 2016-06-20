@@ -21,17 +21,17 @@
 		<div class="swiper-wrapper">
 		   <div class="swiper-slide">
 			   <a href="#">
-				   <img class="swiper-img" src="../contents/img/health_1.jpg">
+				   <img class="swiper-img" ng-style="imgStyle" src="../contents/img/health_1.jpg">
 			   </a>
 		   </div>
 		   <div class="swiper-slide">
 			   <a href="#">
-			   		<img class="swiper-img" src="../contents/img/health_2.jpg">
+			   		<img class="swiper-img" ng-style="imgStyle" src="../contents/img/health_2.jpg">
 			   </a>
 		   </div>
 		   <div class="swiper-slide">
 			   <a href="#">
-			   		<img class="swiper-img" src="../contents/img/health_3.jpg">
+			   		<img class="swiper-img" ng-style="imgStyle" src="../contents/img/health_3.jpg">
 			   </a>
 		   </div>
 	   </div>
@@ -53,7 +53,7 @@
 			</div>
 		</li>
 	</ul>
-	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
+	<div class="cush-tip" ng-if="noProduct" ng-bind-template="{{$parent.noProductText}}"></div>
 	<div ng-include="'section/tip.html'"></div>
 	<div ng-include="'section/loading.html'"></div>
 	<script src="../javascripts/lib/jquery.min.js"></script>
@@ -62,22 +62,5 @@
 	<script src="../javascripts/lib/angular.route.min.js"></script>
 	<script src="../javascripts/dest/module/module.js"></script>
 	<script src="../javascripts/dest/ctrl/newsCtrl.js"></script>
-	<script>
-		//页面初始化
-		window.onload = function(){
-			//根据设备宽度初始化图片大小
-			var width = screen.width;
-			$(".swiper-img").each(function(index,element){
-				element.style.width = width+"px";
-			});
-			//初始化swiper
-			var myswiper = new Swiper(".swiper-container",{
-	    		loop: true,
-	    		pagination: '.swiper-pagination',
-				autoplay: 5000,
-				autoplayDisableOnInteraction:false,
-			})
-		}
-	</script>
 </body>
 </html>

@@ -54,7 +54,7 @@
 					</p>
 					<p class="score">
 						<span ng-bind="doctorInfo.score"></span>
-						<span>{{doctorInfo.sales}}人下单</span>
+						<span ng-bind-template="{{doctorInfo.sales}}人下单"></span>
 						<span ng-click="goAssess()">查看评论</span>
 					</p>
 					<p class="address" ng-bind="doctorInfo.hospitalname"></p>
@@ -85,14 +85,11 @@
 				<li ng-repeat="product in doctorInfo.dentallist" ng-click="orderDetail(product.id,product.title,product.standPrice)">
 					<div class="arrow" ></div>
 					<p class="item-title" ng-bind="product.title"></p>
-					<p class="sales">{{product.sales}}人下单</p>
+					<p class="sales" ng-bind-template="{{product.sales}}人下单"></p>
 					<p class="item-money">
-						<span class="dealMoney">
-							￥{{product.preferPrice}}{{product.preferPriceType}}
+						<span class="dealMoney" ng-bind-template="￥{{product.preferPrice}}{{product.preferPriceType}}">
 						</span>
-						<span class="price">
-							￥{{product.standPrice}}
-						</span>
+						<span class="price" ng-bind-template="￥{{product.standPrice}}"></span>
 					</p>
 				</li>
 			</ul>
@@ -112,7 +109,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
+	<div class="cush-tip" ng-if="noProduct" ng-bind-template="{{$parent.noProductText}}"></div>
 	<div ng-include="'section/tip.html'"></div>
 	<script src="../javascripts/lib/jquery.min.js"></script>
 	<script src="../javascripts/lib/swiper.min.js"></script>

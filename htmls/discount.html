@@ -33,14 +33,14 @@
 				<div class="item-subhead" ng-bind="item.address"></div>
 				<div class="item-price">
 					<div class="float-left">
-						<span class="saleprice">￥{{item.preferPrice}}</span>
-						<span class="priceType">{{item.preferPriceType}}</span>
+						<span class="saleprice" ng-bind-template="￥{{item.preferPrice}}"></span>
+						<span class="priceType" ng-bind-template="{{item.preferPriceType}}"></span>
 					</div>
 					<div class="float-left margin-l">
-						<span class="price float-left">￥{{item.standPrice}}</span>
+						<span class="price float-left" ng-bind-template="￥{{item.standPrice}}"></span>
 					</div>
 					<div class="margin-right">
-						<span class="item-count float-right">{{item.sales}}人下单</span>
+						<span class="item-count float-right" ng-bind-template="{{item.sales}}人下单"></span>
 					</div>
 				</div>
 			</div>

@@ -65,7 +65,7 @@
 	<div class="markorder-menu">
 		<div class="order-btn" ng-click="selectTimeBtn()" ng-class="{'disable':noSchedule}">下单</div>
 		<div class="order-text">
-			<p><span>专享价：￥</span><span class="money">{{product.preferPrice}}{{product.preferPriceType}}</span></p>
+			<p><span>专享价：￥</span><span class="money" ng-bind-template="{{product.preferPrice}}{{product.preferPriceType}}"></span></p>
 			<p><span>门店价：￥</span><span class="money" ng-bind="product.standPrice"></span></p>
 		</div>
 	</div>

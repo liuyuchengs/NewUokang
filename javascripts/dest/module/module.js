@@ -232,7 +232,7 @@ app.service("Weixin",["$http","Tool",function($http,Tool){
 		wx.ready(function(){
 			wx.checkJsApi({
 				//需要检测的JS接口列表
-				jsApiList: ['getLocation','chooseWXPay','onMenuShareTimeline'],
+				jsApiList: ['getLocation','chooseWXPay','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareQZone','onMenuShareWeibo'],
 				success: function(result) {
 					//以键值对的形式返回，可用的api值true，不可用为false
 					if(!result.checkResult.getLocation||!result.checkResult.chooseWXPay){
@@ -267,7 +267,7 @@ app.service("Weixin",["$http","Tool",function($http,Tool){
 			timestamp : "",
 			nonceStr : "",
 			signature : "",
-			jsApiList : ['getLocation','chooseWXPay','onMenuShareTimeline'],
+			jsApiList : ['getLocation','chooseWXPay','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareQZone','onMenuShareWeibo'],
 		};
 		var url = Tool.getSession("host")+"/weixin/check/getjsconfig";
 		var param = "url="+encodeURIComponent(location.href);
@@ -286,12 +286,49 @@ app.service("Weixin",["$http","Tool",function($http,Tool){
 		})
 	}
 
-	//分享至朋友圈
+	//自定义分享内容,可分享至微信好友，微信朋友圈，qq好友，qq空间，腾讯微博
 	this.wxShare = function(obj){
+		/**
+		 * title:分享标题, desc:分享描述, link:分享链接, imgUrl:分享图标, type：分享类型，默认为link， dataUrl：分享数据的连接
+		 */
 		wx.onMenuShareTimeline({
-			title: obj.title, // 分享标题
-			link: obj.link, // 分享链接
-			imgUrl: obj.imgUrl, // 分享图标
+			title: obj.title,
+			link: obj.link,
+			imgUrl: obj.imgUrl,
+			success: obj.success,
+			cancel: obj.cancel,
+		});
+		wx.onMenuShareAppMessage({
+			title: obj.title,
+			desc: obj.desc,
+			link: obj.link,
+			imgUrl: obj.imgUrl,
+			type: obj.type,
+			dataUrl: obj.dataUrl,
+			success:obj.success,
+			cancel: obj.cancel
+		});
+		wx.onMenuShareQQ({
+			title: obj.title,
+			desc: obj.desc,
+			link: obj.link,
+			imgUrl: obj.imgUrl,
+			success:obj.success,
+			cancel:obj.cancel
+		});
+		wx.onMenuShareQZone({
+			title: obj.title,
+			desc: obj.desc,
+			link: obj.link,
+			imgUrl: obj.imgUrl,
+			success: obj.success,
+			cancel:obj.cancel,
+		});
+		wx.onMenuShareWeibo({
+			title: obj.title,
+			desc: obj.desc,
+			link: obj.link,
+			imgUrl: obj.imgUrl,
 			success: obj.success,
 			cancel: obj.cancel,
 		});
@@ -355,7 +392,7 @@ app.service("Weixin",["$http","Tool",function($http,Tool){
 }])
 
 /*
-** ***指令类***
+** ******指令类******
 */
 //图片加载失败后，使用默认图片
 app.directive('fallbackSrc', function () {
@@ -381,6 +418,38 @@ app.directive('onFinishRender', function ($timeout) {
         }
 }});
 
+
+/**
+ * ******过滤器******
+ */
+//过滤空头像
+app.filter("DefaultHeadImg",function(){
+	return function(input,sex){
+		if(input===null||input===""){
+			if(sex==="男"||sex===null||sex===""||sex===undefined){
+				input = "../contents/img/men-head.png";
+			}else{
+				input = "../contents/img/women-head.png";
+			}
+		}
+		return input;
+	}
+})
+
+/**
+ * 设置默认图片
+ */
+app.filter("DefaultImg",function(){
+	return function(input,type){
+		if(type==="doc"){
+			input = "../contents/img/doc-head.png";
+		}
+		if(type==="pro"){
+			input = "../contents/img/p_defaualt.png"
+		}
+		return input;
+	}
+})
 /*
 ** 存储菜单变量
 */
@@ -460,28 +529,3 @@ app.service("Params",[function(){
 		tijian:{has:false,val:this.tijianParams,proId:"5"}
 	}
 }])
-
-
-app.filter("DefaultHeadImg",function(){
-	return function(input,sex){
-		if(input===null||input===""){
-			if(sex==="男"||sex===null||sex===""||sex===undefined){
-				input = "../contents/img/men-head.png";
-			}else{
-				input = "../contents/img/women-head.png";
-			}
-		}
-		return input;
-	}
-})
-app.filter("DefaultImg",function(){
-	return function(input,type){
-		if(type==="doc"){
-			input = "../contents/img/doc-head.png";
-		}
-		if(type==="pro"){
-			input = "../contents/img/p_defaualt.png"
-		}
-		return input;
-	}
-})

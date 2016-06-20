@@ -86,7 +86,7 @@
 				<div class="text">
 					<div class="text-header">
 						<span class="name" ng-bind="doctor.doctorname"></span>
-						<span class="score">{{doctor.score}}分</span>
+						<span class="score" ng-bind-template="{{doctor.score}}分"></span>
 					</div>
 					<div class="text-description">
 						<span>擅长:</span>
@@ -120,8 +120,8 @@
 	<div class="markorder-menu" ng-hide="selectTime">
 		<div class="order-btn" ng-class="{'disable':noSelectTime}" ng-click="orderDetail()">下单</div>
 		<div class="order-text">
-			<p><span>专享价：￥</span><span class="money">{{productInfo.preferPrice}}{{productInfo.preferPriceType}}</span></p>
-			<p><span>门店价：￥</span><span class="money">{{productInfo.standPrice}}{{activityp}}</span></p>
+			<p><span>专享价：￥</span><span class="money" ng-bind-template="{{productInfo.preferPrice}}{{productInfo.preferPriceType}}"></span></p>
+			<p><span>门店价：￥</span><span class="money" ng-bind-template="{{productInfo.standPrice}}{{activityp}}"></span></p>
 		</div>
 	</div>
 	<div class="has-user-menu"></div>

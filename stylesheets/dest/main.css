@@ -1566,9 +1566,8 @@ span, p {
     height: 180px;
     position: absolute;
     left: 50%;
-    top: 50%;
     margin-left: -141px;
-    margin-top: -90px;
+    margin-top: 160px;
     background: url("../../contents/img/prompt.png");
     background-size: contain;
     background-repeat: no-repeat; }
@@ -1585,13 +1584,22 @@ span, p {
       bottom: 20px;
       left: 105px; }
   .grab-imgtip .grab-tip {
-    height: 40px;
-    width: 40px;
+    height: 118px;
+    width: 105px;
     position: absolute;
     top: 0px;
     right: 25px;
     background: url("../../contents/svg/grab-tip.svg");
     background-size: contain; }
+  .grab-imgtip .grab-tip:before {
+    content: "点击上方按钮进行分享";
+    color: #fff;
+    width: 180px;
+    display: inline-block;
+    font-size: 16px;
+    position: absolute;
+    bottom: -30px;
+    left: -75px; }
 
 /*
 ** ******特惠页面******

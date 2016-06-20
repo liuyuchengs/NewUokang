@@ -35,7 +35,7 @@ app.controller("interactionCtrl",["$scope","$http","Tool","Ajax",function($scope
 		}).success(function(data){
 			if(data.data.length<1){
 				if($scope.posts.length<1){
-					$scope.noProductText = "没有项目信息,请选择其他区域或者时间!";
+					$scope.noProductText = "还没有帖子信息";
 				}else{
 					$scope.noProductText = "已经没有项目了!";
 				}

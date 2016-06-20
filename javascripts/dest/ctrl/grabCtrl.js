@@ -20,6 +20,17 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 	$scope.hasBg = false;
 	//是否显示分享窗口
 	$scope.showTip = false;
+	$scope.shareObj = {
+		title:"悠康医生是信息就医平台。",
+		desc:"用悠康，有健康。悠康医生为您提供各类优惠医疗项目，快来看看吧!",
+		link:"https://www.uokang.com/new/htmls/home.html",
+		imgUrl:"https://www.uokang.com/new/contents/img/logo.png",
+		success:function(){
+			Tool.setLocal("share","true");
+			$scope.switchTip("close");
+		},
+		cancel:function(){}
+	}
 	//菜单项变量
 	$scope.menuParams = {
 		area:false,
@@ -259,19 +270,7 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 							if(Tool.getLocal("share")){
 								Tool.goPage("/new/htmls/grab-code.html#?productId="+productId+"&hospitalId="+hospitalId+"&dayDate="+$scope.queryParams.dayDate);
 							}else{
-								var pageUrl = "/new/htmls/grab-code.html#?productId="+productId+"&hospitalId="+hospitalId+"&dayDate="+$scope.queryParams.dayDate;
-								wx.onMenuShareTimeline({
-									title:"悠康医生是信息就医平台。",
-									link:"https://www.uokang.com/new/htmls/home.html",
-									imgUrl:"https://www.uokang.com/new/contents/img/logo.png",
-									success:function(){
-										Tool.setLocal("share","true");
-										Tool.goPage(pageUrl);
-									},
-									cancel:function(){
-										
-									}
-								})
+								Weixin.wxShare($scope.shareObj);
 								$scope.switchTip("open");
 							}
 						}

@@ -102,7 +102,7 @@
 				</div>
 				<div class="item-qiang" ng-class="{'no':grab.noamount}">
 					<div class="btn" ng-bind="grab.btnMess" ng-click="writeCode(grab.noamount,grab.id,grab.hospitalId)"></div>
-					<div class="text">价值：{{grab.standPrice}}</div>
+					<div class="text" ng-bind-template="价值：{{grab.standPrice}}"></div>
 				</div>
 			</div>
 		</div>
@@ -114,7 +114,7 @@
 			<img src="../contents/svg/grab-close.svg" class="close" ng-click="switchTip('close')">
 		</div>
 	</div>
-	<div class="cush-tip" ng-if="noGrab">{{$parent.noProductText}}</div>
+	<div class="cush-tip" ng-if="noGrab" ng-bind-template="{{$parent.noProductText}}"></div>
 	<div ng-include="'section/tip.html'"></div>
 	<div ng-include="'section/loading.html'"></div>
 	<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>

@@ -44,8 +44,8 @@ app.controller("activityCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 			}else{
 				item.preferPriceType = item.pricetype;
 			}
-			if(item.smallImg==""||item.smallImg==null){
-				item.smallImg = "../contents/img/p_default.png";
+			if(item.samllimg==""||item.samllimg==null){
+				item.samllimg = "../contents/img/p_default.png";
 			}
             if(item.type===6){
                 item.hasActivity = true;

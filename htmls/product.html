@@ -110,20 +110,20 @@
 				<div class="item-subhead" ng-bind="product.hospital.name"></div>
 				<div class="item-price">
 					<div class="float-left">
-						<span class="saleprice">￥{{product.preferPrice}}</span>
-						<span class="priceType">{{product.preferPriceType}}</span>
+						<span class="saleprice" ng-bind-template="￥{{product.preferPrice}}"></span>
+						<span class="priceType" ng-bind-template="{{product.preferPriceType}}"></span>
 					</div>
 					<div class="float-left margin-l">
-						<span class="price float-left">￥{{product.standPrice}}</span>
+						<span class="price float-left" ng-bind-template="￥{{product.standPrice}}"></span>
 					</div>
 					<div class="margin-right">
-						<span class="item-count float-right">{{product.sales}}人下单</span>
+						<span class="item-count float-right" ng-bind-template="{{product.sales}}人下单"></span>
 					</div>
 				</div>
 			</div>
 		</li>
 	</ul>
-	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
+	<div class="cush-tip" ng-if="noProduct" ng-bind-template="{{$parent.noProductText}}"></div>
 	<div class="product-bg" ng-if="hasBg"></div>
 	<div ng-include="'section/tip.html'"></div>
 	<div ng-include="'section/loading.html'"></div>

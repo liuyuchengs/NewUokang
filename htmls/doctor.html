@@ -252,8 +252,8 @@
 						<span ng-bind="doctor.professionTitle"></span>
 					</p>
 					<p class="score">
-						<span>{{doctor.score}}分</span>
-						<span>{{doctor.sales}}人下单</span>
+						<span ng-bind-template="{{doctor.score}}分"></span>
+						<span ng-bind-template="{{doctor.sales}}人下单"></span>
 					</p>
 					<p class="address" ng-bind="doctor.hospital.name"></p>
 					<p class="use">
@@ -265,7 +265,7 @@
 		</ul>
 	</div>
 	<div ng-include="'section/bottom-menu.html'"></div>
-	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
+	<div class="cush-tip" ng-if="noProduct" ng-bind-template="{{$parent.noProductText}}"></div>
 	<div class="has-user-menu"></div>
 	<div class="product-bg" ng-if="hasBg"></div>
 	<div ng-include="'section/tip.html'"></div>
