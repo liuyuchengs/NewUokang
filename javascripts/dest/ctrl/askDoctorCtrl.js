@@ -4,6 +4,8 @@ app.controller("askDoctorCtrl",["$scope","$http","$location","Tool","Ajax",funct
 	$scope.noSelect = true;
 	$scope.postData = new FormData();
 	$scope.doctorId = null;
+	
+	//input控件参数
 	$scope.params = {
 		input1:{has:false,url:"",val:"#input1"},
 		input2:{has:false,url:"",val:"#input2"},
@@ -13,6 +15,7 @@ app.controller("askDoctorCtrl",["$scope","$http","$location","Tool","Ajax",funct
 		input6:{has:false,url:"",val:"#input6"},
 	}
 	
+	// 初始化页面
 	$scope.init = function(){
 		$scope.getParams();
 		Ajax.loadHost($scope,function(){
@@ -25,9 +28,7 @@ app.controller("askDoctorCtrl",["$scope","$http","$location","Tool","Ajax",funct
 		$scope.listen();
 	}
 
-	/**
-	 * 获取医生id参数
-	 */
+	// 获取医生id参数
 	$scope.getParams = function(){
 		if($location.search().id){
 			$scope.doctorId = $location.search().id;
@@ -36,16 +37,12 @@ app.controller("askDoctorCtrl",["$scope","$http","$location","Tool","Ajax",funct
 		}
 	}
 
-	/*
-	** 切换是否医生可见
-	*/
+	// 切换是否医生可见
 	$scope.chooseSee = function(){
 		$scope.hasSee = !$scope.hasSee;
 	}
 
-	/**
-	** 监听input元素选择图片
-	*/
+	// 监听input元素选择图片
 	$scope.listen = function(){
 		$("#input1").on("change",function(){
 			var url = $scope.getUrl(this.files[0]);
@@ -91,9 +88,7 @@ app.controller("askDoctorCtrl",["$scope","$http","$location","Tool","Ajax",funct
 		})
 	}
 
-	/**
-	** 获取input元素图片的url，做图片预览
-	*/
+	// 获取input元素图片的url，做图片预览
 	$scope.getUrl = function(obj){
 		var url = null;
 		if (window.createObjectURL != undefined) { // basic
@@ -106,9 +101,7 @@ app.controller("askDoctorCtrl",["$scope","$http","$location","Tool","Ajax",funct
 		return url;
 	}
 
-	/**
-	** 触发随便说说选择照片
-	*/
+	// 触发随便说说选择照片
 	$scope.choosePic = function(){
 		var count = 0;
 		for(var item in $scope.params){
@@ -124,9 +117,7 @@ app.controller("askDoctorCtrl",["$scope","$http","$location","Tool","Ajax",funct
 		}
 	}
 
-	/**
-	** 删除图片
-	*/
+	// 删除图片
 	$scope.remove = function(item){
 		if($scope.params[item]){
 			$scope.params[item].has=false;
@@ -136,17 +127,13 @@ app.controller("askDoctorCtrl",["$scope","$http","$location","Tool","Ajax",funct
 		}
 	}
 
-	/*
-	** 重新替换要重新选择图片的input元素
-	*/
+	// 重新替换要重新选择图片的input元素
 	$scope.clear = function(selector){
 		var element = document.getElementById(selector);
 		element.outerHTML = element.outerHTML; //重新替换Input元素
 	}
 
-	/*
-	** 调整照片参数
-	*/
+	// 调整照片参数
 	$scope.mergePic = function(){
 		var imgStr = "img";
 		var pStr = "p";
@@ -174,9 +161,7 @@ app.controller("askDoctorCtrl",["$scope","$http","$location","Tool","Ajax",funct
 		}
 	}
 
-	/*
-	** 提交提问
-	*/
+	// 提交提问
 	$scope.send = function(){
 		if($scope.content===null||$scope.content===""){
 			Tool.alert($scope,"请填写咨询内容!");
@@ -215,12 +200,8 @@ app.controller("askDoctorCtrl",["$scope","$http","$location","Tool","Ajax",funct
 		}
 	}
 
-
-	/*
-	** 返回上一页
-	*/
+	// 返回上一页
 	$scope.back = function(){
 		history.back();
 	}
-
 }])

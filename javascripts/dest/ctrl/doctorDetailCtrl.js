@@ -45,16 +45,14 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		code:null,
 		discountid:null,
 	}
-	//医生评价参数
+	// 医生评价参数
 	$scope.queryParams = {
 		id:null,
 		currentPage:1,
 		pageRows:10,
 	}
 
-	/**
-	** 初始化页面
-	*/
+	// 初始化页面
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			$scope.getParams();
@@ -65,9 +63,7 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		})
 	}
 
-	/**
-	** 初始化swiper
-	*/
+	// 初始化swiper
 	$scope.initSwiper = function(){
 		$scope.mySwiper = new Swiper('.swiper-container', {
 			slidesPerView : 4,
@@ -77,9 +73,7 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		})
 	}
 
-	/**
-	** swiper跳转到指定页
-	*/
+	// swiper跳转到指定页
 	$scope.toPage = function(params,$event){
 		if(params==="per"){
 			$scope.mySwiper.slidePrev();
@@ -90,17 +84,17 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		$event.stopPropagation();
 	}
 
+	// 切换选择就医时间
 	$scope.selectTime = function(){
 		$scope.hasTime = !$scope.hasTime;
 	}
 
+	// 切换选择就医项目
 	$scope.selectProduct = function(){
 		$scope.hasProduct = !$scope.hasProduct;
 	}
 
-	/**
-	 * 获取参数
-	 */
+	// 获取查询参数
 	$scope.getParams = function(){
 		if($location.search().id){
 			$scope.id = $location.search().id;
@@ -110,9 +104,7 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		}
 	}
 
-	/**
-	* 收起和隐藏医生简介
-	*/
+	// 收起和隐藏医生简介
 	$scope.showDescription = function(){
 		$scope.description.has = !$scope.description.has;
 		if($scope.description.has){
@@ -122,9 +114,7 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		}
 	}
 
-	/*
-	** 收起和隐藏擅长简介
-	*/
+	// 收起和隐藏擅长简介
 	$scope.showUse = function(){
 		$scope.use.has = !$scope.use.has;
 		if($scope.use.has){
@@ -134,9 +124,7 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		}
 	}
 
-	/**
-	* 获取医生信息
-	*/
+	// 获取医生信息
 	$scope.queryDoctor = function(){
 		$scope.loading = true;
 		var url = $scope.host+"/wx/doctor/queryDoctorDetailInfo";
@@ -178,18 +166,14 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		})
 	}
 
-	/**
-	* 检查医生信息
-	*/
+	// 检查医生信息
 	$scope.mergeDoctor = function(items){
 		items.forEach(function(item){
 			item.score==null|item.score==""?item.score="暂无评分":item.score+="分";
 		})
 	}
 
-	/**
-	** 获取医生排班信息
-	*/
+	// 获取医生排班信息
 	$scope.querySchedule = function(){
 		var url = $scope.host+"/wx/order/querybydoctorid";
 		var params = "doctorId="+$scope.id;
@@ -212,9 +196,7 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		})
 	}
 
-	/**
-	** 检查医生排班信息
-	*/
+	// 检查医生排班信息
 	$scope.mergeSchedule = function(items){
 		var first = true;
 		items.forEach(function(item){
@@ -235,9 +217,7 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		})
 	}
 
-	/**
-	 * 获取医生评价信息
-	 */
+	// 获取医生评价信息
 	$scope.queryAssess = function(){
 		var url = $scope.host+"/wx/review/showdoctorreview";
 		var params = Tool.convertParams($scope.queryParams);
@@ -262,16 +242,12 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		})
 	}
 
-	/**
-	** 切换导航栏
-	*/
+	// 切换导航栏
 	$scope.switchDay = function(property){
 		Tool.select(property,$scope.time.timeList);
 	}
 
-	/**
-	** 选择时间
-	*/
+	// 选择时间
 	$scope.selectTime = function(id,time,day){
 		if($scope.time.selectDay!=null&&$scope.time.selectId!=null){
 			var selectDay = $scope.time.selectDay;
@@ -303,9 +279,7 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		}
 	}
 
-	/**
-	** 获取money以及跳转页面
-	*/
+	// 获取money以及跳转页面
 	$scope.orderDetail = function(id,title,price){
 		if(!$scope.time.noTime){
 			if($scope.time.hasSelect){
@@ -357,9 +331,7 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 
 	}
 
-	/**
-	** 打开时间选择窗口
-	*/
+	// 打开时间选择窗口
 	$scope.openSelect = function(){
 		if($scope.time.noTime){
 			Tool.alert($scope,"此医生没有排班，暂不能下单。去其他医生看看吧!");
@@ -368,16 +340,12 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		}
 	}
 
-	/**
-	** 隐藏时间选择窗口
-	*/
+	// 隐藏时间选择窗口
 	$scope.hideSelect = function($event){
 		$scope.time.openSelect = false;
 	}
 
-	/*
-	** 跳转到咨询页面
-	*/
+	// 跳转到咨询页面
 	$scope.ask = function(){
 		Tool.loadUserinfo($scope,function(){
 			Tool.comfirm($scope,"您还没有登录，请先登录",function(){
@@ -389,18 +357,13 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		}
 	}
 
-	/**
-	 * 跳到医生评价
-	 */
+	// 跳到医生评价
 	$scope.goAssess = function(){
 		$location.hash("doctorAssess");
 		$anchorScroll();
 	}
 
-
-	/**
-	** 关注按钮处理函数
-	*/
+	// 关注按钮处理函数
 	$scope.switchFollow = function(){
 		if(!Tool.isLogin()){
 			Tool.comfirm($scope,"请先登录!",function(){
@@ -416,9 +379,7 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		}
 	}
 
-	/**
-	** 关注发帖医生
-	*/
+	// 关注发帖医生
 	$scope.tofollow = function(){
 		var url = $scope.host+"/wx/post/focus";
 		var params = "flag=2&userId="+$scope.id;
@@ -439,9 +400,7 @@ app.controller("doctorDetailCtrl",["$scope","$http","$location","$anchorScroll",
 		})
 	}
 
-	/**
-	** 取消关注医生
-	*/
+	// 取消关注医生
 	$scope.cacelFollow = function(){
 		var url = $scope.host+"/wx/post/cacelFocus";
 		var params = "flag=2&userId="+$scope.id;

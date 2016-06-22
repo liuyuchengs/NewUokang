@@ -9,7 +9,7 @@
 <body style="background-color:#EFEFF4" ng-controller="userCtrl" data-ng-init="init()">
 	<div class="user-content">
 		<div class="user" ng-click="goto('/new/htmls/userinfo.html')">
-			<img class="img" ng-src="{{user.face}}" fallback-src="../contents/img/men-head.png">
+			<img class="img" ng-src="{{user.face|defaultHeadImg:user.sex}}" user-error="{{user.sex}}">
 			<div class="text">
 				<p ng-if="isLogin" ng-bind="user.nickname"></p>
 				<p ng-if="isLogin">粉丝：<span ng-bind="countFansMan"></span></p>

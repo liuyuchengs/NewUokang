@@ -35,9 +35,7 @@ app.controller("examDetailCtrl",["$scope","$http","$location","Tool","Ajax",func
 		discountid:null,
 	}
 
-	/*
-	** 页面初始化
-	*/
+	// 页面初始化
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			$scope.loading = true;
@@ -51,23 +49,17 @@ app.controller("examDetailCtrl",["$scope","$http","$location","Tool","Ajax",func
 		})
 	}
 
-	/*
-	** 切换导航条
-	*/
+	// 切换导航条
 	$scope.switch = function(item){
 		Tool.select(item,$scope.filterParams);
 	}
 
-	/*
-	** 返回上一页
-	*/
+	// 返回上一页
 	$scope.back = function(){
 		window.history.back();
 	}
 
-	/*
-	** 获取url参数
-	*/
+	// 获取url参数
 	$scope.loadParams = function(){
 		if($location.search().productId){
 			$scope.productId = $location.search().productId;
@@ -79,9 +71,7 @@ app.controller("examDetailCtrl",["$scope","$http","$location","Tool","Ajax",func
 		}
 	}
 
-	/*
-	** 加载排班信息
-	*/
+	// 加载排班信息
 	$scope.loadSchedule = function(){
 		var url = $scope.host+"/wx/schedule/querybyhospitalid";
 		var params = "hospitalId="+$scope.hospitalId;
@@ -102,9 +92,7 @@ app.controller("examDetailCtrl",["$scope","$http","$location","Tool","Ajax",func
 		})
 	}
 
-	/*
-	** 保存排班信息
-	*/
+	// 保存排班信息
 	$scope.mergeSchedule = function(items){
 		for(var index in items){
 			var item  = items[index];
@@ -125,9 +113,7 @@ app.controller("examDetailCtrl",["$scope","$http","$location","Tool","Ajax",func
 		}
 	}
 
-	/*
-	** 加载体检套餐信息
-	*/
+	// 加载体检套餐信息
 	$scope.loadProduct = function(){
 		var url = $scope.host+"/wx/product/packagedetal";
 		var params = "packageid="+$scope.productId;
@@ -149,9 +135,7 @@ app.controller("examDetailCtrl",["$scope","$http","$location","Tool","Ajax",func
 		})
 	}
 
-	/*
-	** 体检套餐为空时，使用默认图片
-	*/
+	// 体检套餐为空时，使用默认图片
 	$scope.mergeProduct = function(item){
 		if(item.priceunit!=null&&item.priceunit!=""){
 			item.preferPriceType = item.pricetype+"/"+item.priceunit;
@@ -163,9 +147,7 @@ app.controller("examDetailCtrl",["$scope","$http","$location","Tool","Ajax",func
 		}
 	}
 
-	/*
-	** 加载体检套餐的项目信息
-	*/
+	// 加载体检套餐的项目信息
 	$scope.loadProductItem = function(){
 		var url = $scope.host+"/wx/product/packagedetalItem";
 		var params = "packageid="+$scope.productId;
@@ -180,9 +162,7 @@ app.controller("examDetailCtrl",["$scope","$http","$location","Tool","Ajax",func
 		})
 	}
 
-	/*
-	** 加载医院信息
-	*/
+	// 加载医院信息
 	$scope.loadHospital = function(){
 		var url = $scope.host+"/wx/product/hospitalbyid";
 		var params = "id="+$scope.hospitalId;
@@ -202,18 +182,14 @@ app.controller("examDetailCtrl",["$scope","$http","$location","Tool","Ajax",func
 		})
 	}
 
-	/*
-	** 医院图片为空时，使用默认图片
-	*/
+	// 医院图片为空时，使用默认图片
 	$scope.mergeHospital = function(item){
 		if(item.logo==""||item.logo==null){
 			item.logo = "../contents/img/p_default.png";
 		}
 	}
 
-	/*
-	** 加载医院图片
-	*/
+	// 加载医院图片
 	$scope.loadHopitalImg = function(){
 		var url = $scope.host+"/wx/image/querybymainid";
 		var params = "type=HOSPITAL&mainId="+$scope.hospitalId;
@@ -229,25 +205,19 @@ app.controller("examDetailCtrl",["$scope","$http","$location","Tool","Ajax",func
 		})
 	}
 
-	/*
-	** 打开选择时间按钮
-	*/
+	// 打开选择时间按钮
 	$scope.selectTimeBtn = function(){
 		if(!$scope.noSchedule){
 			$scope.hasSelectTime = true;
 		}
 	}
 
-	/*
-	** 取消选择时间
-	*/
+	// 取消选择时间
 	$scope.cancelTime = function(){
 		$scope.hasSelectTime = false;
 	}
 
-	/*
-	** 选择时间
-	*/
+	// 选择时间
 	$scope.selectTime = function(id){
 		if(!$scope.noSchedule){
 			Tool.select(id,$scope.scheduleParams);
@@ -255,9 +225,8 @@ app.controller("examDetailCtrl",["$scope","$http","$location","Tool","Ajax",func
 			$scope.order.scheduleId = id;
 		}
 	}
-	/*
-	** 跳转到详细页面
-	*/
+	
+	// 跳转到详细页面
 	$scope.detail = function(){
 		if(!Tool.isLogin()){
 			Tool.comfirm($scope,"请先登录并完善个人信息!",function(){

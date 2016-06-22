@@ -4,9 +4,7 @@ app.controller("cushOverCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 	$scope.cushs;
 	$scope.noCushOver = false;
 
-	/*
-	** 初始化页面
-	*/
+	// 初始化页面
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			Tool.loadUserinfo($scope);
@@ -14,7 +12,7 @@ app.controller("cushOverCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 		})
 	}
 
-	//加载过期代金券信息
+	// 加载过期代金券信息
 	$scope.loadCushOver = function(){
 		var url = $scope.host+"/wx/order/overdue";
 		var params = "userId="+$scope.userInfo.id;
@@ -38,7 +36,8 @@ app.controller("cushOverCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 			Tool.alert($scope,"数据加载失败，请稍后再试!");
 		})
 	}
-	//判断代金券是过期还是已使用
+
+	// 判断代金券是过期还是已使用
 	$scope.merge = function(items){
 		items.forEach(function(item,index,array){
 			if(item.state==1){

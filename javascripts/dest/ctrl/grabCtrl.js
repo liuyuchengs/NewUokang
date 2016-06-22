@@ -54,7 +54,7 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		tuina:{has:false,id:6},
 	}
 
-	//滚动监听
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noGrab){
 			return;
@@ -69,6 +69,7 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		}
 	}
 
+	// 页面初始化
 	$scope.init = function(){
 		$scope.getQueryParams();
 		Ajax.loadHost($scope,function(){
@@ -78,9 +79,7 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		})
 	}
 
-	/*
-	** 获取参数
-	*/
+	// 获取url参数
 	$scope.getQueryParams = function(){
 		if($location.search().item){
 			if($location.search().item=="meirong"){
@@ -89,7 +88,7 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		}
 	}
 
-	//加载日期时间
+	// 加载日期时间
 	$scope.loadDate = function(callback){
 		var url = $scope.host+"/wx/gift/querydate";
 		$http.get(url)
@@ -115,7 +114,7 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		})
 	}
 
-	//切换下拉菜单
+	// 切换下拉菜单
 	$scope.switchMenu =function(menu){
 		switch(menu){
 			case "area":
@@ -177,7 +176,7 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		}
 	}
 
-	//时间下拉菜单项点击
+	// 时间下拉菜单项点击
 	$scope.dateSelect = function(params){
 		Tool.select(params,$scope.dateParams);
 		$scope.queryParams.dayDate = params;
@@ -187,7 +186,7 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		$scope.switchMenu("date");
 	}
 
-	//区域下拉菜单项点击
+	// 区域下拉菜单项点击
 	$scope.areaSelect =function(params){
 		Tool.select(params,$scope.areaParams);
 		$scope.queryParams.area = $scope.areaParams[params].val;
@@ -197,7 +196,7 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		$scope.switchMenu("area");
 	}
 
-	//分类下拉菜单项点击
+	// 分类下拉菜单项点击
 	$scope.classSelect = function(params){
 		Tool.select(params,$scope.classParams);
 		$scope.queryParams.professionId = $scope.classParams[params].id;
@@ -207,7 +206,7 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		$scope.switchMenu("class");
 	}
 
-	//加载数据
+	// 加载数据
 	$scope.loadData = function(){
 		$scope.loading = true;
 		var url = $scope.host+"/wx/gift/queryproduct";
@@ -232,12 +231,13 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		})
 	}
 
-	//加载下一页数据
+	// 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.loadData();
 	}
 
+	// 处理数据
 	$scope.merge = function(items){
 		items.forEach(function(item){
 			if(item.amount==0|item.amount==null){
@@ -253,7 +253,7 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		})
 	}
 
-	//抢单按钮
+	// 抢单按钮
 	$scope.writeCode = function(noamount,productId,hospitalId){
 		if(noamount){
 			return
@@ -289,15 +289,14 @@ app.controller("grabCtrl",["$scope","$http","$window","$location","Tool","Ajax",
 		}
 	}
 
+	// 问题按钮
 	$scope.question = function(){
 		Tool.alert($scope,"每个用户只可享受一次免费抢单，如需帮助请致电：0755-26905699",function(){
 			$scope.hasTip = false;
 		})
 	}
 
-	/*
-	** 切换tip窗口
-	*/
+	// 切换tip窗口
 	$scope.switchTip = function(params){
 		if(params==="close"){
 			$scope.showTip = false;

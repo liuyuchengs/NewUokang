@@ -13,19 +13,14 @@ app.controller("wrapExamCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 		currentPage:1,
 	}
 
-	/*
-	** 初始化
-	*/
+	// 初始化
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			$scope.loadProduct();
 		})
 	}
 
-
-	/*
-	** 滚动监听
-	*/
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;
@@ -40,9 +35,7 @@ app.controller("wrapExamCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 		}
 	}
 
-	/*
-	** 加载体检项目
-	*/
+	// 加载体检项目
 	$scope.loadProduct = function(){
 		$scope.loading = true;
 		var url = $scope.host+"/wx/product/queryByMidd";
@@ -73,9 +66,7 @@ app.controller("wrapExamCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 		})
 	}
 
-	/*
-	** 合并价格单位,如：元/次
-	*/
+	// 合并价格单位,如：元/次
 	$scope.mergeProdcut = function(items){
 		items.forEach(function(item){
 			if(item.priceunit!=null&&item.priceunit!=""){
@@ -86,16 +77,12 @@ app.controller("wrapExamCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 		})
 	}
 
-	/*
-	** 跳转到套餐详细页面
-	*/
+	// 跳转到套餐详细页面
 	$scope.detail = function(proId,hosId){
 		Tool.goPage("/new/htmls/exam-detail.html#?productId="+proId+"&hospitalId="+hosId);
 	}
 
-	/*
-	** 加载下一页数据
-	*/
+	// 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.loadProduct();

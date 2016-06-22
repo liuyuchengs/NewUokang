@@ -104,7 +104,7 @@
 	</div>
 	<ul class="prduct-container" >
 		<li class="item" ng-repeat = "product in products" ng-click="detail(product.id,product.hospitalId)" >
-			<img class="item-img float-left" ng-src="{{product.smallImg}}" fallback-src="../contents/img/p_default.png">
+			<img class="item-img float-left" ng-src="{{product.smallImg|defaultImg:'pro'}}" product-error>
 			<div class="item-desc">
 				<div class="item-title" ng-bind="product.title"></div>
 				<div class="item-subhead" ng-bind="product.hospital.name"></div>

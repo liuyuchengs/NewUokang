@@ -9,17 +9,13 @@ app.controller("makeorderCtrl",["$scope","$http","Tool","Ajax",function($scope,$
 	$scope.userInfo;
 	$scope.hasDoctor = true;
 
-	/*
-	** 页面初始化
-	*/
+	// 页面初始化
 	angular.element(document).ready(function(){
 		Tool.loadUserinfo($scope);
 		$scope.checkGift();
 	})
 
-	/*
-	** 是否使用代金券
-	*/
+	// 是否使用代金券
 	$scope.selectCush = function(){
 		if($scope.hasGift){
 			$scope.hasCheck = !$scope.hasCheck;
@@ -35,9 +31,7 @@ app.controller("makeorderCtrl",["$scope","$http","Tool","Ajax",function($scope,$
 		}
 	}
 
-	/*
-	** 判定是否有代金券可用
-	*/
+	// 判定是否有代金券可用
 	$scope.checkGift = function(){
 		if(parseFloat($scope.orderInfo.giftMoney)>0){
 			$scope.hasCheck = true;
@@ -49,9 +43,7 @@ app.controller("makeorderCtrl",["$scope","$http","Tool","Ajax",function($scope,$
 		}
 	}
 
-	/*
-	** 下单按钮
-	*/
+	// 下单按钮
 	$scope.makeorder = function(){
 		var url = Tool.getSession("host")+"/wx/order/make";
 		var params = {

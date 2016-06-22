@@ -2,9 +2,7 @@ app.controller("grabOrderCtrl",["$scope","$http","Tool","Ajax",function($scope,$
 	$scope.hasGift = false;
 	$scope.gift = {};
 
-	/*
-	** 初始化页面
-	*/
+	// 初始化页面
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			Tool.loadUserinfo($scope);
@@ -12,9 +10,7 @@ app.controller("grabOrderCtrl",["$scope","$http","Tool","Ajax",function($scope,$
 		})
 	}
 
-	/*
-	** 查询惠赠订单
-	*/
+	// 查询惠赠订单
 	$scope.queryGift = function(){
 		var url = $scope.host+"/wx/order/queryUserGiftCode";
 		$http.get(url,{

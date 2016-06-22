@@ -20,7 +20,7 @@
 	<div class="has-header"></div>
 	<div class="inte-detail-content">
 		<div class="userinfo">
-			<img ng-src="{{post.faceImage}}" fallback-src="../contents/img/men-head.png">
+			<img ng-src="{{post.faceImage|defaultHeadImg:post.sex}}" user-error="{{post.sex}}">
 			<div class="text">
 				<p><span ng-bind="post.userName"></span></p>
 				<p class="post-title" ng-bind="post.postName"></p>

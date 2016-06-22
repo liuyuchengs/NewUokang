@@ -17,15 +17,14 @@ app.controller("orderCtrl",["$scope","$http","$location","Tool",function($scope,
 		toAssess:{has:false,val:"4"}
 	}
 
+	//初始化页面
 	$scope.init = function(){
 		Tool.loadUserinfo($scope);
 		$scope.getParams();
 		$scope.loadOrder();
 	}
 
-	/**
-	 * 获取查询参数
-	 */
+	// 获取查询参数
 	$scope.getParams = function(){
 		if($location.search().p){
 			var params = $location.search().p;
@@ -34,7 +33,7 @@ app.controller("orderCtrl",["$scope","$http","$location","Tool",function($scope,
 		}
 	}
 
-	//加载订单数据
+	// 加载订单数据
 	$scope.loadOrder = function(){
 		var url = Tool.getSession("host")+"/wx/order/queryOrderList";
 		var params = "userId="+$scope.userInfo.id+"&status="+$scope.status;
@@ -69,7 +68,7 @@ app.controller("orderCtrl",["$scope","$http","$location","Tool",function($scope,
 		})
 	}
 
-	//根据订单状态码，生成对应的状态信息,如支付中...
+	// 根据订单状态码，生成对应的状态信息,如支付中...
 	$scope.merge = function(orders){
 		orders.forEach(function(item,index,array){
 			item.toPay = false;
@@ -121,7 +120,7 @@ app.controller("orderCtrl",["$scope","$http","$location","Tool",function($scope,
 		});
 	}
 
-	//支付订单
+	// 支付订单
 	$scope.toPay = function(order){
 		Tool.setSession("order",order);
 		var appid = "wx0229404bc9eeea00";
@@ -130,13 +129,13 @@ app.controller("orderCtrl",["$scope","$http","$location","Tool",function($scope,
 		Tool.goUrl(url);
 	}
 
-	//取消订单
+	// 取消订单
 	$scope.toCancel = function(id){
 		$scope.cancelOrderId = id;
 		Tool.comfirm($scope,"确定要取消订单吗？",$scope.cancelFn);
 	}
 
-	//取消订单提示框，确认按钮回调
+	// 取消订单提示框，确认按钮回调
 	$scope.cancelFn =function(){
 		if($scope.hasTip){
 			$scope.hasTip = false;
@@ -164,6 +163,7 @@ app.controller("orderCtrl",["$scope","$http","$location","Tool",function($scope,
 		})
 	}
 
+	// 切换导航条
 	$scope.switchOrder = function(item){
 		Tool.select(item,$scope.filterParams);
 		$scope.status = $scope.filterParams[item].val;

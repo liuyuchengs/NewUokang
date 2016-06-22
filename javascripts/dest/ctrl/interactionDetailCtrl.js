@@ -20,9 +20,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		pageRows:10,
 		currentPage:1
 	}
-	/*
-	** 页面初始化
-	*/
+	// 页面初始化
 	$scope.init =function(){
 		Ajax.loadHost($scope,function(){		
 			$scope.getQueryString();
@@ -31,9 +29,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		})
 	}
 
-	/*
-	** 获取帖子id
-	*/
+	// 获取帖子id
 	$scope.getQueryString = function(){
 		if($location.search().id){
 			$scope.postId = $location.search().id;
@@ -43,9 +39,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/*
-	** 滚动监听
-	*/
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;
@@ -60,17 +54,13 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/*
-	** 加载下一页数据
-	*/
+	// 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.queryMessage();
 	}
 
-	/*
-	** 获取帖子详细信息
-	*/
+	// 获取帖子详细信息
 	$scope.queryPost = function(){
 		$scope.loading = true;
 		var url  = $scope.host+"/wx/post/postDetail";
@@ -107,9 +97,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		})
 	}
 
-	/**
-	* 查询评论信息
-	*/
+	// 查询评论信息
 	$scope.queryMessage = function(){
 		$scope.loading = true;
 		var url = $scope.host+"/wx/post/postMessage";
@@ -139,9 +127,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		})
 	}
 
-	/*
-	** 检查评论信息
-	*/
+	// 检查评论信息
 	$scope.mergeMessage = function(post){
 		post.message = "";
 		var comment  = post.commentList;
@@ -162,14 +148,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 					reply.createDateStr = reply.createDateStr.slice(5,10);
 				}
 				if(parseInt(reply.praiseNum)<1){
-					reply.praiseNum = "点赞"
-				}
-				if(reply.userImage===null||reply.userImage===""){
-					if(reply.sex==="男"||reply.sex===null||reply.sex===""){
-						reply.userImage = "../contents/img/men-head.png";
-					}else{
-						reply.userImage = "../contents/img/women-head.png";
-					}
+					reply.praiseNum = "点赞";
 				}
 				if(reply.repliesMessageList.length>0){
 					reply.hasReply=true;
@@ -189,9 +168,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/*
-	** 检查是否登录
-	*/
+	// 检查是否登录
 	$scope.checkLogin = function(){
 		if(!Tool.isLogin()){
 			Tool.comfirm($scope,"请先登录！",function(){
@@ -204,9 +181,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/*
-	** 点赞，flag:0->帖子,flag:1->评论
-	*/
+	// 点赞，flag:0->帖子,flag:1->评论
 	$scope.thumb = function(id,flag){
 		if($scope.checkLogin()){
 			var reply = "";
@@ -238,9 +213,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/*
-	** 显示评论回复输入框
-	*/
+	// 显示评论回复输入框
 	$scope.showReplyInput = function(id,replyId,replyName){
 		if($scope.checkLogin()){
 			if($scope.showReplyInputId!=id){
@@ -278,9 +251,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/*
-	** 显示评论输入框
-	*/
+	// 显示评论输入框
 	$scope.showPostInput = function(){
 		if($scope.checkLogin()){
 			if($scope.showPostinput == false){
@@ -289,9 +260,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/*
-	** 隐藏评论输入框
-	*/
+	// 隐藏评论输入框
 	$scope.hidePostInput = function(){
 		if($scope.showPostinput ==true){
 			$scope.showPostinput = false;
@@ -299,9 +268,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/*
-	** 隐藏评论回复输入框
-	*/
+	// 隐藏评论回复输入框
 	$scope.hideReplyInput = function(id){
 		var post = $scope.replyMess;
 		for(var index in post.commentList){
@@ -322,9 +289,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/*
-	** 发表评论
-	*/
+	// 发表评论
 	$scope.sendPost = function(content){
 		if(content==""||content==null){
 			Tool.alert($scope,"消息为空!");
@@ -357,9 +322,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/**
-	 * 检查新发表的评论信息
-	 */
+	// 检查新发表的评论信息
 	$scope.mergeNewReply = function(reply){
 		if(reply.userImage===null||reply.userImage===""){
 			var user = Tool.getLocal("user");
@@ -371,9 +334,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/*
-	** 发表回复
-	*/
+	// 发表回复
 	$scope.sendReply = function(content,id){
 		if(content==""||content==null){
 			Tool.alert($scope,"消息为空！");
@@ -423,9 +384,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/**
-	** 关注按钮处理函数
-	*/
+	// 关注按钮处理函数
 	$scope.clickFollow = function(){
 		if(!Tool.isLogin()){
 			Tool.comfirm($scope,"请先登录!",function(){
@@ -440,9 +399,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		}
 	}
 
-	/**
-	** 关注发帖人
-	*/
+	// 关注发帖人
 	$scope.tofollow = function(){
 		var url = $scope.host+"/wx/post/focus";
 		var params = "flag=1&userId="+$scope.post.userId;
@@ -463,9 +420,7 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		})
 	}
 
-	/**
-	** 取消关注发帖人
-	*/
+	// 取消关注发帖人
 	$scope.cacelFollow = function(){
 		var url = $scope.host+"/wx/post/cacelFocus";
 		var params = "flag=1&userId="+$scope.post.userId;
@@ -486,16 +441,12 @@ app.controller("interactionDetailCtrl",["$scope","$http","$location","Tool","Aja
 		})
 	}
 
-	/*
-	** 跳转到医生页面
-	*/
+	// 跳转到医生页面
 	$scope.goDoctor = function(id){
 		Tool.goPage("/new/htmls/doctor-detail.html#?id="+id);
 	}
 
-	/*
-	** 跳转到项目页面
-	*/
+	// 跳转到项目页面
 	$scope.goProduct = function(productId,hospitalId){
 		Tool.goPage("/new/htmls/product-detail.html#?flag=1&productId="+productId+"&hospitalId="+hospitalId);
 	}

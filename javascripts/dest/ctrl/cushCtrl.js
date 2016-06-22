@@ -3,9 +3,7 @@ app.controller("cushCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 	$scope.noCush = false;
 	$scope.activeValue="";
 
-	/*
-	** 初始化页面
-	*/
+	// 初始化页面
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			Tool.loadUserinfo($scope);
@@ -13,7 +11,7 @@ app.controller("cushCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 		})
 	}
 
-	//加载代金券信息
+	// 加载代金券信息
 	$scope.loadCush = function(){
 		var url = $scope.host+"/wx/order/findAllVouchers";
 		var params = "userId="+$scope.userInfo.id;
@@ -38,7 +36,7 @@ app.controller("cushCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 		})
 	}
 
-	//判断代金券是否有使用
+	// 判断代金券是否有使用
 	$scope.merge = function(items){
 		items.forEach(function(item,index,array){
 			if(item.flags>item.money){
@@ -49,7 +47,7 @@ app.controller("cushCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 		})
 	}
 
-	//激活代金券
+	// 激活代金券
 	$scope.active = function(){
 		if($scope.activeValue.length==6){
 			var url = $scope.host+"/wx/order/activate";

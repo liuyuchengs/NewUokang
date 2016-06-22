@@ -1,9 +1,10 @@
 var app = angular.module("myApp",['ngRoute']);
 
-/*
-********* 服务区域 ********
-*/
-//数据访问类服务
+/**************************************************************/
+/**
+ * 服务区域 
+ */
+// 数据访问类服务
 app.service("Ajax",["$http","$q","Tool",function($http,$q,Tool){
 	//加载host
 	this.loadHost = function(scope,callback){
@@ -23,7 +24,7 @@ app.service("Ajax",["$http","$q","Tool",function($http,$q,Tool){
 		}
 	}
 
-	//封装ajax
+	//使用promise封装ajax
 	this.get = function (obj) {
             if (obj.url) {
                 var defered = $q.defer();
@@ -54,8 +55,7 @@ app.service("Ajax",["$http","$q","Tool",function($http,$q,Tool){
 		}
 	};
 }]);
-
-//工具类服务
+// 工具类服务
 app.service("Tool",["$location",function($location,Ajax){
 	/*
 	** 操作localStorage和sessionStorage
@@ -222,9 +222,11 @@ app.service("Tool",["$location",function($location,Ajax){
 	}
 }])
 
-/*
-** 微信服务
-*/
+
+/**************************************************************/
+/**
+ * 微信服务
+ */
 app.service("Weixin",["$http","Tool",function($http,Tool){
 	//初始化完成后，检查客户端版本 --first--
 	this.wxInit = function($scope,callback){
@@ -391,10 +393,12 @@ app.service("Weixin",["$http","Tool",function($http,Tool){
 	}
 }])
 
-/*
-** ******指令类******
-*/
-//图片加载失败后，使用默认图片
+
+/**************************************************************/
+/**
+ * 指令类
+ */
+// 图片加载失败后，使用设置的图片
 app.directive('fallbackSrc', function () {
   var fallbackSrc = {
     link: function postLink(scope, iElement, iAttrs) {
@@ -405,25 +409,53 @@ app.directive('fallbackSrc', function () {
    }
    return fallbackSrc;
 });
-//ng-repeat后触发事件
-app.directive('onFinishRender', function ($timeout) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attr) {
-            if (scope.$last === true) {
-                $timeout(function () {
-                    scope.$emit('ngRepeatFinished');
-                });
-            }
-        }
-}});
+// 项目图片加载失败后，使用默认图片
+app.directive("productError",function(){
+	return {
+		restrict:"A",
+		link:function(scope,iElement,iAttrs){
+			iElement.bind("error",function(){
+				angular.element(this).attr("src","../contents/img/p_default.png");
+			})
+		}
+	}
+})
+// 医生图片加载失败后，使用默认图片
+app.directive("doctorError",function(){
+	return {
+		restrict:"A",
+		link:function(scope,iElement,iAttrs){
+			iElement.bind("error",function(){
+				angular.element(this).attr("src","../contents/img/doc-head.png");
+			})
+		}
+	}
+})
+// 用户头像加载失败后，使用默认图片
+app.directive("userError",function(){
+	return {
+		restrict:"A",
+		link:function($scope,iElement,iAttrs){
+			iElement.bind("error",function(){
+				var imgUrl = "../contents/img/men-head.png";
+				if(iAttrs.userError){
+					if(iAttrs.userError==="女"){
+						imgUrl = "../contents/img/women-head.png"
+					}
+				}
+				angular.element(this).attr("src",imgUrl);
+			})
+		}
+	}
+})
 
 
+/*************************************************************/
 /**
- * ******过滤器******
+ * 过滤器
  */
-//过滤空头像
-app.filter("DefaultHeadImg",function(){
+// 设置默认的头像
+app.filter("defaultHeadImg",function(){
 	return function(input,sex){
 		if(input===null||input===""){
 			if(sex==="男"||sex===null||sex===""||sex===undefined){
@@ -435,24 +467,21 @@ app.filter("DefaultHeadImg",function(){
 		return input;
 	}
 })
-
-/**
- * 设置默认图片
- */
-app.filter("DefaultImg",function(){
+// 设置默认图片
+app.filter("defaultImg",function(){
 	return function(input,type){
-		if(type==="doc"){
-			input = "../contents/img/doc-head.png";
-		}
-		if(type==="pro"){
-			input = "../contents/img/p_defaualt.png"
+		if(input==null||input==""){
+			if(type==="doc"){
+				input = "../contents/img/doc-head.png";
+			}
+			if(type==="pro"){
+				input = "../contents/img/p_default.png"
+			}
 		}
 		return input;
 	}
 })
-/*
-** 存储菜单变量
-*/
+// 存储菜单变量
 app.service("Params",[function(){
 	this.defaultParams = {
 		default:{has:true,id:""}

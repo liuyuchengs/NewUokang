@@ -1,7 +1,7 @@
 <div class="follow-user-content" data-ng-init="init()">
     <ul>
         <li ng-repeat="follow in follows">
-            <img ng-src="{{follow.face}}" fallback-src="../contents/img/men-head.png">
+            <img ng-src="{{follow.face|defaultHeadImg:follow.sex}}" user-error="{{follow.sex}}">
             <span ng-bind="follow.nickname"></span>
             <div class="follow select" ng-class="{'select':follow.hasFollow}" ng-click="switchFollow(follow.id)">
                 <div class="icon"></div>

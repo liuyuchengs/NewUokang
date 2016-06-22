@@ -1,4 +1,4 @@
-	app.controller("productCtrl",["$scope","$http","$location","Tool","Ajax",function($scope,$http,$location,Tool,Ajax){
+app.controller("productCtrl",["$scope","$http","$location","Tool","Ajax",function($scope,$http,$location,Tool,Ajax){
 	//查询条件
 	$scope.queryParams = {
 		city:"深圳",
@@ -63,18 +63,14 @@
 		})
 	}
 
-	/*
-	** 加载地理信息
-	*/
+	// 加载地理信息
 	$scope.initLocation = function(){
 		if(Tool.getSession("locationInfo")){
 			$scope.hasLocation = true;
 		}
 	}
 
-	/*
-	** 加载分类信息
-	*/
+	// 加载分类信息
 	$scope.loadClassParams = function(){
 		if($location.search().product){
 			var product = $location.search().product;
@@ -153,9 +149,7 @@
 		}
 	}
 
-	/*
-	** 滚动监听
-	*/
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;
@@ -170,9 +164,7 @@
 		}
 	}
 
-	/*
-	** 下拉菜单切换
-	*/
+	// 下拉菜单切换
 	$scope.switchMenu =function(menu){
 		switch(menu){
 			case "area":
@@ -231,9 +223,7 @@
 		}
 	}
 
-	/*
-	** 区域下拉菜单项点击
-	*/
+	// 区域下拉菜单项点击
 	$scope.areaSelect =function(params){
 		Tool.select(params,$scope.areaParams);
 		$scope.queryParams.area = $scope.areaParams[params].val;
@@ -244,9 +234,7 @@
 		$scope.switchMenu("area");
 	}
 
-	/*
-	** 排序下拉菜单项点击
-	*/
+	// 排序下拉菜单项点击
 	$scope.orderSelect = function(params){
 		Tool.select(params,$scope.orderParams);
 		$scope.queryParams.order = $scope.orderParams[params].val;
@@ -263,9 +251,7 @@
 		$scope.loadData();
 	}
 
-	/*
-	** 类别下拉菜单项点击
-	*/
+	// 类别下拉菜单项点击
 	$scope.classSelect = function(params){
 		Tool.select(params,$scope.classParams);
 		$scope.queryParams.itemId = $scope.classParams[params].id;
@@ -276,9 +262,7 @@
 		$scope.loadData();
 	}
 
-	/*
-	** 查询数据
-	*/
+	// 查询数据
 	$scope.loadData = function(){
 		$scope.loading = true;
 		var url = $scope.host+"/wx/product/querylist";
@@ -307,6 +291,7 @@
 		})
 	}
 
+	//处理项目信息
 	$scope.mergeProdcut = function(items){
 		items.forEach(function(item){
 			if(item.priceunit!=null&&item.priceunit!=""){
@@ -314,31 +299,22 @@
 			}else{
 				item.preferPriceType = item.pricetype;
 			}
-			if(item.smallImg==""||item.smallImg==null){
-				item.smallImg = "../contents/img/p_default.png";
-			}
 		})
 	}
 
-	/*
-	** 加载下一页数据
-	*/
+	// 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.loadData();
 	}
 
-	/*
-	** 跳转到详细页面
-	*/
+	// 跳转到详细页面
 	$scope.detail = function(productId,hospitalId,flag){
 		var url = "/new/htmls/product-detail.html#?flag=1&productId="+productId+"&hospitalId="+hospitalId;
 		Tool.goPage(url);
 	}
 
-	/*
-	** 疑问按钮处理函数
-	*/
+	// 疑问按钮处理函数
 	$scope.question = function(){
 		Tool.alert($scope,"如有疑问，请致电0755-26905699");
 	}

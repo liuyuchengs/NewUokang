@@ -17,7 +17,7 @@ var loginSuccess = {
         "accessToken":"db284606729f481fb48d7bdbb373231b",
         "remark":null,
         "giftCode":1,
-        "face":null,
+        "face":"djfajeia/afeafa/abc.jpg",
         "nickname":"hehe",
         "sex":"男",
         "openid":null,

@@ -3,9 +3,7 @@ app.controller("payResultCtrl",["$scope","$http","$location","Tool",function($sc
 	$scope.hasSuccess = false;
 	$scope.resultValue = "";
 
-	/*
-	** 获取支付结果，初始化页面
-	*/
+	// 获取支付结果，初始化页面
 	$scope.init = function(){
 		if($location.search().payResult){
 			$scope.payResult = $location.search().payResult;
@@ -19,9 +17,7 @@ app.controller("payResultCtrl",["$scope","$http","$location","Tool",function($sc
 		}
 	}
 
-	/*
-	** 再次支付订单
-	*/
+	// 再次支付订单
 	$scope.payAgain = function(){
 		var appid = "wx0229404bc9eeea00";
 		var redirect_uri = Tool.getSession("host")+"/new/htmls/pay.html";
@@ -29,16 +25,12 @@ app.controller("payResultCtrl",["$scope","$http","$location","Tool",function($sc
 		Tool.goUrl(url);
 	}
 
-	/*
-	** 去订单管理中查看订单
-	*/
+	// 去订单管理中查看订单
 	$scope.checkOrder = function(){
 		Tool.goPage("/new/htmls/order.html");
 	}
 
-	/*
-	** 跳转到主页
-	*/
+	// 跳转到主页
 	$scope.toHome = function(){
 		Tool.goPage("/new/htmls/home.html");
 	}

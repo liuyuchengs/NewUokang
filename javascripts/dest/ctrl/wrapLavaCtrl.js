@@ -12,11 +12,14 @@ app.controller("wrapLavaCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 		currentPage:1,
 	}
 
+	//初始化页面
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			$scope.loadGift();
 		})
 	}
+
+	//获取项目信息
 	$scope.loadGift = function(){
 		$scope.loading = true;
 		var url = $scope.host+"/wx/product/queryByMidd";
@@ -50,6 +53,7 @@ app.controller("wrapLavaCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 
 	}
 
+	//处理项目信息
 	$scope.mergeProdcut = function(items){
 		items.forEach(function(item){
 			if(item.priceunit!=null&&item.priceunit!=""){
@@ -78,17 +82,13 @@ app.controller("wrapLavaCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 		}
 	}
 
-	/*
-	** 加载下一页
-	*/
+	// 加载下一页
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.loadGift();
 	}
 
-	/*
-	** 跳转到项目详细信息
-	*/
+	// 跳转到项目详细信息
 	$scope.detail = function(proId,hospitalId){
 		var path = "/new/htmls/product-detail.html#?productId="+proId+"&hospitalId="+hospitalId;
 		if($scope.itemState=="discount"){
@@ -99,9 +99,7 @@ app.controller("wrapLavaCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 		Tool.goPage(path);
 	}
 
-	/*
-	** 疑问按钮处理函数
-	*/
+	// 疑问按钮处理函数
 	$scope.question = function(){
 		Tool.alert($scope,"如有疑问，请致电0755-26905699");
 	}

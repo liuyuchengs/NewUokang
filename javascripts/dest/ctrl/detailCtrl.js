@@ -49,9 +49,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 	}
 
 
-	/*
-	** 初始化页面
-	*/
+	// 初始化页面
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			$scope.loadQueryParams();
@@ -65,9 +63,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		})
 	}
 
-	/*
-	** 加载url参数
-	*/
+	// 加载url参数
 	$scope.loadQueryParams = function(){
 		$scope.hosId = $location.search().hospitalId;
 		$scope.proId = $location.search().productId;
@@ -86,16 +82,12 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		}
 	}
 
-	/*
-	** 返回上一页
-	*/
+	// 返回上一页
 	$scope.back = function(){
 		window.history.back();
 	}
 
-	/*
-	** 查询项目信息
-	*/
+	// 查询项目信息
 	$scope.queryProduct = function(){
 		$scope.loading = true;
 		var url = $scope.host+"/wx/product/querybyid";
@@ -124,9 +116,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		})
 	}
 
-	/*
-	** 查询项目图片
-	*/
+	// 查询项目图片
 	$scope.queryProductImg = function(){
 		var url = $scope.host+"/wx/image/querybymainid?type=PRODUCT&mainId="+$scope.proId;
 		$http.get(url,{
@@ -141,9 +131,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		})
 	}
 
-	/*
-	** 加载医院信息
-	*/
+	// 加载医院信息
 	$scope.queryHospital = function(){
 		var url = $scope.host+"/wx/hospital/querybyid?id="+$scope.hosId;
 		$http.get(url,{
@@ -166,9 +154,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		})
 	}
 
-	/*
-	** 查询医院图片
-	*/
+	// 查询医院图片
 	$scope.queryHospitalImg = function(){
 		var url = $scope.host+"/wx/image/querybymainid?type=HOSPITAL&mainId="+$scope.hosId;
 		$http.get(url,{
@@ -183,9 +169,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		})
 	}
 
-	/*
-	** 查询医生信息
-	*/
+	// 查询医生信息
 	$scope.queryDoctor = function(){
 		var url= $scope.host +"/wx/doctor/queryscheduledoctorbyproductid";
 		var params = "productId="+$scope.proId;
@@ -215,9 +199,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		})
 	}
 
-	/*
-	** 查询医生排班信息
-	*/
+	// 查询医生排班信息
 	$scope.queryDoctorSchedule = function(docId){
 		if($scope.hasDocSchedule==docId){
 			$scope.selectTime = true;
@@ -242,9 +224,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		}
 	}
 
-	/*
-	** 选择就医时间按钮
-	*/
+	// 选择就医时间按钮
 	$scope.chooseSchedule = function(docId,name){
 		$scope.order.doctorId = docId;
 		$scope.order.doctorName = name;
@@ -252,9 +232,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		$scope.selectDoc = docId;
 	}
 
-	/*
-	** 选择具体的就医时间
-	*/
+	// 选择具体的就医时间
 	$scope.chooseTime = function(scheId,date){
 		Tool.select(scheId,$scope.scheduleParams);
 		$scope.order.scheduleId = scheId;
@@ -264,9 +242,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		$scope.noSelectTime = false;
 	}
 
-	/*
-	** 下单按钮时间
-	*/
+	// 下单按钮时间
 	$scope.orderDetail = function(){
 		if(!$scope.noSelectTime){
 			if(!Tool.isLogin()){
@@ -318,9 +294,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		}
 	}
 
-	/*
-	** 图片为空时，设置默认图片,onerror无法处理src为空
-	*/
+	// 图片为空时，设置默认图片,onerror无法处理src为空
 	$scope.mergeImg = function(items){
 		items.forEach(function(item){
 			if(item.url==""||item.url==null){
@@ -329,9 +303,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		})
 	}
 
-	/*
-	** 修改项目信息
-	*/
+	// 修改项目信息
 	$scope.mergeProdcut = function(data){
 		if(data.priceunit!=null&&data.priceunit!=""){
 			data.preferPriceType = data.pricetype+"/"+data.priceunit;
@@ -345,9 +317,8 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 			data.preferPrice = $location.search().money;
 		}
 	}
-	/*
-	** 截取排班参数
-	*/
+
+	// 截取排班参数
 	$scope.mergeSchedule = function(items){
 		for(var Itemindex in items){
 			var item = items[Itemindex];
@@ -367,9 +338,8 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 			}
 		}
 	}
-	/*
-	** 改变就医时间的选取值
-	*/
+
+	// 改变就医时间的选取值
 	$scope.mergeDocSelect = function(docId,value){
 		$scope.doctorInfo.forEach(function(item){
 			if(item.id==docId){
@@ -381,9 +351,8 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 			}
 		})
 	}
-	/**
-	** 关注按钮处理函数
-	*/
+
+	// 关注按钮处理函数
 	$scope.switchFollow = function(){
 		if(!Tool.isLogin()){
 			Tool.comfirm($scope,"请先登录!",function(){
@@ -399,9 +368,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		}
 	}
 
-	/**
-	** 关注项目
-	*/
+	// 关注项目
 	$scope.tofollow = function(){
 		var url = $scope.host+"/wx/post/focus";
 		var params = "flag=3&userId="+$scope.proId;
@@ -422,9 +389,7 @@ app.controller("detailCtrl",["$scope","$http","$location","Tool","Ajax",function
 		})
 	}
 
-	/**
-	** 取消关注项目
-	*/
+	// 取消关注项目
 	$scope.cacelFollow = function(){
 		var url = $scope.host+"/wx/post/cacelFocus";
 		var params = "flag=3&userId="+$scope.proId;

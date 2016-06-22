@@ -1,12 +1,15 @@
 /// <reference path="../../../typing/angular.d.ts" />
-//外层控制器
+/**
+ * 外层控制器
+ */
 app.controller("myPostCtrl",["$scope","$http","$location","Ajax","Tool",function($scope,$http,$location,Ajax,Tool){
-
+	//导航条参数
     $scope.params = {
         hasPublish:true,
         hasReply:false,
     }
 
+	//切换导航条
     $scope.switch = function(p){
         if(p==="publish"){
             if(!$scope.params.hasPublish){
@@ -27,7 +30,9 @@ app.controller("myPostCtrl",["$scope","$http","$location","Ajax","Tool",function
     }
 }])
 
-//我帖子子页面控制器
+/**
+ * 已发布帖子控制器
+ */
 app.controller("myPostPublishCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
     $scope.noProduct = false;
     $scope.posts = [];
@@ -37,6 +42,7 @@ app.controller("myPostPublishCtrl",["$scope","$http","Tool","Ajax",function($sco
 		currentPage:1
 	}
 
+	//初始化页面
     $scope.init = function(){
 		Ajax.loadHost($scope,function(){
             Tool.loadUserinfo($scope);
@@ -45,9 +51,7 @@ app.controller("myPostPublishCtrl",["$scope","$http","Tool","Ajax",function($sco
 		})
 	}
 
-    /*
-	** 加载我的帖子数据
-	*/
+    // 加载我的帖子数据
 	$scope.queryPost = function(){
 		$scope.loading =true;
 		var url = $scope.host+"/wx/post/myPost";
@@ -76,9 +80,7 @@ app.controller("myPostPublishCtrl",["$scope","$http","Tool","Ajax",function($sco
 		})
 	}
 
-	/*
-	** 处理帖子数据
-	*/
+	// 处理帖子数据
 	$scope.mergePost = function(items){
 		items.forEach(function(item){
 			if(item.faceImage==""||item.faceImage==null){
@@ -97,17 +99,13 @@ app.controller("myPostPublishCtrl",["$scope","$http","Tool","Ajax",function($sco
 		})
 	}
 
-	/*
-	** 加载下一页数据
-	*/
+	// 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.queryPost();
 	}
 
-	/*
-	** 滚动监听
-	*/
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;
@@ -122,15 +120,15 @@ app.controller("myPostPublishCtrl",["$scope","$http","Tool","Ajax",function($sco
 		}
 	}
 
-    /**
-     * 跳转到帖子页面
-     */
+	// 跳转到帖子页面
     $scope.detail = function(id){
         Tool.goPage("/new/htmls/interaction-detail.html#?id="+id);
     }
 }])
 
-//我的回复子页面控制器
+/**
+ * 已评论控制器
+ */
 app.controller("myPostReplyCtrl",["$scope","$http","$q","Tool","Ajax",function($scope,$http,$q,Tool,Ajax){
     $scope.noProduct = false;
     $scope.replys = [];
@@ -140,6 +138,7 @@ app.controller("myPostReplyCtrl",["$scope","$http","$q","Tool","Ajax",function($
 		currentPage:1
 	}
 
+	// 初始化页面
     $scope.init = function(){
 		Ajax.loadHost($scope,function(){
             Tool.loadUserinfo($scope);
@@ -148,6 +147,7 @@ app.controller("myPostReplyCtrl",["$scope","$http","$q","Tool","Ajax",function($
 		})
 	}
 
+	// 查询我的回复
     $scope.queryReply = function(){
         $scope.loading =true;
 		var url = $scope.host+"/wx/repliesMessage/myReply";
@@ -180,9 +180,7 @@ app.controller("myPostReplyCtrl",["$scope","$http","$q","Tool","Ajax",function($
 		})
     }
 
-    /*
-	** 处理帖子数据
-	*/
+    // 处理帖子数据
 	$scope.mergeReply = function(items){
 		items.forEach(function(item){
 			if(item.userImage==""||item.userImage==null){
@@ -196,17 +194,13 @@ app.controller("myPostReplyCtrl",["$scope","$http","$q","Tool","Ajax",function($
 		})
 	}
 
-    /*
-	** 加载下一页数据
-	*/
+    // 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.queryReply();
 	}
 
-	/*
-	** 滚动监听
-	*/
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;
@@ -221,9 +215,7 @@ app.controller("myPostReplyCtrl",["$scope","$http","$q","Tool","Ajax",function($
 		}
 	}
 
-    /**
-     * 跳转到帖子页面
-     */
+	// 跳转到帖子页面
     $scope.goPost = function(id){
         Tool.goPage("/new/htmls/interaction-detail.html#?id="+id);
     }

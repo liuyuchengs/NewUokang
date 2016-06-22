@@ -7,9 +7,8 @@ app.controller("findpassCtrl",["$scope","$http","$location","$interval","Tool",f
 	$scope.hasSendCode = false; //是否是发送验证码状态
 	$scope.codeText = "获取短信验证码";
 	$scope.sendCodes = false;
-	/*
-	** 检测手机号码是否有注册
-	*/
+	
+	// 检测手机号码是否有注册
 	$scope.checkPhone = function(){
 		var url = Tool.getSession("host")+"/wx/findpass/findPassPhontCheck";
 		var params = "name=phone&param="+$scope.phone;
@@ -28,9 +27,7 @@ app.controller("findpassCtrl",["$scope","$http","$location","$interval","Tool",f
 		})
 	}
 
-	/*
-	** 检测验证码是否正确
-	*/
+	// 检测验证码是否正确
 	$scope.checkCode = function(){
 		if($scope.sendCodes){
 			if($scope.code.length==4){
@@ -57,9 +54,7 @@ app.controller("findpassCtrl",["$scope","$http","$location","$interval","Tool",f
 		}
 	}
 
-	/*
-	** 修改密码
-	*/
+	// 修改密码
 	$scope.changePwd = function(){
 		if($scope.pwd.length>=8&&$scope.pwd.length<=20){
 			var url = Tool.getSession("host")+"/wx/findpass/changepwd";
@@ -82,9 +77,7 @@ app.controller("findpassCtrl",["$scope","$http","$location","$interval","Tool",f
 		}
 	}
 
-	/*
-	** 发送短信验证码
-	*/
+	// 发送短信验证码
 	$scope.getCode = function(){
 		if(!$scope.hasSendCode){
 			var url = Tool.getSession("host")+"/wx/findpass/sendsmsfindpasscode";

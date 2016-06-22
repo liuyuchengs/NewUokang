@@ -1,22 +1,20 @@
 app.controller("activityCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
+    // 查询参数
     $scope.queryParams = {
         pageRows:10,
 		currentPage:1
     }
+
     $scope.products = [];
 
-    /**
-     * 页面初始化
-     */
+    // 页面初始化
     $scope.init = function(){
         Ajax.loadHost($scope,function(){
             $scope.queryActivity();
         })
     }
 
-    /**
-     * 查询活动数据
-     */
+    // 查询活动数据
     $scope.queryActivity = function(){
         var url = $scope.host+"/wx/product/queryActivity";
         var params = Tool.convertParams($scope.queryParams);
@@ -34,9 +32,7 @@ app.controller("activityCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
         })
     }
 
-    /**
-     * 处理活动数据
-     */
+    // 处理活动数据
     $scope.mergeActivity = function(items){
 		items.forEach(function(item){
 			if(item.priceunit!=null&&item.priceunit!=""){
@@ -53,9 +49,7 @@ app.controller("activityCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
 		})
 	}
 
-    /**
-     * 跳转到详情页面
-     */
+    // 跳转到详情页面
     $scope.detail = function(productId,hospitalId,type){
         if(productId&&hospitalId&&type){
             if(type===5){

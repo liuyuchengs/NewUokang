@@ -1,10 +1,15 @@
+/**
+ * 关注页面外层控制器
+ */
 app.controller("myFollowCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
+    //导航条变量
     $scope.params = {
         doctor:false,
         user:true,
         product:false
     }
 
+    //切换导航条
     $scope.switch = function(item){
         for(var proto in $scope.params){
             if(proto==item){
@@ -15,8 +20,12 @@ app.controller("myFollowCtrl",["$scope","$http","Tool","Ajax",function($scope,$h
         }
     }
 
+    
 }])
 
+/**
+ * 关注用户控制器
+ */
 app.controller("followUserCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
     $scope.queryParams = {
 		pageRows:10,
@@ -34,9 +43,7 @@ app.controller("followUserCtrl",["$scope","$http","Tool","Ajax",function($scope,
         })
     }
 
-    /**
-     * 查询关注的数据,flag：1-》关注的人,flag:2->关注医生,flag:3->关注项目
-     */
+    // 查询关注的数据,flag：1-》关注的人,flag:2->关注医生,flag:3->关注项目
     $scope.queryUser = function(){
         var url = $scope.host+"/wx/focus/focusUserMan";
         var params = Tool.convertParams($scope.queryParams);
@@ -57,16 +64,9 @@ app.controller("followUserCtrl",["$scope","$http","Tool","Ajax",function($scope,
                     $scope.noProduct = true;
                 }else{
                     data.data.forEach(function(item){
-                        if(item.face===null){
-                            if(item.sex==="男"||item.sex===""||item.sex===null){
-                                item.face="../contents/img/men-head.png";
-                            }else{
-                                item.face="../contents/img/women-head.png";
-                            }
-                        }
                         item.hasFollow = true;
                         item.followText = "已关注";
-                    })
+                    });
                     $scope.follows = $scope.follows.concat(data.data);
                 }
             }else{
@@ -78,9 +78,8 @@ app.controller("followUserCtrl",["$scope","$http","Tool","Ajax",function($scope,
             Tool.alert($scope,"数据连接失败，请稍后再试!");
         })
     }
-    /**
-	** 关注按钮处理函数
-	*/
+
+    // 关注按钮处理函数
 	$scope.switchFollow = function(id){
 		if(!Tool.isLogin()){
 			Tool.comfirm($scope,"请先登录!",function(){
@@ -99,9 +98,7 @@ app.controller("followUserCtrl",["$scope","$http","Tool","Ajax",function($scope,
 		}
 	}
 
-	/**
-	** 关注人
-	*/
+	// 关注用户
 	$scope.tofollow = function(id){
 		var url = $scope.host+"/wx/post/focus";
 		var params = "flag=1&userId="+id;
@@ -125,9 +122,7 @@ app.controller("followUserCtrl",["$scope","$http","Tool","Ajax",function($scope,
 		})
 	}
 
-	/**
-	** 取消关注人
-	*/
+	// 取消关注用户
 	$scope.cacelFollow = function(id){
 		var url = $scope.host+"/wx/post/cacelFocus";
 		var params = "flag=1&userId="+id;
@@ -151,6 +146,7 @@ app.controller("followUserCtrl",["$scope","$http","Tool","Ajax",function($scope,
 		})
 	}
 
+    //定位具体的关注元素
     $scope.selectFollow = function(id){
         for(var proto in $scope.follows){
             var follow = $scope.follows[proto];
@@ -160,17 +156,13 @@ app.controller("followUserCtrl",["$scope","$http","Tool","Ajax",function($scope,
         }
     }
 
-    /*
-	** 加载下一页数据
-	*/
+    // 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.queryMessage();
 	}
 
-	/*
-	** 滚动监听
-	*/
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;
@@ -186,6 +178,9 @@ app.controller("followUserCtrl",["$scope","$http","Tool","Ajax",function($scope,
 	}
 }])
 
+/**
+ * 关注医生控制器
+ */
 app.controller("followDoctorCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
     $scope.queryParams = {
 		pageRows:10,
@@ -202,9 +197,7 @@ app.controller("followDoctorCtrl",["$scope","$http","Tool","Ajax",function($scop
         })
     }
 
-    /**
-     * 查询关注的数据,flag：1-》关注的人,flag:2->关注医生,flag:3->关注项目
-     */
+    // 查询关注的数据,flag：1-》关注的人,flag:2->关注医生,flag:3->关注项目
     $scope.queryDoctor = function(){
         $scope.loading = true;
         var url = $scope.host+"/wx/focus/focusDoctorMan";
@@ -244,9 +237,7 @@ app.controller("followDoctorCtrl",["$scope","$http","Tool","Ajax",function($scop
         })
     }
 
-     /**
-	** 关注按钮处理函数
-	*/
+    // 关注按钮处理函数
 	$scope.switchFollow = function(id){
 		if(!Tool.isLogin()){
 			Tool.comfirm($scope,"请先登录!",function(){
@@ -265,9 +256,7 @@ app.controller("followDoctorCtrl",["$scope","$http","Tool","Ajax",function($scop
 		}
 	}
 
-	/**
-	** 关注医生
-	*/
+	// 关注医生
 	$scope.tofollow = function(id){
         $scope.loading = true;
 		var url = $scope.host+"/wx/post/focus";
@@ -294,9 +283,7 @@ app.controller("followDoctorCtrl",["$scope","$http","Tool","Ajax",function($scop
 		})
 	}
 
-	/**
-	** 取消关注医生
-	*/
+	// 取消关注医生
 	$scope.cacelFollow = function(id){
         $scope.loading = true;
 		var url = $scope.host+"/wx/post/cacelFocus";
@@ -323,6 +310,7 @@ app.controller("followDoctorCtrl",["$scope","$http","Tool","Ajax",function($scop
 		})
 	}
 
+    // 定位到具体的关注元素
     $scope.selectFollow = function(id){
         for(var proto in $scope.follows){
             var follow = $scope.follows[proto];
@@ -332,17 +320,13 @@ app.controller("followDoctorCtrl",["$scope","$http","Tool","Ajax",function($scop
         }
     }
 
-    /*
-	** 加载下一页数据
-	*/
+    // 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.queryDoctor();
 	}
 
-	/*
-	** 滚动监听
-	*/
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;
@@ -356,8 +340,12 @@ app.controller("followDoctorCtrl",["$scope","$http","Tool","Ajax",function($scop
 			}
 		}
 	}
-    
+
 }])
+
+/**
+ * 关注项目页面
+ */
 app.controller("followProductCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
     $scope.queryParams = {
 		pageRows:10,
@@ -374,9 +362,7 @@ app.controller("followProductCtrl",["$scope","$http","Tool","Ajax",function($sco
         })
     }
 
-    /**
-     * 查询关注的数据,flag：1-》关注的人,flag:2->关注医生,flag:3->关注项目
-     */
+    // 查询关注的数据,flag：1-》关注的人,flag:2->关注医生,flag:3->关注项目
     $scope.queryProduct = function(){
         $scope.loading = true;
         var url = $scope.host+"/wx/focus/focusProductMan";
@@ -400,10 +386,7 @@ app.controller("followProductCtrl",["$scope","$http","Tool","Ajax",function($sco
                     data.data.forEach(function(item){
                         item.hasFollow = true;
                         item.followText = "已关注";
-                        if(item.smallImg===null||item.smallImg===""){
-                            item.smallImg = "../contents/img/p_default.png";
-                        }
-                    })
+                    });
                     $scope.follows = $scope.follows.concat(data.data);
                 }
             }else{
@@ -416,9 +399,7 @@ app.controller("followProductCtrl",["$scope","$http","Tool","Ajax",function($sco
         })
     }
     
-     /**
-	** 关注按钮处理函数
-	*/
+    // 关注按钮处理函数
 	$scope.switchFollow = function(id){
 		if(!Tool.isLogin()){
 			Tool.comfirm($scope,"请先登录!",function(){
@@ -437,9 +418,7 @@ app.controller("followProductCtrl",["$scope","$http","Tool","Ajax",function($sco
 		}
 	}
 
-	/**
-	** 关注项目
-	*/
+	// 关注项目
 	$scope.tofollow = function(id){
         $scope.loading = true;
 		var url = $scope.host+"/wx/post/focus";
@@ -466,9 +445,7 @@ app.controller("followProductCtrl",["$scope","$http","Tool","Ajax",function($sco
 		})
 	}
 
-	/**
-	** 取消关注项目
-	*/
+	// 取消关注项目
 	$scope.cacelFollow = function(id){
         $scope.loading = true;
 		var url = $scope.host+"/wx/post/cacelFocus";
@@ -495,6 +472,7 @@ app.controller("followProductCtrl",["$scope","$http","Tool","Ajax",function($sco
 		})
 	}
 
+    //定位具体的关注元素
     $scope.selectFollow = function(id){
         for(var proto in $scope.follows){
             var follow = $scope.follows[proto];
@@ -504,17 +482,13 @@ app.controller("followProductCtrl",["$scope","$http","Tool","Ajax",function($sco
         }
     }
 
-    /*
-	** 加载下一页数据
-	*/
+    // 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.queryProduct();
 	}
 
-	/*
-	** 滚动监听
-	*/
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;

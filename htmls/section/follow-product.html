@@ -1,7 +1,7 @@
 <div class="follow-product-content" data-ng-init="init()">
     <ul>
         <li ng-repeat="follow in follows">
-            <img ng-src="{{follow.smallImg}}">
+            <img ng-src="{{follow.smallImg|defaultImg:'pro'}}" product-error>
             <div class="info">
                 <p class="title" ng-bind="follow.title"></p>
                 <p class="address" ng-bind="follow.hospitalName"></p>

@@ -16,6 +16,7 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 		Tool.goPage(path);
 	}
 
+	// 初始化页面
 	$scope.init = function(){
 		$scope.loading = true;
 		Ajax.loadHost($scope,function(){
@@ -31,9 +32,7 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 		});
 	}
 
-	/**
-	 ** 逆地址服务暂不用
-	*/ 
+	// 逆地址服务暂不用 
 	$scope.getLocation = function(latitude,longitude){
 		var url = "https://apis.map.qq.com/ws/geocoder/v1/?output=jsonp&callback=JSON_CALLBACK&location="+latitude+","+longitude+"&key="+$scope.key;
 		$http.jsonp(url).success(function(data){
@@ -50,7 +49,7 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 		})
 	}
 
-	//滚动监听
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;
@@ -65,9 +64,7 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 		}
 	}
 
-	/*
-	** 查询热门推荐
-	*/
+	// 查询热门推荐
 	$scope.loadRecommend = function(host){
 		$scope.loading = true;
 		var url = $scope.host+"/wx/product/queryrecommend";
@@ -97,6 +94,8 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 			$scope.noProduct = true;
 		})
 	}
+
+	// 处理数据
 	$scope.mergeProdcut = function(items){
 		items.forEach(function(item){
 			if(item.priceunit!=null&&item.priceunit!=""){
@@ -110,9 +109,7 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 		})
 	}
 
-	/*
-	** 获取图片轮播
-	*/
+	// 获取图片轮播
 	$scope.queryBanner = function(){
 		var url = $scope.host+"/wx/banner/query";
 		var params = "type=home_banner";
@@ -130,9 +127,7 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 		})
 	}
 
-	/*
-	** 为图片轮播添加链接
-	*/
+	// 为图片轮播添加链接
 	$scope.mergeBanner = function(items){
 		for(var index in items){
 			if(index==0){
@@ -141,9 +136,7 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 		}
 	}
 
-	/**
-	** 初始化图片轮播插件
-	*/
+	// 初始化图片轮播插件
 	$scope.initSwiper = function(){
 		//初始化swiper
 		var myswiper = new Swiper(".swiper-container",{
@@ -170,30 +163,20 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 
 	}
 
-	/*
-	** 跳转到详细页面
-	*/
+	// 跳转到详细页面
 	$scope.detail = function(productId,hospitalId,flag){
 		var url = "/new/htmls/product-detail.html#?flag=1&productId="+productId+"&hospitalId="+hospitalId;
 		Tool.goPage(url);
 	}
 
-	/*
-	** 分页查询，查询下一页
-	*/
+	// 分页查询，查询下一页
 	$scope.loadNext = function(){
 		$scope.currentPage++;
 		$scope.loadRecommend();
 	}
 
-	/*
-	** 底部按钮事件
-	*/
+	// 底部按钮事件
 	$scope.menuClick = function(value){
 		Tool.menuClick($scope,value);
-	}
-
-	$scope.alert = function(mess){
-		Tool.alert($scope,mess);
 	}
 }])

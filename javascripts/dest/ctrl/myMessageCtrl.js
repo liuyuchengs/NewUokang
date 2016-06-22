@@ -1,13 +1,20 @@
+/**
+ * 外层控制器
+ */
 app.controller("myMessageCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
+    
+    // 导航条参数
     $scope.params = {
         user:true,
         doctor:false,
         system:false
     }
     
+    // 初始化页面
     $scope.init = function(){
     }
 
+    // 切换导航条
     $scope.switch = function(item){
         for(var proto in $scope.params){
             if(proto==item){
@@ -20,6 +27,9 @@ app.controller("myMessageCtrl",["$scope","$http","Tool","Ajax",function($scope,$
     
 }])
 
+/**
+ * 用户消息控制器
+ */
 app.controller("messageUserCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
     $scope.queryParams = {
 		pageRows:10,
@@ -35,9 +45,8 @@ app.controller("messageUserCtrl",["$scope","$http","Tool","Ajax",function($scope
             $scope.queryMessage();
         })
     }
-    /**
-     * 查询消息
-     */
+
+    // 查询消息
     $scope.queryMessage = function(){
         var url = $scope.host+"/wx/repliesMessage/myMessage";
         var params = Tool.convertParams($scope.queryParams);
@@ -70,9 +79,7 @@ app.controller("messageUserCtrl",["$scope","$http","Tool","Ajax",function($scope
         })
     }
 
-    /**
-     * 检查消息数据
-     */
+    // 检查消息数据
     $scope.mergeMessage = function(items){
         items.forEach(function(item){
             item.dataStr = item.createDateStr.slice(5,10);
@@ -81,17 +88,14 @@ app.controller("messageUserCtrl",["$scope","$http","Tool","Ajax",function($scope
             }
         })
     }
-    /*
-	** 加载下一页数据
-	*/
+
+    // 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.queryMessage();
 	}
 
-	/*
-	** 滚动监听
-	*/
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;
@@ -106,14 +110,15 @@ app.controller("messageUserCtrl",["$scope","$http","Tool","Ajax",function($scope
 		}
 	}
 
-    /**
-     * 跳转到帖子页面
-     */
+    // 跳转到帖子页面
     $scope.detail = function(id){
         Tool.goPage("/new/htmls/interaction-detail.html#?id="+id);
     }
 }])
 
+/**
+ * 医生消息控制器
+ */
 app.controller("messageDoctorCtrl",["$scope","$http","Ajax","Tool",function($scope,$http,Ajax,Tool){
     $scope.queryParams = {
 		pageRows:10,
@@ -130,9 +135,8 @@ app.controller("messageDoctorCtrl",["$scope","$http","Ajax","Tool",function($sco
             $scope.queryMessage();
         })
     }
-    /**
-     * 查询消息
-     */
+    
+    // 查询消息
     $scope.queryMessage = function(){
         var url = $scope.host+"/wx/post/doctorMessage";
         var params = Tool.convertParams($scope.queryParams);
@@ -165,9 +169,7 @@ app.controller("messageDoctorCtrl",["$scope","$http","Ajax","Tool",function($sco
         })
     }
 
-    /**
-     * 检查消息数据
-     */
+    // 检查消息数据
     $scope.mergeMessage = function(items){
         items.forEach(function(item){
             item.dataStr = item.createTimeStr.slice(5,10);
@@ -182,17 +184,14 @@ app.controller("messageDoctorCtrl",["$scope","$http","Ajax","Tool",function($sco
             }
         })
     }
-    /*
-	** 加载下一页数据
-	*/
+
+    // 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.queryMessage();
 	}
 
-	/*
-	** 滚动监听
-	*/
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;
@@ -207,13 +206,14 @@ app.controller("messageDoctorCtrl",["$scope","$http","Ajax","Tool",function($sco
 		}
 	}
 
-    /**
-     * 跳转到咨询页面
-     */
+    // 跳转到咨询页面
     $scope.detail = function(id){
         Tool.goPage("/new/htmls/askdoctor.html#?id="+id);
     }
 
 }])
 
+/**
+ * 系统消息控制器
+ */
 app.controller("messageSystemCtrl",["$scope","$http","Ajax","Tool",function($scope,$http,Ajax,Tool){}])

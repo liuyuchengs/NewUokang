@@ -1,3 +1,6 @@
+/**
+ * 资讯控制器
+ */
 app.controller("newsCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
 	$scope.news = [];
 	$scope.navValue = "all";
@@ -48,16 +51,15 @@ app.controller("newsCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 		}
 	}
 
+	//初始化页面
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			$scope.loadNews();
 		});
 	}
 
-	/**
-	** 初始化图片轮播插件
-	*/
-	$scope.initSwiper = function(){
+	// 初始化图片轮播插件
+	$scopeinitSwiper = function(){
 		var myswiper = new Swiper(".swiper-container",{
 			loop: true,
 			pagination: '.swiper-pagination',
@@ -66,9 +68,7 @@ app.controller("newsCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 		})
 	}
 
-	/*
-	** 切换导航栏
-	*/
+	// 切换导航栏
 	$scope.switch = function(type){
 		if(type!=$scope.navValue){
 			$scope.navValue = type;
@@ -80,9 +80,7 @@ app.controller("newsCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 		}
 	}
 
-	/*
-	** 查询数据
-	*/
+	// 查询数据
 	$scope.loadNews = function(){
 		$scope.loading = true;
 		var url = Tool.getSession("host")+"/wx/health/queryByType";
@@ -115,17 +113,13 @@ app.controller("newsCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 		})
 	}
 
-	/*
-	** 分页查询，查询下一页
-	*/
+	// 分页查询，查询下一页
 	$scope.loadNext = function(){
 		$scope.currentPage++;
 		$scope.loadNews();
 	}
 
-	/*
-	** 图片为空时，设置默认图片
-	*/
+	// 图片为空时，设置默认图片
 	$scope.mergeImg = function(items){
 		items.forEach(function(item){
 			if(item.picture==""||item.picture == null){
@@ -134,19 +128,21 @@ app.controller("newsCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 		})
 	}
 
-	/*
-	** 跳转到详细页面
-	*/
+	// 跳转到详细页面
 	$scope.detail = function(id){
 		Tool.goPage("/new/htmls/news-detail.html#?id="+id);
 	}
 }])
 
+/**
+ * 资讯详情页面
+ */
 app.controller("newsDetailCtrl",["$scope","$http","$location","Tool","Ajax",function($scope,$http,$location,Tool,Ajax){
 	$scope.loading= false;
 	$scope.detail = {};
 	$scope.id = null;
 
+	//初始化页面
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			$scope.id = $location.search().id;
@@ -154,6 +150,7 @@ app.controller("newsDetailCtrl",["$scope","$http","$location","Tool","Ajax",func
 		})
 	}
 
+	//加载资讯信息
 	$scope.loadDetail = function(){
 		$scope.loading = true;
 		var url = $scope.host+"/wx/health/querydetail";

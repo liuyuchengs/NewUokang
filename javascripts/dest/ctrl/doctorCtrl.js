@@ -7,7 +7,7 @@ app.controller("doctorCtrl",["$scope","$http","Tool","Ajax","Params",function($s
 	$scope.doctors = [];
 	$scope.noProduct = false;
 	$scope.noProductText = "";
-	//下拉菜单项变量
+	// 下拉菜单项变量
 	$scope.orderParams ={
 		default:{has:true,val:""},
 		title:{has:false,val:"profession_title desc"},
@@ -16,9 +16,7 @@ app.controller("doctorCtrl",["$scope","$http","Tool","Ajax","Params",function($s
 	$scope.areaParams = Params.areaParams;
 	$scope.professionalParams = Params.professionalParams;
 
-	/**
-	 * 查询参数
-	 */
+	// 查询参数
 	$scope.queryParams = {
 		professionId:"",
 		itemid:"",
@@ -29,25 +27,21 @@ app.controller("doctorCtrl",["$scope","$http","Tool","Ajax","Params",function($s
 		currentPage:1
 	}
 
-	//导航栏变量，需定义在上述变量的后面
+	// 导航栏变量，需定义在上述变量的后面
 	$scope.menuParams = {
 		area:{has:false,val:$scope.areaParams},
 		order:{has:false,val:$scope.orderParams},
 		professional:{has:false,val:$scope.professionalParams},
 	}
 
-	/**
-	 * 初始化页面
-	 */
+	// 初始化页面
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			$scope.loadDoctor();
 		})
 	}
 
-	/*
-	** 滚动监听
-	*/
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;
@@ -62,20 +56,17 @@ app.controller("doctorCtrl",["$scope","$http","Tool","Ajax","Params",function($s
 		}
 	}
 
+	// 导航栏按钮click
 	$scope.menuClick = function(value){
 		Tool.menuClick($scope,value);
 	}
 
-	/*
-	** 切换导航菜单
-	*/
+	// 切换导航菜单
 	$scope.switchMenu = function(menu){
 		$scope.switchObj(menu,$scope.menuParams,true);
 	}
 
-	/*
-	** 选择区域和排序项目
-	*/
+	// 选择区域和排序项目
 	$scope.selectMenu = function(item,obj){
 		var ob = $scope.menuParams[obj].val;
 		$scope.switchObj(item,ob);
@@ -90,16 +81,12 @@ app.controller("doctorCtrl",["$scope","$http","Tool","Ajax","Params",function($s
 		$scope.loadDoctor();
 	}
 
-	/*
-	** 选择专科
-	*/
+	// 选择专科
 	$scope.selectProfression = function(item){
 		$scope.switchObj(item,$scope.professionalParams);
 	}
 
-	/*
-	** 选择专科项目
-	*/
+	// 选择专科项目
 	$scope.selectProfressionItem = function(item,pro){
 		if(item!=$scope.profItemValue){
 			if($scope.profValue==""&&$scope.profItemValue==""){
@@ -119,9 +106,7 @@ app.controller("doctorCtrl",["$scope","$http","Tool","Ajax","Params",function($s
 		}
 	}
 
-	/*
-	** 切换对象的值
-	*/
+	// 切换对象的值
 	$scope.switchObj = function(item,obj,hasBg){
 		for(var pro in obj){
 			if(pro==item){
@@ -135,9 +120,7 @@ app.controller("doctorCtrl",["$scope","$http","Tool","Ajax","Params",function($s
 		}
 	}
 
-	/**
-	 * 加载医生数据
-	 */
+	// 加载医生数据
 	$scope.loadDoctor = function(){
 		$scope.loading=true;
 		var url = $scope.host+"/wx/doctor/querydoctorbycityandprofession";
@@ -166,9 +149,7 @@ app.controller("doctorCtrl",["$scope","$http","Tool","Ajax","Params",function($s
 		})
 	}
 
-	/**
-	 * 处理医生数据
-	 */
+	// 处理医生数据
 	$scope.mergeDoctor = function(items){
 		items.forEach(function(item){
 			if(item.score==""||item.score==null){
@@ -180,17 +161,13 @@ app.controller("doctorCtrl",["$scope","$http","Tool","Ajax","Params",function($s
 		})
 	}
 
-	/*
-	** 加载下一页数据
-	*/
+	// 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.loadDoctor();
 	}
 
-	/**
-	 * 重置查询数据
-	 */
+	// 重置查询数据
 	$scope.resetDate = function(){
 		$scope.queryParams.currentPage = 1;
 		$scope.noProduct = false;
@@ -198,9 +175,7 @@ app.controller("doctorCtrl",["$scope","$http","Tool","Ajax","Params",function($s
 		$scope.doctors = [];
 	}
 
-	/**
-	* 跳转到详情页面
-	*/
+	// 跳转到详情页面
 	$scope.detail = function(id){
 		Tool.goPage("/new/htmls/doctor-detail.html#?id="+id);
 	}

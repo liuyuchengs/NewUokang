@@ -15,15 +15,14 @@ app.controller("interactionCtrl",["$scope","$http","Tool","Ajax",function($scope
 	}
 	$scope.posts = [];
 
+	//初始化页面
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			$scope.queryPost();
 		})
 	}
 
-	/*
-	** 加载帖子数据
-	*/
+	// 加载帖子数据
 	$scope.queryPost = function(){
 		$scope.loading =true;
 		var url = $scope.host+"/wx/post/postList";
@@ -51,18 +50,9 @@ app.controller("interactionCtrl",["$scope","$http","Tool","Ajax",function($scope
 		})
 	}
 
-	/*
-	** 处理帖子数据
-	*/
+	// 处理帖子数据
 	$scope.mergePost = function(items){
 		items.forEach(function(item){
-			if(item.faceImage==""||item.faceImage==null){
-				if(item.sex==="男"||item.sex===""||item.sex===null){
-					item.faceImage = "../contents/img/men-head.png";
-				}else{
-					item.faceImage = "../contents/img/women-head.png";
-				}
-			}
 			if(item.visitNum==null||item.visitNum==""){
 				item.visitNum=0;
 			}
@@ -77,17 +67,13 @@ app.controller("interactionCtrl",["$scope","$http","Tool","Ajax",function($scope
 		})
 	}
 
-	/*
-	** 加载下一页数据
-	*/
+	// 加载下一页数据
 	$scope.loadNext = function(){
 		$scope.queryParams.currentPage++;
 		$scope.queryPost();
 	}
 
-	/*
-	** 滚动监听
-	*/
+	// 滚动监听
 	window.onscroll = function(){
 		if($scope.loading||$scope.noProduct){
 			return;
@@ -102,9 +88,7 @@ app.controller("interactionCtrl",["$scope","$http","Tool","Ajax",function($scope
 		}
 	}
 
-	/*
-	** 切换帖子类型
-	*/
+	// 切换帖子类型
 	$scope.switchNav = function(item){
 		$scope.queryParams.flag = $scope.navParams[item].val;
 		Tool.select(item,$scope.navParams);
@@ -115,19 +99,13 @@ app.controller("interactionCtrl",["$scope","$http","Tool","Ajax",function($scope
 		$scope.queryPost();
 	}
 
-	/*
-	** 跳转到详细页面,并添加浏览次数
-	*/
+	// 跳转到详细页面
 	$scope.detail = function(id){
 		var url = "/new/htmls/interaction-detail.html#?id="+id;
 		Tool.goPage(url);
 	}
 
-
-
-	/*
-	** 底部按钮事件
-	*/
+	// 底部按钮事件
 	$scope.menuClick = function(value){
 		Tool.menuClick($scope,value);
 	}

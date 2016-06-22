@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../stylesheets/dest/main.css">
 	<title>悠康医生</title>
 </head>
-<body style="background-color:#EFEFF4" ng-controller="userinfoCtrl">
+<body style="background-color:#EFEFF4" ng-controller="userinfoCtrl" data-ng-init="inti()">
 	<div class="header">
 		<div class="header-item float-left">
 			<a href="user.html">
@@ -22,7 +22,7 @@
 		<div class="img-item" ng-click="alert('敬请期待!')">
 			<span>我的头像</span>
 			<img class="icon" src="../contents/svg/right-arrow.svg">
-			<img class="img" ng-src="{{face}}" fallback-src="../contents/img/men-head.png">
+			<img class="img" ng-src="{{face|defaultHeadImg:sex}}" user-error="{{sex}}">
 		</div>
 		<ul class="item-group">
 			<li ng-click="change('realname')">

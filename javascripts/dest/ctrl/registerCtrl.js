@@ -8,25 +8,19 @@ app.controller("registerCtrl",["$scope","$http","$interval","Tool","Ajax",functi
 	$scope.disable = false;
 	$scope.phoneCheckResult = false;
 
-	/**
-	 * 加载host
-	 */
+	// 加载host
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){})
 	}
 
-	/*
-	** 注册按钮处理函数
-	*/
+	// 注册按钮处理函数
 	$scope.register = function(){
 		if($scope.check()){
 			$scope.codeCheck($scope.registering);
 		}
 	}
 
-	/*
-	** 检查输入是否符合要求
-	*/
+	// 检查输入是否符合要求
 	$scope.check = function(){
 		if(/^1[3|4|5|7|8]\d{9}$/.test($scope.phone)&&$scope.password.length>=8&&$scope.password.length<=20&$scope.password==$scope.passwordAgian){
 			return true;
@@ -47,9 +41,7 @@ app.controller("registerCtrl",["$scope","$http","$interval","Tool","Ajax",functi
 		}
 	}
 
-	/*
-	** 验证码按钮处理函数
-	*/
+	// 验证码按钮处理函数
 	$scope.getCode = function(){
 		if($scope.codeState){
 			if($scope.phoneCheckResult){
@@ -86,9 +78,7 @@ app.controller("registerCtrl",["$scope","$http","$interval","Tool","Ajax",functi
 		}
 	}
 
-	/*
-	** 检查手机号码是否可以注册
-	*/
+	// 检查手机号码是否可以注册
 	$scope.phoneCheck = function(){
 		if(/^1[3|4|5|7|8]\d{9}$/.test($scope.phone)){
 			var url = $scope.host+"/wx/register/registercheck";
@@ -111,9 +101,7 @@ app.controller("registerCtrl",["$scope","$http","$interval","Tool","Ajax",functi
 		}
 	}
 
-	/*
-	** 验证短信验证码是否正确
-	*/
+	// 验证短信验证码是否正确
 	$scope.codeCheck = function(callback){
 		var url = $scope.host+"/wx/register/registercheck";
 		var data = "name=verifyCode&param="+$scope.code+"&p="+$scope.phone;
@@ -132,9 +120,7 @@ app.controller("registerCtrl",["$scope","$http","$interval","Tool","Ajax",functi
 		})
 	}
 
-	/*
-	** 注册
-	*/
+	// 注册
 	$scope.registering = function(){
 		var url = $scope.host + "/wx/register/register";
 		var data = "phone="+$scope.phone+"&verifyCode="+$scope.code+"&password="+$scope.password;

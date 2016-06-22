@@ -1,0 +1,15 @@
+app.config(["$routeProvider",function($routeProvider){
+    $routeProvider.when("/home",{
+        templateUrl:"home.html",
+        controller:"homeCtrl",
+    }).when("/doctor",{
+        templateUrl:"doctor.html",
+        controller:"doctorCtrl",
+    }).when("/interaction",{
+        templateUrl:"interaction.html",
+        controller:"interactionCtrl",
+    }).when("/user",{
+        templateUrl:"user.html",
+        controller:"userCtrl",
+    }).otherwise({redirectTo:"/post"});
+}])

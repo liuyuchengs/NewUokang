@@ -2,9 +2,12 @@ app.controller("loginCtrl",["$scope","$http","Ajax","Tool",function($scope,$http
 	$scope.phone = "" ;
 	$scope.password = "";
 	
+	//初始化页面
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){});
 	}
+
+	// 登陆
 	$scope.login=function(){
 		if($scope.check()){
 			var host = Tool.getHost();
@@ -20,6 +23,8 @@ app.controller("loginCtrl",["$scope","$http","Ajax","Tool",function($scope,$http
 			Tool.alert($scope,"请检查手机号码或者密码长度符合要求！");
 		}
 	}
+
+	// 检查信息是否符合要求
 	$scope.check = function(){
 		if(/^1[3|4|5|7|8]\d{9}$/.test($scope.phone)&&$scope.password.length>=8&&$scope.password.length<=20){
 			return true;
@@ -27,7 +32,8 @@ app.controller("loginCtrl",["$scope","$http","Ajax","Tool",function($scope,$http
 			return false;
 		}
 	}
-	//登录回调
+
+	// 登录成功回调
 	$scope.loginSuccess = function(data){
 		if(data.code==0){
 			Tool.setLocal("user",data.data);
@@ -40,6 +46,7 @@ app.controller("loginCtrl",["$scope","$http","Ajax","Tool",function($scope,$http
 		}
 
 	}
+	// 登陆失败回掉
 	$scope.loginError = function(err){
 		Tool.alert($scope,"登录错误，请稍后再试！");
 	}

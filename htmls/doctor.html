@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-CN" ng-app="myApp">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-	<link rel="stylesheet" href="../stylesheets/dest/main.css">
-	<title>悠康医生</title>
-</head>
-<body style="background-color:#EFEFF4" ng-controller="doctorCtrl" data-ng-init="init()">
-	<div class="header">
+	<div class="header" data-ng-init="init()">
 		<div class="title">
 			找医生
 		</div>
@@ -264,15 +255,6 @@
 			</li>
 		</ul>
 	</div>
-	<div ng-include="'section/bottom-menu.html'"></div>
 	<div class="cush-tip" ng-if="noProduct" ng-bind-template="{{$parent.noProductText}}"></div>
-	<div class="has-user-menu"></div>
 	<div class="product-bg" ng-if="hasBg"></div>
-	<div ng-include="'section/tip.html'"></div>
-	<div ng-include="'section/loading.html'"></div>
-	<script src="../javascripts/lib/angular.min.js"></script>
-	<script src="../javascripts/lib/angular.route.min.js"></script>
-	<script src="../javascripts/dest/module/module.js"></script>
 	<script src="../javascripts/dest/ctrl/doctorCtrl.js"></script>
-</body>
-</html>

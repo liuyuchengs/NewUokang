@@ -44,9 +44,8 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		has:false,
 		value:""
 	}
-	/**
-	** 页面初始化
-	*/
+
+	// 页面初始化
 	$scope.load = function(){
 		Ajax.loadHost($scope,function(){
 			Tool.loadUserinfo($scope,function(){
@@ -59,9 +58,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		$scope.listen();
 	}
 
-	/**
-	** 跳转到具体的发帖页面
-	*/
+	// 跳转到具体的发帖页面
 	$scope.goTo = function(url){
 		if(Tool.isLogin()){
 			Tool.goPage(url);
@@ -72,9 +69,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		}
 	}
 
-	/**
-	** 监听input元素选择图片
-	*/
+	// 监听input元素选择图片
 	$scope.listen = function(){
 		$("#input1").on("change",function(){
 			var url = $scope.getUrl(this.files[0]);
@@ -141,9 +136,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		})
 	}
 
-	/**
-	** 获取input元素图片的url，做图片预览
-	*/
+	// 获取input元素图片的url，做图片预览
 	$scope.getUrl = function(obj){
 		var url = null;
 		if (window.createObjectURL != undefined) { // basic
@@ -156,9 +149,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		return url;
 	}
 
-	/**
-	** 切换发帖类型
-	*/
+	// 切换发帖类型
 	$scope.switch =function(item){
 		Tool.select(item,$scope.switchParams);
 		if($scope.switchParams[item]){
@@ -166,9 +157,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		}
 	}
 
-	/**
-	** 调整随便聊聊照片参数
-	*/
+	// 调整随便聊聊照片参数
 	$scope.mergeSay = function(){
 		var imgStr = "img";
 		var pStr = "p";
@@ -201,9 +190,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		$scope.postData.append("postFlags",2);
 	}
 
-	/*
-	** 调整写日记参数
-	*/
+	// 调整写日记参数
 	$scope.mergeNote = function(){
 		var imgStr = "img";
 		var beforeCount = 1 ;
@@ -243,9 +230,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		$scope.postData.append("postFlags",1);
 	}
 
-	/**
-	** 发帖功能
-	*/
+	// 发帖功能
 	$scope.addPost = function(merge){
 		if($scope.queryParams.postName==""||$scope.queryParams.postName==null||$scope.queryParams.postContent==""||$scope.queryParams.postContent==null){
 			Tool.alert($scope,"请填写发帖内容!");
@@ -280,16 +265,12 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		}
 	}
 
-	/**
-	** 发布随便说说帖子
-	*/
+	// 发布随便说说帖子
 	$scope.addSayPost = function(){
 		$scope.addPost($scope.mergeSay);
 	}
 
-	/**
-	** 发布写日记
-	*/
+	// 发布写日记
 	$scope.addNotePost = function(){
 		if(!$scope.select.has){
 			if($scope.queryParams.productId==null||$scope.queryParams.hospitalId==null||$scope.queryParams.doctorId==null){
@@ -302,9 +283,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		}
 	}
 
-	/**
-	** 触发随便说说选择照片
-	*/
+	// 触发随便说说选择照片
 	$scope.chooseSayPic = function(){
 		var count = 0;
 		for(var item in $scope.beforeParams){
@@ -320,9 +299,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		}
 	}
 
-	/**
-	** 触发写日记选择术前照片
-	*/
+	// 触发写日记选择术前照片
 	$scope.chooseBeforePic = function(){
 		var count = 0;
 		for(var item in $scope.beforeParams){
@@ -339,9 +316,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		}
 	}
 
-	/**
-	** 触发写日记选择术后照片
-	*/
+	// 触发写日记选择术后照片
 	$scope.chooseAfterPic = function(){
 		var count = 0;
 		for(var item in $scope.afterParams){
@@ -357,9 +332,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		}
 	}
 
-	/**
-	** 删除术前图片
-	*/
+	// 删除术前图片
 	$scope.removeBefore = function(item){
 		if($scope.beforeParams[item]){
 			$scope.beforeParams[item].has=false;
@@ -369,9 +342,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		}
 	}
 
-	/**
-	** 删除术后图片
-	*/
+	// 删除术后图片
 	$scope.removeAfter = function(item){
 		if($scope.afterParams[item]){
 			$scope.afterParams[item].has=false;
@@ -381,17 +352,13 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		}
 	}
 
-	/*
-	** 重新替换要重新选择图片的input元素
-	*/
+	// 重新替换要重新选择图片的input元素
 	$scope.clear = function(selector){
 		var element = document.getElementById(selector);
 		element.outerHTML = element.outerHTML; //重新替换Input元素
 	}
 
-	/*
-	** 发帖页面加载用户已完成订单信息
-	*/
+	// 发帖页面加载用户已完成订单信息
 	$scope.loadOrder = function(){
 		var url = $scope.host + "/wx/order/queryOrderList";
 		var params = "status=&userId="+$scope.userInfo.id+"";
@@ -418,9 +385,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		})
 	}
 
-	/*
-	** 触发项目选择
-	*/
+	// 触发项目选择
 	$scope.chooseOrder = function(){
 		if($scope.order.has){
 			$scope.select.has = !$scope.select.has;
@@ -429,9 +394,7 @@ app.controller("writeCtrl",["$scope","$http","Tool","Ajax",function($scope,$http
 		}
 	}
 
-	/**
-	** 选择项目
-	*/
+	// 选择项目
 	$scope.chooseProduct = function(id){
 		//先清理掉以选择的项
 		for(var prototype in $scope.order.orderInfo){

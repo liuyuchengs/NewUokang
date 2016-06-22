@@ -1,21 +1,10 @@
 app.controller("userCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,Tool,Ajax){
+	//变量区域
 	$scope.user ={};
 	$scope.hasUserMenu = true;
 	$scope.isLogin = false;
-	$scope.goto = function(path){
-		if(Tool.isLogin()){
-			Tool.goPage(path);
-		}else{
-			Tool.goPage("/new/htmls/login.html");
-		}
-	};
-	$scope.gotoMenu = function(path){
-		Tool.goPage(path);
-	}
-	$scope.alert = function(mes){
-		Tool.alert($scope,mes);
-	}
 
+	//页面初始化
 	$scope.init = function(){
 		Ajax.loadHost($scope,function(){
 			$scope.switchText();
@@ -25,6 +14,7 @@ app.controller("userCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 		});
 	}
 
+	//切换用户名称的显示
 	$scope.switchText = function(){
 		if(Tool.isLogin()){
 			$scope.user = Tool.getLocal("user");
@@ -33,14 +23,6 @@ app.controller("userCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 			if($scope.user.nickname===""||$scope.user.nickname===null){
 				$scope.user.nickname = "您还没有填写昵称";
 			}
-			if($scope.user.face===""||$scope.user.face===null){
-				if($scope.user.sex==="男"||$scope.user.sex===""||$scope.user.sex===null){
-					$scope.user.face = "../contents/img/men-head.png";
-				}
-				if($scope.user.sex==="女"){
-					$scope.user.face = "../contents/img/women-head.png";
-				}
-			}
 		}else{
 			$scope.user.face = "../contents/img/men-head.png";
 			$scope.user.tip = "点击登录注册";
@@ -48,17 +30,17 @@ app.controller("userCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 		
 	}
 
+	//菜单按钮提示
 	$scope.menuClick = function(value){
 		Tool.menuClick($scope,value);
 	}
 
+	//为开放项目的提示
 	$scope.alert = function(mess){
 		Tool.alert($scope,mess);
 	}
 
-	/**
-	 * 获取关注数量
-	 */
+	//获取关注数量和粉丝数量
 	$scope.queryFocus = function(){
 		var url = $scope.host+"/wx/focus/focusManCount";
 		var params = "accessToken="+$scope.userInfo.accessToken;
@@ -83,4 +65,13 @@ app.controller("userCtrl",["$scope","$http","Tool","Ajax",function($scope,$http,
 			Tool.alert($scope,"获取粉丝信息失败!");
 		})
 	}
+	
+	//跳转到选项页面
+	$scope.goto = function(path){
+		if(Tool.isLogin()){
+			Tool.goPage(path);
+		}else{
+			Tool.goPage("/new/htmls/login.html");
+		}
+	};
 }])

@@ -20,6 +20,8 @@ app.controller("userinfochangeCtrl",["$scope","$http","$location","Tool",functio
 		"age":"请填写年龄",
 		"nickname":"请填写昵称",
 	}
+
+	//页面初始化
 	angular.element(document).ready(function(){
 		$scope.item = $location.search().item;
 		$scope.title = $scope.titleParams[$scope.item];
@@ -32,6 +34,8 @@ app.controller("userinfochangeCtrl",["$scope","$http","$location","Tool",functio
 		}
 		Tool.loadUserinfo($scope);
 	})
+
+	//修改信息
 	$scope.change = function(){
 		if($scope.check()){
 			var url = Tool.getSession("host")+"/wx/mycount/updateUserInfo";
@@ -54,6 +58,8 @@ app.controller("userinfochangeCtrl",["$scope","$http","$location","Tool",functio
 			})
 		}
 	}
+
+	//检查内容是否符合要求
 	$scope.check = function(){
 		if($scope.val.length==0){
 			Tool.alert($scope,"填写内容为空！");
@@ -92,6 +98,8 @@ app.controller("userinfochangeCtrl",["$scope","$http","$location","Tool",functio
 			return false;
 		}
 	}
+
+	//选择性别
 	$scope.select = function(value){
 		if(value=="男"){
 			if(!$scope.sexparams.men){

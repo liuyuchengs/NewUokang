@@ -7,10 +7,13 @@ app.controller("grabCodeCtrl",["$scope","$http","$location","Tool",function($sco
 	}
 	$scope.userInfo = {};
 
+	// 页面初始化
 	angular.element(document).ready(function(){
 		$scope.loadQueryParams();
 		Tool.loadUserinfo($scope);
 	})
+
+	// 获取查询字符串参数
 	$scope.loadQueryParams = function(){
 		if($location.search().productId){
 			$scope.queryParams.productId = $location.search().productId;
@@ -22,6 +25,8 @@ app.controller("grabCodeCtrl",["$scope","$http","$location","Tool",function($sco
 			$scope.queryParams.dayDate = $location.search().dayDate;
 		}
 	}
+
+	// 检查可生成惠赠订单
 	$scope.checkCode = function(){
 		if($scope.queryParams.code.length<1){
 			Tool.alert($scope,"请填写惠赠码!");
@@ -44,6 +49,8 @@ app.controller("grabCodeCtrl",["$scope","$http","$location","Tool",function($sco
 			})
 		}
 	}
+
+	// 生成惠赠订单
 	$scope.getGift = function(queryParams){
 		var url = Tool.getSession("host")+"/wx/gift/getgiftproduct";
 		var params = Tool.convertParams(queryParams);
