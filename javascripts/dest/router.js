@@ -1,0 +1,20 @@
+define(["angular","app","angular-route",function(angular,app){
+    app.config(["$routeProvider","$controllerProvider",function($routeProvider,$controllerProvider){
+        $routeProvider.when("/home",{
+            templateUrl:"home.html",
+            controller:"homeCtrl",
+        }).when("/doctor",{
+            templateUrl:"doctor.html",
+            controller:"doctorCtrl",
+        }).when("/interaction.html",{
+            templateUrl:"interactionCtrl",
+            controller:"interactionCtrl"
+        }).when("/user",{
+            templateUrl:"userCtrl",
+            controller:"userCtrl"
+        }).when("/test",{
+            templateUrl:"test.html",
+            controller:"testCtrl",
+        }).otherwise({redirectTo:"/home"})
+    }])
+}])

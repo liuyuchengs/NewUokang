@@ -1,0 +1,22 @@
+require.config({
+    paths:{
+        "angular":"../lib/angular.min",
+        "angular-route":"../lib/angular.route.min",
+        "router":"router",
+        "test":"test",
+        "app":"app"
+    },
+    shim:{
+        "angular":{
+            exports:"angular"
+        },
+        "angular-route":{
+            deps:['angular'],
+            exports:'ngRouteModule',
+        }
+    }
+})
+
+require(["angular","router","module","test"],function(angular){
+    angular.bootstrap(document,['myApp']);
+})

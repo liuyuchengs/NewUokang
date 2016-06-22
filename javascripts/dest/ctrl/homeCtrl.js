@@ -180,3 +180,4 @@ app.controller("homeCtrl",["$scope","$http","Tool","Ajax","Weixin",function($sco
 		Tool.menuClick($scope,value);
 	}
 }])
+

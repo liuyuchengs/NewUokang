@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "amd",
         "target": "es5",
         "noImplicitAny": false,
         "sourceMap": false,
-        "outDir": "javascripts/self",
+        "outDir": "javascripts/dest",
         "watch":true
     },
     "exclude": [
