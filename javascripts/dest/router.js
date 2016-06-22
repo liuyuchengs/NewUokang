@@ -1,4 +1,4 @@
-define(["angular","app","angular-route",function(angular,app){
+define(["app"],function(app){
     app.config(["$routeProvider","$controllerProvider",function($routeProvider,$controllerProvider){
         $routeProvider.when("/home",{
             templateUrl:"home.html",
@@ -17,4 +17,4 @@ define(["angular","app","angular-route",function(angular,app){
             controller:"testCtrl",
         }).otherwise({redirectTo:"/home"})
     }])
-}])
+})
