@@ -1,13 +1,10 @@
 define(function(){
 	return function($scope,$rootScope,$http,Tool,Ajax,Weixin){
-		$scope.host = "";
-		$scope.loading =false;
 		$scope.items = [];
 		$scope.currentPage = 1;
 		$scope.noProduct = false;
 		$scope.noProductText = "";
 		$scope.banners = [];
-		$scope.hasHomeMenu = true;
 		//$scope.key = "LFQBZ-7UNCX-VDR44-T34PN-OX2VQ-M2BNI"; //个人私钥，后续可更换为企业密钥
 		$scope.locationInfo ="深圳市"
 		$scope.imgStyle = {
@@ -19,18 +16,15 @@ define(function(){
 
 		// 初始化页面
 		$scope.init = function(){
-			$scope.loading = true;
-			Ajax.loadHost($scope,function(){
-				$scope.loadRecommend();
-				$scope.queryBanner();
-				$scope.initSwiper();
-				if(Tool.getSession("locationInfo")){
-					$scope.locationInfo = Tool.getSession("locationInfo").city;
-				}else{
-					Weixin.wxInit($scope,$scope.getLocation);
-					Weixin.wxConfig($scope);
-				}
-			});
+			$scope.loadRecommend();
+			$scope.queryBanner();
+			$scope.initSwiper();
+			if(Tool.getSession("locationInfo")){
+				$scope.locationInfo = Tool.getSession("locationInfo").city;
+			}else{
+				Weixin.wxInit($scope,$scope.getLocation);
+				Weixin.wxConfig($scope);
+			}
 		}
 
 		// 逆地址服务暂不用 
@@ -66,9 +60,9 @@ define(function(){
 		}
 
 		// 查询热门推荐
-		$scope.loadRecommend = function(host){
+		$scope.loadRecommend = function(){
 			$scope.loading = true;
-			var url = $scope.host+"/wx/product/queryrecommend";
+			var url = Tool.host+"/wx/product/queryrecommend";
 			var params = "city=深圳&currentPage="+$scope.currentPage;
 			$http.post(url,params,{
 				headers:{
@@ -90,7 +84,7 @@ define(function(){
 				}
 				$scope.loading = false;
 			}).error(function(){
-				Tool.alert($rootScope,"获取热门推荐数据失败，请稍后再试!");
+				Tool.alert("获取热门推荐数据失败，请稍后再试!");
 				$scope.loading = false;
 				$scope.noProduct = true;
 			})
@@ -112,7 +106,7 @@ define(function(){
 
 		// 获取图片轮播
 		$scope.queryBanner = function(){
-			var url = $scope.host+"/wx/banner/query";
+			var url = Tool.host+"/wx/banner/query";
 			var params = "type=home_banner";
 			$http.post(url,params,{
 				headers:{
@@ -124,7 +118,7 @@ define(function(){
 					$scope.banners = data.data;
 				}
 			}).error(function(){
-				Tool.alert($rootScope,"获取主页图片失败，请稍后再试!");
+				Tool.alert("获取主页图片失败，请稍后再试!");
 			})
 		}
 

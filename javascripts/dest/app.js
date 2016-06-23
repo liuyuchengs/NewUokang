@@ -12,10 +12,17 @@ define(["angular"],function(angular){
             user:false,
             has:true,
         }
+
+        //加载框参数
         $rootScope.loading = false;
+
         //提示框参数
-        $rootScope.message = "";
-        
+        $rootScope.message = null;
+        $rootScope.hasCancel = null;
+        $rootScope.hasComfirm = null;
+        $rootScope.hasTip = null;
+        $rootScope.comfirm = null;
+        $rootScope.cancel = null;
 
         //获取url决定导航栏样式
         $rootScope.navMenu = function(){
@@ -37,7 +44,6 @@ define(["angular"],function(angular){
                 $rootScope.navMenuParams.has = false;
             }
         }
-
 
         //导航栏菜单处理事件
         $rootScope.menuClick = function(item){

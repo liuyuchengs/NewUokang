@@ -1,6 +1,6 @@
 define(["app","wx"],function(app,wx){
 
-    // 数据访问类服务
+    // 数据访问服务
     app.service("Ajax",["$http","$q","Tool",function($http,$q,Tool){
         //使用promise封装ajax
         this.get = function (obj) {
@@ -19,7 +19,7 @@ define(["app","wx"],function(app,wx){
                 var defered = $q.defer();
                 if(obj.headers) {
                     if(!obj.headers["Content-type"]){
-                        'Content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                        obj.headers["Content-type"] = 'application/x-www-form-urlencoded;charset=UTF-8';
                     }
                 }else{
                     obj.headers = {
@@ -38,8 +38,8 @@ define(["app","wx"],function(app,wx){
         };
     }]);
 
-    // 工具类服务
-    app.service("Tool",["$location",function($location,Ajax){
+    // 工具服务
+    app.service("Tool",["$rootScope","$location",function($rootScope,$location){
         this.host = "https://192.168.0.222:8555/www";
         /*
         ** 操作localStorage和sessionStorage
@@ -71,12 +71,14 @@ define(["app","wx"],function(app,wx){
                 location.href = url;
             }
         }
+
         //改变路由
         this.changeRoute = function(path,search){
             $location.path(path);
             $location.search(search);
         }
-        //判断是否登录S
+
+        //判断是否登录
         this.isLogin = function(){
             if(this.getLocal("accessToken")){
                 return true;
@@ -84,6 +86,7 @@ define(["app","wx"],function(app,wx){
                 return false;
             }
         }
+
         //判断是否完成用户信息
         this.isUserInfoComplete = function(){
             var userInfo = this.getLocal("user");
@@ -106,42 +109,44 @@ define(["app","wx"],function(app,wx){
                 }
             }
         }
+
         //确认按钮的提示框
-        this.alert = function(scope,mess,callback){
-            scope.message = mess;
-            scope.hasCancel = false;
-            scope.hasComfirm = true;
-            scope.hasTip = true;
+        this.alert = function(mess,callback){
+            $rootScope.message = mess;
+            $rootScope.hasCancel = false;
+            $rootScope.hasComfirm = true;
+            $rootScope.hasTip = true;
             if(callback){
-                scope.comfirm = callback;
+                $rootScope.comfirm = callback;
             }else{
-                scope.comfirm = function(){
-                    scope.hasTip = false;
+                $rootScope.comfirm = function(){
+                    $rootScope.hasTip = false;
                 }
             }
         }
+
         //确认和取消按钮的提示框
-        this.comfirm = function(scope,mess,callback){
-            scope.message = mess;
-            scope.hasCancel = true;
-            scope.hasComfirm = true;
-            scope.hasTip = true;
-            scope.cancel = function(){
-                scope.hasTip = false;
+        this.comfirm = function(mess,callback){
+            $rootScope.message = mess;
+            $rootScope.hasCancel = true;
+            $rootScope.hasComfirm = true;
+            $rootScope.hasTip = true;
+            $rootScope.cancel = function(){
+                $rootScope.hasTip = false;
             }
-            scope.comfirm = callback;
+            $rootScope.comfirm = callback;
         }
+
         //获取用户信息
-        this.loadUserinfo = function(scope,callback){
+        this.loadUserinfo = function(){
+            var userInfo = {};
             if(this.isLogin()){
-                scope.userInfo = {};
-                scope.userInfo = this.getLocal("user");
-                scope.userInfo.accessToken = this.getLocal("accessToken");
-                return true;
-            }else{
-                return false;
+                userInfo = this.getLocal("user");
+                userInfo.accessToken = this.getLocal("accessToken");
             }
+            return userInfo;
         }
+
         //将对象转换成查询字符串
         this.convertParams = function(obj){
             var params = "";
