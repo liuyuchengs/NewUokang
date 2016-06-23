@@ -1,61 +1,42 @@
-<!DOCTYPE html>
-<html lang="zh-CN" ng-app="myApp">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-	<link rel="stylesheet" href="../stylesheets/dest/main.css">
-	<title>悠康医生</title>
-</head>
-<body  ng-controller="interactionCtrl" data-ng-init="init()">
-	<div class="header">
-		<div class="title">
-			交互
-		</div>
-		<div class="header-item float-right">
-			<a href="write.html">
-				<img src="../contents/svg/edit.svg">
-			</a>
-		</div>
-    </div>
-	<div class="has-header"></div>
-	<div class="interaction-content">
-		<div class="switch">
-			<div class="item" ng-class="{'select':navParams.kanya.has}" ng-click="switchNav('kanya')">看牙</div>
-			<div class="item" ng-class="{'select':navParams.shumei.has}" ng-click="switchNav('shumei')">求美</div>
-			<div class="item" ng-class="{'select':navParams.yunsheng.has}" ng-click="switchNav('yunsheng')">孕·生</div>
-		</div>
-		<ul class="card">
-			<li ng-repeat="post in posts" ng-click="detail(post.id)">
-				<img class="headimg" ng-src="{{post.faceImage|defaultHeadImg:post.sex}}" user-error="{{post.sex}}">
-				<div class="container">
-					<p class="name" ng-bind="post.userName"></p>
-					<p class="text" ng-bind="post.postName"></p>
-					<div class="img">
-						<img ng-repeat="img in post.list2" ng-src="{{img}}">
+<div class="header" data-ng-init="init()">
+	<div class="title">
+		交互
+	</div>
+	<div class="header-item float-right">
+		<a href="write.html">
+			<img src="../contents/svg/edit.svg">
+		</a>
+	</div>
+</div>
+<div class="has-header"></div>
+<div class="interaction-content">
+	<div class="switch">
+		<div class="item" ng-class="{'select':navParams.kanya.has}" ng-click="switchNav('kanya')">看牙</div>
+		<div class="item" ng-class="{'select':navParams.shumei.has}" ng-click="switchNav('shumei')">求美</div>
+		<div class="item" ng-class="{'select':navParams.yunsheng.has}" ng-click="switchNav('yunsheng')">孕·生</div>
+	</div>
+	<ul class="card">
+		<li ng-repeat="post in posts" ng-click="detail(post.id)">
+			<img class="headimg" ng-src="{{post.faceImage|defaultHeadImg:post.sex}}" user-error="{{post.sex}}">
+			<div class="container">
+				<p class="name" ng-bind="post.userName"></p>
+				<p class="text" ng-bind="post.postName"></p>
+				<div class="img">
+					<img ng-repeat="img in post.list2" ng-src="{{img}}">
+				</div>
+				<div class="info">
+					<span ng-bind="post.middTimeStr"></span>
+					<div class="mess">
+						<img src="../contents/svg/mess.svg">
+						<span ng-bind="post.commentNum"></span>
 					</div>
-					<div class="info">
-						<span ng-bind="post.middTimeStr"></span>
-						<div class="mess">
-							<img src="../contents/svg/mess.svg">
-							<span ng-bind="post.commentNum"></span>
-						</div>
-						<div class="see">
-							<img src="../contents/svg/see-grey.svg">
-							<span ng-bind="post.visitNum"></span>
-						</div>
+					<div class="see">
+						<img src="../contents/svg/see-grey.svg">
+						<span ng-bind="post.visitNum"></span>
 					</div>
 				</div>
-			</li>
-		</ul>
-	</div>
-	<div class="cush-tip" ng-if="noProduct" ng-bind-template="{{$parent.noProductText}}"></div>
-	<div class="has-menu"></div>
-	<div ng-include="'section/bottom-menu.html'"></div>
-	<div ng-include="'section/tip.html'"></div>
-	<div ng-include="'section/loading.html'"></div>
-	<script src="../javascripts/lib/angular.min.js"></script>
-	<script src="../javascripts/lib/angular.route.min.js"></script>
-	<script src="../javascripts/dest/module/module.js"></script>
-	<script src="../javascripts/dest/ctrl/interactionCtrl.js"></script>
-</body>
-</html>
+			</div>
+		</li>
+	</ul>
+</div>
+<div class="cush-tip" ng-if="noProduct" ng-bind-template="{{$parent.noProductText}}"></div>

@@ -1,50 +1,34 @@
-<!DOCTYPE html>
-<html lang="zh-CN" ng-app="myApp">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    <link rel="stylesheet" href="../stylesheets/dest/main.css">
-    <title>悠康医生</title>
-</head>
-<body ng-controller="loginCtrl" data-ng-init="init()">
-    <div class="header">
-		<div class="header-item float-left">
-			<a href="home.html">
-				<img src="../contents/svg/home.svg">
-			</a>
-		</div>
-		<div class="title">
-			登录
-		</div>
+<div class="header" data-ng-init="init()">
+    <div class="header-item float-left">
+        <a href="home.html">
+            <img src="../contents/svg/home.svg">
+        </a>
     </div>
-	<div class="has-header"></div>
-    <div class="login-content">
-        <div class="login-item">
-            <div class="login-item-icon">
-                <img src="../contents/svg/login-user.svg">
-            </div>
-			<div class="login-item-input">
-				<input type="text" placeholder="请输入手机号码" ng-model="phone">
-			</div>
-        </div>
-        <div class="login-item">
-            <div class="login-item-icon">
-                <img src="../contents/svg/login-pass.svg">
-            </div>
-			<div class="login-item-input">
-				<input type="password" placeholder="请输入密码" ng-model="password">
-			</div>
-        </div>
-        <div class="login-tip">
-            <a class="login-tip-item" href="register.html">注册</a>
-            <a class="login-tip-item" href="findpwd-phone.html">忘记密码?</a>
-        </div>
-        <button class="button-full" ng-click="login()">登录</button>
+    <div class="title">
+        登录
     </div>
-	<div ng-include="'section/tip.html'"></div>
-	<script src="../javascripts/lib/angular.min.js"></script>
-    <script src="../javascripts/lib/angular.route.min.js"></script>
-	<script src="../javascripts/dest/module/module.js"></script>
-	<script src="../javascripts/dest/ctrl/loginCtrl.js"></script>
-</body>
-</html>
+</div>
+<div class="has-header"></div>
+<div class="login-content">
+    <div class="login-item">
+        <div class="login-item-icon">
+            <img src="../contents/svg/login-user.svg">
+        </div>
+        <div class="login-item-input">
+            <input type="text" placeholder="请输入手机号码" ng-model="phone">
+        </div>
+    </div>
+    <div class="login-item">
+        <div class="login-item-icon">
+            <img src="../contents/svg/login-pass.svg">
+        </div>
+        <div class="login-item-input">
+            <input type="password" placeholder="请输入密码" ng-model="password">
+        </div>
+    </div>
+    <div class="login-tip">
+        <a class="login-tip-item" href="register.html">注册</a>
+        <a class="login-tip-item" href="findpwd-phone.html">忘记密码?</a>
+    </div>
+    <button class="button-full" ng-click="login()">登录</button>
+</div>

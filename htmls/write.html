@@ -1,41 +1,24 @@
-<!DOCTYPE html>
-<html lang="zh-CN" ng-app="myApp">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-	<link rel="stylesheet" href="../stylesheets/dest/main.css">
-	<title>悠康医生</title>
-</head>
-<body style="background-color:#EFEFF4" ng-controller="writeCtrl" data-ng-init="load()">
-	<div class="header">
-		<div class="header-item float-left">
-			<a href="interaction.html">
-				<img src="../contents/svg/back.svg">
-			</a>
-		</div>
-		<div class="title">
-			发布消息
-		</div>
-    </div>
-	<div class="has-header"></div>
-	<div class="write-content">
-		<div class="item"  ng-click="goTo('/new/htmls/write-say.html')">
-			<img src="../contents/svg/talk.svg">
-			<p class="main">随便聊聊</p>
-			<p class="sub">来分享你的健康心得吧</p>
-		</div>
-		<div class="item"  ng-click="goTo('/new/htmls/write-note.html')">
-			<img src="../contents/svg/write-node.svg">
-			<p class="main">写日记</p>
-			<p class="sub">这里有聊不完的健康话题</p>
-		</div>
+<div class="header" data-ng-init="load()">
+	<div class="header-item float-left">
+		<a href="interaction.html">
+			<img src="../contents/svg/back.svg">
+		</a>
 	</div>
-	<div ng-include="'section/uploading.html'"></div>
-	<div ng-include="'section/tip.html'"></div>
-	<script src="../javascripts/lib/jquery.min.js"></script>
-	<script src="../javascripts/lib/angular.min.js"></script>
-	<script src="../javascripts/lib/angular.route.min.js"></script>
-	<script src="../javascripts/dest/module/module.js"></script>
-	<script src="../javascripts/dest/ctrl/writeCtrl.js"></script>
-</body>
-</html>
+	<div class="title">
+		发布消息
+	</div>
+</div>
+<div class="has-header"></div>
+<div class="write-content">
+	<div class="item"  ng-click="goTo('/new/htmls/write-say.html')">
+		<img src="../contents/svg/talk.svg">
+		<p class="main">随便聊聊</p>
+		<p class="sub">来分享你的健康心得吧</p>
+	</div>
+	<div class="item"  ng-click="goTo('/new/htmls/write-note.html')">
+		<img src="../contents/svg/write-node.svg">
+		<p class="main">写日记</p>
+		<p class="sub">这里有聊不完的健康话题</p>
+	</div>
+</div>
+<div ng-include="'section/uploading.html'"></div>
