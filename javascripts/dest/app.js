@@ -12,8 +12,10 @@ define(["angular"],function(angular){
             user:false,
             has:true,
         }
-        //提示框toggle参数
         $rootScope.loading = false;
+        //提示框参数
+        $rootScope.message = "";
+        
 
         //获取url决定导航栏样式
         $rootScope.navMenu = function(){
