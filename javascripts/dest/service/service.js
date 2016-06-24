@@ -40,7 +40,11 @@ define(["app","wx"],function(app,wx){
 
     // 工具服务
     app.service("Tool",["$rootScope","$location",function($rootScope,$location){
-        this.host = "https://192.168.0.222:8555/www";
+        
+        //变量
+        this.host = "http://192.168.0.102:3000";
+        this.userInfo = {};
+
         /*
         ** 操作localStorage和sessionStorage
         */
@@ -79,8 +83,9 @@ define(["app","wx"],function(app,wx){
         }
 
         //判断是否登录
-        this.isLogin = function(){
-            if(this.getLocal("accessToken")){
+        this.checkLogin = function(){
+            if(this.getLocal("user")){
+                this.user = this.getLocal("user");
                 return true;
             }else{
                 return false;

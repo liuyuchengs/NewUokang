@@ -1,4 +1,5 @@
 define(["app","require"],function(app,require){
+    //配置路由
     app.config(["$routeProvider","$controllerProvider",function($routeProvider,$controllerProvider){
         $routeProvider.when("/home",{
             templateUrl:"home.html",
@@ -67,7 +68,7 @@ define(["app","require"],function(app,require){
                 interaction: loadController({
                     url:"../javascripts/dest/controller/user.js",
                     name:"userCtrl",
-                    inject:["$scope","$rootScope","$http","Tool","Ajax"],   
+                    inject:["$scope","Tool","Ajax"],   
                 },$controllerProvider)
             }
         }).when("/user/userinfo",{
@@ -302,6 +303,8 @@ define(["app","require"],function(app,require){
             }
         }).otherwise({redirectTo:"/home"})
     }])
+
+    //将require的控制器注册到Module中
     function loadController(obj,$controllerProvider){
         return function($q){
             var deferred = $q.defer();

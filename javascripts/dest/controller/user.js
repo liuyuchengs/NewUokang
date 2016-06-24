@@ -1,26 +1,19 @@
 define(function(){
-    return function($scope,$rootScope,$http,Tool,Ajax){
-        //变量区域
-        $scope.user ={};
-        $scope.hasUserMenu = true;
-        $scope.isLogin = false;
+    return function($scope,Tool,Ajax){
+        $scope.user = {};
 
         //页面初始化
         $scope.init = function(){
-            Ajax.loadHost($scope,function(){
-                $scope.switchText();
-                if($scope.isLogin){
-                    $scope.queryFocus();
-                }
-            });
+            $scope.initText();
+            if(Tool.checkLogin()){
+                $scope.queryFocus();
+            }
         }
 
         //切换用户名称的显示
-        $scope.switchText = function(){
-            if(Tool.isLogin()){
-                $scope.user = Tool.getLocal("user");
-                Tool.loadUserinfo($scope);
-                $scope.isLogin = true;
+        $scope.initText = function(){
+            if(Tool.checkLogin()){
+                $scope.user = Tool.userInfo;
                 if($scope.user.nickname===""||$scope.user.nickname===null){
                     $scope.user.nickname = "您还没有填写昵称";
                 }
@@ -32,19 +25,16 @@ define(function(){
 
         // 未开放项目的提示
         $scope.alert = function(mess){
-            Tool.alert($rootScope,mess);
+            Tool.alert(mess);
         }
 
         //获取关注数量和粉丝数量
         $scope.queryFocus = function(){
-            var url = $scope.host+"/wx/focus/focusManCount";
-            var params = "accessToken="+$scope.userInfo.accessToken;
-            $http.post(url,params,{
-                headers:{
-                    'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-                }
-            }).success(function(data){
-                if(data.code==0){
+            Ajax.post({
+                url:Tool.host+"/wx/focus/focusManCount",
+                params: "accessToken="+$scope.user.accessToken,
+            }).then(function(data){
+                 if(data.code==0){
                     if(data.data.countFocusMan===null||data.data.countFocusMan===""){
                         data.data.countFocusMan = 0;
                     }
@@ -54,16 +44,16 @@ define(function(){
                     $scope.countFocusMan = data.data.countFocusMan;
                     $scope.countFansMan = data.data.countFansMan;
                 }
-            }).error(function(data){
+            }).catch(function(){
                 $scope.countFocusMan = 0;
                 $scope.countFansMan = 0;
-                Tool.alert($rootScope,"获取粉丝信息失败!");
+                Tool.alert("获取粉丝信息失败!");
             })
         }
         
         //跳转到选项页面
         $scope.goto = function(path){
-            if(Tool.isLogin()){
+            if(Tool.checkLogin()){
                 Tool.changeRoute(path,"");
             }else{
                 Tool.changeRoute("/login","");
