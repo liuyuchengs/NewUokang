@@ -1,9 +1,7 @@
 
 <div class="header" data-ng-init="init()">
-	<div class="header-item float-left">
-		<a href="login.html">
-			<img src="../contents/svg/back.svg">
-		</a>
+	<div class="header-item float-left" ng-click="changeRoute('/login')">
+		<img src="../contents/svg/back.svg">
 	</div>
 	<div class="title">
 		注册
@@ -27,7 +25,7 @@
 		<input type="password" placeholder="请再次输入8-20位登陆密码" ng-model="passwordAgian">
 	</div>
 	<div class="item-tip">
-		<p>注册即视为同意<a href="agreement.html"><<悠康用户注册协议>></a></p>
+		<p>注册即视为同意<span ng-click="changeRoute('/agreement')"><<悠康用户注册协议>></span></p>
 	</div>
 	<button class="button-full" ng-click="register()">注册</button>
 </div>

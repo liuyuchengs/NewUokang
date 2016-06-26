@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,$location,$anchorScroll,Ajax,Tool){
+	return function($scope,$rootScope,$location,$anchorScroll,Ajax,Tool){
 		$scope.loading = false;
 		$scope.hasTime = false;
 		$scope.hasProduct = false;
@@ -55,13 +55,11 @@ define(function(){
 
 		// 初始化页面
 		$scope.init = function(){
-			Ajax.loadHost($scope,function(){
-				$scope.getParams();
-				$scope.queryDoctor();
-				$scope.querySchedule();
-				$scope.initSwiper();
-				$scope.queryAssess();
-			})
+			$scope.getParams();
+			$scope.queryDoctor();
+			$scope.querySchedule();
+			$scope.initSwiper();
+			$scope.queryAssess();
 		}
 
 		// 初始化swiper
@@ -101,7 +99,7 @@ define(function(){
 				$scope.id = $location.search().id;
 				$scope.queryParams.id = $scope.id;
 			}else{
-				Tool.goPage("/new/htmls/doctor.html");
+				Tool.changeRoute("/doctor");
 			}
 		}
 
@@ -127,18 +125,15 @@ define(function(){
 
 		// 获取医生信息
 		$scope.queryDoctor = function(){
-			$scope.loading = true;
-			var url = $scope.host+"/wx/doctor/queryDoctorDetailInfo";
-			var params = "needPackageInfo=true&id="+$scope.id;
-			if(Tool.isLogin()){
-				Tool.loadUserinfo($scope);
-				params += "&accessToken="+$scope.userInfo.accessToken;
+			var params = {needPackageInfo:true,id:$scope.id}
+			if(Tool.checkLogin()){
+				Tool.loadUserinfo();
+				params.accessToken = Tool.userInfo.accessToken;
 			}
-			$http.post(url,params,{
-				headers:{
-					"content-type":'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/doctor/queryDoctorDetailInfo",
+				params:params,
+			}).then(function(data){
 				if(data.code==0){
 					$scope.order.doctorName = data.data.doctorName;
 					$scope.order.doctorId = data.data.id;
@@ -158,12 +153,12 @@ define(function(){
 					})
 					$scope.doctorInfo = data.data;
 				}else{
-					Tool.alert($scope,"连接数据失败，请稍后再试!");
+					Tool.alert("连接数据失败，请稍后再试!");
 				}
-				$scope.loading = false;
-			}).error(function(){
-				$scope.loading = false;
-				Tool.alert($scope,"连接数据失败，请稍后再试!");
+			}).catch(function(){
+				Tool.alert("连接数据失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -176,13 +171,10 @@ define(function(){
 
 		// 获取医生排班信息
 		$scope.querySchedule = function(){
-			var url = $scope.host+"/wx/order/querybydoctorid";
-			var params = "doctorId="+$scope.id;
-			$http.post(url,params,{
-				headers:{
-					"content-type":'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/order/querybydoctorid",
+				params:{doctorId:$scope.id},
+			}).then(function(data){
 				if(data.code==0){
 					if(data.data.length>0){
 						$scope.mergeSchedule(data.data);
@@ -190,10 +182,12 @@ define(function(){
 						$scope.time.noTime = true;
 					}
 				}else{
-					Tool.alert($scope,"数据连接失败，请稍后再试!");
+					Tool.alert("数据连接失败，请稍后再试!");
 				}
-			}).error(function(){
-				Tool.alert($scope,"数据连接失败，请稍后再试!");
+			}).catch(function(){
+				Tool.alert("数据连接失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -220,13 +214,10 @@ define(function(){
 
 		// 获取医生评价信息
 		$scope.queryAssess = function(){
-			var url = $scope.host+"/wx/review/showdoctorreview";
-			var params = Tool.convertParams($scope.queryParams);
-			$http.post(url,params,{
-				headers:{
-					"content-type":'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/review/showdoctorreview",
+				params:$scope.queryParams
+			}).then(function(data){
 				if(data.code==0){
 					data.data.forEach(function(item){
 						if(item.totalscore==null){
@@ -238,8 +229,10 @@ define(function(){
 					})
 					$scope.assessInfo = data.data;
 				}
-			}).error(function(){
-				Tool.alert($scope,"数据连接失败，请稍后再试!");
+			}).catch(function(){
+				Tool.alert("数据连接失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -284,29 +277,26 @@ define(function(){
 		$scope.orderDetail = function(id,title,price){
 			if(!$scope.time.noTime){
 				if($scope.time.hasSelect){
-					if(!Tool.isLogin()){
-						Tool.comfirm($scope,"请先登录并完善个人信息",function(){
-							Tool.goPage("/new/htmls/login.html");
+					if(!Tool.checkLogin()){
+						Tool.comfirm("请先登录并完善个人信息",function(){
+							Tool.changeRoute("/login");
 						})
 					}else if(!Tool.isUserInfoComplete()){
-						Tool.comfirm($scope,"请完善个人信息!",function(){
-							Tool.goPage("/new/htmls/userinfo.html");
+						Tool.comfirm("请完善个人信息!",function(){
+							Tool.changeRoute("/user/userInfo");
 						})
 					}else{
-						$scope.loading = true;
 						$scope.order.productId = id;
 						$scope.order.productName = title;
 						$scope.order.preferPrice = "￥"+price;
-						Tool.loadUserinfo($scope);
-						var url = $scope.host +"/wx/order/checkCodeMoney";
-						var paramsStr = "productId="+$scope.order.productId;
-						$http.post(url,paramsStr,{
+						Tool.loadUserinfo();
+						Ajax.post({
+							url:Tool.host+"/wx/order/checkCodeMoney",
+							params:{productId:$scope.order.productId},
 							headers:{
-								"Content-type":"application/x-www-form-urlencoded;charset=UTF-8",
-								"accessToken":$scope.userInfo.accessToken
+								"accessToken":Tool.userInfo.accessToken
 							}
-						}).success(function(data){
-							Tool.loading = false;
+						}).then(function(data){
 							$scope.order.dealMoney = data.dealMoney;
 							$scope.order.payMoney = data.payMoney;
 							$scope.order.realMoney = data.realMoney;
@@ -315,21 +305,19 @@ define(function(){
 								$scope.order.flag = null;
 							}
 							Tool.setSession("makeorder",$scope.order);
-							Tool.goPage("/new/htmls/makeorder.html");
-						}).error(function(){
-							Tool.loading = false;
-							Tool.alert($scope,"加载App付款金额失败!",function(){
-								$scope.hasTip = false;
-							});
+							Tool.changeRoute("/makeorder");
+						}).catch(function(){
+							Tool.alert("加载App付款金额失败!");
+						}).finally(function(){
+							$rootScope.loading = false;
 						})
 					}
 				}else{
-					Tool.alert($scope,"请先预约就医时间!");
+					Tool.alert("请先预约就医时间!");
 				}
 			}else{
-				Tool.alert($scope,"此医生没有排班，暂不能下单。去其他医生看看吧!");
+				Tool.alert("此医生没有排班，暂不能下单。去其他医生看看吧!");
 			}
-
 		}
 
 		// 打开时间选择窗口
@@ -348,30 +336,29 @@ define(function(){
 
 		// 跳转到咨询页面
 		$scope.ask = function(){
-			Tool.loadUserinfo($scope,function(){
-				Tool.comfirm($scope,"您还没有登录，请先登录",function(){
-					Tool.goPage("/new/htmls/user.html");
+			if(Tool.checkLogin()){
+				Tool.loadUserinfo();
+				Tool.changeRoute("/doctor/askDoctor","id="+$scope.id);
+			}else{
+				Tool.comfirm("请先登录",function(){
+					Tool.changeRoute("/login");
 				})
-			});
-			if(Tool.isLogin()){
-				Tool.goPage("/new/htmls/askdoctor.html#?id="+$scope.id);
 			}
 		}
 
 		// 跳到医生评价
 		$scope.goAssess = function(){
-			$location.hash("doctorAssess");
-			$anchorScroll();
+			$anchorScroll("doctorAssess");
 		}
 
 		// 关注按钮处理函数
 		$scope.switchFollow = function(){
-			if(!Tool.isLogin()){
-				Tool.comfirm($scope,"请先登录!",function(){
-					Tool.goPage("/new/htmls/login.html");
+			if(!Tool.checkLogin()){
+				Tool.comfirm("请先登录!",function(){
+					Tool.changeRoute("/login");
 				})
 			}else{
-				Tool.loadUserinfo($scope);
+				Tool.loadUserinfo();
 				if($scope.follow.hasFollow){
 					$scope.cacelFollow();
 				}else{
@@ -382,44 +369,51 @@ define(function(){
 
 		// 关注发帖医生
 		$scope.tofollow = function(){
-			var url = $scope.host+"/wx/post/focus";
-			var params = "flag=2&userId="+$scope.id;
-			$http.post(url,params,{
+			Ajax.post({
+				url:Tool.host+"/wx/post/focus",
+				params:{flag:2,userId:$scope.id},
 				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-					'accessToken':$scope.userInfo.accessToken,
+					'accessToken':Tool.userInfo.accessToken,
 				}
-			}).success(function(data){
+			}).then(function(data){
 				if(data.code==0){
 					$scope.follow.hasFollow = true;
 					$scope.follow.followText = "已关注";
 				}else{
-					Tool.alert($scope,"关注失败，稍后再试!");
+					Tool.alert("关注失败，稍后再试!");
 				}
-			}).error(function(){
-				Tool.alert($scope,"连接数据失败，请稍后再试!");
+			}).catch(function(){
+				Tool.alert("连接数据失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
 		// 取消关注医生
 		$scope.cacelFollow = function(){
-			var url = $scope.host+"/wx/post/cacelFocus";
-			var params = "flag=2&userId="+$scope.id;
-			$http.post(url,params,{
+			Ajax.post({
+				url:Tool.host+"/wx/post/cacelFocus",
+				params:{flag:2,userId:$scope.id},
 				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-					'accessToken':$scope.userInfo.accessToken,
+					'accessToken':Tool.userInfo.accessToken,
 				}
-			}).success(function(data){
+			}).then(function(data){
 				if(data.code==0){
 					$scope.follow.hasFollow = false;
 					$scope.follow.followText = "关注";
 				}else{
-					Tool.alert($scope,"取消关注失败，稍后再试!");
+					Tool.alert("取消关注失败，稍后再试!");
 				}
-			}).error(function(){
-				Tool.alert($scope,"连接数据失败，稍后再试!");
+			}).catch(function(){
+				Tool.alert("连接数据失败，稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
+		}
+
+		//返回按钮
+		$scope.back = function(){
+			window.history.back();
 		}
 	}
 })

@@ -1,8 +1,6 @@
 <div class="header" data-ng-init="init()">
-    <div class="header-item float-left">
-        <a href="home.html">
-            <img src="../contents/svg/home.svg">
-        </a>
+    <div class="header-item float-left" ng-click="changeRoute('/home')">
+        <img src="../contents/svg/home.svg">
     </div>
     <div class="title">
         登录
@@ -27,8 +25,8 @@
         </div>
     </div>
     <div class="login-tip">
-        <a class="login-tip-item" href="register.html">注册</a>
-        <a class="login-tip-item" href="findpwd-phone.html">忘记密码?</a>
+        <a class="login-tip-item" ng-click="changeRoute('/register')">注册</a>
+        <a class="login-tip-item" ng-click="changeRoute('/findpwd/phone')">忘记密码?</a>
     </div>
     <button class="button-full" ng-click="login()">登录</button>
 </div>

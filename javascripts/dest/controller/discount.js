@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,Tool,Ajax){
+	return function($scope,$rootScope,Tool,Ajax){
 		$scope.itemState = "discount";
 		$scope.discountSelect = true;
 		$scope.currentPage = 1;
@@ -10,28 +10,23 @@ define(function(){
 
 		// 初始化页面
 		$scope.init = function(){
-			Ajax.loadHost($scope,function(){
-				$scope.loadGift();
-			})
-			
+			$scope.loadGift();
 		}
 
 		// 加载特惠数据
 		$scope.loadGift = function(){
-			$scope.loading = true;
-			var url = "";
 			if($scope.itemState=="discount"){
-				url = $scope.host+"/wx/order/queryByGift";
+				var url = Tool.host+"/wx/order/queryByGift";
 			}else{
-				url = $scope.host+"/wx/order/queryGift";
+				var url = Tool.host+"/wx/order/queryGift";
 			}
-			var params = "currentPage="+$scope.currentPage;
-			$http.post(url,params,{
-				headers: {
-				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				'accessToken':"",
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:url,
+				params:{currentPage:$scope.currentPage},
+				headers:{
+					accessToken:""
+				}	
+			}).then(function(data){
 				if(data.code==0){
 					if(data.data.length<1){
 						if($scope.productInfo.length<1){
@@ -45,15 +40,14 @@ define(function(){
 						$scope.productInfo = $scope.productInfo.concat(data.data);
 					}
 				}else{
-					Tool.alert($scope,data.message);
+					Tool.alert(data.message);
 				}
-				$scope.loading = false;
-			}).error(function(){
+			}).catch(function(){
 				$scope.noProduct = true;
-				Tool.alert($scope,"获取项目信息失败，请稍后再试!");
-				$scope.loading = false;
+				Tool.alert("获取项目信息失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
-
 		}
 
 		// 处理特惠数据
@@ -64,9 +58,6 @@ define(function(){
 				}else{
 					item.preferPriceType = item.pricetype;
 				}
-				if(item.samllimg==""||item.samllimg==null){
-					item.samllimg = "../contents/img/p_default.png";
-				}
 				if(item.money){
 					item.preferPrice = item.money;
 				}
@@ -75,7 +66,7 @@ define(function(){
 
 		// 滚动监听
 		window.onscroll = function(){
-			if($scope.loading||$scope.noProduct){
+			if($rootScope.loading||$scope.noProduct){
 				return;
 			}
 			var body = document.body;
@@ -119,18 +110,18 @@ define(function(){
 
 		// 跳转到项目详细信息
 		$scope.detail = function(proId,hospitalId,preferPrice){
-			var path = "/new/htmls/product-detail.html#?productId="+proId+"&hospitalId="+hospitalId;
+			var query = "productId="+proId+"&hospitalId="+hospitalId;
 			if($scope.itemState=="discount"){
-				path += "&code=123";
+				query += "&code=123";
 			}else if($scope.itemState == "month"){
-				path += "&discountid=123&flag=11&money="+preferPrice;
+				query += "&discountid=123&flag=11&money="+preferPrice;
 			}
-			Tool.goPage(path);
+			Tool.changeRoute("/product/detail",query);
 		}
 
 		// 疑问按钮处理函数
 		$scope.question = function(){
-			Tool.alert($scope,"如有疑问，请致电0755-26905699");
+			Tool.alert("如有疑问，请致电0755-26905699");
 		}
 	}
 })

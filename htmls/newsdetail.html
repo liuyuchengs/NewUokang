@@ -1,8 +1,6 @@
-<div class="header" data-ng-init="init()">
-	<div class="header-item float-left">
-		<a href="news.html">
-			<img src="../contents/svg/back.svg">
-		</a>
+<div class="header" data-ng-init="initDetail()">
+	<div class="header-item float-left" ng-click="changeRoute('/news')">
+		<img src="../contents/svg/back.svg">
 	</div>
 	<div class="title">
 		资讯
@@ -14,5 +12,8 @@
 		<p class="title" ng-bind="detail.title"></p>
 		<p class="date" ng-bind="detail.createtimeStr"></p>
 	</div>
-	<div class="text" ng-bind="detail.content"></div>
+	<div class="content-text">
+		<p ng-repeat="text in detail.content" ng-bind="text"></p>
+	</div>
+	
 </div>

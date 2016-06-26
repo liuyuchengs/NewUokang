@@ -1,8 +1,6 @@
 <div class="header" data-ng-init="init()">
-	<div class="header-item float-left">
-		<a href="home.html">
-			<img src="../contents/svg/back.svg">
-		</a>
+	<div class="header-item float-left" ng-click="changeRoute('/home')">
+		<img src="../contents/svg/back.svg">
 	</div>
 	<div class="title">健康资讯</div>
 </div>
@@ -10,19 +8,13 @@
 <div class="swiper-container">
 	<div class="swiper-wrapper">
 		<div class="swiper-slide">
-			<a href="#">
-				<img class="swiper-img" ng-style="imgStyle" src="../contents/img/health_1.jpg">
-			</a>
+			<img class="swiper-img" ng-style="imgStyle" src="../contents/img/health_1.jpg">
 		</div>
 		<div class="swiper-slide">
-			<a href="#">
-				<img class="swiper-img" ng-style="imgStyle" src="../contents/img/health_2.jpg">
-			</a>
+			<img class="swiper-img" ng-style="imgStyle" src="../contents/img/health_2.jpg">
 		</div>
 		<div class="swiper-slide">
-			<a href="#">
-				<img class="swiper-img" ng-style="imgStyle" src="../contents/img/health_3.jpg">
-			</a>
+			<img class="swiper-img" ng-style="imgStyle" src="../contents/img/health_3.jpg">
 		</div>
 	</div>
 	<div class="swiper-pagination"></div>
@@ -35,7 +27,7 @@
 	<div class="nav-item" ng-class="{'select':navParam.zhongyi.has}" ng-click="switch('zhongyi')">中医理疗</div>
 </div>
 <ul class="item-container">
-	<li ng-repeat="new in news" ng-click="detail(new.id)">
+	<li ng-repeat="new in news" ng-click="toDetail(new.id)">
 		<img ng-src="{{new.picture}}" fallback-src="../contents/img/p_default.png">
 		<div>
 			<p class="title" ng-bind="new.title"></p>

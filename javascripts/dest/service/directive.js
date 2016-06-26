@@ -1,4 +1,4 @@
-define(["app",function(app){
+define(["app"],function(app){
     // 图片加载失败后，使用设置的图片
     app.directive('fallbackSrc', function () {
         var fallbackSrc = {
@@ -53,4 +53,4 @@ define(["app",function(app){
         }
     })
 
-}])
+})

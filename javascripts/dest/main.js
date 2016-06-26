@@ -28,6 +28,6 @@ require.config({
 })
 
 //使用require
-require(["angular","app","angular-route",,"router","jquery","swiper","service","directive","filter"],function(angular){
+require(["angular","app","angular-route","router","jquery","swiper","service","directive","filter"],function(angular){
     angular.bootstrap(document,['myApp']);
 })

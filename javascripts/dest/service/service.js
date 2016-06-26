@@ -1,12 +1,15 @@
 define(["app","wx"],function(app,wx){
 
     // 数据访问服务
-    app.service("Ajax",["$http","$q","Tool",function($http,$q,Tool){
+    app.service("Ajax",["$rootScope","$http","$q","Tool",function($rootScope,$http,$q,Tool){
         //使用promise封装ajax
         this.get = function (obj) {
                 if (obj.url) {
+                    $rootScope.loading = true;
                     var defered = $q.defer();
-                    $http.get(obj.url).success(function (data) {
+                    $http.get(obj.url,{
+                        headers:obj.headers,
+                    }).success(function (data) {
                         return defered.resolve(data);
                     }).error(function (data) {
                         return defered.reject(data);
@@ -26,6 +29,9 @@ define(["app","wx"],function(app,wx){
                         'Content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
                     };
                 }
+                $rootScope.loading = true;
+                //将参数对象转换成参数字符串
+                obj.params = Tool.convertParams(obj.params);
                 $http.post(obj.url, obj.params, {
                     headers: obj.headers
                 }).success(function (data) {
@@ -42,7 +48,7 @@ define(["app","wx"],function(app,wx){
     app.service("Tool",["$rootScope","$location",function($rootScope,$location){
         
         //变量
-        this.host = "http://192.168.0.102:3000";
+        this.host = "http://192.168.0.104:3000";
         this.userInfo = {};
 
         /*
@@ -79,13 +85,16 @@ define(["app","wx"],function(app,wx){
         //改变路由
         this.changeRoute = function(path,search){
             $location.path(path);
-            $location.search(search);
+            if(search){
+                $location.search(search);
+            }else{
+                $location.search("");
+            }
         }
 
         //判断是否登录
         this.checkLogin = function(){
             if(this.getLocal("user")){
-                this.user = this.getLocal("user");
                 return true;
             }else{
                 return false;
@@ -144,12 +153,7 @@ define(["app","wx"],function(app,wx){
 
         //获取用户信息
         this.loadUserinfo = function(){
-            var userInfo = {};
-            if(this.isLogin()){
-                userInfo = this.getLocal("user");
-                userInfo.accessToken = this.getLocal("accessToken");
-            }
-            return userInfo;
+            this.userInfo = this.getLocal("user");
         }
 
         //将对象转换成查询字符串
@@ -178,7 +182,7 @@ define(["app","wx"],function(app,wx){
                     success: function(result) {
                         //以键值对的形式返回，可用的api值true，不可用为false
                         if(!result.checkResult.getLocation||!result.checkResult.chooseWXPay){
-                            alert("客户端版本过低，请微信升级客户端!");
+                            Tool.alert("客户端版本过低，请微信升级客户端!");
                         }
                     }
                 })
@@ -221,7 +225,7 @@ define(["app","wx"],function(app,wx){
                 params.signature = data.signature;
                 wx.config(params);
             }).catch(function(){
-                Tool.alert(scope,"初始化WX对象失败，请稍后再试！");
+                Tool.alert("初始化WX对象失败，请稍后再试！");
             })
         }
 
@@ -324,7 +328,7 @@ define(["app","wx"],function(app,wx){
                         wx.chooseWXPay(params);
                     }
                 }).catch(function(){
-                    Tool.alert(scope,"请求支付参数失败，请稍后再试!");
+                    Tool.alert("请求支付参数失败，请稍后再试!");
                 })
             }
         }

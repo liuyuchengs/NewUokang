@@ -2,7 +2,7 @@
  * 资讯控制器
  */
 define(function(){
-	return function($scope,$http,Tool,Ajax){
+	return function($scope,$rootScope,$location,Tool,Ajax){
 		$scope.news = [];
 		$scope.navValue = "all";
 		$scope.currentPage = 1;
@@ -47,25 +47,25 @@ define(function(){
 			if(height>window.innerHeight){
 				if (height - window.scrollY - window.innerHeight < 100) {
 					$scope.loadNext();
-					$scope.initSwiper();
 				}
 			}
 		}
 
 		//初始化页面
 		$scope.init = function(){
-			Ajax.loadHost($scope,function(){
-				$scope.loadNews();
-			});
+			$scope.initSwiper();
+			$scope.loadNews();
 		}
 
 		// 初始化图片轮播插件
-		$scopeinitSwiper = function(){
+		$scope.initSwiper = function(){
 			var myswiper = new Swiper(".swiper-container",{
-				loop: true,
+				loop: false,
 				pagination: '.swiper-pagination',
 				autoplay: 5000,
 				autoplayDisableOnInteraction:false,
+				observeParents:true,  //
+				observer:true,
 			})
 		}
 
@@ -83,14 +83,11 @@ define(function(){
 
 		// 查询数据
 		$scope.loadNews = function(){
-			$scope.loading = true;
-			var url = Tool.getSession("host")+"/wx/health/queryByType";
-			var params = "type="+$scope.navParam[$scope.navValue].val+"&currentPage="+$scope.currentPage+"&pageRows="+$scope.pageRows;
-			$http.post(url,params,{
-				headers: {
-				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			$rootScope.loading = true;
+			Ajax.post({
+				url:Tool.host+"/wx/health/queryByType",
+				params:{type:$scope.navParam[$scope.navValue].val,currentPage:$scope.currentPage,pageRows:$scope.pageRows},
+			}).then(function(data){
 				if(data.code==0){
 					if(data.data.length<1){
 						if($scope.news.length<1){
@@ -104,11 +101,11 @@ define(function(){
 						$scope.news = $scope.news.concat(data.data);
 					}
 				}else{
-					Tool.alert($scope,data.message);
+					Tool.alert(data.message);
 				}
-				$scope.loading = false;
-			}).error(function(){
-				$scope.loading = false;
+				$rootScope.loading = false;
+			}).catch(function(){
+				$rootScope.loading = false;
 				$scope.noProduct = true;
 				Tool.alert("查询数据失败，请稍后再试!");
 			})
@@ -130,42 +127,48 @@ define(function(){
 		}
 
 		// 跳转到详细页面
-		$scope.detail = function(id){
-			Tool.goPage("/new/htmls/news-detail.html#?id="+id);
+		$scope.toDetail = function(id){
+			Tool.changeRoute("/news/detail","id="+id);
 		}
 
-		$scope.loading= false;
 		$scope.detail = {};
 		$scope.id = null;
 
 		//初始化页面
-		$scope.init = function(){
-			Ajax.loadHost($scope,function(){
-				$scope.id = $location.search().id;
-				$scope.loadDetail();
-			})
+		$scope.initDetail = function(){
+			$scope.id = $location.search().id;
+			$scope.loadDetail();
 		}
 
 		//加载资讯信息
 		$scope.loadDetail = function(){
-			$scope.loading = true;
-			var url = $scope.host+"/wx/health/querydetail";
-			var params = "id="+$scope.id;
-			$http.post(url,params,{
-				headers: {
-				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			$rootScope.loading = true;
+			Ajax.post({
+				url:Tool.host+"/wx/health/querydetail",
+				params:{id:$scope.id},
+			}).then(function(data){
 				if(data.code==0){
+					data.data.content = $scope.mergeDetail(data.data.content);
 					$scope.detail = data.data;
 				}else{
-					Tool.alert($scope,"查询数据失败，请稍后再试!");
+					Tool.alert("查询数据失败，请稍后再试!");
 				}
-				$scope.loading= false;
-			}).error(function(){
-				$scope.loading= false;
-				Tool.alert($scope,"查询数据失败，请稍后再试!");
+				$rootScope.loading = false;
+			}).catch(function(){
+				$rootScope.loading = false;
+				Tool.alert("查询数据失败，请稍后再试!");
 			})
+		}
+
+		/**
+		 * 对资讯信息进行排版
+		 */
+		$scope.mergeDetail = function(str){
+			var arrayStr = str.split("\r\n");
+			for(var index in arrayStr){
+				arrayStr[index] = arrayStr[index].trim();
+			}
+			return arrayStr;
 		}
 	}
 })

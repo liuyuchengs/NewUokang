@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$rootScope,Tool){
+	return function($scope,Tool){
 		$scope.phone;
 		$scope.realname;
 		$scope.sex;
@@ -19,15 +19,10 @@ define(function(){
 			$scope.face = user.face;
 		}
 
-		//后退按钮
-		$scope.back = function(){
-			history.back();
-		}
-
 		// 退出登录
 		$scope.exit = function(){
 			Tool.clearLocal();
-			Tool.changeRoute("/user","has=true&val=user");
+			Tool.changeRoute("/user");
 		}
 
 		// 跳转到修改账户信息页面
@@ -37,7 +32,7 @@ define(function(){
 
 		// 未开放信息提示框
 		$scope.alert = function(str){
-			Tool.alert($rootScope,str);
+			Tool.alert(str);
 		}
 	}
 })

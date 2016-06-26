@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,Tool,Ajax){
+	return function($scope,$rootScope,Tool,Ajax){
 		$scope.hasCheck = false;
 		$scope.hasGift = false;
 		$scope.noUserInfo = true;
@@ -11,10 +11,10 @@ define(function(){
 		$scope.hasDoctor = true;
 
 		// 页面初始化
-		angular.element(document).ready(function(){
-			Tool.loadUserinfo($scope);
+		$scope.init = function(){
+			Tool.loadUserinfo();
 			$scope.checkGift();
-		})
+		}
 
 		// 是否使用代金券
 		$scope.selectCush = function(){
@@ -46,7 +46,6 @@ define(function(){
 
 		// 下单按钮
 		$scope.makeorder = function(){
-			var url = Tool.getSession("host")+"/wx/order/make";
 			var params = {
 				productId: $scope.orderInfo.productId,
 				scheduleId: $scope.orderInfo.scheduleId,
@@ -64,13 +63,13 @@ define(function(){
 			if($scope.orderInfo.flag){
 				params.flag = $scope.orderInfo.flag;
 			}
-			var paramsStr = Tool.convertParams(params);
-			$http.post(url,paramsStr,{
+			Ajax.post({
+				url:Tool.host+"/wx/order/make",
+				params:params,
 				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-					'accessToken':$scope.userInfo.accessToken
+					'accessToken':Tool.userInfo.accessToken
 				}
-			}).success(function(data){
+			}).then(function(data){
 				if(data.code==0){
 					Tool.removeSession("makeorder");
 					Tool.setSession("order",data.data);
@@ -78,12 +77,19 @@ define(function(){
 					var redirect_uri = Tool.getSession("host")+"/new/htmls/pay.html";
 					var href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+redirect_uri+"&response_type=code&scope=snsapi_base&state=uokang#wechat_redirect";
 					Tool.goUrl(href);
-			}else{
-				Tool.alert($scope,data.message);
-			}
-		}).error(function(){
-			Tool.alert($scope,"创建订单失败，请稍后再试!");
-		})
+				}else{
+					Tool.alert(data.message);
+				}
+			}).catch(function(){
+				Tool.alert("创建订单失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
+			})
+		}
+
+		// 返回按钮
+		$scope.back = function(){
+			window.history.back();
 		}
 	}
 })

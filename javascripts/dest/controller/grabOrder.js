@@ -1,33 +1,32 @@
 define(function(){
-	return function($scope,$http,Tool,Ajax){
+	return function($scope,$rootScope,Tool,Ajax){
 		$scope.hasGift = false;
 		$scope.gift = {};
 
 		// 初始化页面
 		$scope.init = function(){
-			Ajax.loadHost($scope,function(){
-				Tool.loadUserinfo($scope);
-				$scope.queryGift();
-			})
+			Tool.loadUserinfo();
+			$scope.queryGift();
 		}
 
 		// 查询惠赠订单
 		$scope.queryGift = function(){
-			var url = $scope.host+"/wx/order/queryUserGiftCode";
-			$http.get(url,{
+			Ajax.get({
+				url:Tool.host+"/wx/order/queryUserGiftCode",
 				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-					"accessToken":$scope.userInfo.accessToken,
+					"accessToken":Tool.userInfo.accessToken,
 				}
-			}).success(function(data){
+			}).then(function(data){
 				if(data.code==0){
 					if(data.data.length>0){
 						$scope.gift = data.data[0];
 						$scope.hasGift = true;
 					}
 				}
-			}).error(function(){
-				Tool.alert($scope,"获取惠赠信息失败，请稍后再试!");
+			}).catch(function(){
+				Tool.alert("获取惠赠信息失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 	}

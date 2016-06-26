@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,$location,Tool){
+	return function($scope,$rootScope,$location,Ajax,Tool){
 		$scope.orders;
 		$scope.cancelOrderId;
 		$scope.noOrder = false;
@@ -20,7 +20,7 @@ define(function(){
 
 		//初始化页面
 		$scope.init = function(){
-			Tool.loadUserinfo($scope);
+			Tool.loadUserinfo();
 			$scope.getParams();
 			$scope.loadOrder();
 		}
@@ -36,15 +36,13 @@ define(function(){
 
 		// 加载订单数据
 		$scope.loadOrder = function(){
-			var url = Tool.getSession("host")+"/wx/order/queryOrderList";
-			var params = "userId="+$scope.userInfo.id+"&status="+$scope.status;
-			$http.post(url,params,{
-				headers: {
-				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				'accessToken':$scope.userInfo.accessToken
+			Ajax.post({
+				url:Tool.host+"/wx/order/queryOrderList",
+				params:{userId:Tool.userInfo.id,status:$scope.status},
+				headers:{
+					'accessToken':Tool.userInfo.accessToken
 				}
-			})
-			.success(function(data){
+			}).then(function(data){
 				if(data.code==0){
 					if(data.data.length==0){
 						$scope.noOrder=true;
@@ -54,18 +52,14 @@ define(function(){
 					}
 					$scope.orders = data.data;
 				}else if(data.code==1){
-					Tool.alert($scope,data.message,function(){
-						$scope.hasTip = false;
-					});
+					Tool.alert(data.message);
 				}else{
-					Tool.alert($scope,"获取订单信息失败，请稍后再试!",function(){
-						$scope.hasTip = false;
-					});
+					Tool.alert("获取订单信息失败，请稍后再试!");
 				}
-			}).error(function(){
-				Tool.alert($scope,"获取订单信息失败，请稍后再试!",function(){
-					$scope.hasTip = false;
-				});
+			}).catch(function(){
+				Tool.alert("获取订单信息失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading=false;
 			})
 		}
 
@@ -133,34 +127,31 @@ define(function(){
 		// 取消订单
 		$scope.toCancel = function(id){
 			$scope.cancelOrderId = id;
-			Tool.comfirm($scope,"确定要取消订单吗？",$scope.cancelFn);
+			Tool.comfirm("确定要取消订单吗？",$scope.cancelFn);
 		}
 
 		// 取消订单提示框，确认按钮回调
 		$scope.cancelFn =function(){
-			if($scope.hasTip){
-				$scope.hasTip = false;
+			if($rootScope.hasTip){
+				$rootScope.hasTip = false;
 			}
-			var url = Tool.getSession("host")+"/wx/order/orderCacel";
-			var params = "id="+$scope.cancelOrderId;
-			$http.post(url,params,{
+			Ajax.post({
+				url:Tool.host+"/wx/order/orderCacel",
+				params:{id:$scope.cancelOrderId},
 				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-					'accessToken':$scope.userInfo.accessToken
+					'accessToken':Tool.userInfo.accessToken,
 				}
-			}).success(function(data){
+			}).then(function(data){
 				if(data.code==0){
 					$scope.status = "";
 					$scope.loadOrder();
 				}else if(data.code==1){
-					Tool.alert($scope,"订单取消失败，请稍后再试!",function(){
-						$scope.hasTip = false;
-					});
+					Tool.alert("订单取消失败，请稍后再试!");
 				}
-			}).error(function(){
-				Tool.alert($scope,"订单取消失败!",function(){
-					$scope.hasTip = false;
-				});
+			}).catch(function(){
+				Tool.alert("订单取消失败!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -170,5 +161,6 @@ define(function(){
 			$scope.status = $scope.filterParams[item].val;
 			$scope.loadOrder();
 		}
+
 	}
 })

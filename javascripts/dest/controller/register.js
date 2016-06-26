@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,$interval,Tool,Ajax){
+	return function($scope,$rootScope,$interval,Tool,Ajax){
 		$scope.phone=""; //手机号码
 		$scope.password=""; //密码
 		$scope.passwordAgian=""; //确认密码
@@ -11,7 +11,7 @@ define(function(){
 
 		// 加载host
 		$scope.init = function(){
-			Ajax.loadHost($scope,function(){})
+			
 		}
 
 		// 注册按钮处理函数
@@ -27,16 +27,16 @@ define(function(){
 				return true;
 			}else{
 				if(!(/^1[3|4|5|7|8]\d{9}$/.test($scope.phone))){
-					Tool.alert($scope,"手机号码错误，请仔细检查!");
+					Tool.alert("手机号码错误，请仔细检查!");
 					return false;
 				}else if($scope.password.length<8|$scope.password.length>20){
-					Tool.alert($scope,"密码长度不符合要求，请输入8-20位的密码!");
+					Tool.alert("密码长度不符合要求，请输入8-20位的密码!");
 					return false;
 				}else if($scope.password!=$scope.passwordAgian){
-					Tool.alert($scope,"两次输入的密码不一致，请重新输入!");
+					Tool.alert("两次输入的密码不一致，请重新输入!");
 					return false;
 				}else{
-					Tool.alert($scope,"手机号码或者密码错误，请重新输入!");
+					Tool.alert("手机号码或者密码错误，请重新输入!");
 					return false;
 				}
 			}
@@ -46,16 +46,11 @@ define(function(){
 		$scope.getCode = function(){
 			if($scope.codeState){
 				if($scope.phoneCheckResult){
-					/*
-					** 发送短信验证码
-					*/
-					var url = $scope.host+"/wx/register/sendsmsregistercode";
-					var data = "phone="+$scope.phone;
-					$http.post(url,data,{
-						headers: {
-						'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-						}
-					}).success(function(data){
+					// 发送短信验证码
+					Ajax.post({
+						url:Tool.host+"/wx/register/sendsmsregistercode",
+						params:{"phone":$scope.phone}
+					}).then(function(data){
 						if(data.code==0){
 							var time = 59;
 							$scope.codeState = false;
@@ -68,13 +63,13 @@ define(function(){
 								$interval.cancel(interval);
 							})
 						}else{
-							Tool.alert($scope,data.message);
+							Tool.alert(data.message);
 						}
-					}).error(function(){
-						Tool.alert($scope,"发送验证码失败，请稍后再试!");
+					}).catch(function(){
+						Tool.alert("发送验证码失败，请稍后再试!");
 					})
 				}else{
-					Tool.alert($scope,"请填写正确手机号码!");
+					Tool.alert("请填写正确手机号码!");
 				}
 			}
 		}
@@ -82,64 +77,57 @@ define(function(){
 		// 检查手机号码是否可以注册
 		$scope.phoneCheck = function(){
 			if(/^1[3|4|5|7|8]\d{9}$/.test($scope.phone)){
-				var url = $scope.host+"/wx/register/registercheck";
-				var data = "name=phone&param="+$scope.phone;
-				$http.post(url,data,{
-					headers: {
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-					}
-				}).success(function(data){
+				Ajax.post({
+					url:Tool.host+"/wx/register/registercheck",
+					params:{name:"phone",param:$scope.phone},
+				}).then(function(data){
 					if(data.code==0){
 						$scope.phoneCheckResult = true;
 					}else{
-						Tool.alert($scope,data.message);
+						Tool.alert(data.message);
 					}
-				}).error(function(){
-					Tool.alert($scope,"手机号码检查失败，请稍后再试!");
+				}).catch(function(){
+					Tool.alert("手机号码检查失败，请稍后再试!");
 				})
 			}else{
-				Tool.alert($scope,"手机号码不正确！");
+				$scope.phoneCheckResult = false;
+				Tool.alert("手机号码不正确！");
 			}
 		}
 
 		// 验证短信验证码是否正确
 		$scope.codeCheck = function(callback){
-			var url = $scope.host+"/wx/register/registercheck";
-			var data = "name=verifyCode&param="+$scope.code+"&p="+$scope.phone;
-			$http.post(url,data,{
-				headers: {
-				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/register/registercheck",
+				params:{name:"verifyCode",param:$scope.code,p:$scope.phone},
+			}).then(function(data){
 				if(data.code==0){
 					callback();
 				}else{
-					Tool.alert($scope,data.message);
+					Tool.alert(data.message);
 				}
-			}).error(function(){
-				Tool.alert($scope,"验证码验证失败，请重试!");
+			}).catch(function(){
+				Tool.alert("验证码验证失败，请重试!");
 			})
 		}
 
 		// 注册
 		$scope.registering = function(){
-			var url = $scope.host + "/wx/register/register";
-			var data = "phone="+$scope.phone+"&verifyCode="+$scope.code+"&password="+$scope.password;
-			$http.post(url,data,{
-				headers: {
-				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/register/register",
+				params:{phone:$scope.phone,verifyCode:$scope.code,password:$scope.password},
+			}).then(function(data){
 				if(data.code==0){
-					Tool.alert($scope,"注册成功!",function(){
-						Tool.goPage("/new/htmls/login.html");
+					Tool.setLocal("user",data.data);
+					Tool.alert("注册成功!",function(){
+						$rootScope.hasTip = false;
+						Tool.changeRoute("/user");
 					})
 				}else{
 					Tool.alert(data.message);
 				}
-			}).error(function(){
-				//失败
-				return false;
+			}).catch(function(){
+				Tool.alert("注册失败!");
 			})
 		}
 	}

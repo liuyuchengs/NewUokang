@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,$window,$location,Tool,Ajax,Weixin){
+	return function($scope,$rootScope,$window,$location,Tool,Ajax,Weixin){
 		$scope.queryParams = {
 			dayDate:"",
 			professionId:2,
@@ -73,11 +73,9 @@ define(function(){
 		// 页面初始化
 		$scope.init = function(){
 			$scope.getQueryParams();
-			Ajax.loadHost($scope,function(){
-				$scope.loadDate($scope.loadData);
-				Weixin.wxInit($scope);
-				Weixin.wxConfig($scope);
-			})
+			$scope.loadDate($scope.loadData);
+			Weixin.wxInit($scope);
+			Weixin.wxConfig($scope);
 		}
 
 		// 获取url参数
@@ -91,9 +89,9 @@ define(function(){
 
 		// 加载日期时间
 		$scope.loadDate = function(callback){
-			var url = $scope.host+"/wx/gift/querydate";
-			$http.get(url)
-			.success(function(data){
+			Ajax.get({
+				url:Tool.host+"/wx/gift/querydate",
+			}).then(function(data){
 				for(var i in data){
 					var item = data[i];
 					if(i==0){
@@ -108,10 +106,8 @@ define(function(){
 					}
 				}
 				callback();
-			}).error(function(){
-				Tool.alert($scope,"时间加载异常，请稍后再试！",function(){
-					$scope.hasTip = false;
-				});
+			}).catch(function(){
+				Tool.alert("时间加载异常，请稍后再试！");
 			})
 		}
 
@@ -209,14 +205,10 @@ define(function(){
 
 		// 加载数据
 		$scope.loadData = function(){
-			$scope.loading = true;
-			var url = $scope.host+"/wx/gift/queryproduct";
-			var params = Tool.convertParams($scope.queryParams);
-			$http.post(url,params,{
-				headers: {
-				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/gift/queryproduct",
+				params:$scope.queryParams
+			}).then(function(data){
 				if(data.length<1){
 					if($scope.grabs.length<1){
 						$scope.noProductText = "没有项目信息,请选择其他区域或者时间!";
@@ -228,7 +220,10 @@ define(function(){
 					$scope.merge(data);
 					$scope.grabs = $scope.grabs.concat(data);
 				}
-				$scope.loading = false;
+			}).catch(function(){
+				Tool.alert("数据加载失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -248,9 +243,6 @@ define(function(){
 					item.noamount = false;
 					item.btnMess = "立即抢";
 				}
-				if(item.smallImg==""||item.smallImg==null){
-					item.smallImg = "../contents/img/p_default.png";
-				}
 			})
 		}
 
@@ -259,32 +251,30 @@ define(function(){
 			if(noamount){
 				return
 			}else{
-				if(Tool.isLogin()){
+				if(Tool.checkLogin()){
 					if(Tool.isUserInfoComplete()){
-						if(Tool.getLocal("user")){
-							var user = Tool.getLocal("user");
-							if(user.giftCode==null||user.giftCode==0){
-								Tool.alert($scope,"一个用户只能享受一次免费项目，您已经抢过了!",function(){
-									$scope.hasTip = false;
-								});
+						Tool.loadUserinfo();
+						if(Tool.userInfo.giftCode==null||Tool.userInfo.giftCode==0){
+							Tool.alert("一个用户只能享受一次免费项目，您已经抢过了!");
+						}else{
+							if(Tool.getLocal("share")){
+								Tool.changeRoute("/grab/code","productId="+productId+"&hospitalId="+hospitalId+"&dayDate="+$scope.queryParams.dayDate);
 							}else{
-								if(Tool.getLocal("share")){
-									Tool.goPage("/new/htmls/grab-code.html#?productId="+productId+"&hospitalId="+hospitalId+"&dayDate="+$scope.queryParams.dayDate);
-								}else{
-									Weixin.wxShare($scope.shareObj);
-									$scope.switchTip("open");
-								}
+								Weixin.wxShare($scope.shareObj);
+								$scope.switchTip("open");
 							}
 						}
 					}else{
-						Tool.comfirm($scope,"请完善个人信息!",function(){
-							Tool.goPage("/new/htmls/userinfo.html");
+						Tool.comfirm("请完善个人信息!",function(){
+							$rootScope.hasTip = false;
+							Tool.changeRoute("/user");
 						})
 					}
 
 				}else{
-					Tool.comfirm($scope,"请先登录并完善个人信息!",function(){
-						Tool.goPage("/new/htmls/login.html");
+					Tool.comfirm("请先登录并完善个人信息!",function(){
+						$rootScope.hasTip = false;
+						Tool.changeRoute("/login");
 					})
 				}
 			}
@@ -292,9 +282,7 @@ define(function(){
 
 		// 问题按钮
 		$scope.question = function(){
-			Tool.alert($scope,"每个用户只可享受一次免费抢单，如需帮助请致电：0755-26905699",function(){
-				$scope.hasTip = false;
-			})
+			Tool.alert("每个用户只可享受一次免费抢单，如需帮助请致电：0755-26905699");
 		}
 
 		// 切换tip窗口

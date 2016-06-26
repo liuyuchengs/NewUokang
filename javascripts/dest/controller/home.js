@@ -61,7 +61,6 @@ define(function(){
 
 		// 查询热门推荐
 		$scope.loadRecommend = function(){
-			$scope.loading = true;
 			var url = Tool.host+"/wx/product/queryrecommend";
 			var params = "city=深圳&currentPage="+$scope.currentPage;
 			$http.post(url,params,{
@@ -82,11 +81,11 @@ define(function(){
 						$scope.items = $scope.items.concat(data.data);
 					}
 				}
-				$scope.loading = false;
 			}).error(function(){
 				Tool.alert("获取热门推荐数据失败，请稍后再试!");
-				$scope.loading = false;
 				$scope.noProduct = true;
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -119,6 +118,8 @@ define(function(){
 				}
 			}).error(function(){
 				Tool.alert("获取主页图片失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -159,20 +160,19 @@ define(function(){
 		}
 
 		// 跳转到详细页面
-		$scope.detail = function(productId,hospitalId,flag){
-			var url = "/new/htmls/product-detail.html#?flag=1&productId="+productId+"&hospitalId="+hospitalId;
-			Tool.goPage(url);
+		$scope.detail = function(productId,hospitalId,type){
+			if(type===5){
+				Tool.changeRoute("/exam/detail","productId="+productId+"&hospitalId="+hospitalId);
+			}else{
+				Tool.changeRoute("/product/detail","flag=1&productId="+productId+"&hospitalId="+hospitalId);
+			}
+			
 		}
 
 		// 分页查询，查询下一页
 		$scope.loadNext = function(){
 			$scope.currentPage++;
 			$scope.loadRecommend();
-		}
-
-		// 底部按钮事件
-		$scope.menuClick = function(value){
-			Tool.menuClick($scope,value);
 		}
 	}
 })

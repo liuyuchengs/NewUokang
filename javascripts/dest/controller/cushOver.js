@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,Tool,Ajax){
+	return function($scope,Tool,Ajax){
 		$scope.userId;
 		$scope.accessToken;
 		$scope.cushs;
@@ -7,22 +7,23 @@ define(function(){
 
 		// 初始化页面
 		$scope.init = function(){
-			Ajax.loadHost($scope,function(){
-				Tool.loadUserinfo($scope);
+			if(Tool.checkLogin()){
+				Tool.loadUserinfo();
 				$scope.loadCushOver();
-			})
+			}else{
+				Tool.changeRoute("/user");
+			}
 		}
 
 		// 加载过期代金券信息
 		$scope.loadCushOver = function(){
-			var url = $scope.host+"/wx/order/overdue";
-			var params = "userId="+$scope.userInfo.id;
-			$http.post(url,params,{
-				headers: {
-				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				'accessToken':$scope.userInfo.accessToken
+			Ajax.post({
+				url:Tool.host+"/wx/order/overdue",
+				params:{userId:Tool.userInfo.id},
+				headers:{
+					'accessToken':Tool.userInfo.accessToken
 				}
-			}).success(function(data){
+			}).then(function(data){
 				if(data.code==0){
 					if(data.data.length<1){
 						$scope.noCushOver = true;
@@ -31,10 +32,10 @@ define(function(){
 						$scope.cushs = data.data;
 					}
 				}else{
-					Tool.alert($scope,"数据加载失败，请稍后再试!");
+					Tool.alert("数据加载失败，请稍后再试!");
 				}
-			}).error(function(){
-				Tool.alert($scope,"数据加载失败，请稍后再试!");
+			}).catch(function(){
+				Tool.alert("数据加载失败，请稍后再试!");
 			})
 		}
 

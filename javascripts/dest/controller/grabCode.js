@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,$location,Tool){
+	return function($scope,$rootScope,$location,Tool,Ajax){
 		$scope.queryParams = {
 			productId:"",
 			hospitalId:"",
@@ -7,12 +7,6 @@ define(function(){
 			code:"",
 		}
 		$scope.userInfo = {};
-
-		// 页面初始化
-		angular.element(document).ready(function(){
-			$scope.loadQueryParams();
-			Tool.loadUserinfo($scope);
-		})
 
 		// 获取查询字符串参数
 		$scope.loadQueryParams = function(){
@@ -27,47 +21,61 @@ define(function(){
 			}
 		}
 
+		// 页面初始化
+		angular.element(document).ready(function(){
+			$scope.loadQueryParams();
+			if(Tool.checkLogin()){
+				Tool.loadUserinfo();
+			}
+		})
+
 		// 检查可生成惠赠订单
 		$scope.checkCode = function(){
 			if($scope.queryParams.code.length<1){
-				Tool.alert($scope,"请填写惠赠码!");
+				Tool.alert("请填写惠赠码!");
 			}else if($scope.queryParams.code.length!=5){
-				Tool.alert($scope,"惠赠码错误，请填写正确的惠赠码！如需帮助请致电：0755-26905699")
+				Tool.alert("惠赠码错误，请填写正确的惠赠码！如需帮助请致电：0755-26905699")
 			}else if($scope.queryParams.code.length ==5){
-				var url = Tool.getSession("host")+"/wx/order/checkCode";
-				var params = Tool.convertParams($scope.queryParams);
-				$http.post(url,params,{
+				Ajax.post({
+					url:Tool.host+"/wx/order/checkCode",
+					params:$scope.queryParams,
 					headers:{
-						'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-						"accessToken":$scope.userInfo.accessToken,
+						"accessToken":Tool.userInfo.accessToken,
 					}
-				}).success(function(data){
+				}).then(function(data){
 					if(data.code==0){
 						$scope.getGift($scope.queryParams);
 					}else{
-						Tool.alert($scope,data.message);
+						Tool.alert(data.message);
 					}
+				}).catch(function(){
+					Tool.alert("数据连接失败，请稍后再试!");
+				}).finally(function(){
+					$rootScope.loading = false;
 				})
 			}
 		}
 
 		// 生成惠赠订单
 		$scope.getGift = function(queryParams){
-			var url = Tool.getSession("host")+"/wx/gift/getgiftproduct";
-			var params = Tool.convertParams(queryParams);
-			$http.post(url,params,{
+			Ajax.post({
+				url:Tool.host+"/wx/gift/getgiftproduct",
+				params:queryParams,
 				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-					"accessToken":$scope.userInfo.accessToken,
+					"accessToken":Tool.userInfo.accessToken,
 				}
-			}).success(function(data){
+			}).then(function(data){
 				if(data.code ==0){
 					var user = Tool.getLocal("user");
 					user.giftCode = 0;
 					Tool.setLocal("user",user);
-					Tool.setLocal("gift",data.data)
-					Tool.goPage("/new/htmls/grab-order.html");
+					Tool.setLocal("gift",data.data);
+					Tool.changeRoute("/grab/order");
 				}
+			}).catch(function(){
+				Tool.alert("连接数据失败，请稍后再试！");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 	}

@@ -939,7 +939,7 @@ span, p {
   .register-content .item-tip {
     margin-bottom: 15px;
     height: 44px; }
-    .register-content .item-tip a, .register-content .item-tip a:visited {
+    .register-content .item-tip span {
       color: #1fc1d9; }
   .register-content .item-sex {
     margin-bottom: 15px;
@@ -1266,7 +1266,7 @@ span, p {
   height: 40px;
   line-height: 40px;
   margin-right: 5%; }
-  .cush-active-tip a:link, .cush-active-tip a:visited, .cush-active-tip a:hover, .cush-active-tip a:active {
+  .cush-active-tip span {
     text-decoration: none;
     color: #FF9A00;
     background-color: transparent;
@@ -2327,9 +2327,12 @@ span, p {
     color: #999;
     margin-top: 25px; }
 
-.newdetail-content .text {
+.newdetail-content .content-text {
   margin-top: 20px;
   padding: 10px 15px; }
+  .newdetail-content .content-text p {
+    text-indent: 15px;
+    margin-bottom: 5px; }
 
 /*
 ******体检页面******

@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,$location,Tool,Ajax){
+	return function($scope,$rootScope,$location,Tool,Ajax){
 		//查询条件
 		$scope.queryParams = {
 			city:"深圳",
@@ -12,7 +12,6 @@ define(function(){
 			location:"",
 		}
 		//动画变量
-		$scope.loading = false;
 		$scope.noProduct = false;
 		$scope.noProductText = "";
 		$scope.hasBg = false;
@@ -57,11 +56,9 @@ define(function(){
 
 		//初始化
 		$scope.init = function(){
-			Ajax.loadHost($scope,function(){
-				$scope.loadClassParams();
-				$scope.initLocation();
-				$scope.loadData();
-			})
+			$scope.loadClassParams();
+			$scope.initLocation();
+			$scope.loadData();
 		}
 
 		// 加载地理信息
@@ -265,14 +262,10 @@ define(function(){
 
 		// 查询数据
 		$scope.loadData = function(){
-			$scope.loading = true;
-			var url = $scope.host+"/wx/product/querylist";
-			var params = Tool.convertParams($scope.queryParams);
-			$http.post(url,params,{
-				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/product/querylist",
+				params:$scope.queryParams
+			}).then(function(data){
 				if(data.length<1){
 					if($scope.products.length<1){
 						$scope.noProductText = "没有项目信息,请选择其他区域或者时间!";
@@ -284,11 +277,11 @@ define(function(){
 					$scope.mergeProdcut(data);
 					$scope.products = $scope.products.concat(data);
 				}
-				$scope.loading = false;
-			}).error(function(){
-				$scope.loading = false;
+			}).catch(function(){
 				$scope.noProduct = true;
-				Tool.alert($scope,"数据加载失败，请稍后再试!");
+				Tool.alert("数据加载失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -310,14 +303,13 @@ define(function(){
 		}
 
 		// 跳转到详细页面
-		$scope.detail = function(productId,hospitalId,flag){
-			var url = "/new/htmls/product-detail.html#?flag=1&productId="+productId+"&hospitalId="+hospitalId;
-			Tool.goPage(url);
+		$scope.detail = function(productId,hospitalId){
+			Tool.changeRoute("/product/detail","flag=1&productId="+productId+"&hospitalId="+hospitalId);
 		}
 
 		// 疑问按钮处理函数
 		$scope.question = function(){
-			Tool.alert($scope,"如有疑问，请致电0755-26905699");
+			Tool.alert("如有疑问，请致电0755-26905699");
 		}
 	}
 })

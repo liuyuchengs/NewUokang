@@ -21,19 +21,19 @@
 </div>
 <div class="type">
 	<div class="type-line">
-		<div class="type-item float-left" ng-click="gotoMenu('/new/htmls/product.html#?product=yake')">
+		<div class="type-item float-left" ng-click="changeRoute('/product','product=yake')">
 			<div class="type-icon ">
 				<img src="../contents/svg/yake.svg" >
 				<p>牙科</p>
 			</div>
 		</div>
-		<div class="type-item middle" ng-click="gotoMenu('/new/htmls/product.html#?product=meirong')">
+		<div class="type-item middle" ng-click="changeRoute('/product','product=meirong')">
 			<div class="type-icon">
 				<img src="../contents/svg/meirong.svg" >
 				<p>医学美容</p>
 			</div>
 		</div>
-		<div class="type-item float-right" ng-click="gotoMenu('/new/htmls/product.html#?product=fck')">
+		<div class="type-item float-right" ng-click="changeRoute('/product','product=fck')">
 			<div class="type-icon ">
 				<img src="../contents/svg/fck.svg" >
 				<p>高端妇产科</p>
@@ -41,19 +41,19 @@
 		</div>
 	</div>
 	<div class="type-line">
-		<div class="type-item float-left" ng-click="gotoMenu('/new/htmls/exam.html')">
+		<div class="type-item float-left" ng-click="changeRoute('/exam')">
 			<div class="type-icon ">
 				<img src="../contents/svg/tijian.svg" >
 				<p>体检</p>
 			</div>
 		</div>
-		<div class="type-item middle" ng-click="gotoMenu('/new/htmls/product.html#?product=zhongyi')">
+		<div class="type-item middle" ng-click="changeRoute('/product','product=zhongyi')">
 			<div class="type-icon">
 				<img src="../contents/svg/zhongyi.svg" >
 				<p>中医理疗</p>
 			</div>
 		</div>
-		<div class="type-item float-right" ng-click="gotoMenu('/new/htmls/news.html')">
+		<div class="type-item float-right" ng-click="changeRoute('/news')">
 			<div class="type-icon ">
 				<img src="../contents/svg/zixun.svg" >
 				<p>健康资讯</p>
@@ -63,7 +63,7 @@
 </div>
 <div class="base-separator"></div>
 <div class="tehui">
-	<div class="tehui-qiang float-left" ng-click="gotoMenu('/new/htmls/grab.html')">
+	<div class="tehui-qiang float-left" ng-click="changeRoute('/grab')">
 		<div class="item">
 			<img src="../contents/svg/qiang.svg" class="float-left">
 			<div class="item-title float-left">
@@ -75,7 +75,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="tehui-tehui float-left" ng-click="gotoMenu('/new/htmls/discount.html')">
+	<div class="tehui-tehui float-left" ng-click="changeRoute('/discount')">
 		<div class="item sales">
 			<img src="../contents/svg/sales.svg">
 			<p>特惠区</p>
@@ -89,8 +89,8 @@
 	</div>
 </div>
 <ul class="prduct-container">
-	<li class="item" ng-repeat = "item in items" ng-click="detail(item.id,item.hospitalId)">
-		<img class="item-img float-left" ng-src="{{item.samllimg}}" fallback-src="../contents/img/p_default.png">
+	<li class="item" ng-repeat = "item in items"  ng-click="detail(item.id,item.hospitalId,item.type)">
+		<img class="item-img float-left" ng-src="{{item.samllimg|defaultImg:'pro'}}" product-error>
 		<div class="item-desc">
 			<div class="item-title" ng-bind="item.title"></div>
 			<div class="item-subhead" ng-bind="item.hospitalname"></div>

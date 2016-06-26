@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,$location,Tool){
+	return function($scope,$location,Ajax,Tool){
 		$scope.title;
 		$scope.tip;
 		$scope.val="";
@@ -33,29 +33,31 @@ define(function(){
 			}else{
 				$scope.hasinput = true;
 			}
-			Tool.loadUserinfo($scope);
+			if(Tool.checkLogin()){
+				Tool.loadUserinfo();
+			}else{
+				Tool.changeRoute("/user");
+			}
 		})
 
 		//修改信息
 		$scope.change = function(){
 			if($scope.check()){
-				var url = Tool.getSession("host")+"/wx/mycount/updateUserInfo";
-				var params = "name="+$scope.item+"&val="+$scope.val;
-				$http.post(url,params,{
+				Ajax.post({
+					url:Tool.host+"/wx/mycount/updateUserInfo",
+					params:{name:$scope.item,val:$scope.val},
 					headers:{
-						'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-						"accessToken":$scope.userInfo.accessToken,
+						"accessToken":Tool.userInfo.accessToken,
 					}
-				})
-				.success(function(data){
+				}).then(function(data){
 					if(data.code==0){
 						Tool.setLocal("user",data.data);
-						Tool.goPage("/new/htmls/userinfo.html");
+						Tool.changeRoute("/user/userinfo");
 					}else if(data.code==1){
-						Tool.alert($scope,data.message);
+						Tool.alert(data.message);
 					}
-				}).error(function(){
-					Tool.alert($scope,"数据更新失败!");
+				}).catch(function(){
+					Tool.alert("数据更新失败!");
 				})
 			}
 		}
@@ -63,27 +65,27 @@ define(function(){
 		//检查内容是否符合要求
 		$scope.check = function(){
 			if($scope.val.length==0){
-				Tool.alert($scope,"填写内容为空！");
+				Tool.alert("填写内容为空！");
 				return false;
 			}else if($scope.item=="realname"|$scope.item=="nickname"){
 				if($scope.val.length>1&$scope.val.length<10){
 					return true;
 				}else{
-					Tool.alert($scope,"请输入正确长度的名称！");
+					Tool.alert("请输入正确长度的名称！");
 					return false;
 				}
 			}else if($scope.item=="sex"){
 				if($scope.val=="男"||$scope.val=="女"){
 					return true;
 				}else{
-					Tool.alert($scope,"请输入正确的性别！");
+					Tool.alert("请输入正确的性别！");
 					return false;
 				}
 			}else if($scope.item=="phone"){
 				if(/^1[3|4|5|7|8]\d{9}$/.test($scope.val)){
 					return true;
 				}else{
-					Tool.alert($scope,"请输入正确的手机号码!");
+					Tool.alert("请输入正确的手机号码!");
 					return false;
 				}
 			}else if($scope.item=="age"){
@@ -91,11 +93,11 @@ define(function(){
 					$scope.val = parseInt($scope.val);
 					return true;
 				}else{
-					Tool.alert($scope,"请输入正确的年龄!");
+					Tool.alert("请输入正确的年龄!");
 					return false;
 				}
 			}else{
-				Tool.alert($scope,"未识别需要修改的项目,请稍后再试!");
+				Tool.alert("未识别需要修改的项目,请稍后再试!");
 				return false;
 			}
 		}
@@ -116,6 +118,11 @@ define(function(){
 					$scope.val = "女";
 				}
 			}
+		}
+
+		//返回按钮
+		$scope.back = function(){
+			Tool.changeRoute("/user/userinfo");
 		}
 	}
 })

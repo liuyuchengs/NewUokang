@@ -467,7 +467,7 @@
 	.item-tip{
 		margin-bottom: 15px;
 		height:44px;
-		a,a:visited{
+		span{
 			color:$main-color;
 		}
 	}
@@ -742,12 +742,13 @@
 	line-height:50px;
 	text-align: center;
 }
+
 .cush-active-tip{
     margin-bottom:30px;
     height:40px;
     line-height:40px;
     margin-right:5%;
-	a:link, a:visited, a:hover,a:active{
+	span{
 	    text-decoration: none;
 	    color: #FF9A00;
 	    background-color: transparent;
@@ -1668,9 +1669,13 @@
 			margin-top:25px;
 		}
 	}
-	.text{
+	.content-text{
 		margin-top: 20px;
 		padding: 10px 15px;
+		p{
+			text-indent: 15px;
+			margin-bottom: 5px;
+		}
 	}
 }
 

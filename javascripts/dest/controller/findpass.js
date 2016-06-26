@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,$location,$interval,Tool){
+	return function($scope,$rootScope,$location,$interval,Tool,Ajax){
 		$scope.phone = ""; //手机号码
 		$scope.code = ""; //验证码
 		$scope.pwd = ""; //密码
@@ -11,69 +11,65 @@ define(function(){
 		
 		// 检测手机号码是否有注册
 		$scope.checkPhone = function(){
-			var url = Tool.getSession("host")+"/wx/findpass/findPassPhontCheck";
-			var params = "name=phone&param="+$scope.phone;
-			$http.post(url,params,{
-				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
-				if(data.code==0){
-					Tool.goPage("/new/htmls/findpwd-code.html#?phone="+$scope.phone);
-				}else{
-					Tool.alert($scope,data.message);
-				}
-			}).error(function(){
-				Tool.alert($scope,"检查手机号码失败，请稍后再试!");
-			})
+			if(/^1[3|4|5|7|8]\d{9}$/.test($scope.phone)){
+				Ajax.post({
+					url:Tool.host+"/wx/findpass/findPassPhontCheck",
+					params:{name:"phone",param:$scope.phone}
+				}).then(function(data){
+					if(data.code==0){
+						Tool.changeRoute("/findpwd/code","phone="+$scope.phone);
+					}else{
+						Tool.alert(data.message);
+					}
+				}).catch(function(){
+					Tool.alert("检查手机号码失败，请稍后再试!");
+				})
+			}else{
+				Tool.alert("请输入正确的手机号码!");
+			}		
 		}
 
 		// 检测验证码是否正确
 		$scope.checkCode = function(){
 			if($scope.sendCodes){
 				if($scope.code.length==4){
-					var url = Tool.getSession("host")+"/wx/findpass/findPassPhontCheck";
-					var params = "name=verifyCode&param="+$scope.code+"&p="+$scope.getPhone;
-					$http.post(url,params,{
-						headers:{
-							'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-						}
-					}).success(function(data){
+					Ajax.post({
+						url:Tool.host+"/wx/findpass/findPassPhontCheck",
+						params:{name:"verifyCode",param:$scope.code,p:$scope.getPhone},
+					}).then(function(data){
 						if(data.code==0){
-							Tool.goPage("/new/htmls/findpwd-pwd.html#?phone="+$scope.getPhone+"&code="+$scope.code);
+							Tool.changeRoute("/findpwd/pwd","phone="+$scope.getPhone+"&code="+$scope.code);
 						}else{
-							Tool.alert($scope,date.message);
+							Tool.alert(date.message);
 						}
-					}).error(function(){
-						Tool.alert($scope,"验证码错误!");
+					}).catch(function(){
+						Tool.alert("验证码错误!");
 					})
 				}else{
-					Tool.alert($scope,"请输入4位验证码");
+					Tool.alert("请输入4位验证码");
 				}
 			}else{
-				Tool.alert($scope,"请先获取验证码");
+				Tool.alert("请先获取验证码");
 			}
 		}
 
 		// 修改密码
 		$scope.changePwd = function(){
 			if($scope.pwd.length>=8&&$scope.pwd.length<=20){
-				var url = Tool.getSession("host")+"/wx/findpass/changepwd";
-				var params = "phone="+$scope.getPhone+"&code="+$scope.getCodes+"&password="+$scope.pwd;
-				$http.post(url,params,{
-					headers:{
-						'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-					}
-				}).success(function(data){
+				Ajax.post({
+					url:Tool.host+"/wx/findpass/changepwd",
+					params:{phone:$scope.getPhone,code:$scope.getCodes,password:$scope.pwd}
+				}).then(function(data){
 					if(data.code==0){
-						Tool.alert($scope,"密码修改成功!",function(){
-							Tool.goPage("/new/htmls/login.html");
+						Tool.alert("密码修改成功!",function(){
+							$rootScope.hasTip = false;
+							Tool.changeRoute("/login");
 						})
 					}else{
-						Tool.alert($scope,data.message);
+						Tool.alert(data.message);
 					}
-				}).error(function(){
-					Tool.alert($scope,"密码修改失败，请稍后再试!");
+				}).catch(function(){
+					Tool.alert("密码修改失败，请稍后再试!");
 				})
 			}
 		}
@@ -81,13 +77,10 @@ define(function(){
 		// 发送短信验证码
 		$scope.getCode = function(){
 			if(!$scope.hasSendCode){
-				var url = Tool.getSession("host")+"/wx/findpass/sendsmsfindpasscode";
-				var data = "phone="+$scope.getPhone;
-				$http.post(url,data,{
-					headers: {
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-					}
-				}).success(function(data){
+				Ajax.post({
+					url:Tool.host+"/wx/findpass/sendsmsfindpasscode",
+					params:{phone:$scope.getPhone},
+				}).then(function(data){
 					if(data.code==0){
 						$scope.hasSendCode = true;
 						$scope.sendCodes = true;
@@ -101,10 +94,10 @@ define(function(){
 							$interval.cancel(interval);
 						})
 					}else{
-						Tool.alert($scope,data.mesage);
+						Tool.alert(data.mesage);
 					}
-				}).error(function(){
-					Tool.alert($scope,"发送验证码失败，请稍后再试!");
+				}).catch(function(){
+					Tool.alert("发送验证码失败，请稍后再试!");
 				})
 			}
 		}

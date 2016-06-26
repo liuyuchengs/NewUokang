@@ -1,9 +1,7 @@
 
 <div class="header" data-ng-init="init()">
-    <div class="header-item float-left">
-        <a href="user.html">
-            <img src="../contents/svg/back.svg">
-        </a>
+    <div class="header-item float-left" ng-click="changeRoute('/user')">
+        <img src="../contents/svg/back.svg">
     </div>
     <div class="title">
         我的代金券
@@ -16,8 +14,8 @@
         <button id="activa" class="cush-btn" ng-click="active()">兑换</button>
     </div>
     <div class="cush-active-tip">
-        <a href="cush-overdue.html">查看过期券>></a>
-        <a href="readMe.html">查看使用规则>></a>
+        <span ng-click="changeRoute('/user/cushover')">查看过期券>></span>
+        <span ng-click="changeRoute('/user/cush/read')">查看使用规则>></span>
     </div>
 </div>
 <div class="cush-tip" ng-show="noCush">您还没有代金券</div>

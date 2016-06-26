@@ -1,5 +1,5 @@
-define(function(){
-	return function($scope,$http,$location,Tool,Ajax){
+define(["jquery"],function($){
+	return function($scope,$rootScope,$location,Tool,Ajax){
 		$scope.hasSee = true;
 		$scope.content = null;
 		$scope.noSelect = true;
@@ -19,13 +19,13 @@ define(function(){
 		// 初始化页面
 		$scope.init = function(){
 			$scope.getParams();
-			Ajax.loadHost($scope,function(){
-				Tool.loadUserinfo($scope,function(){
-					Tool.comfirm($scope,"您还没有登录，请先登录",function(){
-						Tool.goPage("/new/htmls/user.html");
-					})
-				});
-			});
+			if(Tool.checkLogin()){
+				Tool.loadUserinfo();
+			}else{
+				Tool.comfirm("请先登录",function(){
+					Tool.changeRoute("/login");
+				})
+			}
 			$scope.listen();
 		}
 
@@ -165,9 +165,9 @@ define(function(){
 		// 提交提问
 		$scope.send = function(){
 			if($scope.content===null||$scope.content===""){
-				Tool.alert($scope,"请填写咨询内容!");
+				Tool.alert("请填写咨询内容!");
 			}else{
-				var url = $scope.host+"/wx/post/addPost";
+				var url = Tool.host+"/wx/post/addPost";
 				$scope.mergePic();
 				$scope.postData.append("postName","");
 				$scope.postData.append("postContent",$scope.content);
@@ -190,7 +190,7 @@ define(function(){
 						if(data.code==0){
 							history.back();
 						}else{
-							Tool.alert($scope,"连接数据失败，请稍后再试!");
+							Tool.alert("连接数据失败，请稍后再试!");
 						}
 					},
 					error:function(){
