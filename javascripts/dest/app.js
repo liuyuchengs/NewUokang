@@ -12,10 +12,8 @@ define(["angular"],function(angular){
             user:false,
         }
         $rootScope.hasNav = false;
-
         //加载框参数
         $rootScope.loading = false;
-
         //提示框参数
         $rootScope.message = null;
         $rootScope.hasCancel = null;
@@ -23,6 +21,8 @@ define(["angular"],function(angular){
         $rootScope.hasTip = null;
         $rootScope.comfirm = null;
         $rootScope.cancel = null;
+        //body背景色
+        $rootScope.hasBgColor = false;
 
         //获取url决定导航栏样式
         $rootScope.switchNavMenu = function(item){

@@ -11,42 +11,42 @@
 		<img class="icon" src="../contents/svg/right-arrow.svg">
 	</div>
 	<div class="myorder" >
-		<div class="link" ng-click="changeRoute('/user/order','p=all')">
+		<div class="link" ng-click="goto('/user/order','p=all')">
 			<img class="icon" src="../contents/svg/dingdan.svg">
 			<span>我的订单</span>
 			<img class="arrow" src="../contents/svg/right-arrow.svg">
 		</div>
 		<div class="items">
-			<div class="item" ng-click="changeRoute('/user/order','p=toPay')">
+			<div class="item" ng-click="goto('/user/order','p=toPay')">
 				<img src="../contents/img/order-pay.png">
 				<p>待付款</p>
 			</div>
-			<div class="item" ng-click="changeRoute('/user/order','p=toHos')">
+			<div class="item" ng-click="goto('/user/order','p=toHos')">
 				<img src="../contents/img/order-go.png">
 				<p>待就医</p>
 			</div>
-			<div class="item" ng-click="changeRoute('/user/order','p=toAssess')">
+			<div class="item" ng-click="goto('/user/order','p=toAssess')">
 				<img src="../contents/img/order-assess.png">
 				<p>待评价</p>
 			</div>
 		</div>
 	</div>
 	<ul class="item-group">
-		<li ng-click="goto('/user/mypost')">
+		<li ng-click="goto('/user/mypost','item=publish')">
 			<img class="icon" src="../contents/svg/mypost.svg">
 			<div class="text">
 				<span>我的帖子</span>
 				<img src="../contents/svg/right-arrow.svg">
 			</div>
 		</li>
-		<li ng-click="goto('/user/mymessage')">
+		<li ng-click="goto('/user/mymessage','item=user')">
 			<img class="icon" src="../contents/svg/mymessage.svg">
 			<div class="text">
 				<span>我的消息</span>
 				<img src="../contents/svg/right-arrow.svg">
 			</div>
 		</li>
-		<li ng-click="goto('/user/myfollow')">
+		<li ng-click="goto('/user/myfollow','item=user')">
 			<img class="icon" src="../contents/svg/myfollow.svg">
 			<div class="text">
 				<span>我的关注</span>
@@ -55,14 +55,14 @@
 		</li>
 	</ul>
 	<ul class="item-group">
-		<li ng-click="changeRoute('/user/cush')">
+		<li ng-click="goto('/user/cush')">
 			<img class="icon" src="../contents/svg/djq.svg">
 			<div class="text">
 				<span>我的代金券</span>
 				<img src="../contents/svg/right-arrow.svg">
 			</div>
 		</li>
-		<li ng-click="changeRoute('/grab/order')">
+		<li ng-click="goto('/grab/order')">
 			<img class="icon" src="../contents/svg/qiang.svg">
 			<div class="text">
 				<span>我的惠赠</span>
@@ -83,7 +83,7 @@
 				<img src="../contents/svg/right-arrow.svg">
 			</div>
 		</li>
-		<li ng-click="changeRoute('/user/userinfo')">
+		<li ng-click="goto('/user/userinfo')">
 			<img class="icon" src="../contents/svg/u-account.svg">
 			<div class="text">
 				<span>我的账户</span>

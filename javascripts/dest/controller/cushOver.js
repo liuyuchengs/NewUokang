@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,Tool,Ajax){
+	return function($scope,$rootScope,Tool,Ajax){
 		$scope.userId;
 		$scope.accessToken;
 		$scope.cushs;
@@ -7,6 +7,7 @@ define(function(){
 
 		// 初始化页面
 		$scope.init = function(){
+			$rootScope.hasBgColor = true;
 			if(Tool.checkLogin()){
 				Tool.loadUserinfo();
 				$scope.loadCushOver();
@@ -36,6 +37,8 @@ define(function(){
 				}
 			}).catch(function(){
 				Tool.alert("数据加载失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 

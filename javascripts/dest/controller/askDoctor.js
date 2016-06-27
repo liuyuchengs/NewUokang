@@ -18,6 +18,7 @@ define(["jquery"],function($){
 		
 		// 初始化页面
 		$scope.init = function(){
+			$rootScope.hasBgColor = true;
 			$scope.getParams();
 			if(Tool.checkLogin()){
 				Tool.loadUserinfo();

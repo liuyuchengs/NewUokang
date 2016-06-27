@@ -1,6 +1,5 @@
 define(function(){
-	return function($scope,$http,$location,Tool,Ajax){
-		$scope.loading = false;
+	return function($scope,$rootScope,$location,Tool,Ajax){
 		$scope.post = {};
 		$scope.replyMess = {};
 		$scope.showReplyInputId = null;
@@ -22,12 +21,11 @@ define(function(){
 			currentPage:1
 		}
 		// 页面初始化
-		$scope.init =function(){
-			Ajax.loadHost($scope,function(){		
-				$scope.getQueryString();
-				$scope.queryPost();
-				$scope.queryMessage();
-			})
+		$scope.init =function(){	
+			$rootScope.hasBgColor = false;	
+			$scope.getQueryString();
+			$scope.queryPost();
+			$scope.queryMessage();
 		}
 
 		// 获取帖子id
@@ -36,13 +34,13 @@ define(function(){
 				$scope.postId = $location.search().id;
 				$scope.queryParams.id = $location.search().id;
 			}else{
-				Tool.goPage("/new/htmls/interaction.html");
+				Tool.changeRoute("/interaction");
 			}
 		}
 
 		// 滚动监听
 		window.onscroll = function(){
-			if($scope.loading||$scope.noProduct){
+			if($rootScope.loading||$scope.noProduct){
 				return;
 			}
 			var body = document.body;
@@ -63,51 +61,39 @@ define(function(){
 
 		// 获取帖子详细信息
 		$scope.queryPost = function(){
-			$scope.loading = true;
-			var url  = $scope.host+"/wx/post/postDetail";
-			var params = "id="+$scope.postId;
-			if(Tool.isLogin()){
-				Tool.loadUserinfo($scope);
-				params += "&accessToken="+$scope.userInfo.accessToken;
+			var obj = {
+				id:$scope.postId,
 			}
-			$http.post(url,params,{
-				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			if(Tool.checkLogin()){
+				Tool.loadUserinfo();
+				obj.accessToken = Tool.userInfo.accessToken;
+			}
+			Ajax.post({
+				url:Tool.host+"/wx/post/postDetail",
+				params:obj
+			}).then(function(data){
 				if(data.code==0){
 					$scope.post = data.data;
 					if(data.data.focusState===1){
 						$scope.follow.hasFollow = true;
 						$scope.follow.followText = "已关注"
 					}
-					if($scope.post.faceImage===null||$scope.post.faceImage===""){
-						if($scope.post.sex==="男"||$scope.post.sex===null||$scope.post.sex===""){
-							$scope.post.faceImage = "../contents/img/men-head.png";
-						}else{
-							$scope.post.faceImage = "../contents/img/women-head.png";
-						}
-					}
 				}else{
-					Tool.alert($scope,data.message);
+					Tool.alert(data.message);
 				}
-				$scope.loading = false;
-			}).error(function(){
-				$scope.loading = false;
-				Tool.alert($scope,"帖子信息加载失败!");
+			}).catch(function(){
+				Tool.alert("帖子信息加载失败!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
 		// 查询评论信息
 		$scope.queryMessage = function(){
-			$scope.loading = true;
-			var url = $scope.host+"/wx/post/postMessage";
-			var params = Tool.convertParams($scope.queryParams);
-			$http.post(url,params,{
-				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/post/postMessage",
+				params:$scope.queryParams
+			}).then(function(data){
 				if(data.code==0){
 					if(data.data.commentList.length<1){
 						$scope.noProduct = true;
@@ -119,12 +105,12 @@ define(function(){
 						$scope.replyMess = data.data;
 					}
 				}else{
-					Tool.alert($scope,"连接数据失败，请稍后再试!");
+					Tool.alert("连接数据失败，请稍后再试!");
 				}
-				$scope.loading = false;
-			}).error(function(){
-				$scope.loading = false;
-				Tool.alert($scope,"连接数据失败，请稍后再试!");
+			}).catch(function(){
+				Tool.alert("连接数据失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -171,13 +157,13 @@ define(function(){
 
 		// 检查是否登录
 		$scope.checkLogin = function(){
-			if(!Tool.isLogin()){
-				Tool.comfirm($scope,"请先登录！",function(){
-					Tool.goPage("/new/htmls/login.html");
+			if(!Tool.checkLogin()){
+				Tool.comfirm("请先登录！",function(){
+					Tool.changeRoute("/login");
 				})
 				return false;
 			}else{
-				Tool.loadUserinfo($scope);
+				Tool.loadUserinfo();
 				return true;
 			}
 		}
@@ -195,21 +181,22 @@ define(function(){
 						}
 					}
 				}
-				var url = $scope.host+"/wx/post/thumbUp";
-				var params = "postId="+id+"&flag="+flag;
-				$http.post(url,params,{
+				Ajax.post({
+					url:Tool.host+"/wx/post/thumbUp",
+					params:{postId:id,flag:flag},
 					headers:{
-						'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-						'accessToken':$scope.userInfo.accessToken,
+						accessToken:Tool.userInfo.accessToken,
 					}
-				}).success(function(data){
+				}).then(function(data){
 					if(data.code==0){
 						reply.praiseNum = data.data;
 					}else if(data.code==1){
-						Tool.alert($scope,data.message);
+						Tool.alert(data.message);
 					}
-				}).error(function(){
-					Tool.alert($scope,"连接数据失败，请稍后再试!");
+				}).catch(function(){
+					Tool.alert("连接数据失败，请稍后再试!");
+				}).finally(function(){
+					$rootScope.loading = false;
 				})
 			}
 		}
@@ -220,7 +207,7 @@ define(function(){
 				if($scope.showReplyInputId!=id){
 					var post = $scope.replyMess;
 					$scope.messageId = id;
-					if(replyId&&replyId!=$scope.userInfo.id){
+					if(replyId&&replyId!=Tool.userInfo.id){
 						$scope.replyId = replyId;
 					}
 					if($scope.showReplyInputId==null){
@@ -228,7 +215,7 @@ define(function(){
 							if(post.commentList[index].id==id){
 								post.commentList[index].hasReplyInput = true;
 								$scope.inputStyle = "输入你的回复...";
-								if(replyId && replyId != $scope.userInfo.id){
+								if(replyId && replyId != Tool.userInfo.id){
 									$scope.inputStyle= "回复 "+replyName+": ";
 								}
 							}
@@ -238,7 +225,7 @@ define(function(){
 							if(post.commentList[index].id==id){
 								post.commentList[index].hasReplyInput = true;
 								$scope.inputStyle = "输入你的回复...";
-								if(replyId && replyId != $scope.userInfo.id){
+								if(replyId && replyId != Tool.userInfo.id){
 									$scope.inputStyle = "回复 "+replyName+": ";
 								}
 							}
@@ -293,32 +280,33 @@ define(function(){
 		// 发表评论
 		$scope.sendPost = function(content){
 			if(content==""||content==null){
-				Tool.alert($scope,"消息为空!");
+				Tool.alert("消息为空!");
 			}else{
 				var params = {
 					postId:$scope.post.id,
 					replyState:0,
 					content:content,
-					userId:$scope.userInfo.id,
+					userId:Tool.userInfo.id,
 				}
-				var url = $scope.host+"/wx/repliesMessage/addRepliesMessage";
-				var paramsStr = Tool.convertParams(params);
-				$http.post(url,paramsStr,{
+				Ajax.post({
+					url:Tool.host+"/wx/repliesMessage/addRepliesMessage",
+					params:params,
 					headers:{
-						'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-						'accessToken':$scope.userInfo.accessToken,
+						'accessToken':Tool.userInfo.accessToken,
 					}
-				}).success(function(data){
+				}).then(function(data){
 					if(data.code==0){
 						$scope.hidePostInput();
 						data.data.count = $scope.replyMess.commentList.length+1;
 						$scope.mergeNewReply(data.data);
 						$scope.replyMess.commentList.push(data.data);
 					}else{
-						Tool.alert($scope,data.message);
+						Tool.alert(data.message);
 					}
-				}).error(function(){
-					Tool.alert($scope,"连接数据失败，请稍后重试!");
+				}).catch(function(){
+					Tool.alert("连接数据失败，请稍后重试!");
+				}).finally(function(){
+					$rootScope.loading = false;
 				})
 			}
 		}
@@ -344,20 +332,19 @@ define(function(){
 					postId:$scope.post.id,
 					replyState:1,
 					content:content,
-					userId:$scope.userInfo.id,
+					userId:Tool.userInfo.id,
 					messageId:$scope.messageId,
 				}
 				if($scope.replyId){
 					params.replyId = $scope.replyId;
 				}
-				var url = $scope.host+"/wx/repliesMessage/addRepliesMessage";
-				var paramsStr = Tool.convertParams(params);
-				$http.post(url,paramsStr,{
+				Ajax.post({
+					url:Tool.host+"/wx/repliesMessage/addRepliesMessage",
+					params:params,
 					headers:{
-						'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-						'accessToken':$scope.userInfo.accessToken,
+						'accessToken':Tool.userInfo.accessToken,
 					}
-				}).success(function(data){
+				}).then(function(data){
 					if(data.code==0){
 						$scope.showReplyInputId = null;
 						$scope.messageId = null; //评论id
@@ -377,19 +364,21 @@ define(function(){
 						}
 
 					}else{
-						Tool.alert($scope,data.message);
+						Tool.alert(data.message);
 					}
-				}).error(function(){
-					Tool.alert($scope,"连接数据失败，请稍后重试!");
+				}).catch(function(){
+					Tool.alert("连接数据失败，请稍后重试!");
+				}).finally(function(){
+					$rootScope.loading = false;
 				})
 			}
 		}
 
 		// 关注按钮处理函数
 		$scope.clickFollow = function(){
-			if(!Tool.isLogin()){
-				Tool.comfirm($scope,"请先登录!",function(){
-					Tool.goPage("/new/htmls/login.html");
+			if(!Tool.checkLogin()){
+				Tool.comfirm("请先登录!",function(){
+					Tool.changeRoute("/login");
 				})
 			}else{
 				if($scope.follow.hasFollow){
@@ -402,54 +391,62 @@ define(function(){
 
 		// 关注发帖人
 		$scope.tofollow = function(){
-			var url = $scope.host+"/wx/post/focus";
-			var params = "flag=1&userId="+$scope.post.userId;
-			$http.post(url,params,{
+			Ajax.post({
+				url:Tool.host+"/wx/post/focus",
+				params:{
+					flag:1,
+					userId:$scope.post.userId
+				},
 				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-					'accessToken':$scope.userInfo.accessToken,
+					'accessToken':Tool.userInfo.accessToken,
 				}
-			}).success(function(data){
+			}).then(function(data){
 				if(data.code==0){
 					$scope.follow.hasFollow = true;
 					$scope.follow.followText = "已关注";
 				}else{
-					Tool.alert($scope,"关注失败，稍后再试!");
+					Tool.alert("关注失败，稍后再试!");
 				}
-			}).error(function(){
-				Tool.alert($scope,"连接数据失败，请稍后再试!");
+			}).catch(function(){
+				Tool.alert("连接数据失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
 		// 取消关注发帖人
 		$scope.cacelFollow = function(){
-			var url = $scope.host+"/wx/post/cacelFocus";
-			var params = "flag=1&userId="+$scope.post.userId;
-			$http.post(url,params,{
+			Ajax.post({
+				url:Tool.host+"/wx/post/cacelFocus",
+				params:{
+					flag:1,
+					userId:$scope.post.userId
+				},
 				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-					'accessToken':$scope.userInfo.accessToken,
+					accessToken:Tool.userInfo.accessToken
 				}
-			}).success(function(data){
+			}).then(function(data){
 				if(data.code==0){
 					$scope.follow.hasFollow = false;
 					$scope.follow.followText = "关注";
 				}else{
-					Tool.alert($scope,"取消关注失败，稍后再试!");
+					Tool.alert("取消关注失败，稍后再试!");
 				}
-			}).error(function(){
-				Tool.alert($scope,"连接数据失败，稍后再试!");
+			}).catch(function(){
+				Tool.alert("连接数据失败，稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
 		// 跳转到医生页面
 		$scope.goDoctor = function(id){
-			Tool.goPage("/new/htmls/doctor-detail.html#?id="+id);
+			Tool.changeRoute("/doctor/detail","id="+id);
 		}
 
 		// 跳转到项目页面
 		$scope.goProduct = function(productId,hospitalId){
-			Tool.goPage("/new/htmls/product-detail.html#?flag=1&productId="+productId+"&hospitalId="+hospitalId);
+			Tool.changeRoute("/product/detail","flag=1&productId="+productId+"&hospitalId="+hospitalId);
 		}
 	}
 })

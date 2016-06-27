@@ -58,7 +58,7 @@ define(["app","require"],function(app,require){
                 interaction: loadController({
                     url:"../javascripts/dest/controller/interactionDetail.js",
                     name:"interactionDetailCtrl",
-                    inject:["$scope","$rootScope","$http","Tool","Ajax"],   
+                    inject:["$scope","$rootScope","$location","Tool","Ajax"],   
                 },$controllerProvider)
             }
         }).when("/user",{
@@ -78,7 +78,7 @@ define(["app","require"],function(app,require){
                 userinfo:loadController({
                     url:"../javascripts/dest/controller/userInfo.js",
                     name:"userInfoCtrl",
-                    inject:["$scope","Tool"],   
+                    inject:["$scope","$rootScope","Tool"],   
                 },$controllerProvider)
             }
         }).when("/user/cush",{
@@ -88,7 +88,7 @@ define(["app","require"],function(app,require){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/cush.js",
                     name:"cushCtrl",
-                    inject:["$scope","Tool","Ajax"],
+                    inject:["$scope","$rootScope","Tool","Ajax"],
                 },$controllerProvider)
             }
         }).when("/user/cush/read",{
@@ -98,7 +98,7 @@ define(["app","require"],function(app,require){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/cush.js",
                     name:"cushCtrl",
-                    inject:["$scope","Tool","Ajax"],
+                    inject:["$scope","$rootScope","Tool","Ajax"],
                 },$controllerProvider)
             }
         }).when("/user/cushover",{
@@ -108,7 +108,7 @@ define(["app","require"],function(app,require){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/cushOver.js",
                     name:"cushOverCtrl",
-                    inject:["$scope","Tool","Ajax"],
+                    inject:["$scope","$rootScope","Tool","Ajax"],
                 },$controllerProvider)
             }
         }).when("/user/userinfochange",{
@@ -323,6 +323,42 @@ define(["app","require"],function(app,require){
             }
         }).when("/agreement",{
             templateUrl:"agreement.html",
+        }).when("/write",{
+            templateUrl:"write.html",
+            controller:"writeCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/write.js",
+                    name:"writeCtrl",
+                    inject:["$scope","$rootScope","Tool","Ajax"],
+                },$controllerProvider)
+            }
+        }).when("/write/say",{
+            templateUrl:"writesay.html",
+            controller:"writeCtrl",
+        }).when("/write/note",{
+            templateUrl:"writenote.html",
+            controller:"writeCtrl",
+        }).when("/user/mypost",{
+            templateUrl:"mypost.html",
+            controller:"myPostCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/myPost.js",
+                    name:"myPostCtrl",
+                    inject:["$scope","$rootScope","$location","Ajax","Tool"],
+                },$controllerProvider)
+            }
+        }).when("/user/mymessage",{
+            templateUrl:"mymessage.html",
+            controller:"myMessageCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/myMessage.js",
+                    name:"myMessageCtrl",
+                    inject:["$scope","$rootScope","$location","Tool","Ajax"],
+                },$controllerProvider)
+            }
         }).otherwise({redirectTo:"/home"})
     }])
 

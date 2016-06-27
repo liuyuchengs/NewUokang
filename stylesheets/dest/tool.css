@@ -363,3 +363,6 @@ span, p {
     .loding .content img {
       width: 40px;
       height: 40px; }
+
+.bg-color {
+  background-color: #f2f2f2; }

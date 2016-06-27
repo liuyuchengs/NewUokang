@@ -72,6 +72,7 @@ define(function(){
 
 		// 页面初始化
 		$scope.init = function(){
+			$rootScope.hasBgColor = false;
 			$scope.getQueryParams();
 			$scope.loadDate($scope.loadData);
 			Weixin.wxInit($scope);

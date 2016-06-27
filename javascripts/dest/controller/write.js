@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,Tool,Ajax){
+	return function($scope,$rootScope,Tool,Ajax){
 		$scope.postData = new FormData();
 		$scope.noBeforeSelect = true;
 		$scope.noAfterSelect = true;
@@ -48,24 +48,27 @@ define(function(){
 
 		// 页面初始化
 		$scope.load = function(){
-			Ajax.loadHost($scope,function(){
-				Tool.loadUserinfo($scope,function(){
-					Tool.comfirm($scope,"您还没有登录，请先登录",function(){
-						Tool.goPage("/new/htmls/user.html");
-					})
-				});
-				$scope.loadOrder();
-			});
+			$rootScope.hasBgColor = true;
+			if(Tool.checkLogin()){
+				Tool.loadUserinfo();
+			}else{
+				Tool.comfirm("您还没有登录，请先登录",function(){
+					$rootScope.hasTip = false;
+					Tool.changeRoute("/login");
+				})
+			}
+			$scope.loadOrder();
 			$scope.listen();
 		}
 
 		// 跳转到具体的发帖页面
-		$scope.goTo = function(url){
-			if(Tool.isLogin()){
-				Tool.goPage(url);
+		$scope.goTo = function(path){
+			if(Tool.checkLogin()){
+				Tool.changeRoute(path);
 			}else{
-				Tool.comfirm($scope,"您还没有登录，请先登录",function(){
-					Tool.goPage("/new/htmls/user.html");
+				Tool.comfirm("您还没有登录，请先登录",function(){
+					$rootScope.hasTip = false;
+					Tool.changeRoute("/user");
 				})
 			}
 		}
@@ -234,11 +237,11 @@ define(function(){
 		// 发帖功能
 		$scope.addPost = function(merge){
 			if($scope.queryParams.postName==""||$scope.queryParams.postName==null||$scope.queryParams.postContent==""||$scope.queryParams.postContent==null){
-				Tool.alert($scope,"请填写发帖内容!");
+				Tool.alert("请填写发帖内容!");
 			}else{
 				var url = $scope.host+"/wx/post/addPost";
 				merge();
-				$scope.loading = true;
+				$rootScope.loading = true;
 				$.ajax({
 					type: "POST",
 					url: url,
@@ -248,18 +251,18 @@ define(function(){
 					cache: false,
 					data: $scope.postData,
 					beforeSend: function (request) {
-						request.setRequestHeader("accessToken", $scope.userInfo.accessToken);
+						request.setRequestHeader("accessToken", Tool.userInfo.accessToken);
 					},
 					success:function(data){
-						$scope.loading = false;
+						$rootScope.loading = false;
 						if(data.code==0){
-							Tool.goPage("/new/htmls/interaction.html");
+							Tool.changeRoute("/interaction");
 						}else{
-							Tool.alert($scope,"连接数据失败，请稍后再试!");
+							Tool.alert("连接数据失败，请稍后再试!");
 						}
 					},
 					error:function(){
-						$scope.loading = false;
+						$rootScope.loading = false;
 						$scope.postData = new FormData();
 					}
 				})
@@ -275,12 +278,12 @@ define(function(){
 		$scope.addNotePost = function(){
 			if(!$scope.select.has){
 				if($scope.queryParams.productId==null||$scope.queryParams.hospitalId==null||$scope.queryParams.doctorId==null){
-					Tool.alert($scope,"请选择项目信息");
+					Tool.alert("请选择项目信息");
 				}else{
 					$scope.addPost($scope.mergeNote);
 				}
 			}else{
-				Tool.alert($scope,"您还没有已完成的项目，暂不能写日记");
+				Tool.alert("您还没有已完成的项目，暂不能写日记");
 			}
 		}
 
@@ -296,7 +299,7 @@ define(function(){
 				}
 			}
 			if(count==6){
-				Tool.alert($scope,"最多只能上传6张图片!");
+				Tool.alert("最多只能上传6张图片!");
 			}
 		}
 
@@ -312,7 +315,7 @@ define(function(){
 						return ;
 					}
 				}else{
-					Tool.alert($scope,"术后最多上传三张照片");
+					Tool.alert("术后最多上传三张照片");
 				}
 			}
 		}
@@ -329,7 +332,7 @@ define(function(){
 				}
 			}
 			if(count==3){
-				Tool.alert($scope,"术后最多上传三张照片");
+				Tool.alert("术后最多上传三张照片");
 			}
 		}
 
@@ -361,14 +364,13 @@ define(function(){
 
 		// 发帖页面加载用户已完成订单信息
 		$scope.loadOrder = function(){
-			var url = $scope.host + "/wx/order/queryOrderList";
-			var params = "status=&userId="+$scope.userInfo.id+"";
-			$http.post(url,params,{
-				headers: {
-				'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				'accessToken':$scope.userInfo.accessToken
+			Ajax.post({
+				url:Tool.host+"/wx/order/queryOrderList",
+				params:{status:"",userId:Tool.userInfo.id},
+				headers:{
+					accessToken:Tool.userInfo.accessToken
 				}
-			}).success(function(data){
+			}).then(function(data){
 				if(data.code===0){
 					var result = data.data.filter(function(item){
 						return item.status==4;
@@ -381,8 +383,10 @@ define(function(){
 						$scope.order.orderInfo[index].has = false;
 					}
 				}
-			}).error(function(){
-				Tool.alert($scope,"加载订单信息失败，请稍后再试!");
+			}).catch(function(){
+				Tool.alert("加载订单信息失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -391,7 +395,7 @@ define(function(){
 			if($scope.order.has){
 				$scope.select.has = !$scope.select.has;
 			}else{
-				Tool.alert($scope,"您还没有已完成的项目，暂不能写日记");
+				Tool.alert("您还没有已完成的项目，暂不能写日记");
 			}
 		}
 

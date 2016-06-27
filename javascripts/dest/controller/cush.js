@@ -1,11 +1,12 @@
 define(function(){
-	return function($scope,Tool,Ajax){
+	return function($scope,$rootScope,Tool,Ajax){
 		$scope.cushs;
 		$scope.noCush = false;
 		$scope.activeValue="";
 
 		// 初始化页面
 		$scope.init = function(){
+			$rootScope.hasBgColor = true;
 			if(Tool.checkLogin()){
 				Tool.loadUserinfo();
 				$scope.loadCush();
@@ -35,6 +36,8 @@ define(function(){
 				}
 			}).catch(function(){
 				Tool.alert("数据加载失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -67,6 +70,8 @@ define(function(){
 					}
 				}).catch(function(data){
 					Tool.alert("代金券激活失败!");
+				}).finally(function(){
+					$rootScope.loading = false;
 				})
 			}else{
 				Tool.alert("请输入正确长度的代金券!");

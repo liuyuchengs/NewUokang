@@ -1,41 +1,70 @@
-<!DOCTYPE html>
-<html lang="zh-CN" ng-app="myApp">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1.3,user-scalable=no">
-    <link rel="stylesheet" href="../stylesheets/dest/main.css">
-	<title>悠康医生</title>
-</head>
-<body ng-controller="myFollowCtrl">
-	<div class="header">
-		<div class="header-item float-left">
-			<a href="user.html">
-				<img src="../contents/svg/back.svg">
-			</a>
+<div class="header">
+	<div class="header-item float-left" ng-click="changeRoute('/user')">
+		<img src="../contents/svg/back.svg">
+	</div>
+	<div class="title">
+		我的关注
+	</div>
+</div>
+<div class="has-header"></div>
+<div class="follow-content" >
+	<div class="switch">
+		<div class="item" ng-class="{'select':params.user}" ng-click="switch('user')">
+			个人
 		</div>
-		<div class="title">
-			我的关注
+		<div class="item" ng-class="{'select':params.doctor}" ng-click="switch('doctor')">
+			医生
+		</div>
+		<div class="item" ng-class="{'select':params.product}" ng-click="switch('product')">
+			项目
 		</div>
 	</div>
-	<div class="has-header"></div>
-    <div class="follow-content" >
-		<div class="switch">
-            <div class="item" ng-class="{'select':params.user}" ng-click="switch('user')">
-				<a href="#/user">个人</a>
-			</div>
-			<div class="item" ng-class="{'select':params.doctor}" ng-click="switch('doctor')">
-				<a href="#/doctor">医生</a>
-			</div>
-            <div class="item" ng-class="{'select':params.product}" ng-click="switch('product')">
-				<a href="#/product">项目</a>
-			</div>
-		</div>
+</div>
+<div>
+	<div class="follow-user-content" ng-show="params.user" >
+		<ul>
+			<li ng-repeat="follow in follows">
+				<img ng-src="{{follow.face|defaultHeadImg:follow.sex}}" user-error="{{follow.sex}}">
+				<span ng-bind="follow.nickname"></span>
+				<div class="follow select" ng-class="{'select':follow.hasFollow}" ng-click="switchFollow(follow.id)">
+					<div class="icon"></div>
+					<div class="txt" ng-bind="follow.followText"></div>
+				</div>
+			</li>
+		</ul>
 	</div>
-    <div ng-view></div>
-    <script src="../javascripts/lib/angular.min.js"></script>
-	<script src="../javascripts/lib/angular.route.min.js"></script>
-	<script src="../javascripts/dest/module/module.js"></script>
-	<script src="../javascripts/dest/route/followRoute.js"></script>
-	<script src="../javascripts/dest/ctrl/myFollowCtrl.js"></script>
-</body>
-</html>
+	<div class="follow-product-content follow-doctor" ng-show="params.doctor" >
+		<ul>
+			<li ng-repeat="follow in follows">
+				<img ng-src="{{follow.face}}" fallback-src="../contents/img/doc-head.png">
+				<div class="info">
+					<p class="title">
+						<span ng-bind="follow.doctorname"></span>
+						<span ng-bind="follow.professionTitle"></span>
+					</p>
+					<p class="address" ng-bind="follow.hospitalname"></p>
+				</div>
+				<div class="follow select" ng-class="{'select':follow.hasFollow}" ng-click="switchFollow(follow.id)">
+					<div class="icon"></div>
+					<div class="txt" ng-bind="follow.followText"></div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="follow-product-content" ng-show="params.product">
+		<ul>
+			<li ng-repeat="follow in follows">
+				<img ng-src="{{follow.smallImg|defaultImg:'pro'}}" product-error>
+				<div class="info">
+					<p class="title" ng-bind="follow.title"></p>
+					<p class="address" ng-bind="follow.hospitalName"></p>
+				</div>
+				<div class="follow select" ng-class="{'select':follow.hasFollow}" ng-click="switchFollow(follow.id)">
+					<div class="icon"></div>
+					<div class="txt" ng-bind="follow.followText"></div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>
+</div>

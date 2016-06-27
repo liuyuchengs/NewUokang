@@ -52,6 +52,7 @@ define(function(){
 
 		// 初始化页面
 		$scope.init = function(){
+			$rootScope.hasBgColor = true;
 			$scope.loadQueryParams();
 			$scope.order.hospitalId = $scope.hosId;
 			$scope.order.productId = $scope.proId;

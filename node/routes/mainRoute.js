@@ -163,4 +163,37 @@ router.post("/wx/post/cacelFocus",function *(){
 router.post("/wx/review/showdoctorreview",function *(){
     this.body = yield Ajax.post(this.request);
 })
+router.post("/wx/post/postList",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+
+//帖子详情页面
+router.post("/wx/post/postDetail",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/post/postMessage",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/post/thumbUp",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/repliesMessage/addRepliesMessage",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/repliesMessage/addRepliesMessage",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/post/myPost",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/repliesMessage/myReply",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/repliesMessage/myMessage",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/post/doctorMessage",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+
 module.exports = router;

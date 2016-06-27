@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,Tool){
+	return function($scope,$rootScope,Tool){
 		$scope.phone;
 		$scope.realname;
 		$scope.sex;
@@ -9,6 +9,7 @@ define(function(){
 
 		//页面初始化
 		$scope.init = function(){
+			$rootScope.hasBgColor = true;
 			var user = Tool.getLocal("user");
 			$scope.phone = user.phone || "";
 			$scope.realname = user.realname || "";

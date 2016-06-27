@@ -5,6 +5,7 @@ define(function(){
 		
 		//初始化页面
 		$scope.init = function(){
+			$rootScope.hasBgColor = false;
 		}
 
 		// 登陆

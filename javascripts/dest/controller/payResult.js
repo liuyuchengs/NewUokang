@@ -6,6 +6,7 @@ define(function(){
 
 		// 获取支付结果，初始化页面
 		$scope.init = function(){
+			$rootScope.hasBgColor = true;
 			if($location.search().payResult){
 				$scope.payResult = $location.search().payResult;
 			}

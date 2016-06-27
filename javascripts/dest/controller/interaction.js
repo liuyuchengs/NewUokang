@@ -1,6 +1,5 @@
 define(function(){
     return function($scope,$rootScope,$http,Tool,Ajax){
-        $scope.loading = false;
         $scope.noProductText = "";
         $scope.noProduct = false;
         $scope.hasInteractionMenu = true;
@@ -18,21 +17,16 @@ define(function(){
 
         //初始化页面
         $scope.init = function(){
-            Ajax.loadHost($scope,function(){
-                $scope.queryPost();
-            })
+            $rootScope.hasBgColor = false;
+            $scope.queryPost();
         }
 
         // 加载帖子数据
         $scope.queryPost = function(){
-            $scope.loading =true;
-            var url = $scope.host+"/wx/post/postList";
-            var params = Tool.convertParams($scope.queryParams);
-            $http.post(url,params,{
-                headers:{
-                    'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-                }
-            }).success(function(data){
+            Ajax.post({
+                url:Tool.host+"/wx/post/postList",
+                params:$scope.queryParams,
+            }).then(function(data){
                 if(data.data.length<1){
                     if($scope.posts.length<1){
                         $scope.noProductText = "还没有帖子信息";
@@ -44,10 +38,10 @@ define(function(){
                     $scope.mergePost(data.data);
                     $scope.posts = $scope.posts.concat(data.data);
                 }
-                $scope.loading = false;
-            }).error(function(){
-                $scope.loading = false;
-                Tool.alert($rootScope,"获取帖子信息失败!");
+            }).catch(function(){
+                Tool.alert("获取帖子信息失败!");
+            }).finally(function(){
+                $rootScope.loading = false;
             })
         }
 
@@ -76,7 +70,7 @@ define(function(){
 
         // 滚动监听
         window.onscroll = function(){
-            if($scope.loading||$scope.noProduct){
+            if($rootScope.loading||$scope.noProduct){
                 return;
             }
             var body = document.body;
@@ -102,13 +96,8 @@ define(function(){
 
         // 跳转到详细页面
         $scope.detail = function(id){
-            var url = "/new/htmls/interaction-detail.html#?id="+id;
-            Tool.goPage(url);
+            Tool.changeRoute("/interaction/detail","id="+id);
         }
 
-        // 底部按钮事件
-        $scope.menuClick = function(value){
-            Tool.menuClick($scope,value);
-        }
     }
 })

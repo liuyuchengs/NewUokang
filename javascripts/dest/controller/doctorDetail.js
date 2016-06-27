@@ -55,6 +55,7 @@ define(function(){
 
 		// 初始化页面
 		$scope.init = function(){
+			$rootScope.hasBgColor = true;
 			$scope.getParams();
 			$scope.queryDoctor();
 			$scope.querySchedule();

@@ -9,10 +9,6 @@ app.use(serverStatic("../../webroot"));
 app.use(body);
 app.use(router.routes());
 
-//监听错误
-app.on("error",function(err){
-    
-})
 
 //监听端口
 app.listen(3000,function(){

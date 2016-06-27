@@ -9,6 +9,10 @@ define(function(){
 		$scope.codeText = "获取短信验证码";
 		$scope.sendCodes = false;
 		
+		angular.element(document).ready(function(){
+			$rootScope.hasBgColor = true;
+		})
+
 		// 检测手机号码是否有注册
 		$scope.checkPhone = function(){
 			if(/^1[3|4|5|7|8]\d{9}$/.test($scope.phone)){

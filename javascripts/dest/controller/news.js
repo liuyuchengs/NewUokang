@@ -53,6 +53,7 @@ define(function(){
 
 		//初始化页面
 		$scope.init = function(){
+			$rootScope.hasBgColor = false;
 			$scope.initSwiper();
 			$scope.loadNews();
 		}

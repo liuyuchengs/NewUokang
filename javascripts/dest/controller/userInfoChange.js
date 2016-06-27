@@ -24,6 +24,7 @@ define(function(){
 
 		//页面初始化
 		angular.element(document).ready(function(){
+			$rootScope.hasBgColor = true;
 			$scope.item = $location.search().item;
 			$scope.title = $scope.titleParams[$scope.item];
 			$scope.tip = $scope.tipParams[$scope.item];

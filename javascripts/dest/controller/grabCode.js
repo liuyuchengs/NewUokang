@@ -23,6 +23,7 @@ define(function(){
 
 		// 页面初始化
 		angular.element(document).ready(function(){
+			$rootScope.hasBgColor = true;
 			$scope.loadQueryParams();
 			if(Tool.checkLogin()){
 				Tool.loadUserinfo();

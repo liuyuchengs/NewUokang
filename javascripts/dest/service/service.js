@@ -48,7 +48,7 @@ define(["app","wx"],function(app,wx){
     app.service("Tool",["$rootScope","$location",function($rootScope,$location){
         
         //变量
-        this.host = "http://192.168.0.104:3000";
+        this.host = "http://192.168.0.102:3000";
         this.userInfo = {};
 
         /*

@@ -56,6 +56,7 @@ define(function(){
 
 		//初始化
 		$scope.init = function(){
+			$rootScope.hasBgColor = false;
 			$scope.loadClassParams();
 			$scope.initLocation();
 			$scope.loadData();
