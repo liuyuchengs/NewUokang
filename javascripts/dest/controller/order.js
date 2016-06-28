@@ -21,6 +21,7 @@ define(function(){
 		//初始化页面
 		$scope.init = function(){
 			$rootScope.hasBgColor = true;
+			Tool.noWindowListen();
 			Tool.loadUserinfo();
 			$scope.getParams();
 			$scope.loadOrder();

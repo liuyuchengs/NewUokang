@@ -6,6 +6,7 @@ define(function(){
         //页面初始化
         $scope.init = function(){
             $rootScope.hasBgColor = true;
+            Tool.noWindowListen();
             $scope.initText();
             if(Tool.checkLogin()){
                 Tool.loadUserinfo();

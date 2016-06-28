@@ -5,6 +5,7 @@ var req = require("request"); //http访问
  */
 var params = {
     host:"https://www.uokang.com",
+    //host:"https://192.168.0.222:8555/www",
 }
 
 /**

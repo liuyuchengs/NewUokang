@@ -24,6 +24,7 @@ define(function(){
 		// 页面初始化
 		angular.element(document).ready(function(){
 			$rootScope.hasBgColor = true;
+			Tool.noWindowListen();
 			$scope.loadQueryParams();
 			if(Tool.checkLogin()){
 				Tool.loadUserinfo();

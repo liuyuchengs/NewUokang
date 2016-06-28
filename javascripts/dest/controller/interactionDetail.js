@@ -159,6 +159,7 @@ define(function(){
 		$scope.checkLogin = function(){
 			if(!Tool.checkLogin()){
 				Tool.comfirm("请先登录！",function(){
+					$rootScope.hasTip = false;
 					Tool.changeRoute("/login");
 				})
 				return false;
@@ -378,6 +379,7 @@ define(function(){
 		$scope.clickFollow = function(){
 			if(!Tool.checkLogin()){
 				Tool.comfirm("请先登录!",function(){
+					$rootScope.hasTip = false;
 					Tool.changeRoute("/login");
 				})
 			}else{

@@ -103,6 +103,11 @@ router.post("/wx/gift/getgiftproduct",function *(){
     this.body = yield Ajax.post(this.request);
 })
 
+//体检
+router.post("/wx/gift/getgiftproduct",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+
 //项目列表
 router.post("/wx/product/querylist",function *(){
     this.body = yield Ajax.post(this.request);
@@ -183,17 +188,63 @@ router.post("/wx/repliesMessage/addRepliesMessage",function *(){
 router.post("/wx/repliesMessage/addRepliesMessage",function *(){
     this.body = yield Ajax.post(this.request);
 })
+
+//我的帖子
 router.post("/wx/post/myPost",function *(){
     this.body = yield Ajax.post(this.request);
 })
 router.post("/wx/repliesMessage/myReply",function *(){
     this.body = yield Ajax.post(this.request);
 })
+
+//我的消息
 router.post("/wx/repliesMessage/myMessage",function *(){
     this.body = yield Ajax.post(this.request);
 })
 router.post("/wx/post/doctorMessage",function *(){
     this.body = yield Ajax.post(this.request);
 })
+
+//关注页面
+router.post("/wx/focus/focusUserMan",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/focus/focusDoctorMan",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/focus/focusProductMan",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/post/focus",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+
+
+//体检详情
+router.post("/wx/product/packagedetal",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/product/hospitalbyid",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/product/packagedetalItem",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/schedule/querybyhospitalid",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/hospital/querylist",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+
+//活动页
+router.post("/wx/product/queryActivity",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+
+router.post("/wx/post/addPost",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+
 
 module.exports = router;

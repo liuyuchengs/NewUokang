@@ -118,7 +118,7 @@ define(["app","require"],function(app,require){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/userInfoChange.js",
                     name:"userInfoChangeCtrl",
-                    inject:["$scope","$location","Ajax","Tool"],
+                    inject:["$scope","$rootScope","$location","Ajax","Tool"],
                 },$controllerProvider)
             }
         }).when("/user/order",{
@@ -138,7 +138,7 @@ define(["app","require"],function(app,require){
                 activity:loadController({
                     url:"../javascripts/dest/controller/activity.js",
                     name:"activityCtrl",
-                    inject:["$scope","$rootScope","$http","Tool"],   
+                    inject:["$scope","$rootScope","Tool","Ajax"],   
                 },$controllerProvider)
             }
         }).when("/product/detail",{
@@ -168,7 +168,7 @@ define(["app","require"],function(app,require){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/examDetail.js",
                     name:"examDetailCtrl",
-                    inject:["$scope","$rootScope","$http","Tool"],
+                    inject:["$scope","$rootScope","$location","Tool","Ajax"],
                 },$controllerProvider)
             }
         }).when("/discount",{
@@ -248,7 +248,7 @@ define(["app","require"],function(app,require){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/login.js",
                     name:"loginCtrl",
-                    inject:["$scope","$http","$location","Ajax","Tool"],
+                    inject:["$scope","$rootScope","$location","Ajax","Tool"],
                 },$controllerProvider)
             }
         }).when("/makeorder",{
@@ -356,6 +356,36 @@ define(["app","require"],function(app,require){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/myMessage.js",
                     name:"myMessageCtrl",
+                    inject:["$scope","$rootScope","$location","Tool","Ajax"],
+                },$controllerProvider)
+            }
+        }).when("/user/myfollow",{
+            templateUrl:"myfollow.html",
+            controller:"myFollowCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/myFollow.js",
+                    name:"myFollowCtrl",
+                    inject:["$scope","$rootScope","$location","Tool","Ajax"],
+                },$controllerProvider)
+            }
+        }).when("/exam",{
+            templateUrl:"exam.html",
+            controller:"examCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/exam.js",
+                    name:"examCtrl",
+                    inject:["$scope","$rootScope","$location","Tool","Ajax"],
+                },$controllerProvider)
+            }
+        }).when("/invite/new",{
+            templateUrl:"invitenew.html",
+            controller:"inviteCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/invite.js",
+                    name:"inviteCtrl",
                     inject:["$scope","$rootScope","$location","Tool","Ajax"],
                 },$controllerProvider)
             }

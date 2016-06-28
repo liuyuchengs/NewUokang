@@ -49,6 +49,7 @@ define(function(){
 		// 页面初始化
 		$scope.load = function(){
 			$rootScope.hasBgColor = true;
+			Tool.noWindowListen();
 			if(Tool.checkLogin()){
 				Tool.loadUserinfo();
 			}else{

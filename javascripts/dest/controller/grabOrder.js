@@ -6,6 +6,7 @@ define(function(){
 		// 初始化页面
 		$scope.init = function(){
 			$rootScope.loading =false;
+			Tool.noWindowListen();
 			Tool.loadUserinfo();
 			$scope.queryGift();
 		}

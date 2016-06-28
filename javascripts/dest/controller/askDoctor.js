@@ -19,11 +19,13 @@ define(["jquery"],function($){
 		// 初始化页面
 		$scope.init = function(){
 			$rootScope.hasBgColor = true;
+			Tool.noWindowListen();
 			$scope.getParams();
 			if(Tool.checkLogin()){
 				Tool.loadUserinfo();
 			}else{
 				Tool.comfirm("请先登录",function(){
+					$rootScope.hasTip = false;
 					Tool.changeRoute("/login");
 				})
 			}
@@ -184,7 +186,7 @@ define(["jquery"],function($){
 					cache: false,
 					data: $scope.postData,
 					beforeSend: function (request) {
-						request.setRequestHeader("accessToken", $scope.userInfo.accessToken);
+						request.setRequestHeader("accessToken", Tool.userInfo.accessToken);
 					},
 					success:function(data){
 						$scope.loading = false;

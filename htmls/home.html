@@ -10,10 +10,8 @@
 <div class="has-header"></div>
 <div class="swiper-container">
 	<div class="swiper-wrapper">
-		<div class="swiper-slide" ng-repeat="banner in banners">
-			<a ng-href="{{banner.url}}" >
-				<img class="swiper-img" ng-src="{{banner.path}}" ng-style="imgStyle">
-			</a>
+		<div class="swiper-slide" ng-repeat="banner in banners" ng-click="activity(banner.id)">
+			<img class="swiper-img" ng-src="{{banner.path}}" ng-style="imgStyle">
 		</div>
 	</div>
 	<div class="swiper-pagination"></div>
@@ -41,7 +39,7 @@
 		</div>
 	</div>
 	<div class="type-line">
-		<div class="type-item float-left" ng-click="changeRoute('/exam')">
+		<div class="type-item float-left" ng-click="changeRoute('/exam','item=product')">
 			<div class="type-icon ">
 				<img src="../contents/svg/tijian.svg" >
 				<p>体检</p>

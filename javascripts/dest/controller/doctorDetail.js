@@ -56,6 +56,7 @@ define(function(){
 		// 初始化页面
 		$scope.init = function(){
 			$rootScope.hasBgColor = true;
+			Tool.noWindowListen();
 			$scope.getParams();
 			$scope.queryDoctor();
 			$scope.querySchedule();
@@ -280,10 +281,12 @@ define(function(){
 				if($scope.time.hasSelect){
 					if(!Tool.checkLogin()){
 						Tool.comfirm("请先登录并完善个人信息",function(){
+							$rootScope.hasTip = false;
 							Tool.changeRoute("/login");
 						})
 					}else if(!Tool.isUserInfoComplete()){
 						Tool.comfirm("请完善个人信息!",function(){
+							$rootScope.hasTip = false;
 							Tool.changeRoute("/user/userInfo");
 						})
 					}else{
@@ -324,7 +327,7 @@ define(function(){
 		// 打开时间选择窗口
 		$scope.openSelect = function(){
 			if($scope.time.noTime){
-				Tool.alert($scope,"此医生没有排班，暂不能下单。去其他医生看看吧!");
+				Tool.alert("此医生没有排班，暂不能下单。去其他医生看看吧!");
 			}else{
 				$scope.time.openSelect = true;
 			}
@@ -342,6 +345,7 @@ define(function(){
 				Tool.changeRoute("/doctor/askDoctor","id="+$scope.id);
 			}else{
 				Tool.comfirm("请先登录",function(){
+					$rootScope.hasTip = false;
 					Tool.changeRoute("/login");
 				})
 			}
@@ -356,6 +360,7 @@ define(function(){
 		$scope.switchFollow = function(){
 			if(!Tool.checkLogin()){
 				Tool.comfirm("请先登录!",function(){
+					$rootScope.hasTip = false;
 					Tool.changeRoute("/login");
 				})
 			}else{

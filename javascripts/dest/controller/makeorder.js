@@ -12,6 +12,8 @@ define(function(){
 
 		// 页面初始化
 		$scope.init = function(){
+			$rootScope.hasBgColor = false;
+			Tool.noWindowListen();
 			Tool.loadUserinfo();
 			$scope.checkGift();
 		}

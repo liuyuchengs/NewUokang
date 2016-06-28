@@ -1,11 +1,12 @@
 define(function(){
-	return function($scope,$http,$location,Ajax,Tool){
+	return function($scope,$rootScope,$location,Ajax,Tool){
 		$scope.phone = "" ;
 		$scope.password = "";
 		
 		//初始化页面
 		$scope.init = function(){
 			$rootScope.hasBgColor = false;
+			Tool.noWindowListen();
 		}
 
 		// 登陆

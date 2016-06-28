@@ -53,6 +53,7 @@ define(function(){
 		// 初始化页面
 		$scope.init = function(){
 			$rootScope.hasBgColor = true;
+			Tool.noWindowListen();
 			$scope.loadQueryParams();
 			$scope.order.hospitalId = $scope.hosId;
 			$scope.order.productId = $scope.proId;
@@ -237,10 +238,12 @@ define(function(){
 			if(!$scope.noSelectTime){
 				if(!Tool.checkLogin()){
 					Tool.comfirm("请先登录并完善个人信息",function(){
+						$rootScope.hasTip = false;
 						Tool.changeRoute("/login");
 					})
 				}else if(!Tool.isUserInfoComplete()){
 					Tool.comfirm("请完善个人信息!",function(){
+						$rootScope.hasTip = false;
 						Tool.changeRoute("/user/userinfo");
 					})
 				}else{
@@ -341,6 +344,7 @@ define(function(){
 		$scope.switchFollow = function(){
 			if(!Tool.checkLogin()){
 				Tool.comfirm("请先登录!",function(){
+					$rootScope.hasTip = false;
 					Tool.changeRoute("/login");
 				})
 			}else{

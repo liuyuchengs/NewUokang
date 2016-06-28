@@ -4019,3 +4019,81 @@ span, p {
     color: #999;
     line-height: 20px;
     margin-top: 10px; }
+
+.invite-container {
+  background-color: #00CBA5; }
+  .invite-container .bg1-container {
+    background: url("../../contents/img/invite-bg1.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 150px;
+    width: 320px; }
+  .invite-container .bg2-container {
+    height: 150px;
+    width: 320px;
+    background: url("../../contents/img/invite-bg2.png");
+    background-size: contain;
+    position: absolute;
+    left: 0px;
+    top: 50px; }
+  .invite-container .invite-content {
+    background-color: #33D5B7;
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 3px;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #fff;
+    text-align: center; }
+    .invite-container .invite-content .invite-title {
+      text-align: left;
+      font-size: 12px; }
+      .invite-container .invite-content .invite-title .tip-color {
+        color: #C2F338; }
+    .invite-container .invite-content .invite-code {
+      width: 135px;
+      height: 97px;
+      background: url("../../contents/img/invite-paper.png");
+      background-size: contain;
+      color: #1fc1d9;
+      display: inline-block;
+      margin-top: 30px;
+      text-align: center; }
+      .invite-container .invite-content .invite-code .title {
+        height: 30px;
+        line-height: 30px; }
+      .invite-container .invite-content .invite-code .code {
+        height: 30px;
+        width: 100px;
+        line-height: 30px;
+        background-color: #C9F197;
+        border-radius: 3px;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        color: #C55348; }
+    .invite-container .invite-content .invite-btn {
+      height: 30px;
+      line-height: 30px;
+      width: 180px;
+      background-color: #D63C44;
+      border-radius: 3px;
+      display: inline-block;
+      margin-top: 30px;
+      margin-bottom: 20px; }
+  .invite-container .invite-tip {
+    color: #fff;
+    font-size: 12px;
+    width: 90%;
+    margin-left: 5%;
+    padding-top: 30px;
+    background: url("../../contents/img/invite-bg3.png");
+    background-repeat: no-repeat;
+    background-size: contain; }
+    .invite-container .invite-tip .tip-title {
+      text-align: center; }
+    .invite-container .invite-tip .item .orders {
+      float: left;
+      width: 10px; }
+    .invite-container .invite-tip .item .text {
+      margin-left: 20px; }

@@ -49,6 +49,7 @@ define(["app","wx"],function(app,wx){
         
         //变量
         this.host = "http://192.168.0.102:3000";
+        //this.host = "https://192.168.0.222:8555/www"
         this.userInfo = {};
 
         /*
@@ -167,6 +168,11 @@ define(["app","wx"],function(app,wx){
             //截取掉最后一个"&"
             params = params.slice(0,params.length-1);
             return params;
+        }
+
+        //不监听window滚动
+        this.noWindowListen = function(){
+            window.onscroll = null;
         }
     }])
 

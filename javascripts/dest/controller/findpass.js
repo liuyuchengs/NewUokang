@@ -10,6 +10,7 @@ define(function(){
 		$scope.sendCodes = false;
 		
 		angular.element(document).ready(function(){
+			Tool.noWindowListen();
 			$rootScope.hasBgColor = true;
 		})
 

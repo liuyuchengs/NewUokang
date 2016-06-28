@@ -1,6 +1,5 @@
 define(function(){
-	return function($scope,$http,$location,Tool,Ajax){
-		$scope.loading = false;
+	return function($scope,$rootScope,$location,Tool,Ajax){
 		$scope.productId = null;
 		$scope.hospitalId = null;
 		$scope.product = null;
@@ -38,16 +37,13 @@ define(function(){
 
 		// 页面初始化
 		$scope.init = function(){
-			Ajax.loadHost($scope,function(){
-				$scope.loading = true;
-				$scope.loadParams();
-				$scope.loadProduct();
-				$scope.loadHospital();
-				$scope.loadHopitalImg();
-				$scope.loadProductItem();
-				$scope.loadSchedule();
-				$scope.loading = false;
-			})
+			Tool.noWindowListen();
+			$scope.loadParams();
+			$scope.loadProduct();
+			$scope.loadHospital();
+			$scope.loadHopitalImg();
+			$scope.loadProductItem();
+			$scope.loadSchedule();
 		}
 
 		// 切换导航条
@@ -74,13 +70,10 @@ define(function(){
 
 		// 加载排班信息
 		$scope.loadSchedule = function(){
-			var url = $scope.host+"/wx/schedule/querybyhospitalid";
-			var params = "hospitalId="+$scope.hospitalId;
-			$http.post(url,params,{
-				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/schedule/querybyhospitalid",
+				params:{hospitalId:$scope.hospitalId},
+			}).then(function(data){
 				if(data.length>0){
 					$scope.mergeSchedule(data);
 					$scope.schedules = data;
@@ -88,8 +81,10 @@ define(function(){
 				}else{
 					$scope.noSchedule = true;
 				}
-			}).error(function(){
+			}).catch(function(){
 				Tool.alert("加载排班信息失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -116,23 +111,22 @@ define(function(){
 
 		// 加载体检套餐信息
 		$scope.loadProduct = function(){
-			var url = $scope.host+"/wx/product/packagedetal";
-			var params = "packageid="+$scope.productId;
-			$http.post(url,params,{
-				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/product/packagedetal",
+				params:{packageid:$scope.productId},
+			}).then(function(data){
 				if(data.code==0){
 					$scope.mergeProduct(data.data);
 					$scope.product = data.data;
 					$scope.order.productName = $scope.product.title;
 					$scope.order.preferPrice = $scope.product.preferPrice+$scope.product.preferPriceType;
 				}else{
-					Tool.alert($scope,"加载套餐信息失败，请稍后再试!");
+					Tool.alert("加载套餐信息失败，请稍后再试!");
 				}
-			}).error(function(){
-				Tool.alert($scope,"加载套餐信息失败，请稍后再试!");
+			}).catch(function(){
+				Tool.alert("加载套餐信息失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -150,36 +144,34 @@ define(function(){
 
 		// 加载体检套餐的项目信息
 		$scope.loadProductItem = function(){
-			var url = $scope.host+"/wx/product/packagedetalItem";
-			var params = "packageid="+$scope.productId;
-			$http.post(url,params,{
-				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/product/packagedetalItem",
+				params:{packageid:$scope.productId},
+			}).then(function(data){
 				$scope.productItem = data;
-			}).error(function(){
-				Tool.alert($scope,"加载体检项目失败，请稍后再试!");
+			}).catch(function(){
+				Tool.alert("加载体检项目失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading =false;
 			})
 		}
 
 		// 加载医院信息
 		$scope.loadHospital = function(){
-			var url = $scope.host+"/wx/product/hospitalbyid";
-			var params = "id="+$scope.hospitalId;
-			$http.post(url,params,{
-				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/product/hospitalbyid",
+				params:{id:$scope.hospitalId},
+			}).then(function(data){
 				if(data.code==0){
 					$scope.mergeHospital(data.data);
 					$scope.hospital = data.data;
 					$scope.order.hospitalAddress = $scope.hospital.address;
 					$scope.order.hospitalName = $scope.hospital.name;
 				}
-			}).error(function(){
-				Tool.alert($scope,"加载医院信息失败，请稍后再试!");
+			}).catch(function(){
+				Tool.alert("加载医院信息失败，请稍后再试!");
+			}).finally(function(){
+				$rootScope.loading = false;
 			})
 		}
 
@@ -192,13 +184,10 @@ define(function(){
 
 		// 加载医院图片
 		$scope.loadHopitalImg = function(){
-			var url = $scope.host+"/wx/image/querybymainid";
-			var params = "type=HOSPITAL&mainId="+$scope.hospitalId;
-			$http.post(url,params,{
-				headers:{
-					'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-				}
-			}).success(function(data){
+			Ajax.post({
+				url:Tool.host+"/wx/image/querybymainid",
+				params:{type:"HOSPITAL",mainId:$scope.hospitalId},
+			}).then(function(data){
 				if(data[0].url==""|data[0].url==null){
 					data[0].url = "../contents/img/p_default.png";
 				}
@@ -229,26 +218,25 @@ define(function(){
 		
 		// 跳转到详细页面
 		$scope.detail = function(){
-			if(!Tool.isLogin()){
-				Tool.comfirm($scope,"请先登录并完善个人信息!",function(){
-					Tool.goPage("/new/htmls/login.html");
+			if(!Tool.checkLogin()){
+				Tool.comfirm("请先登录并完善个人信息!",function(){
+					$rootScope.hasTip = false;
+					Tool.changeRoute("/login");
 				})
 			}else if(!Tool.isUserInfoComplete()){
-				Tool.comfirm($scope,"请完善个人信息!",function(){
-					Tool.goPage("/new/htmls/userinfo.html");
+				Tool.comfirm("请完善个人信息!",function(){
+					$rootScope.hasTip = false;
+					Tool.changeRoute("/user/userinfo");
 				})
 			}else{
-				$scope.loading = true;
-				var url = $scope.host+"/wx/order/checkCodeMoney";
-				var params = "productId="+$scope.order.productId;
-				var accessToken = Tool.getLocal("accessToken");
-				$http.post(url,params,{
+				Tool.loadUserinfo();
+				Ajax.post({
+					url:Tool.host+"/wx/order/checkCodeMoney",
+					params:{productId:$scope.order.productId},
 					headers:{
-						"Content-type":"application/x-www-form-urlencoded;charset=UTF-8",
-						"accessToken":accessToken
+						"accessToken":Tool.userInfo.accessToken
 					}
-				}).success(function(data){
-					$scope.loading=false;
+				}).then(function(data){
 					$scope.order.dealMoney = data.dealMoney;
 					$scope.order.payMoney = data.payMoney;
 					$scope.order.realMoney = data.realMoney;
@@ -257,10 +245,11 @@ define(function(){
 						$scope.order.flag = null;
 					}
 					Tool.setSession("makeorder",$scope.order);
-					Tool.goPage("/new/htmls/makeorder.html");
-				}).error(function(){
-					$scope.loading=false;
+					Tool.changeRoute("/makeorder");
+				}).catch(function(){
 					Tool.alert($scope,"加载App付款金额失败!")
+				}).finally(function(){
+					$rootScope.loading = false;
 				})
 			}
 		}

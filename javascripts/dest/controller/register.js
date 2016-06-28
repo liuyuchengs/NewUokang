@@ -12,6 +12,7 @@ define(function(){
 		// 加载host
 		$scope.init = function(){
 			$rootScope.hasBgColor = true;
+			Tool.noWindowListen();
 		}
 
 		// 注册按钮处理函数

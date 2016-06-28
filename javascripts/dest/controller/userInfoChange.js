@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$location,Ajax,Tool){
+	return function($scope,$rootScope,$location,Ajax,Tool){
 		$scope.title;
 		$scope.tip;
 		$scope.val="";
@@ -25,6 +25,7 @@ define(function(){
 		//页面初始化
 		angular.element(document).ready(function(){
 			$rootScope.hasBgColor = true;
+			Tool.noWindowListen();
 			$scope.item = $location.search().item;
 			$scope.title = $scope.titleParams[$scope.item];
 			$scope.tip = $scope.tipParams[$scope.item];

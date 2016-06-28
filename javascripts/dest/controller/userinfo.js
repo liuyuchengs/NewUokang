@@ -10,6 +10,7 @@ define(function(){
 		//页面初始化
 		$scope.init = function(){
 			$rootScope.hasBgColor = true;
+			Tool.noWindowListen();
 			var user = Tool.getLocal("user");
 			$scope.phone = user.phone || "";
 			$scope.realname = user.realname || "";

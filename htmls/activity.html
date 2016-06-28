@@ -1,8 +1,6 @@
 <div class="header" data-ng-init="init()">
-	<div class="header-item float-left">
-		<a href="home.html">
-			<img src="../contents/svg/back.svg">
-		</a>
+	<div class="header-item float-left" ng-click="changeRoute('/home')">
+		<img src="../contents/svg/back.svg">
 	</div>
 	<div class="title">
 		活动专区
@@ -31,3 +29,4 @@
 		</div>
 	</li>
 </ul>
+<div class="cush-tip" ng-if="noProduct">{{$parent.noProductText}}</div>

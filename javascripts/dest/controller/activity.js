@@ -1,36 +1,45 @@
 define(function(){
-    return function($scope,$rootScope,$http,Tool,Ajax){
+    return function($scope,$rootScope,Tool,Ajax){
         // 查询参数
         $scope.queryParams = {
             pageRows:10,
             currentPage:1
         }
 
+        $scope.noProduct = false;
+        $scope.noProductText = "";
         $scope.products = [];
 
         // 页面初始化
         $scope.init = function(){
             $rootScope.hasBgColor = false;
-            Ajax.loadHost($scope,function(){
-                $scope.queryActivity();
-            })
+            $scope.queryActivity();
         }
 
         // 查询活动数据
         $scope.queryActivity = function(){
-            var url = $scope.host+"/wx/product/queryActivity";
-            var params = Tool.convertParams($scope.queryParams);
-            $http.post(url,params,{
-                headers:{
-                    'Content-type':'application/x-www-form-urlencoded;charset=UTF-8',
-                }
-            }).success(function(data){
+            Ajax.post({
+                url:Tool.host+"/wx/product/queryActivity",
+                params:$scope.queryParams,
+            }).then(function(data){
                 if(data.code ===0){
-                    $scope.mergeActivity(data.data);
-                    $scope.products = data.data;
+                    if(data.data.length<1){
+                        if($scope.products.length<1){
+                            $scope.noProductText = "暂无数据";
+                        }else{
+                            $scope.noProductText = "已经没有了!";
+                        }
+                        $scope.noProduct = true;
+                    }else{
+                        $scope.mergeActivity(data.data);
+                        $scope.products = $scope.products.concat(data.data);
+                    }
+                    
                 }
-            }).error(function(){
-                Tool.alert($scope,"获取数据失败，请稍后再试!");
+            }).catch(function(){
+                Tool.alert("获取数据失败，请稍后再试!");
+            }).finally(function(){
+                $rootScope.loading = false;
             })
         }
 
@@ -55,13 +64,33 @@ define(function(){
         $scope.detail = function(productId,hospitalId,type){
             if(productId&&hospitalId&&type){
                 if(type===5){
-                    Tool.goPage("/new/htmls/exam-detail.html#?productId="+productId+"&hospitalId="+hospitalId);
+                    Tool.changeRoute("/exam/detail","productId="+productId+"&hospitalId="+hospitalId);
                 }if(type===6){
-                    Tool.goPage("/new/htmls/product-detail.html#?productId="+productId+"&hospitalId="+hospitalId+"&activityp=元/次");
+                    Tool.changeRoute("/exam/detail","productId="+productId+"&hospitalId="+hospitalId+"&activityp=元/次");
                 }else{
-                    Tool.goPage("/new/htmls/product-detail.html#?productId="+productId+"&hospitalId="+hospitalId);
+                    Tool.changeRoute("/product/detail","productId="+productId+"&hospitalId="+hospitalId);
                 }
             }
         }
+
+        $scope.loadNext = function(){
+            $scope.queryParams.currentPage++;
+            $scope.queryActivity();
+        }
+
+        // 滚动监听
+		window.onscroll = function(){
+			if($rootScope.loading||$scope.noProduct){
+				return;
+			}
+			var body = document.body;
+			var html = document.documentElement;
+			var height = Math.max( body.scrollHeight, body.offsetHeight,html.clientHeight, html.scrollHeight, html.offsetHeight );
+			if(height>window.innerHeight){
+				if (height - window.scrollY - window.innerHeight < 100) {
+					$scope.loadNext();
+				}
+			}
+		}
     }
 })

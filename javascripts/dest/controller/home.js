@@ -170,6 +170,13 @@ define(function(){
 			
 		}
 
+		// 图片轮播跳转
+		$scope.activity = function(id){
+			if(id===1){
+				Tool.changeRoute("/activity");
+			}
+		}
+
 		// 分页查询，查询下一页
 		$scope.loadNext = function(){
 			$scope.currentPage++;
