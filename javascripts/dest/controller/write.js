@@ -240,7 +240,7 @@ define(function(){
 			if($scope.queryParams.postName==""||$scope.queryParams.postName==null||$scope.queryParams.postContent==""||$scope.queryParams.postContent==null){
 				Tool.alert("请填写发帖内容!");
 			}else{
-				var url = $scope.host+"/wx/post/addPost";
+				var url = Tool.host+"/wx/post/addPost";
 				merge();
 				$rootScope.loading = true;
 				$.ajax({

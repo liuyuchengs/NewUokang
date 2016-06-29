@@ -5,11 +5,18 @@
 	<div class="title">
 		邀请好友
 	</div>
+    <div class="header-item-width float-right" ng-click="changeRoute('/invite/notes')">
+		<span class="text">邀请记录</span>
+	</div>
 </div>
 <div class="has-header"></div>
-<div class="invite-container" ng-style="bgStyle">
-    <div class="bg1-container"></div>
-    <div class="bg2-container"></div>
+<div class="invite-container" ng-style="bodyStyle">
+    <div class="grab-imgtip" ng-if="showTip">
+        <div class="grab-tip"><img src="../contents/svg/grab-close.svg" class="close" ng-click="switchTip('close')"></div>
+    </div>
+    <div class="bg1-container" ng-style="bgStyle">
+        <div class="bg2-container"></div>
+    </div>
     <div class="invite-content">
         <div class="invite-title">
             <p>1.邀请好友成功即可每人获得<span class="tip-color">300元</span>代金券</p>
@@ -18,9 +25,10 @@
         </div>
         <div class="invite-code">
             <div class="title">我的邀请码</div>
-            <div class="code">556681</div>
+            <div class="code" ng-bind="code"></div>
         </div>
-        <div class="invite-btn">分享我的邀请码给好友</div>
+        <p></p>
+        <div class="invite-btn" ng-click="share()">分享我的邀请码给好友</div>
     </div>
     <div class="invite-tip">
         <p class="tip-title">活动详情</p>

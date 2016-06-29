@@ -402,7 +402,7 @@ define(["angular","wx"],function(angular,wx){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/register.js",
                     name:"registerCtrl",
-                    inject:["$scope","$rootScope","$interval","Tool","Ajax"],
+                    inject:["$scope","$rootScope","$location","$interval","Tool","Ajax"],
                 },$controllerProvider)
             }
         }).when("/agreement",{
@@ -470,10 +470,31 @@ define(["angular","wx"],function(angular,wx){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/invite.js",
                     name:"inviteCtrl",
-                    inject:["$scope","$rootScope","$location","Tool","Ajax"],
+                    inject:["$scope","$rootScope","$location","Tool","Ajax","Weixin"],
                 },$controllerProvider)
             }
-        }).otherwise({redirectTo:"/home"})
+        }).when("/invite/register",{
+            templateUrl:"inviteregister.html",
+            controller:"inviteCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/invite.js",
+                    name:"inviteCtrl",
+                    inject:["$scope","$rootScope","$location","Tool","Ajax","Weixin"],
+                },$controllerProvider)
+            }
+        }).when("/invite/notes",{
+            templateUrl:"invitenotes.html",
+            controller:"inviteNotesCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/inviteNotes.js",
+                    name:"inviteNotesCtrl",
+                    inject:["$scope","$rootScope","Tool","Ajax"],
+                },$controllerProvider)
+            }
+        })
+        .otherwise({redirectTo:"/home"})
     }])
 
     //将require的控制器注册到Module中
@@ -633,7 +654,7 @@ define(["angular","wx"],function(angular,wx){
     app.service("Tool",["$rootScope","$location",function($rootScope,$location){
         
         //变量
-        this.host = "http://192.168.0.104:3000";
+        this.host = "http://192.168.0.102:3000";
         //this.host = "https://192.168.0.222:8555/www"
         this.userInfo = {};
 

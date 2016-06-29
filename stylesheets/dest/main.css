@@ -115,6 +115,9 @@ span, p {
       text-align: center;
       display: inline-block;
       margin-top: 5px; }
+    .header .header-item-width .text {
+      height: 50px;
+      line-height: 50px; }
   .header .follow .icon {
     display: inline-block;
     height: 15px;
@@ -1594,6 +1597,12 @@ span, p {
     right: 25px;
     background: url("../../contents/svg/grab-tip.svg");
     background-size: contain; }
+    .grab-imgtip .grab-tip .close {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      bottom: 0px;
+      right: 0px; }
   .grab-imgtip .grab-tip:before {
     content: "点击上方按钮进行分享";
     color: #fff;
@@ -2978,8 +2987,11 @@ span, p {
         float: left; }
       .interaction-content .card li .container {
         margin-left: 40px; }
-        .interaction-content .card li .container .name {
+        .interaction-content .card li .container .name span:first-child {
           color: #1fc1d9; }
+        .interaction-content .card li .container .name span:last-child {
+          color: #999;
+          float: right; }
         .interaction-content .card li .container .text {
           color: #999;
           margin-top: 5px; }
@@ -4026,16 +4038,16 @@ span, p {
     background: url("../../contents/img/invite-bg1.png");
     background-size: contain;
     background-repeat: no-repeat;
-    height: 150px;
-    width: 320px; }
-  .invite-container .bg2-container {
-    height: 150px;
-    width: 320px;
-    background: url("../../contents/img/invite-bg2.png");
-    background-size: contain;
-    position: absolute;
-    left: 0px;
-    top: 50px; }
+    position: relative; }
+    .invite-container .bg1-container .bg2-container {
+      height: 150px;
+      width: 320px;
+      background: url("../../contents/img/invite-bg2.png");
+      background-size: contain;
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      margin-left: -160px; }
   .invite-container .invite-content {
     background-color: #33D5B7;
     width: 90%;
@@ -4044,13 +4056,14 @@ span, p {
     padding: 10px;
     box-sizing: border-box;
     color: #fff;
-    text-align: center; }
+    text-align: center;
+    position: relative; }
+    .invite-container .invite-content .tip-color {
+      color: #C2F338; }
     .invite-container .invite-content .invite-title {
       text-align: left;
       font-size: 12px; }
-      .invite-container .invite-content .invite-title .tip-color {
-        color: #C2F338; }
-    .invite-container .invite-content .invite-code {
+    .invite-container .invite-content .invite-code, .invite-container .invite-content .invite-code-r {
       width: 135px;
       height: 97px;
       background: url("../../contents/img/invite-paper.png");
@@ -4059,10 +4072,10 @@ span, p {
       display: inline-block;
       margin-top: 30px;
       text-align: center; }
-      .invite-container .invite-content .invite-code .title {
+      .invite-container .invite-content .invite-code .title, .invite-container .invite-content .invite-code-r .title {
         height: 30px;
         line-height: 30px; }
-      .invite-container .invite-content .invite-code .code {
+      .invite-container .invite-content .invite-code .code, .invite-container .invite-content .invite-code-r .code {
         height: 30px;
         width: 100px;
         line-height: 30px;
@@ -4081,11 +4094,28 @@ span, p {
       display: inline-block;
       margin-top: 30px;
       margin-bottom: 20px; }
+    .invite-container .invite-content .invite-title-r {
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background-color: #5BDDB9;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%; }
+    .invite-container .invite-content .invite-tip-r {
+      font-size: 12px;
+      display: inline-block;
+      text-align: left;
+      margin-top: 30px; }
+    .invite-container .invite-content .invite-code-r {
+      margin-top: 50px; }
   .invite-container .invite-tip {
     color: #fff;
     font-size: 12px;
     width: 90%;
     margin-left: 5%;
+    padding-bottom: 20px;
     padding-top: 30px;
     background: url("../../contents/img/invite-bg3.png");
     background-repeat: no-repeat;
@@ -4097,3 +4127,45 @@ span, p {
       width: 10px; }
     .invite-container .invite-tip .item .text {
       margin-left: 20px; }
+
+.invite-notes-container {
+  background-color: #C2FFF4; }
+  .invite-notes-container .bg-container {
+    background: url("../../contents/img/invitenotes-b.png");
+    background-size: contain;
+    position: relative; }
+    .invite-notes-container .bg-container .bg {
+      background: url("../../contents/img/invitenotes-p.png");
+      background-size: contain;
+      width: 320px;
+      height: 162px;
+      position: absolute;
+      left: 50%;
+      margin-left: -160px;
+      bottom: -35px; }
+  .invite-notes-container .notes-content {
+    background-color: #00CBA5;
+    border-radius: 10px;
+    width: 90%;
+    margin-left: 5%;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    min-height: 300px; }
+    .invite-notes-container .notes-content .notes-tip {
+      overflow: hidden;
+      background-color: #5CDDBA; }
+      .invite-notes-container .notes-content .notes-tip .tip-item {
+        float: left;
+        width: 33.33%;
+        text-align: center;
+        height: 40px;
+        line-height: 40px; }
+    .invite-notes-container .notes-content .notes-item {
+      overflow: hidden;
+      background-color: #33D5B7; }
+      .invite-notes-container .notes-content .notes-item div {
+        float: left;
+        width: 33.33%;
+        text-align: center;
+        height: 30px;
+        line-height: 30px; }

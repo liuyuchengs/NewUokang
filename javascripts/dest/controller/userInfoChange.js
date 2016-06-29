@@ -7,12 +7,20 @@ define(function(){
 			men:true,
 			women:false
 		}
+		$scope.payParams = {
+			flag:null,
+			state:null,
+			account:null,
+			accessToken:null,
+		}
 		$scope.titleParams = {
 			"realname":"真实姓名",
 			"sex":"选择性别",
 			"phone":"手机号码",
 			"age":"年龄",
 			"nickname":"昵称",
+			"wxpay":"账号",
+			"alipay":"账号"
 		}
 		$scope.tipParams = {
 			"realname":"请填写姓名",
@@ -20,47 +28,96 @@ define(function(){
 			"phone":"请填写手机号码",
 			"age":"请填写年龄",
 			"nickname":"请填写昵称",
+			"wxpay":"请填写微信账号",
+			"alipay":"请填写支付宝账号",
 		}
 
 		//页面初始化
 		angular.element(document).ready(function(){
 			$rootScope.hasBgColor = true;
 			Tool.noWindowListen();
-			$scope.item = $location.search().item;
-			$scope.title = $scope.titleParams[$scope.item];
-			$scope.tip = $scope.tipParams[$scope.item];
-			if($scope.item=="sex"){
-				$scope.hassex = true;
-				$scope.val = "男";
-			}else{
-				$scope.hasinput = true;
-			}
 			if(Tool.checkLogin()){
 				Tool.loadUserinfo();
+				$scope.item = $location.search().item;
+				$scope.title = $scope.titleParams[$scope.item];
+				$scope.tip = $scope.tipParams[$scope.item];
+				if($scope.item=="sex"){
+					$scope.hassex = true;
+					$scope.val = "男";
+				}else{
+					$scope.hasinput = true;
+				}
+				if(Tool.checkLogin()){
+					Tool.loadUserinfo();
+				}else{
+					Tool.changeRoute("/user");
+				}
+				if($scope.item==="wxpay"){
+					$scope.payParams.flag = 2;
+				}
+				if($scope.item==="alipay"){
+					$scope.payParams.flag = 1;
+				}
+				if($location.search().state){
+					$scope.payParams.state = $location.search().state;
+				}
 			}else{
 				Tool.changeRoute("/user");
 			}
+			
 		})
 
 		//修改信息
 		$scope.change = function(){
 			if($scope.check()){
-				Ajax.post({
-					url:Tool.host+"/wx/mycount/updateUserInfo",
-					params:{name:$scope.item,val:$scope.val},
-					headers:{
-						"accessToken":Tool.userInfo.accessToken,
-					}
-				}).then(function(data){
-					if(data.code==0){
-						Tool.setLocal("user",data.data);
-						Tool.changeRoute("/user/userinfo");
-					}else if(data.code==1){
-						Tool.alert(data.message);
-					}
-				}).catch(function(){
-					Tool.alert("数据更新失败!");
-				})
+				if($scope.item==="wxpay"||$scope.item==="alipay"){
+					$scope.payParams.account = $scope.val;
+					$scope.payParams.accessToken = Tool.userInfo.accessToken;
+					Ajax.post({
+						url:Tool.host+"/wx/withDraw/bound",
+						params:$scope.payParams,
+					}).then(function(data){
+						if(data.code==0){
+							if($scope.payParams.flag==1){
+								Tool.userInfo.alipay = $scope.val;
+							}
+							if($scope.payParams.flag==2){
+								Tool.userInfo.wxpay = $scope.val;
+							}
+							Tool.setLocal("user",Tool.userInfo);
+							Tool.alert("绑定成功!",function(){
+								$rootScope.hasTip = false;
+								Tool.changeRoute("/user/userinfo");
+							});	
+						}else{
+							Tool.alert("绑定失败,请稍后再试!");
+						}
+					}).catch(function(){
+						Tool.alert("绑定失败，请稍后再试！");
+					}).finally(function(){
+						$rootScope.loading = false;
+					})
+				}else{
+					Ajax.post({
+						url:Tool.host+"/wx/mycount/updateUserInfo",
+						params:{name:$scope.item,val:$scope.val},
+						headers:{
+							"accessToken":Tool.userInfo.accessToken,
+						}
+					}).then(function(data){
+						if(data.code==0){
+							Tool.setLocal("user",data.data);
+							Tool.changeRoute("/user/userinfo");
+						}else if(data.code==1){
+							Tool.alert(data.message);
+						}
+					}).catch(function(){
+						Tool.alert("数据更新失败!");
+					}).finally(function(){
+						$rootScope.loading = false;
+					})
+				}
+				
 			}
 		}
 
@@ -98,7 +155,14 @@ define(function(){
 					Tool.alert("请输入正确的年龄!");
 					return false;
 				}
-			}else{
+			}else if($scope.item=="wxpay"||$scope.item=="alipay"){
+				if($scope.val.length<3){
+					return false;
+				}else{
+					return true;
+				}
+			}
+			else{
 				Tool.alert("未识别需要修改的项目,请稍后再试!");
 				return false;
 			}

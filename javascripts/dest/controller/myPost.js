@@ -29,31 +29,29 @@ define(function(){
 		//切换导航条
 		$scope.switch = function(p){
 			if(p==="publish"){
-				if(!$scope.params.hasPublish){
-					$scope.params.hasPublish = true;
-					$scope.posts = [];
-					$scope.replys = [];
-					$scope.loadNext =function(){
-						$scope.queryParams.currentPage++;
-						$scope.queryPost();
-					}
+				$scope.params.hasPublish = true;
+				$scope.posts = [];
+				$scope.replys = [];
+				$scope.queryParams.currentPage =  1;
+				$scope.loadNext =function(){
+					$scope.queryParams.currentPage++;
 					$scope.queryPost();
 				}
+				$scope.queryPost();
 				if($scope.params.hasReply){
 					$scope.params.hasReply = false;
 				}
 			}
 			if(p==="reply"){  
-				if(!$scope.params.hasReply){
-					$scope.params.hasReply = true;
-					$scope.posts = [];
-					$scope.replys = [];
-					$scope.loadNext =function(){
-						$scope.queryParams.currentPage++;
-						$scope.queryReply();
-					}
+				$scope.params.hasReply = true;
+				$scope.posts = [];
+				$scope.replys = [];
+				$scope.queryParams.currentPage =  1;
+				$scope.loadNext =function(){
+					$scope.queryParams.currentPage++;
 					$scope.queryReply();
 				}
+				$scope.queryReply();
 				if($scope.params.hasPublish){
 					$scope.params.hasPublish = false;
 				}
@@ -163,6 +161,53 @@ define(function(){
 		// 跳转到帖子页面
 		$scope.goPost = function(id){
 			Tool.changeRoute("/interaction/detail","id="+id);
+		}
+
+		//删除帖子
+		$scope.deletePost = function(id,$event){
+			$event.stopPropagation();
+			Tool.comfirm("确定要删除吗?",function(){
+				$rootScope.hasTip = false;
+				Ajax.post({
+					url:Tool.host+"/wx/post/deletePost",
+					params:{postId:id,accessToken:Tool.userInfo.accessToken},
+				}).then(function(data){
+					if(data.code==0){
+						$scope.deleteObj(id,$scope.posts);
+					}
+				}).catch(function(){
+					Tool.alert("删除失败!");
+				}).finally(function(){
+					$rootScope.loading = false;
+				})
+			})
+		}
+
+		$scope.deleteReply = function(postid,id){
+			Tool.comfirm("确定要删除吗?",function(){
+				$rootScope.hasTip = false;
+				Ajax.post({
+					url:Tool.host+"/wx/repliesMessage/deleteReplies",
+					params:{postId:postid,repliesId:id,accessToken:Tool.userInfo.accessToken},
+				}).then(function(data){
+					if(data.code==0){
+						$scope.switch("reply");
+					}
+				}).catch(function(){
+					Tool.alert("删除失败!");
+				}).finally(function(){
+					$rootScope.loading = false;
+				})
+			})
+		}
+
+		//从帖子数据中删除指定帖子
+		$scope.deleteObj = function(id,array){
+			for(var index in array){
+				if(array[index].id==id){
+					array.splice(index,1);
+				}
+			}
 		}
 	}
 })

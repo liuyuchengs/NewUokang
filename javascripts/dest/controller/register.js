@@ -1,10 +1,11 @@
 define(function(){
-	return function($scope,$rootScope,$interval,Tool,Ajax){
+	return function($scope,$rootScope,$location,$interval,Tool,Ajax){
 		$scope.phone=""; //手机号码
 		$scope.password=""; //密码
 		$scope.passwordAgian=""; //确认密码
 		$scope.code=""; //验证码
 		$scope.codeText="获取短信验证码";
+		$scope.referralCode = "";
 		$scope.codeState = true; //验证码按钮是否可用
 		$scope.disable = false;
 		$scope.phoneCheckResult = false;
@@ -13,6 +14,9 @@ define(function(){
 		$scope.init = function(){
 			$rootScope.hasBgColor = true;
 			Tool.noWindowListen();
+			if($location.search().code){
+				$scope.referralCode = $location.search().code;
+			}
 		}
 
 		// 注册按钮处理函数
@@ -116,7 +120,7 @@ define(function(){
 		$scope.registering = function(){
 			Ajax.post({
 				url:Tool.host+"/wx/register/register",
-				params:{phone:$scope.phone,verifyCode:$scope.code,password:$scope.password},
+				params:{phone:$scope.phone,verifyCode:$scope.code,password:$scope.password,referralCode:$scope.referralCode},
 			}).then(function(data){
 				if(data.code==0){
 					Tool.setLocal("user",data.data);

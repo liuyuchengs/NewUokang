@@ -27,6 +27,8 @@ define(function(){
 					}
 				}).catch(function(){
 					Tool.alert("登录错误，请稍后再试！");
+				}).finally(function(){
+					$rootScope.loading = false;
 				})
 			}else{
 				Tool.alert("请检查手机号码或者密码长度符合要求！");

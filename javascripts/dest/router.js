@@ -318,7 +318,7 @@ define(["app","require"],function(app,require){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/register.js",
                     name:"registerCtrl",
-                    inject:["$scope","$rootScope","$interval","Tool","Ajax"],
+                    inject:["$scope","$rootScope","$location","$interval","Tool","Ajax"],
                 },$controllerProvider)
             }
         }).when("/agreement",{
