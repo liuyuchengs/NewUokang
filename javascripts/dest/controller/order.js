@@ -22,9 +22,13 @@ define(function(){
 		$scope.init = function(){
 			$rootScope.hasBgColor = true;
 			Tool.noWindowListen();
-			Tool.loadUserinfo();
-			$scope.getParams();
-			$scope.loadOrder();
+			if(Tool.checkLogin()){
+				Tool.loadUserinfo();
+				$scope.getParams();
+				$scope.loadOrder();
+			}else{
+				Tool.changeRoute("/user");
+			}
 		}
 
 		// 获取查询参数

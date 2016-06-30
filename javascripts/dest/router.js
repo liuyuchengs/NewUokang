@@ -336,9 +336,23 @@ define(["app","require"],function(app,require){
         }).when("/write/say",{
             templateUrl:"writesay.html",
             controller:"writeCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/write.js",
+                    name:"writeCtrl",
+                    inject:["$scope","$rootScope","Tool","Ajax"],
+                },$controllerProvider)
+            }
         }).when("/write/note",{
             templateUrl:"writenote.html",
             controller:"writeCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/write.js",
+                    name:"writeCtrl",
+                    inject:["$scope","$rootScope","Tool","Ajax"],
+                },$controllerProvider)
+            }
         }).when("/user/mypost",{
             templateUrl:"mypost.html",
             controller:"myPostCtrl",

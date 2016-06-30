@@ -259,12 +259,16 @@ define(function(){
 						if(data.code==0){
 							Tool.changeRoute("/interaction");
 						}else{
-							Tool.alert("连接数据失败，请稍后再试!");
+							Tool.alert("连接失败，请稍后再试!");
 						}
+						$rootScope.$apply();
 					},
 					error:function(){
 						$rootScope.loading = false;
 						$scope.postData = new FormData();
+						Tool.alert("连接失败，请稍后再试!");
+						$rootScope.$apply();
+						$scope.$apply();
 					}
 				})
 			}

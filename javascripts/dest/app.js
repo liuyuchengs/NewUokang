@@ -112,7 +112,7 @@ define(["angular","wx"],function(angular,wx){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/askDoctor.js",
                     name:"askDoctorCtrl",
-                    inject:["$scope","$rootScope","$location","Tool","Ajax"],
+                    inject:["$scope","$rootScope","$location","$http","Tool","Ajax"],
                 },$controllerProvider)
             }
         }).when("/doctor/detail",{
@@ -162,7 +162,7 @@ define(["angular","wx"],function(angular,wx){
                 userinfo:loadController({
                     url:"../javascripts/dest/controller/userInfo.js",
                     name:"userInfoCtrl",
-                    inject:["$scope","$rootScope","Tool"],   
+                    inject:["$scope","$rootScope","$timeout","Tool"],   
                 },$controllerProvider)
             }
         }).when("/user/cush",{
@@ -372,7 +372,7 @@ define(["angular","wx"],function(angular,wx){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/order.js",
                     name:"orderCtrl",
-                    inject:["$scope","$rootScope","$http","Tool"],
+                    inject:["$scope","$rootScope","$location","Ajax","Tool"],
                 },$controllerProvider)
             }
         }).when("/pay",{
@@ -382,7 +382,7 @@ define(["angular","wx"],function(angular,wx){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/pay.js",
                     name:"payCtrl",
-                    inject:["$scope","$rootScope","$http","Tool"],
+                    inject:["$scope","$rootScope","$location","Tool","Weixin"],
                 },$controllerProvider)
             }
         }).when("/pay/result",{
@@ -392,7 +392,7 @@ define(["angular","wx"],function(angular,wx){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/payResult.js",
                     name:"payResultCtrl",
-                    inject:["$scope","$rootScope","$http","Tool"],
+                    inject:["$scope","$rootScope","$location","Tool"],
                 },$controllerProvider)
             }
         }).when("/register",{
@@ -420,9 +420,23 @@ define(["angular","wx"],function(angular,wx){
         }).when("/write/say",{
             templateUrl:"writesay.html",
             controller:"writeCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/write.js",
+                    name:"writeCtrl",
+                    inject:["$scope","$rootScope","Tool","Ajax"],
+                },$controllerProvider)
+            }
         }).when("/write/note",{
             templateUrl:"writenote.html",
             controller:"writeCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/write.js",
+                    name:"writeCtrl",
+                    inject:["$scope","$rootScope","Tool","Ajax"],
+                },$controllerProvider)
+            }
         }).when("/user/mypost",{
             templateUrl:"mypost.html",
             controller:"myPostCtrl",
@@ -780,6 +794,15 @@ define(["angular","wx"],function(angular,wx){
         this.noWindowListen = function(){
             window.onscroll = null;
         }
+
+        this.getQueryString = function(name){
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        }
     }])
 
     // 微信服务
@@ -838,6 +861,8 @@ define(["angular","wx"],function(angular,wx){
                 wx.config(params);
             }).catch(function(){
                 Tool.alert("初始化WX对象失败，请稍后再试！");
+            }).finally(function(){
+                $rootScope.loading =false;
             })
         }
 
@@ -933,14 +958,14 @@ define(["angular","wx"],function(angular,wx){
                     params.signType = "MD5";
                     params.paySign = data.data.sign;
                     if(params.timestamp==""||params.timestamp==null||params.nonceStr==""||params.nonceStr==null||params.package==""||params.package==null||params.signType==""||params.signType==null||params.paySign==""||params.paySign==null){
-                        scope.loading = false;
-                        Tool.alert(scope,"请求支付参数失败，请稍后再试!");
+                        Tool.alert("请求支付参数失败，请稍后再试!");
                     }else{
-                        scope.loading = false;
                         wx.chooseWXPay(params);
                     }
                 }).catch(function(){
                     Tool.alert("请求支付参数失败，请稍后再试!");
+                }).finally(function(){
+                    $rootScope.loading = false;
                 })
             }
         }

@@ -1,16 +1,12 @@
 <div class="header" data-ng-init="init()">
-	<div class="header-item float-left">
-		<a href="home.html">
-			<img src="../contents/svg/back.svg">
-		</a>
+	<div class="header-item float-left" ng-click="changeRoute('/home')">
+		<img src="../contents/svg/back.svg">
 	</div>
 	<div class="title">
 		支付结果
 	</div>
-	<div class="header-item float-right">
-		<a href="user.html">
-			<img src="../contents/svg/users.svg">
-		</a>
+	<div class="header-item float-right" ng-click="changeRoute('/user')">
+		<img src="../contents/svg/users.svg">
 	</div>
 </div>
 <div class="has-header"></div>

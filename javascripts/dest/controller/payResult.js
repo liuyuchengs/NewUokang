@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,$location,Tool){
+	return function($scope,$rootScope,$location,Tool){
 		$scope.payResult = "";
 		$scope.hasSuccess = false;
 		$scope.resultValue = "";
@@ -30,12 +30,12 @@ define(function(){
 
 		// 去订单管理中查看订单
 		$scope.checkOrder = function(){
-			Tool.goPage("/new/htmls/order.html");
+			Tool.changeRoute("/order");
 		}
 
 		// 跳转到主页
 		$scope.toHome = function(){
-			Tool.goPage("/new/htmls/home.html");
+			Tool.changeRoute("/home");
 		}
 	}
 })

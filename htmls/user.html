@@ -31,6 +31,26 @@
 			</div>
 		</div>
 	</div>
+	<div class="myorder" >
+		<div class="link" ng-click="goto('/user/order','p=all')">
+			<img class="icon" src="../contents/svg/user-pay.svg">
+			<span>我的钱包</span>
+		</div>
+		<div class="items">
+			<div class="item" ng-click="goto('/user/order','p=toPay')">
+				<img src="../contents/svg/user-money.svg">
+				<p>余额</p>
+			</div>
+			<div class="item" ng-click="goto('/user/order','p=toHos')">
+				<img src="../contents/svg/user-ticket.svg">
+				<p>代金券</p>
+			</div>
+			<div class="item" ng-click="goto('/user/order','p=toAssess')">
+				<img src="../contents/svg/user-score.svg">
+				<p>积分</p>
+			</div>
+		</div>
+	</div>
 	<ul class="item-group">
 		<li ng-click="goto('/user/mypost','item=publish')">
 			<img class="icon" src="../contents/svg/mypost.svg">

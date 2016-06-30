@@ -42,6 +42,11 @@ span, p {
   background-color: #f2f2f2;
   width: 100%; }
 
+.large-separator {
+  height: 40px;
+  background-color: #f2f2f2;
+  width: 100%; }
+
 .has-header {
   height: 50px;
   width: 100%; }

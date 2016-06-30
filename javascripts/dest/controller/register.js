@@ -72,7 +72,9 @@ define(function(){
 						}
 					}).catch(function(){
 						Tool.alert("发送验证码失败，请稍后再试!");
-					})
+					}).finally(function(){
+					$rootScope.loading =false;
+				})
 				}else{
 					Tool.alert("请填写正确手机号码!");
 				}
@@ -93,6 +95,8 @@ define(function(){
 					}
 				}).catch(function(){
 					Tool.alert("手机号码检查失败，请稍后再试!");
+				}).finally(function(){
+					$rootScope.loading =false;
 				})
 			}else{
 				$scope.phoneCheckResult = false;
@@ -113,7 +117,9 @@ define(function(){
 				}
 			}).catch(function(){
 				Tool.alert("验证码验证失败，请重试!");
-			})
+			}).finally(function(){
+					$rootScope.loading =false;
+				})
 		}
 
 		// 注册
@@ -133,7 +139,9 @@ define(function(){
 				}
 			}).catch(function(){
 				Tool.alert("注册失败!");
-			})
+			}).finally(function(){
+					$rootScope.loading =false;
+				})
 		}
 	}
 })

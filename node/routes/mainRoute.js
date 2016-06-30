@@ -77,6 +77,7 @@ router.post("/wx/register/register",function *(){
 router.post("/wx/health/queryByType",function *(){
     this.body = yield Ajax.post(this.request);
 })
+
 router.post("/wx/health/querydetail",function *(){
     this.body = yield Ajax.post(this.request);
 })
@@ -246,5 +247,26 @@ router.post("/wx/post/addPost",function *(){
     this.body = yield Ajax.post(this.request);
 })
 
+router.post("/wx/user/createReferralCode",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+
+router.post("/wx/share/queryById",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+
+router.post("/wx/withDraw/myBound",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+
+router.post("/wx/withDraw/bound",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/post/deletePost",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/repliesMessage/deleteReplies",function *(){
+    this.body = yield Ajax.post(this.request);
+})
 
 module.exports = router;

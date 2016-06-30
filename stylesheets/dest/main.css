@@ -42,6 +42,11 @@ span, p {
   background-color: #f2f2f2;
   width: 100%; }
 
+.large-separator {
+  height: 40px;
+  background-color: #f2f2f2;
+  width: 100%; }
+
 .has-header {
   height: 50px;
   width: 100%; }
@@ -1383,6 +1388,7 @@ span, p {
     border-bottom: solid 1px #ddd; }
   .userinfo-content .img-item .img {
     height: 60px;
+    width: 60px;
     border-radius: 5px;
     float: right;
     margin-top: 10px;
@@ -1397,6 +1403,8 @@ span, p {
     line-height: 80px;
     float: left;
     margin-left: 15px; }
+  .userinfo-content .img-item .input-file {
+    display: none; }
 
 .userinfo-content .item-group {
   list-style: none;
@@ -4169,3 +4177,6 @@ span, p {
         text-align: center;
         height: 30px;
         line-height: 30px; }
+      .invite-notes-container .notes-content .notes-item p {
+        line-height: 40px;
+        text-align: center; }

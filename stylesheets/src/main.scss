@@ -855,6 +855,7 @@
 		@include half-border-all(bottom,$line-color);
 		.img{
 			height:$img-height;
+			width:$img-height;
 			border-radius: 5px;
 			float: right;
 			@include vertical-center($height,$img-height);
@@ -871,6 +872,9 @@
 			line-height: $height;
 			float: left;
 			margin-left: 15px;
+		}
+		.input-file{
+			display: none;
 		}
 	}
 	.item-group{
@@ -3377,6 +3381,10 @@
 				text-align: center;
 				height:30px;
 				line-height:30px;
+			}
+			p{
+				line-height: 40px;
+				text-align: center;
 			}
 		}
 	}

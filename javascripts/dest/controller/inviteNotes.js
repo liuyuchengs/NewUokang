@@ -13,5 +13,34 @@ define(function(){
             "width":window.screen.width,
             "min-height":window.screen.height-10,
         }
+        $scope.noNote = false;
+        $scope.notes = [];
+
+        $scope.init = function(){
+            $scope.queryNotes();
+        }
+
+        $scope.queryNotes = function(){
+            Ajax.post({
+                url:Tool.host+"/wx/withDraw/myBound",
+                params:{
+                    accessToken:Tool.getLocal("user").accessToken
+                }
+            }).then(function(data){
+                if(data.code===0){
+                    if(data.data.length<1){
+                        $scope.noNote = true;
+                    }else{
+                        $scope.notes = data.data;
+                    }
+                }else{
+                    Tool.alert("获取邀请记录失败，请稍后再试！");
+                }
+            }).catch(function(){
+                Tool.alert("获取邀请记录失败，请稍后再试!");
+            }).finally(function(){
+                $rootScope.loading = false;
+            })
+        }
     }
 })

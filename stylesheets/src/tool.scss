@@ -201,6 +201,9 @@ span,p{
 .base-separator{
 	@include separate(20px,$bg-color);
 }
+.large-separator{
+	@include separate(40px,$bg-color);
+}
 .has-header{
 	height:50px;
 	width: 100%;

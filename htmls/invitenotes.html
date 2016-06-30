@@ -17,15 +17,13 @@
             <div class="tip-item">电话</div>
             <div class="tip-item">时间</div>
         </div>
-        <div class="notes-item">
-            <div>喵了个咪</div>
-            <div>19620369802</div>
-            <div>2016.6.29</div>
+        <div class="notes-item" ng-repeat="note in notes">
+            <div ng-bind="note.userName"></div>
+            <div ng-bind="note.phone"></div>
+            <div ng-bind="note.createTimeStr"></div>
         </div>
-        <div class="notes-item">
-            <div>喵了个咪</div>
-            <div>19620369802</div>
-            <div>2016.6.29</div>
+        <div class="notes-item" ng-if="noNote">
+            <p>还没有邀请记录</p>
         </div>
     </div>
 </div>

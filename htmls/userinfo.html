@@ -8,7 +8,8 @@
 </div>
 <div class="has-header"></div>
 <div class="userinfo-content">
-	<div class="img-item" ng-click="alert('敬请期待!')">
+	<div class="img-item" ng-click="chooseUserImg()">
+		<input type="file" id="input1" class="input-file" accept="image/png,image/jpeg">
 		<span>我的头像</span>
 		<img class="icon" src="../contents/svg/right-arrow.svg">
 		<img class="img" ng-src="{{face|defaultHeadImg:sex}}" user-error="{{sex}}">

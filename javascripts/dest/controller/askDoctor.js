@@ -1,5 +1,5 @@
 define(["jquery"],function($){
-	return function($scope,$rootScope,$location,Tool,Ajax){
+	return function($scope,$rootScope,$location,$http,Tool,Ajax){
 		$scope.hasSee = true;
 		$scope.content = null;
 		$scope.noSelect = true;
@@ -176,7 +176,7 @@ define(["jquery"],function($){
 				$scope.postData.append("postContent",$scope.content);
 				$scope.postData.append("postFlags",3);
 				$scope.postData.append("doctorId",$scope.doctorId);
-				$scope.loading = true;
+				$rootScope.loading = true;
 				$.ajax({
 					type: "POST",
 					url: url,
@@ -189,7 +189,6 @@ define(["jquery"],function($){
 						request.setRequestHeader("accessToken", Tool.userInfo.accessToken);
 					},
 					success:function(data){
-						$scope.loading = false;
 						if(data.code==0){
 							history.back();
 						}else{
@@ -197,8 +196,11 @@ define(["jquery"],function($){
 						}
 					},
 					error:function(){
-						$scope.loading = false;
+						$rootScope.loading = false;
 						$scope.postData = new FormData();
+						Tool.alert("连接失败，请稍后再试!");
+						$rootScope.$apply();
+						$scope.$apply();
 					}
 				})
 			}

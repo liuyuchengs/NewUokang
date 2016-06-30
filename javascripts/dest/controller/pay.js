@@ -1,5 +1,5 @@
 define(function(){
-	return function($scope,$http,$location,Tool,Weixin){
+	return function($scope,$rootScope,$location,Tool,Weixin){
 		$scope.code=null;
 		$scope.order = null;
 
@@ -16,16 +16,19 @@ define(function(){
 		$scope.getParams = function(){
 			if(Tool.getQueryString("code")){
 				$scope.code = Tool.getQueryString("code");
+			}else{
+				Tool.changeRoute("/home");
 			}
 			if(Tool.getSession("order")){
 				$scope.order = Tool.getSession("order");
+			}else{
+				Tool.changeRoute("/home");
 			}
 		}
 
 		// 发起请求支付
 		$scope.pay = function(){
-			$scope.loading = true;
-			Weixin.wxPay($scope.order.id,$scope.code,$scope);
+			Weixin.wxPay($scope.order.id,$scope.code);
 		}
 	}
 })
