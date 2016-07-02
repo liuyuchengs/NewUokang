@@ -974,36 +974,85 @@
 	height:44px;
 	background-color:#fff;
 	margin-top: 20px;
-	.text{
-		float:left;
-		width:80px;
-		height:100%;
-		line-height: 44px;
-		text-align: center;
-	}
-	.input{
-		height:100%;
-		margin-left: 80px;
-		input{
-			width:100%;
+	.text-change{
+		overflow: hidden;
+		.text{
+			float:left;
+			width:80px;
 			height:100%;
-		}
-		div{
-			float: left;
-			margin-top:6px;
-			margin-right:10px;
+			line-height: 44px;
 			text-align: center;
-			height:30px;
-			width:60px;
-			border: solid 1px #dcdcdc;
-			line-height: 30px;
-			background-color: #fff;
 		}
-		.select{
-			border: none;
-			border: solid 1px $main-color;
-			background-color: $main-color;
-			color:#fff;
+		.input{
+			height:44px;
+			margin-left: 80px;
+			input{
+				width:100%;
+				height:100%;
+			}
+			div{
+				float: left;
+				margin-top:6px;
+				margin-right:10px;
+				text-align: center;
+				height:30px;
+				width:60px;
+				border: solid 1px #dcdcdc;
+				line-height: 30px;
+				background-color: #fff;
+			}
+			.select{
+				border: none;
+				border: solid 1px $main-color;
+				background-color: $main-color;
+				color:#fff;
+			}
+		}
+	}
+	.img-change{
+		overflow: hidden;
+		border-top: solid 1px $line-color;
+		border-bottom:solid 1px $line-color;
+		background-color:#fff;
+		.camare{
+			margin:10px 0px 30px 10px;
+			height:60px;
+			width:60px;
+			background-color: $bg-color;
+			border:dashed 1px $main-color;
+			text-align: center;
+			float: left;
+			img{
+				margin:10px 0px;
+				height:40px;
+				width:40px;
+				margin-top:10px;
+			}
+		}
+		.imgs{
+			margin-left:80px;
+			margin-top:10px;
+			.item{
+				position: relative;
+				display:inline-block;
+				.input-item{
+					display: none;
+				}
+				.display-img{
+					height:60px;
+					width:60px;
+				}
+				.display{
+					display: inline-block;
+				}
+				.icon{
+					height:20px;
+					width:20px;
+					position: absolute;
+					right:0px;
+					top:0px;
+				}
+			}
 		}
 	}
 	button{
@@ -1043,7 +1092,7 @@
 	position: fixed;
 	top: 0px;
 	left:0px;
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(0,0,0,0.7);
 	z-index: 30;
 	height:100%;
 	width:100%;
@@ -2335,28 +2384,40 @@
 			padding: 10px 0px;
 			@include half-border-bottom($line-color);
 			.headimg{
-				width: 30px;
-				height:30px;
-				border-radius: 30px;
+				width:12%;
+				height:12%;
+				border-radius: 100%;
 				float: left;
 			}
 			.container{
-				margin-left: 40px;
+				margin-left: 15%;
 				.name{
+					color:$main-color;
 					span:first-child{
 						color:$main-color;
 					}
 					span:last-child{
 						color:$t-color;
 						float:right;
+						display: inline-block;
+						width: 60px;
+						height: 40px;
+						text-align: center;
+						line-height: 40px;
+						margin-top: -10px;
 					}
 				}
 				.text{
-					color:$t-color;
+					color:$s-color;
 					margin-top:5px;
+					overflow: hidden;
+    				text-overflow: ellipsis;
+					display: -webkit-box;
+					-webkit-line-clamp: 3;
+    				-webkit-box-orient: vertical;
 				}
 				.img{
-					margin-top:5px;
+					margin-top:15px;
 					img{
 						height:60px;
 						width:70px;
@@ -3389,4 +3450,80 @@
 		}
 	}
 }
-
+.pay-money-container{
+	position: relative;
+	.display-money{
+		background:url("../../contents/img/pay-money-bg.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		width:221px;
+		height:268px;
+		position: absolute;
+		left:50%;
+		margin-left:-110px;
+		text-align: center;
+		color:$s-color;
+		font-size: $large-font-size;
+		.first-text{
+			margin-top:70px;
+			margin-bottom:15px;
+		}
+		.money{
+			color:#fff;
+			font-size: 22px;
+			margin-right:3px;
+		}
+	}
+	.display-tip{
+		position: absolute;
+		top:270px;
+		width:90%;
+		left:5%;
+		.tip-color{
+			color:$main-color;
+		}
+	}
+}
+.how-pay-container{
+	position: absolute;
+	background-color:rgba(0,0,0,0.4);
+	height:100%;
+	width:100%;
+	z-index: 100;
+	left:0px;
+	top:0px;
+	.content{
+		position: absolute;
+		bottom:0px;
+		width:100%;
+		background: #fff;
+		color:$s-color;
+		.title{
+			height:40px;
+			line-height:40px;
+			text-align: center;
+			@include half-border-bottom($line-color);
+		}
+		.items{
+			padding-bottom:20px;
+			.item{
+				height:80px;
+				margin-left:20px;
+				margin-right:20px;
+				@include half-border-bottom($line-color);
+				line-height:80px;
+				.icon{
+					height:50px;
+					width:50px;
+					vertical-align: middle;
+				}
+				.arrow{
+					float: right;
+					width:20px;
+					height:20px;
+					margin-top:30px;
+				}
+			}
+		}
+	}
+}

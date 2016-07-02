@@ -9,10 +9,10 @@ var sourcemaps = require("gulp-sourcemaps"); //压缩时建立map文件
 gulp.task("sass",function(){
     return gulp.src("stylesheets/src/*.scss")
         .pipe(sass())
-        .pipe(gulp.dest("stylesheets/dest"));
+        .pipe(gulp.dest("stylesheets/css"));
 })
 
-/*
+
 //压缩css
 gulp.task("cleanCSS",function(){
     return gulp.src("stylesheets/css/*.css")
@@ -21,18 +21,34 @@ gulp.task("cleanCSS",function(){
         .pipe(sourcemaps.write("../maps"))
         .pipe(gulp.dest("stylesheets/dest"));
 })
-*/
 
-/*
+
+
 //压缩js
-gulp.task("uglify",function(){
+gulp.task("uglify1",function(){
     return gulp.src("javascripts/js/*.js")
         .pipe(sourcemaps.init())
-        .pipe(uglify())
+        .pipe(uglify({
+            mangle:false,
+        }))
         .pipe(sourcemaps.write("../maps"))
         .pipe(gulp.dest("javascripts/dest"))
 })
-*/
+gulp.task("uglify2",function(){
+    return gulp.src("javascripts/js/controller/*.js")
+        .pipe(sourcemaps.init())
+        .pipe(uglify({mangle:false,}))
+        .pipe(sourcemaps.write("../maps"))
+        .pipe(gulp.dest("javascripts/dest/controller"))
+})
+gulp.task("uglify3",function(){
+    return gulp.src("javascripts/js/service/*.js")
+        .pipe(sourcemaps.init())
+        .pipe(uglify({mangle:false,}))
+        .pipe(sourcemaps.write("../maps"))
+        .pipe(gulp.dest("javascripts/dest/service"))
+})
+
 
 //监视
 gulp.task("watch",function(){

@@ -268,5 +268,14 @@ router.post("/wx/post/deletePost",function *(){
 router.post("/wx/repliesMessage/deleteReplies",function *(){
     this.body = yield Ajax.post(this.request);
 })
+router.post("/wx/mycount/getUserByToken",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/withdraw/myMoney",function *(){
+    this.body = yield Ajax.post(this.request);
+})
+router.post("/wx/withDraw/apply",function *(){
+    this.body = yield Ajax.post(this.request);
+})
 
 module.exports = router;

@@ -1,6 +1,6 @@
 <div class="header" data-ng-init="init()">
 	<div class="title">
-		交互
+		互动
 	</div>
 	<div class="header-item float-right" ng-click="changeRoute('/write')">
 		<img src="../contents/svg/edit.svg">
@@ -18,9 +18,11 @@
 			<img class="headimg" ng-src="{{post.faceImage|defaultHeadImg:post.sex}}" user-error="{{post.sex}}">
 			<div class="container">
 				<p class="name" ng-bind="post.userName"></p>
-				<p class="text" ng-bind="post.postName"></p>
+				<p class="text" ng-bind="post.postContent"></p>
 				<div class="img">
-					<img ng-repeat="img in post.list2" ng-src="{{img}}">
+					<div class="item">
+						<img ng-repeat="img in post.list1" ng-src="{{img}}">
+					</div>	
 				</div>
 				<div class="info">
 					<span ng-bind="post.middTimeStr"></span>

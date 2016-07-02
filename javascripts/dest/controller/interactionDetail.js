@@ -74,6 +74,9 @@ define(function(){
 			}).then(function(data){
 				if(data.code==0){
 					$scope.post = data.data;
+					if($scope.post.faceImage!==null||$scope.post.faceImage!==""){
+						$scope.post.faceImage = "https://biz.uokang.com/"+$scope.post.faceImage;
+					}
 					if(data.data.focusState===1){
 						$scope.follow.hasFollow = true;
 						$scope.follow.followText = "已关注"

@@ -32,20 +32,20 @@
 		</div>
 	</div>
 	<div class="myorder" >
-		<div class="link" ng-click="goto('/user/order','p=all')">
+		<div class="link" >
 			<img class="icon" src="../contents/svg/user-pay.svg">
 			<span>我的钱包</span>
 		</div>
 		<div class="items">
-			<div class="item" ng-click="goto('/user/order','p=toPay')">
+			<div class="item" ng-click="goto('/user/paymoney')">
 				<img src="../contents/svg/user-money.svg">
 				<p>余额</p>
 			</div>
-			<div class="item" ng-click="goto('/user/order','p=toHos')">
+			<div class="item" ng-click="goto('/user/cush')">
 				<img src="../contents/svg/user-ticket.svg">
 				<p>代金券</p>
 			</div>
-			<div class="item" ng-click="goto('/user/order','p=toAssess')">
+			<div class="item" ng-click="alert('敬请期待!')">
 				<img src="../contents/svg/user-score.svg">
 				<p>积分</p>
 			</div>
@@ -75,13 +75,6 @@
 		</li>
 	</ul>
 	<ul class="item-group">
-		<li ng-click="goto('/user/cush')">
-			<img class="icon" src="../contents/svg/djq.svg">
-			<div class="text">
-				<span>我的代金券</span>
-				<img src="../contents/svg/right-arrow.svg">
-			</div>
-		</li>
 		<li ng-click="goto('/grab/order')">
 			<img class="icon" src="../contents/svg/qiang.svg">
 			<div class="text">

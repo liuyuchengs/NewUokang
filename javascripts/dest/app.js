@@ -6,7 +6,7 @@ define(["angular","wx"],function(angular,wx){
      * 定义模块和$rootScope
      */
     var app = angular.module("myApp",["ngRoute"]);
-    app.run(function($rootScope,$location){
+    app.run(["$rootScope","$location",function($rootScope,$location){
         //导航栏样式参数
         $rootScope.navMenuParams = {
             home:false,
@@ -77,7 +77,7 @@ define(["angular","wx"],function(angular,wx){
                 $location.search("");
             }
         }
-    })
+    }])
 
     /**
      * 路由部分
@@ -162,7 +162,7 @@ define(["angular","wx"],function(angular,wx){
                 userinfo:loadController({
                     url:"../javascripts/dest/controller/userInfo.js",
                     name:"userInfoCtrl",
-                    inject:["$scope","$rootScope","$timeout","Tool"],   
+                    inject:["$scope","$rootScope","Tool","Ajax"],   
                 },$controllerProvider)
             }
         }).when("/user/cush",{
@@ -202,7 +202,7 @@ define(["angular","wx"],function(angular,wx){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/userInfoChange.js",
                     name:"userInfoChangeCtrl",
-                    inject:["$scope","$rootScope","$location","Ajax","Tool"],
+                    inject:["$scope","$rootScope","$location","$timeout","$http","Ajax","Tool"],
                 },$controllerProvider)
             }
         }).when("/user/order",{
@@ -280,7 +280,7 @@ define(["angular","wx"],function(angular,wx){
             controller:"findPassCtrl",
             resolve:{
                 askDoctor:loadController({
-                    url:"../javascripts/dest/controller/findpass.js",
+                    url:"../javascripts/dest/controller/findPass.js",
                     name:"findPassCtrl",
                     inject:["$scope","$rootScope","$location","$interval","Tool","Ajax"],
                 },$controllerProvider)
@@ -290,7 +290,7 @@ define(["angular","wx"],function(angular,wx){
             controller:"findPassCtrl",
             resolve:{
                 askDoctor:loadController({
-                    url:"../javascripts/dest/controller/findpass.js",
+                    url:"../javascripts/dest/controller/findPass.js",
                     name:"findPassCtrl",
                     inject:["$scope","$rootScope","$location","$interval","Tool","Ajax"],
                 },$controllerProvider)
@@ -414,7 +414,7 @@ define(["angular","wx"],function(angular,wx){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/write.js",
                     name:"writeCtrl",
-                    inject:["$scope","$rootScope","Tool","Ajax"],
+                    inject:["$scope","$rootScope","$http","Tool","Ajax"],
                 },$controllerProvider)
             }
         }).when("/write/say",{
@@ -424,7 +424,7 @@ define(["angular","wx"],function(angular,wx){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/write.js",
                     name:"writeCtrl",
-                    inject:["$scope","$rootScope","Tool","Ajax"],
+                    inject:["$scope","$rootScope","$http","Tool","Ajax"],
                 },$controllerProvider)
             }
         }).when("/write/note",{
@@ -434,7 +434,7 @@ define(["angular","wx"],function(angular,wx){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/write.js",
                     name:"writeCtrl",
-                    inject:["$scope","$rootScope","Tool","Ajax"],
+                    inject:["$scope","$rootScope","$http","Tool","Ajax"],
                 },$controllerProvider)
             }
         }).when("/user/mypost",{
@@ -504,6 +504,16 @@ define(["angular","wx"],function(angular,wx){
                 askDoctor:loadController({
                     url:"../javascripts/dest/controller/inviteNotes.js",
                     name:"inviteNotesCtrl",
+                    inject:["$scope","$rootScope","Tool","Ajax"],
+                },$controllerProvider)
+            }
+        }).when("/user/paymoney",{
+            templateUrl:"paymoney.html",
+            controller:"payMoneyCtrl",
+            resolve:{
+                askDoctor:loadController({
+                    url:"../javascripts/dest/controller/payMoney.js",
+                    name:"payMoneyCtrl",
                     inject:["$scope","$rootScope","Tool","Ajax"],
                 },$controllerProvider)
             }
@@ -581,7 +591,6 @@ define(["angular","wx"],function(angular,wx){
             }
         }
     })
-
 
     /**
      * 过滤器部分
@@ -670,6 +679,7 @@ define(["angular","wx"],function(angular,wx){
         //变量
         this.host = "http://192.168.0.102:3000";
         //this.host = "https://192.168.0.222:8555/www"
+        //this.host = "https://www.uokang.com";
         this.userInfo = {};
 
         /*
@@ -852,7 +862,7 @@ define(["angular","wx"],function(angular,wx){
             };
             Ajax.post({
                 url:Tool.host+"/weixin/check/getjsconfig",
-                params: "url="+encodeURIComponent(location.href),
+                params: {url:encodeURIComponent(location.href)},
             }).then(function(data){
                 params.appId = data.appId;
                 params.timestamp = data.timestamp;
@@ -924,7 +934,7 @@ define(["angular","wx"],function(angular,wx){
         }
 
         //获取支付参数，并发起支付
-        this.wxPay = function(orderId,code,scope){
+        this.wxPay = function(orderId,code){
             var params = {
                 timestamp: "",
                 nonceStr: '',
@@ -932,24 +942,23 @@ define(["angular","wx"],function(angular,wx){
                 signType: '',
                 paySign: '',
                 success:function() {
-                    Tool.changeRoute("/pay/result","payResult=success")
+                    window.location.href = "https://www.uokang.com/v2/htmls/index.html#/pay/result?payResult=success";
                 },
                 cancel:function(){
-                    Tool.changeRoute("/pay/result","payResult=fail");
+                    window.location.href = "https://www.uokang.com/v2/htmls/index.html#/pay/result?payResult=fail";
                 },
                 fail:function(){
-                    Tool.changeRoute("/pay/result","payResult=fail");
+                    window.location.href = "https://www.uokang.com/v2/htmls/index.html#/pay/result?payResult=fail";
                 }
             };
             if(orderId!=""&orderId!=null){
-                var accessToken = Tool.getLocal("accessToken");
                 var url = Tool.host+"/wx/order/weixin";
-                var params = "payType=JSAPI&orderId="+orderId+"&code="+code;
+                var params = {payType:"JSAPI",orderId:orderId,"code":code};
                 Ajax.post({
                     url:url,
                     params:params,
                     headers:{
-                        'accessToken':accessToken,
+                        'accessToken':Tool.getLocal("user").accessToken,
                     }
                 }).then(function(data){
                     params.timestamp = data.data.timeStamp;
@@ -972,7 +981,7 @@ define(["angular","wx"],function(angular,wx){
     }])
 
     // 存储菜单变量
-    app.service("Params",[function(){
+    app.service("Params",function(){
         this.defaultParams = {
             default:{has:true,id:""}
         }
@@ -1047,7 +1056,7 @@ define(["angular","wx"],function(angular,wx){
             zhongyi:{has:false,val:this.zhongyiParams,proId:"6"},
             tijian:{has:false,val:this.tijianParams,proId:"5"}
         }
-    }])
+    })
 
     /**
      * 打包主要控制器
@@ -1115,6 +1124,7 @@ define(["angular","wx"],function(angular,wx){
 
 		// 查询热门推荐
 		$scope.loadRecommend = function(){
+            $rootScope.loading = true;
 			var url = Tool.host+"/wx/product/queryrecommend";
 			var params = "city=深圳&currentPage="+$scope.currentPage;
 			$http.post(url,params,{
@@ -1135,11 +1145,11 @@ define(["angular","wx"],function(angular,wx){
 						$scope.items = $scope.items.concat(data.data);
 					}
 				}
+                $rootScope.loading = false;
 			}).error(function(){
 				Tool.alert("获取热门推荐数据失败，请稍后再试!");
 				$scope.noProduct = true;
-			}).finally(function(){
-				$rootScope.loading = false;
+                $rootScope.loading = false;
 			})
 		}
 
@@ -1159,6 +1169,7 @@ define(["angular","wx"],function(angular,wx){
 
 		// 获取图片轮播
 		$scope.queryBanner = function(){
+            $rootScope.loading = true;
 			var url = Tool.host+"/wx/banner/query";
 			var params = "type=home_banner";
 			$http.post(url,params,{
@@ -1170,10 +1181,10 @@ define(["angular","wx"],function(angular,wx){
 					$scope.mergeBanner(data.data);
 					$scope.banners = data.data;
 				}
+                $rootScope.loading = false;
 			}).error(function(){
+                $rootScope.loading = false;
 				Tool.alert("获取主页图片失败，请稍后再试!");
-			}).finally(function(){
-				$rootScope.loading = false;
 			})
 		}
 
@@ -1198,10 +1209,10 @@ define(["angular","wx"],function(angular,wx){
 				observer:true,
 				//第一张轮播图显示6s,其他的2s
 				onSlideChangeEnd: function(swiper){
-					if(swiper.activeIndex==0){
+					if(swiper.activeIndex==0||swiper.activeIndex==1){
 						swiper.stopAutoplay();
 						setTimeout(function(){
-							if(swiper.activeIndex==0){
+							if(swiper.activeIndex==0||swiper.activeIndex==1){
 								swiper.startAutoplay();
 							}
 						},4000)
@@ -1226,6 +1237,9 @@ define(["angular","wx"],function(angular,wx){
 		// 图片轮播跳转
 		$scope.activity = function(id){
 			if(id===1){
+				Tool.changeRoute("/invite/new");
+			}
+			if(id===2){
 				Tool.changeRoute("/activity");
 			}
 		}
@@ -1462,6 +1476,9 @@ define(["angular","wx"],function(angular,wx){
                 }
                 if(item.commentNum==""||item.commentNum==null){
                     item.commentNum = 0;
+                }
+                if(item.faceImage!==null|item.faceImage!==""){
+                    item.faceImage = "https://biz.uokang.com/"+item.faceImage;
                 }
                 for(var index in item.list2){
                     if(item.list2[index]==""||item.list2[index]==null){

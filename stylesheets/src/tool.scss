@@ -307,6 +307,11 @@ span,p{
 		}
 	}
 }
+.header-transparent{
+	background-color:transparent;
+	color:$s-color;
+	position: absolute;
+}
 //产品列表
 .prduct-container{
 	$con-padding:10px;
