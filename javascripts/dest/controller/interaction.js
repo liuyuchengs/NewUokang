@@ -13,13 +13,17 @@ define(function(){
             shumei:{has:false,val:2},
             yunsheng:{has:false,val:3}
         }
+        
         $scope.posts = [];
 
         //初始化页面
         $scope.init = function(){
             $rootScope.hasBgColor = false;
             $scope.queryPost();
+            $scope.initSwiper();
         }
+
+
 
         // 加载帖子数据
         $scope.queryPost = function(){
@@ -99,6 +103,5 @@ define(function(){
         $scope.detail = function(id){
             Tool.changeRoute("/interaction/detail","id="+id);
         }
-
     }
 })

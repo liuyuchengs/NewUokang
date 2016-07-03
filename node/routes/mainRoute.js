@@ -1,7 +1,17 @@
 var router = require("koa-router")(); //koa路由
 var Ajax = require("./../module/Ajax"); //http请求
-
+var bodys = require("koa-body")({
+    formidable:{
+        type:"multipart",
+        multiples:true,
+    }
+}); //koa的request和response转换
 // home页面
+
+router.post("/test",bodys,function *(next){
+    this.body = "hello";
+})
+
 router.post("/wx/product/queryrecommend",function *(){
     this.body = yield Ajax.post(this.request);
 })
@@ -243,7 +253,7 @@ router.post("/wx/product/queryActivity",function *(){
     this.body = yield Ajax.post(this.request);
 })
 
-router.post("/wx/post/addPost",function *(){
+router.post("/wx/post/addPost",bodys,function *(next){
     this.body = yield Ajax.post(this.request);
 })
 

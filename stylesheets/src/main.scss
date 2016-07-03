@@ -2418,10 +2418,13 @@
 				}
 				.img{
 					margin-top:15px;
-					img{
-						height:60px;
-						width:70px;
-						margin-right:5px;
+					overflow: hidden;
+					.item{
+						float: left;
+						width:30%;
+						margin-right:3%;
+						overflow: hidden;
+						border-radius: 3px;
 					}
 				}
 				.info{
@@ -2573,17 +2576,37 @@
 		}
 		.imgs{
 			overflow: hidden;
-			img{
-				height:60px;
-				width:70px;
-				margin-right:5px;
-				border-radius: 2px;
+			.item{
+				width:30%;
+				margin-right: 3%;
+				float: left;
+				border-radius: 3px;
+				overflow: hidden;
 			}
+			
 		}
 		.text{
 			line-height: 20px;
 			color:$t-color;
 			font-size:$small-font-size;
+		}
+	}
+	.interaction-swiper{
+		position: fixed;
+		top:0px;
+		left:0px;
+		width:100%;
+		min-height:100%;
+		background-color: rgba(0, 0, 0, 0.8);
+		z-index: 100;
+		.close{
+			width:20px;
+			height:20px;
+			margin-top: 20px;
+			margin-left: 20px;
+			margin-bottom: 20px;
+			background: url("../../contents/svg/grab-close.svg");
+			background-size: contain;
 		}
 	}
 	.message{

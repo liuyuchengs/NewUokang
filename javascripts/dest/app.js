@@ -592,6 +592,44 @@ define(["angular","wx"],function(angular,wx){
         }
     })
 
+    //自适应宽度的正方形
+    app.directive("zoomImage",function(){
+        return {
+            restrict:"A",
+            link:function($scope,iElement,iAttrs){
+                var containSize = iElement.css("width").slice(0,-2);
+                iElement.css("height",containSize);
+                var children = iElement.children();
+                children.bind("load",function(){
+                    var width = children.css("width").slice(0,-2);
+                    var height = children.css("height").slice(0,-2);
+                    if(width>height){
+                        var zWidth = (containSize/height)*width;
+                        var zHeight = containSize;
+                        children.css("marginLeft",-(zWidth-containSize)/2);
+                    }else{
+                        var zHeight = (containSize/width)*height;
+                        var zWidth = containSize;
+                        children.css("marginTop",-(zHeight-containSize)/2);
+                    }
+                    children.css("width",zWidth);
+                    children.css("height",zHeight);
+                })
+            }
+        }
+    })
+
+    //自动缩放图片
+    app.directive("zoomImage",function(){
+        return {
+            restrict:"A",
+            link:function($scope,iElement,IAttrs){
+                var width = $scope.containerWidth;
+                $scope.testVal = 4;
+            }
+        }
+    })
+
     /**
      * 过滤器部分
      */
@@ -677,7 +715,7 @@ define(["angular","wx"],function(angular,wx){
     app.service("Tool",["$rootScope","$location",function($rootScope,$location){
         
         //变量
-        this.host = "http://192.168.0.102:3000";
+        this.host = "http://192.168.0.104:3000";
         //this.host = "https://192.168.0.222:8555/www"
         //this.host = "https://www.uokang.com";
         this.userInfo = {};
