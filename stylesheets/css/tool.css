@@ -38,9 +38,29 @@ span, p {
   float: right; }
 
 .base-separator {
-  height: 20px;
+  height: 10px;
   background-color: #f2f2f2;
-  width: 100%; }
+  width: 100%;
+  position: relative; }
+  .base-separator:before {
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: 0% 0%;
+    -moz-transform-origin: 0% 10%;
+    -ms-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    content: "";
+    position: absolute;
+    box-sizing: border-box;
+    display: block;
+    top: 0;
+    left: 0;
+    bottom: -100%;
+    right: -100%;
+    border-top: solid 1px #ddd;
+    border-bottom: solid 1px #ddd; }
 
 .large-separator {
   height: 40px;
@@ -123,6 +143,9 @@ span, p {
     .header .header-item-width .text {
       height: 50px;
       line-height: 50px; }
+  .header .home-icon {
+    line-height: 20px;
+    margin-top: 10px; }
   .header .follow .icon {
     display: inline-block;
     height: 15px;

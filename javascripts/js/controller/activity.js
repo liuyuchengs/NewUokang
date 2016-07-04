@@ -1,9 +1,10 @@
 define(function(){
-    return function($scope,$rootScope,Tool,Ajax){
+    return function($scope,$rootScope,$location,Tool,Ajax){
         // 查询参数
         $scope.queryParams = {
             pageRows:10,
-            currentPage:1
+            currentPage:1,
+            flag:null,
         }
 
         $scope.noProduct = false;
@@ -13,7 +14,12 @@ define(function(){
         // 页面初始化
         $scope.init = function(){
             $rootScope.hasBgColor = false;
-            $scope.queryActivity();
+            if($location.search().flag){
+                $scope.queryParams.flag = $location.search().flag;
+                $scope.queryActivity();
+            }else{
+                Tool.changeRoute("/home");
+            }
         }
 
         // 查询活动数据

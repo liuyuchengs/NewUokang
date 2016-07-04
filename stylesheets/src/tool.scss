@@ -199,7 +199,8 @@ span,p{
 	float:right;
 }
 .base-separator{
-	@include separate(20px,$bg-color);
+	@include separate(10px,$bg-color);
+	@include half-border-all(top bottom,$line-color);
 }
 .large-separator{
 	@include separate(40px,$bg-color);
@@ -287,6 +288,10 @@ span,p{
 			height:50px;
 			line-height: 50px;
 		}
+	}
+	.home-icon{
+		line-height: 20px;
+		margin-top: 10px;
 	}
 	.follow{
 		.icon{

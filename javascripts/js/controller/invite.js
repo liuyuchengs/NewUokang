@@ -26,26 +26,32 @@ define(function(){
 
         //邀请好友初始化
         $scope.inviteInit = function(){
-            if(Tool.checkLogin()){
-                Tool.loadUserinfo();
-                $scope.queryCode();
-                //$scope.queryShare();
-                Weixin.wxInit($scope);
-			    Weixin.wxConfig($scope);
+            Tool.noWindowListen();
+            if($location.search().at){
+                var accessToken = $location.search().at;
+                $scope.queryCode(accessToken);
             }else{
-                Tool.alert("请先登录",function(){
-                    $rootScope.hasTip = false;
-                    Tool.changeRoute("/user");
-                })
-                
+                if(Tool.checkLogin()){
+                    Tool.loadUserinfo();
+                    $scope.queryCode(Tool.userInfo.accessToken);
+                    //$scope.queryShare();
+                    Weixin.wxInit($scope);
+                    Weixin.wxConfig($scope);
+                }else{
+                    Tool.alert("请先登录",function(){
+                        $rootScope.hasTip = false;
+                        Tool.changeRoute("/user");
+                    })
+                }
+
             }
         }
 
         //查询用户的邀请码
-        $scope.queryCode = function(){
+        $scope.queryCode = function(accessToken){
             Ajax.post({
                 url:Tool.host+"/wx/user/createReferralCode",
-                params:{"accessToken":Tool.userInfo.accessToken},
+                params:{"accessToken":accessToken},
             }).then(function(data){
                 if(data.code==0){
                     $scope.code = data.data.referralCode;

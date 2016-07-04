@@ -82,7 +82,7 @@ define(function(){
 
         //检查是否有绑定账号
         $scope.checkAccount = function(flag){
-            if(flag==2&&Tool.userInfo.alipay!=null&&Tool.userInfo.alipay!=""){
+            if(flag==1&&Tool.userInfo.alipay!=null&&Tool.userInfo.alipay!=""){
                 return true;
 
             }else if(flag==2&&Tool.userInfo.wxpay!=null&&Tool.userInfo.wxpay!=""){

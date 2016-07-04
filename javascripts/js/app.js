@@ -160,7 +160,7 @@ define(["angular","wx"],function(angular,wx){
             controller:"userInfoCtrl",
             resolve:{
                 userinfo:loadController({
-                    url:"../javascripts/dest/controller/userInfo.js",
+                    url:"../javascripts/dest/controller/userinfo.js",
                     name:"userInfoCtrl",
                     inject:["$scope","$rootScope","Tool","Ajax"],   
                 },$controllerProvider)
@@ -222,7 +222,7 @@ define(["angular","wx"],function(angular,wx){
                 activity:loadController({
                     url:"../javascripts/dest/controller/activity.js",
                     name:"activityCtrl",
-                    inject:["$scope","$rootScope","Tool","Ajax"],   
+                    inject:["$scope","$rootScope","$location","Tool","Ajax"],   
                 },$controllerProvider)
             }
         }).when("/product/detail",{
@@ -340,7 +340,7 @@ define(["angular","wx"],function(angular,wx){
             controller:"makeOrderCtrl",
             resolve:{
                 askDoctor:loadController({
-                    url:"../javascripts/dest/controller/makeOrder.js",
+                    url:"../javascripts/dest/controller/makeorder.js",
                     name:"makeOrderCtrl",
                     inject:["$scope","$rootScope","Tool","Ajax"],
                 },$controllerProvider)
@@ -592,6 +592,33 @@ define(["angular","wx"],function(angular,wx){
         }
     })
 
+    //自适应宽度的正方形
+    app.directive("zoomImage",function(){
+        return {
+            restrict:"A",
+            link:function($scope,iElement,iAttrs){
+                var containSize = iElement.css("width").slice(0,-2);
+                iElement.css("height",containSize);
+                var children = iElement.children();
+                children.bind("load",function(){
+                    var width = children.css("width").slice(0,-2);
+                    var height = children.css("height").slice(0,-2);
+                    if(width>height){
+                        var zWidth = (containSize/height)*width;
+                        var zHeight = containSize;
+                        children.css("marginLeft",-(zWidth-containSize)/2);
+                    }else{
+                        var zHeight = (containSize/width)*height;
+                        var zWidth = containSize;
+                        children.css("marginTop",-(zHeight-containSize)/2);
+                    }
+                    children.css("width",zWidth);
+                    children.css("height",zHeight);
+                })
+            }
+        }
+    })
+
     /**
      * 过滤器部分
      */
@@ -677,11 +704,10 @@ define(["angular","wx"],function(angular,wx){
     app.service("Tool",["$rootScope","$location",function($rootScope,$location){
         
         //变量
-        this.host = "http://192.168.0.102:3000";
+        //this.host = "http://192.168.0.102:3000";
         //this.host = "https://192.168.0.222:8555/www"
         //this.host = "https://www.uokang.com";
         this.userInfo = {};
-
         /*
         ** 操作localStorage和sessionStorage
         */
@@ -1178,7 +1204,6 @@ define(["angular","wx"],function(angular,wx){
 				}
 			}).success(function(data){
 				if(data.code==0){
-					$scope.mergeBanner(data.data);
 					$scope.banners = data.data;
 				}
                 $rootScope.loading = false;
@@ -1186,15 +1211,6 @@ define(["angular","wx"],function(angular,wx){
                 $rootScope.loading = false;
 				Tool.alert("获取主页图片失败，请稍后再试!");
 			})
-		}
-
-		// 为图片轮播添加链接
-		$scope.mergeBanner = function(items){
-			for(var index in items){
-				if(index==0){
-					items[index].url="section/wrap-a.html";
-				}
-			}
 		}
 
 		// 初始化图片轮播插件
@@ -1236,11 +1252,14 @@ define(["angular","wx"],function(angular,wx){
 
 		// 图片轮播跳转
 		$scope.activity = function(id){
-			if(id===1){
-				Tool.changeRoute("/invite/new");
+            if(id===1){
+				Tool.changeRoute("/activity","flag=2");
 			}
 			if(id===2){
-				Tool.changeRoute("/activity");
+				Tool.changeRoute("/invite/new");
+			}
+			if(id===3){
+				Tool.changeRoute("/activity","flag=1");
 			}
 		}
 
@@ -1476,6 +1495,9 @@ define(["angular","wx"],function(angular,wx){
                 }
                 if(item.commentNum==""||item.commentNum==null){
                     item.commentNum = 0;
+                }
+                if(item.faceImage!==null|item.faceImage!==""){
+                    item.faceImage = "https://biz.uokang.com/"+item.faceImage;
                 }
                 for(var index in item.list2){
                     if(item.list2[index]==""||item.list2[index]==null){

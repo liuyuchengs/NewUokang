@@ -55,23 +55,22 @@
 			</div>	
 		</div>
 	</div>
-	<div class="interaction-swiper" ng-show="swiperParams.hasSwiper">
-		<div class="close" ng-click="switchSwiper('',false)"></div>
-		<div id="swiper1" class="swiper-container" ng-show="swiperParams.showBefore">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide" ng-repeat="img in post.list1">
-					<img class="swiper-img" ng-src="{{img}}" ng-style="imgStyle">
+	<div class="interaction-swiper" ng-show="swiperParams.hasSwiper" ng-click="switchSwiper('',false)">
+		<div class="container" >
+			<div id="swiper1" class="swiper-container" ng-show="swiperParams.showBefore">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" ng-repeat="img in post.list1">
+						<img class="swiper-img" ng-src="{{img}}" ng-style="imgStyle">
+					</div>
 				</div>
 			</div>
-			<div class="swiper-pagination"></div>
-		</div>
-		<div id="swiper2" class="swiper-container" ng-show="swiperParams.showAfter">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide" ng-repeat="img in post.list2">
-					<img class="swiper-img" ng-src="{{img}}" ng-style="imgStyle">
+			<div id="swiper2" class="swiper-container" ng-show="swiperParams.showAfter">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" ng-repeat="img in post.list2">
+						<img class="swiper-img" ng-src="{{img}}" ng-style="imgStyle">
+					</div>
 				</div>
 			</div>
-			<div class="swiper-pagination"></div>
 		</div>
 	</div>
 	<div class="info">

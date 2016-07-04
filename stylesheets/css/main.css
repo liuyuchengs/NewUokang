@@ -38,9 +38,29 @@ span, p {
   float: right; }
 
 .base-separator {
-  height: 20px;
+  height: 10px;
   background-color: #f2f2f2;
-  width: 100%; }
+  width: 100%;
+  position: relative; }
+  .base-separator:before {
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: 0% 0%;
+    -moz-transform-origin: 0% 10%;
+    -ms-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    content: "";
+    position: absolute;
+    box-sizing: border-box;
+    display: block;
+    top: 0;
+    left: 0;
+    bottom: -100%;
+    right: -100%;
+    border-top: solid 1px #ddd;
+    border-bottom: solid 1px #ddd; }
 
 .large-separator {
   height: 40px;
@@ -123,6 +143,9 @@ span, p {
     .header .header-item-width .text {
       height: 50px;
       line-height: 50px; }
+  .header .home-icon {
+    line-height: 20px;
+    margin-top: 10px; }
   .header .follow .icon {
     display: inline-block;
     height: 15px;
@@ -384,70 +407,23 @@ span, p {
 * ******主页******
 */
 .type {
-  padding-left: 5%;
-  padding-right: 5%;
-  position: relative; }
-  .type:before {
-    -webkit-transform: scale(0.5);
-    -moz-transform: scale(0.5);
-    -ms-transform: scale(0.5);
-    transform: scale(0.5);
-    -webkit-transform-origin: 0% 0%;
-    -moz-transform-origin: 0% 10%;
-    -ms-transform-origin: 0% 0%;
-    transform-origin: 0% 0%;
-    content: "";
-    position: absolute;
-    box-sizing: border-box;
-    display: block;
-    top: 0;
-    left: 0;
-    bottom: -100%;
-    right: -100%;
-    border-bottom: solid 1px #ddd; }
+  padding-top: 10px; }
   .type .type-line {
-    height: 100px;
-    position: relative; }
+    overflow: hidden;
+    padding-bottom: 13px; }
     .type .type-line .type-item {
-      height: 80px;
-      width: 80px;
-      text-align: center;
-      margin-top: 10px; }
-      .type .type-line .type-item .type-icon {
-        text-align: center; }
-        .type .type-line .type-item .type-icon img {
-          height: 50px; }
-    .type .type-line .middle {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-top: -40px;
-      margin-left: -40px; }
+      float: left;
+      width: 33.33%;
+      border: none;
+      text-align: center; }
+      .type .type-line .type-item img {
+        height: 40px;
+        width: 40px; }
 
 .tehui {
-  overflow: hidden;
-  position: relative; }
-  .tehui:before {
-    -webkit-transform: scale(0.5);
-    -moz-transform: scale(0.5);
-    -ms-transform: scale(0.5);
-    transform: scale(0.5);
-    -webkit-transform-origin: 0% 0%;
-    -moz-transform-origin: 0% 10%;
-    -ms-transform-origin: 0% 0%;
-    transform-origin: 0% 0%;
-    content: "";
-    position: absolute;
-    box-sizing: border-box;
-    display: block;
-    top: 0;
-    left: 0;
-    bottom: -100%;
-    right: -100%;
-    border-top: solid 1px #ddd;
-    border-bottom: solid 1px #ddd; }
+  overflow: hidden; }
   .tehui .tehui-qiang {
-    width: 70%;
+    width: 65%;
     height: 100px;
     text-align: center;
     position: relative; }
@@ -455,12 +431,12 @@ span, p {
       display: inline-block;
       text-align: center;
       height: 50px;
-      width: 200px;
+      width: 185px;
       position: absolute;
       top: 50%;
       left: 50%;
       margin-top: -25px;
-      margin-left: -100px; }
+      margin-left: -92.5px; }
       .tehui .tehui-qiang .item img {
         height: 50px; }
       .tehui .tehui-qiang .item .item-title {
@@ -471,9 +447,9 @@ span, p {
           background-color: #FA4B58;
           color: #ffffff;
           margin-right: 3px;
-          padding: 5px; }
+          padding: 3px; }
   .tehui .tehui-tehui {
-    width: 28%;
+    width: 34%;
     height: 100px;
     text-align: center;
     position: relative; }
@@ -510,7 +486,7 @@ span, p {
       color: #1FC1D9; }
 
 .hot {
-  height: 30px;
+  height: 40px;
   padding-left: 15px;
   position: relative; }
   .hot:before {
@@ -526,16 +502,18 @@ span, p {
     position: absolute;
     box-sizing: border-box;
     display: block;
+    top: 0;
     left: 0;
+    bottom: -100%;
     right: -100%;
-    bottom: 0;
     border-bottom: solid 1px #ddd; }
   .hot div {
-    height: 20px;
-    line-height: 20px;
-    margin-top: 7.5px; }
+    height: 40px;
+    line-height: 40px; }
     .hot div img {
-      height: 20px; }
+      height: 20px;
+      width: 20px;
+      vertical-align: middle; }
 
 /*
 * ******产品列表页面******
@@ -2672,9 +2650,13 @@ span, p {
           color: #666;
           float: right; }
       .doctor-content ul li .text .address {
-        color: #666; }
+        color: #666;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
       .doctor-content ul li .text .use {
-        font-size: 12px; }
+        font-size: 12px;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
         .doctor-content ul li .text .use span:last-child {
           color: #999; }
 
@@ -3061,11 +3043,14 @@ span, p {
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical; }
         .interaction-content .card li .container .img {
-          margin-top: 5px; }
-          .interaction-content .card li .container .img img {
-            height: 60px;
-            width: 70px;
-            margin-right: 5px; }
+          margin-top: 15px;
+          overflow: hidden; }
+          .interaction-content .card li .container .img .item {
+            float: left;
+            width: 30%;
+            margin-right: 3%;
+            overflow: hidden;
+            border-radius: 3px; }
         .interaction-content .card li .container .info {
           height: 20px;
           line-height: 20px;
@@ -3251,15 +3236,28 @@ span, p {
       line-height: 30px; }
     .inte-detail-content .info .imgs {
       overflow: hidden; }
-      .inte-detail-content .info .imgs img {
-        height: 60px;
-        width: 70px;
-        margin-right: 5px;
-        border-radius: 2px; }
+      .inte-detail-content .info .imgs .item {
+        width: 30%;
+        margin-right: 3%;
+        float: left;
+        border-radius: 3px;
+        overflow: hidden; }
     .inte-detail-content .info .text {
       line-height: 20px;
       color: #999;
       font-size: 12px; }
+  .inte-detail-content .interaction-swiper {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    min-height: 100%;
+    background-color: black;
+    z-index: 100;
+    display: table; }
+    .inte-detail-content .interaction-swiper .container {
+      display: table-cell;
+      vertical-align: middle; }
   .inte-detail-content .message ul {
     list-style: none;
     padding: 10px 0px; }

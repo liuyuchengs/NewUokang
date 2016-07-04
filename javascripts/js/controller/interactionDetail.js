@@ -20,13 +20,53 @@ define(function(){
 			pageRows:10,
 			currentPage:1
 		}
+
+		$scope.imgStyle = {
+			"width":screen.width
+		}
+        $scope.swiperParams = {
+			hasSwiper:false,
+            showBefore:false,
+            showAfter:false
+        }
+
 		// 页面初始化
 		$scope.init =function(){	
 			$rootScope.hasBgColor = false;	
 			$scope.getQueryString();
 			$scope.queryPost();
 			$scope.queryMessage();
+			$scope.initSwiper();
 		}
+
+		// 初始化图片轮播插件
+		$scope.initSwiper = function(){
+			//初始化swiper
+			var myswiper1 = new Swiper("#swiper1",{
+				loop:false,
+				autoplayDisableOnInteraction:false,
+				observeParents:true,  
+				observer:true,
+			})
+
+			var myswiper2 = new Swiper("#swiper2",{
+				loop:false,
+				autoplayDisableOnInteraction:false,
+				observeParents:true,  
+				observer:true,
+			})
+		}
+
+        //切换预览显示
+        $scope.switchSwiper = function(item,has){
+			$scope.swiperParams.hasSwiper = has;
+            if(item==="before"){
+                $scope.swiperParams.showBefore = has;
+            }
+            if(item==="after"){
+                $scope.swiperParams.showAfter = has;
+            }
+        }
 
 		// 获取帖子id
 		$scope.getQueryString = function(){
@@ -74,9 +114,14 @@ define(function(){
 			}).then(function(data){
 				if(data.code==0){
 					$scope.post = data.data;
+					if($scope.post.faceImage!==null||$scope.post.faceImage!==""){
+						$scope.post.faceImage = "https://biz.uokang.com/"+$scope.post.faceImage;
+					}
+					$scope.post.list1.length>0?$scope.post.hasList1=true:$scope.post.hasList1=false;
+					$scope.post.list2.length>0?$scope.post.hasList2=true:$scope.post.hasList2=false;
 					if(data.data.focusState===1){
 						$scope.follow.hasFollow = true;
-						$scope.follow.followText = "已关注"
+						$scope.follow.followText = "已关注";
 					}
 				}else{
 					Tool.alert(data.message);
